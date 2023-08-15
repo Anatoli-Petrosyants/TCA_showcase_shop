@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Common</key>
+	<dict>
+		<key>api_version</key>
+		<string>1.0.0</string>
+		<key>client</key>
+		<string>i</string>
+		<key>clientId</key>
+		<string>showcase</string>
+	</dict>
+	<key>Development</key>
+	<dict>
+		<key>build_configuration</key>
+		<string>development</string>
+		<key>base_url</key>
+		<string>https://fakestoreapi.com</string>
+	</dict>
+	<key>QA</key>
+	<dict>
+		<key>build_configuration</key>
+		<string>qa</string>
+		<key>base_url</key>
+		<string>https://fakestoreapi.com</string>
+	</dict>
+	<key>Release</key>
+	<dict>
+		<key>build_configuration</key>
+		<string>release</string>
+		<key>base_url</key>
+		<string>https://fakestoreapi.com</string>
+	</dict>
+</dict>
+</plist>

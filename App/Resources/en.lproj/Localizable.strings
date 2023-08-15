@@ -1,0 +1,85 @@
+/* 
+  Localizable.strings
+  Showcase
+
+  Created by Anatoli Petrosyants on 27.02.23.
+  
+*/
+
+// Base
+"base.showcase" = "Showcase";
+"base.continue" = "Continue";
+"base.save" = "Save";
+"base.logout" = "Logout";
+"base.cancel" = "Cancel";
+"base.attention" = "Attention";
+"base.are.you.sure" = "Are you sure?";
+"base.successfully.saved" = "Successfully saved!";
+"base.oops" = "Oops, Something went wrong";
+
+// Onboarding
+"onboarding.title1" = "Get healthy and live peacfully";
+"onboarding.description1" = "Living a happier, more satisfied life is within reach.";
+"onboarding.title12" = "Predict weather";
+"onboarding.description2" = "Predict weather trends and conditions with current solar activity.";
+"onboarding.title3" = "Get air quality information";
+"onboarding.description3" = "Immediate, accurate air quality data to help you create healthier.";
+"onboarding.get.started" = "Get Started";
+
+// Login
+"login.title" = "Login";
+"login.forgot.password" = "Forgot Password";
+"login.agreements" = "Agreements and Policy";
+
+// Forgot Password
+"forgotPassword.title" = "Forgot Password";
+"forgotPassword.changePassword" = "Change Password";
+
+// Agreements
+"agreements.title" = "Agreements";
+"agreements.accept" = "Accept";
+
+// Account
+"account.title" = "Account";
+"account.section.header.personal" = "Personal Information";
+"account.section.header.personal.first.name" = "First Name";
+"account.section.header.personal.last.name" = "Last Name";
+"account.section.header.personal.birthDate" = "BirthDate";
+"account.section.header.personal.gender" = "Gender";
+
+"account.section.header.contact" = "Contact Information";
+"account.section.header.contact.email" = "Email";
+"account.section.header.contact.phone" = "Phone";
+"account.section.header.contact.linkedin" = "Linkedin account";
+"account.section.header.contact.upwork" = "Upwork account";
+
+"account.section.header.additional" = "Additional Information";
+"account.section.header.additional.about.me" = "About me";
+"account.section.header.additional.supported.version" = "Supported Version";
+"account.section.header.additional.app.version" = "App Version";
+
+"account.section.header.settings" = "Account Settings";
+"account.section.header.settings.enable.notifications" = "Enable notifications";
+
+
+
+
+
+// showcase
+"showcase.title" = "Showcase";
+
+// navigation bar
+"navigation.bar.title" = "Navigation Bar";
+"navigation.bar.info.alert.title" = "Info alert title";
+"navigation.bar.info.alert.description" = "Info alert description";
+"navigation.bar.add.alert.title" = "Add alert title";
+"navigation.bar.add.alert.description" = "Add alert description";
+
+"navigation.bar.confirmationDialog.title" = "Confirmation Dialog title";
+"navigation.bar.confirmationDialog.description" = "Confirmation Dialog description";
+
+
+// todo
+"todo.title" = "Todo";
+"todo.section.header" = "Section header";
+"todo.section.footer" = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
