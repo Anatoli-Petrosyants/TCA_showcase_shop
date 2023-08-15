@@ -2,7 +2,7 @@
 //  View+DismissKeyboardOnTap.swift
 //  Showcase
 //
-//  Created by Anatoli Petrosyants on 01.03.23.
+//  Created by Anatoli Petrosyants on 15.08.23.
 //
 
 import SwiftUI

@@ -28,7 +28,7 @@ extension HelpView: View {
             VStack {
                 TabView(selection: viewStore.binding(\.$currentTab)) {
                     ForEach(viewStore.items) { viewData in
-                        OnboardingPageView(data: viewData)
+                        HelpPageView(data: viewData)
                             .tag(viewData.tab)
                             .padding(.bottom, 50)
                     }
@@ -48,5 +48,42 @@ extension HelpView: View {
             }
             .padding()
         }
+    }
+}
+
+struct HelpPageView: View {
+    
+    var data: Onboarding
+
+    @State private var isAnimating: Bool = false
+    @State private var playLottie = false
+
+    var body: some View {
+        VStack() {
+            LottieViewRepresentable(name: data.lottie, loopMode: .autoReverse, play: $playLottie)
+
+            Spacer()
+
+            Text(data.title)
+                .font(.title2)
+                .bold()
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+
+            Text(data.description)
+                .font(.headline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            Spacer()
+        }
+        .onAppear(perform: {
+            playLottie = true
+            isAnimating = false
+            withAnimation(.easeOut(duration: 0.5)) {
+                self.isAnimating = true
+            }
+        })
     }
 }
