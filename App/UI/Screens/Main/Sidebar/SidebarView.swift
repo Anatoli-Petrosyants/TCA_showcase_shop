@@ -44,7 +44,7 @@ extension SidebarView: View {
                         Color.white
                         
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Menu")
+                            Text(Localization.Sidebar.title)
                                 .font(.largeTitleBold)
                                 .padding(.top, 30)
                             Spacer()
@@ -81,31 +81,31 @@ extension SidebarView {
             Button {
                 viewStore.send(.view(.onHealthKitTap))
             } label: {
-                Label("HealthKit", systemImage: "cross.case")
+                Label(Localization.Sidebar.healthKit, systemImage: "cross.case")
             }
             
             Button {
                 viewStore.send(.view(.onCameraTap))
             } label: {
-                Label("Camera", systemImage: "camera")
+                Label(Localization.Sidebar.camera, systemImage: "camera")
             }
             
             Button {
                 viewStore.send(.view(.onCountriesTap))
             } label: {
-                Label("Choose Country", systemImage: "house.and.flag")
+                Label(Localization.Sidebar.chooseCountry, systemImage: "house.and.flag")
             }
             
             Button {
                 viewStore.send(.view(.onMapTap))
             } label: {
-                Label("Map", systemImage: "map")
+                Label(Localization.Sidebar.map, systemImage: "map")
             }
             
             Button {
                 viewStore.send(.view(.onMessagesTap))
             } label: {
-                Label("InApp Messages", systemImage: "list.dash.header.rectangle")
+                Label(Localization.Sidebar.inAppMessages, systemImage: "list.dash.header.rectangle")
             }
         }
     }
@@ -115,37 +115,37 @@ extension SidebarView {
             Button {
                 viewStore.send(.view(.onDarkModeTap))
             } label: {
-                Label("Dark mode", systemImage: "switch.2")
+                Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
             }
             
             Button {
                 viewStore.send(.view(.onAppSettings))
             } label: {
-                Label("App settings", systemImage: "gearshape")
+                Label(Localization.Sidebar.appSettings, systemImage: "gearshape")
             }
 
             Button {
                 viewStore.send(.view(.onShareTap))
             } label: {
-                Label("Share app", systemImage: "square.and.arrow.up")
+                Label(Localization.Sidebar.shareApp, systemImage: "square.and.arrow.up")
             }
             
             Button {
                 viewStore.send(.view(.onRateTap))
             } label: {
-                Label("Rate us", systemImage: "person.2")
+                Label(Localization.Sidebar.rateUs, systemImage: "person.2")
             }
             
             Button {
                 viewStore.send(.view(.onContactTap))
             } label: {
-                Label("Contact us", systemImage: "envelope")
+                Label(Localization.Sidebar.contactUs, systemImage: "envelope")
             }
 
             Button {
                 viewStore.send(.view(.onLogoutTap))
             } label: {
-                Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
+                Label(Localization.Base.logout, systemImage: "rectangle.portrait.and.arrow.right")
             }
         }
     }

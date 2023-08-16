@@ -17,7 +17,7 @@ extension Localization {
         static var sectionHeaderPersonalBirthDate: LocalizedStringKey { return "account.section.header.personal.birthDate" }
         static var sectionHeaderPersonalGender: LocalizedStringKey { return "account.section.header.personal.gender" }        
         
-        static var sectionHeaderContact: LocalizedStringKey { return "account.section.header.contact.contact" }
+        static var sectionHeaderContact: LocalizedStringKey { return "account.section.header.contact" }
         static var sectionHeaderContactEmail: LocalizedStringKey { return "account.section.header.contact.email" }
         static var sectionHeaderContactPhone: LocalizedStringKey { return "account.section.header.contact.phone" }
         static var sectionHeaderContactLinkedin: LocalizedStringKey { return "account.section.header.contact.linkedin" }

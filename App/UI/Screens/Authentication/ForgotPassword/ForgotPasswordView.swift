@@ -26,11 +26,6 @@ extension ForgotPasswordView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
-                VStack {
-                    
-                }
-                .padding(24)
-                
                 Spacer()
 
                 Button(Localization.ForgotPassword.changePassword, action: {

@@ -16,6 +16,7 @@
 "base.are.you.sure" = "Are you sure?";
 "base.successfully.saved" = "Successfully saved!";
 "base.oops" = "Oops, Something went wrong";
+"base.email.placholder" = "smith@some.email";
 
 // Onboarding
 "onboarding.title1" = "Get healthy and live peacfully";
@@ -61,7 +62,18 @@
 "account.section.header.settings" = "Account Settings";
 "account.section.header.settings.enable.notifications" = "Enable notifications";
 
-
+// Sidebar
+"sidebar.title" = "Menu";
+"sidebar.item.healthKit" = "HealthKit";
+"sidebar.item.camera" = "Camera";
+"sidebar.item.chooseCountry" = "Choose Country";
+"sidebar.item.map" = "Map";
+"sidebar.item.inAppMessages" = "InApp Messages";
+"sidebar.item.darkMode" = "DarkMode";
+"sidebar.item.shareApp" = "Share App";
+"sidebar.item.appSettings" = "App Settings";
+"sidebar.item.rateUs" = "Rate us";
+"sidebar.item.contactUs" = "Contact us";
 
 
 
