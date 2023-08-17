@@ -82,3 +82,7 @@
 "product.details.view.photos" = "View Photos";
 "product.details.reviews" = "Reviews";
 "product.details.photos" = "Photos";
+
+// Search
+"search.title" = "Search";
+"search.products.input.placholder" = "Search products";

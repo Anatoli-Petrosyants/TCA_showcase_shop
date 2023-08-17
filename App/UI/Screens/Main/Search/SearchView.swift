@@ -71,7 +71,7 @@ extension SearchView: View {
                     .aspectRatio(1.0, contentMode: .fit)
                 }
                 .dismissKeyboardOnTap()
-                .navigationTitle("Search")
+                .navigationTitle(Localization.Search.title)
                 .modifier(NavigationBarModifier())
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
