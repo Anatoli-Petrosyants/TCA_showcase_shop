@@ -70,6 +70,9 @@ extension SearchView: View {
                     .padding([.leading, .trailing], 8)
                     .aspectRatio(1.0, contentMode: .fit)
                 }
+                .onError(error: viewStore.searchError, action: {
+                    viewStore.send(.view(.onViewLoad))
+                })
                 .dismissKeyboardOnTap()
                 .navigationTitle(Localization.Search.title)
                 .modifier(NavigationBarModifier())

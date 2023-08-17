@@ -149,8 +149,7 @@ struct ProductsReducer: Reducer {
                     state.items.append(contentsOf: items)
                     return .none
 
-                case let .productsResponse(.failure(error)):
-                    Log.debug("productsResponse error: \(error)")
+                case let .productsResponse(.failure(error)):                    
                     state.productsError = .underlying(error)
                     state.isActivityIndicatorVisible = false
                     state.isLoading = false

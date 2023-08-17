@@ -11,7 +11,7 @@ import Dependencies
 
 struct SearchInputReducer: Reducer {
     
-    struct State: Equatable, Hashable {
+    struct State: Equatable {
         var placeholder = Localization.Search.inputPlacholder
         var searchQuery = ""
         var isHiddenClearButton = true

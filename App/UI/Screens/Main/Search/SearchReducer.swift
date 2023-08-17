@@ -17,6 +17,7 @@ struct SearchReducer: Reducer {
         var wishlist = SearchWishlistReducer.State()
         var input = SearchInputReducer.State()
         var segment = SearchSegmentReducer.State()
+        var searchError: AppError? = nil
         var path = StackState<Path.State>()
     }
     
@@ -184,7 +185,7 @@ struct SearchReducer: Reducer {
                     return .send(.internal(.processItems(data)), animation: .default)
 
                 case let .productsResponse(.failure(error)):
-                    Log.debug("productsResponse: \(error)")
+                    state.searchError = .underlying(error)
                     state.input.isLoading = false
                     return .none
                     

@@ -121,7 +121,6 @@
 		A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */; };
 		A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
-		A9AF26052A77997900631158 /* Showcase-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AF26042A77997900631158 /* Showcase-Info.plist */; };
 		A9AF26072A77AC8400631158 /* HealthKitReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26062A77AC8400631158 /* HealthKitReducer.swift */; };
 		A9AF26092A77AC8A00631158 /* HealthKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26082A77AC8A00631158 /* HealthKitView.swift */; };
 		A9AF260C2A77B5DC00631158 /* HealthKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF260B2A77B5DC00631158 /* HealthKitClient.swift */; };
@@ -1114,7 +1113,6 @@
 				A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */,
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
-				A9AF26052A77997900631158 /* Showcase-Info.plist in Resources */,
 				A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */,
 				A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */,
 			);
