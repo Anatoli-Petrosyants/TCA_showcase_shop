@@ -95,10 +95,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView(
             store:
-                Store(
-                    initialState: MainReducer.State(),
-                    reducer: MainReducer()
-                )
+                Store(initialState: MainReducer.State(), reducer: {
+                    MainReducer()
+                })
         )
     }
 }

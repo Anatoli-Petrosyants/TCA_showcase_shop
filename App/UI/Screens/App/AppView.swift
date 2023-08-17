@@ -23,25 +23,32 @@ extension AppView: View {
     }
 
     @ViewBuilder private var content: some View {
-        SwitchStore(self.store) {
-            CaseLet(state: /AppReducer.State.loading, action: AppReducer.Action.loading) { store in
-                LoadingView(store: store)
-                    .transition(.delayAndFade)
-            }
-            
-            CaseLet(state: /AppReducer.State.help, action: AppReducer.Action.help) { store in
-                HelpView(store: store)
-                    .transition(.delayAndFade)
-            }
-
-            CaseLet(state: /AppReducer.State.login, action: AppReducer.Action.login) { store in
-                LoginView(store: store)
-                    .transition(.delayAndFade)
-            }
-            
-            CaseLet(state: /AppReducer.State.main, action: AppReducer.Action.main) { store in
-                MainView(store: store)
-                    .transition(.delayAndFade)
+        SwitchStore(self.store) { state in
+            switch state {
+                
+            case .loading:
+                CaseLet(/AppReducer.State.loading, action: AppReducer.Action.loading) { store in
+                    LoadingView(store: store)
+                        .transition(.delayAndFade)
+                }
+                
+            case .help:
+                CaseLet(/AppReducer.State.help, action: AppReducer.Action.help) { store in
+                    HelpView(store: store)
+                        .transition(.delayAndFade)
+                }
+                
+            case .login:
+                CaseLet(/AppReducer.State.login, action: AppReducer.Action.login) { store in
+                    LoginView(store: store)
+                        .transition(.delayAndFade)
+                }
+                
+            case .main:
+                CaseLet(/AppReducer.State.main, action: AppReducer.Action.main) { store in
+                    MainView(store: store)
+                        .transition(.delayAndFade)
+                }
             }
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct NoNetwork: ReducerProtocol {
+struct NoNetwork: Reducer {
 
     struct State: Equatable {
     }
@@ -25,13 +25,13 @@ struct NoNetwork: ReducerProtocol {
     
     @Dependency(\.dismiss) var dismiss
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .onOkTapped:
                 return .concatenate(
                     .send(.delegate(.onRetry)),
-                    .fireAndForget { await self.dismiss() }
+                    .run { _ in await self.dismiss() }
                 )
                 
             case .delegate:

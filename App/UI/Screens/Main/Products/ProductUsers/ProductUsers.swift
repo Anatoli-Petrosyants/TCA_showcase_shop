@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductUsers: ReducerProtocol {
+struct ProductUsers: Reducer {
     
     struct State: Equatable, Hashable {
         var items: [User] = []
@@ -18,7 +18,7 @@ struct ProductUsers: ReducerProtocol {
         case onViewAppear
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onViewAppear:

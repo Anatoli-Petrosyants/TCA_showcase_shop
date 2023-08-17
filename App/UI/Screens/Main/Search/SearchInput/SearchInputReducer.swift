@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct SearchInputReducer: ReducerProtocol {
+struct SearchInputReducer: Reducer {
     
     struct State: Equatable, Hashable {
         var placeholder = "Search products"
@@ -39,7 +39,7 @@ struct SearchInputReducer: ReducerProtocol {
     
     @Dependency(\.mainQueue) var mainQueue
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             /// view actions
@@ -47,12 +47,14 @@ struct SearchInputReducer: ReducerProtocol {
                 state.searchQuery = query
                 state.isHiddenClearButton = query.isEmpty
                 
-                if query.isEmpty {
-                    return .send(.internal(.cancel))
-                } else {
-                    return EffectTask(value: .delegate(.didSearchQueryChanged(query)))
-                        .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
-                }
+                // TODO: EffectTask issue
+                return .none
+//                if query.isEmpty {
+//                    return .send(.internal(.cancel))
+//                } else {
+//                    return EffectTask(value: .delegate(.didSearchQueryChanged(query)))
+//                        .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
+//                }
                 
             case .onClear:
                 state.searchQuery = ""

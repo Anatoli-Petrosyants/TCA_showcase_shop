@@ -10,7 +10,7 @@ import ComposableArchitecture
 import SwiftUINavigation
 import CoreData
 
-struct AccountReducer: ReducerProtocol {
+struct AccountReducer: Reducer {
     
     enum Gender: String, CaseIterable, Equatable {
         case male
@@ -66,7 +66,7 @@ struct AccountReducer: ReducerProtocol {
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.databaseClient) var databaseClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         BindingReducer()
         
         Reduce { state, action in
@@ -133,9 +133,9 @@ struct AccountReducer: ReducerProtocol {
                 case let .internal(internalAction):
                     switch internalAction {
                     case .confirmLogout:
-                        return .task {
+                        return .run { send in
                             await self.userDefaults.reset()
-                            return .delegate(.didLogout)
+                            await send(.delegate(.didLogout))
                         }
                         
                     case let .account(.success(data)):

@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductAccountReducer: ReducerProtocol {
+struct ProductAccountReducer: Reducer {
     
     struct State: Equatable {
         var name: String = ""
@@ -38,7 +38,7 @@ struct ProductAccountReducer: ReducerProtocol {
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.databaseClient) var databaseClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case let .view(viewAction):

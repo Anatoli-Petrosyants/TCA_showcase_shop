@@ -21,7 +21,7 @@ extension SearchProductItemView: View {
     
     var body: some View {
         content
-            .onTapGesture { ViewStore(self.store).send(.view(.onItemTap)) }
+            .onTapGesture { self.store.send(.view(.onItemTap)) }
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.black03, lineWidth: 0.5)

@@ -42,7 +42,7 @@
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* Help.swift */; };
 		A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */; };
-		A930CDB029E5414800AF73E3 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAF29E5414800AF73E3 /* Loading.swift */; };
+		A930CDB029E5414800AF73E3 /* LoadingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */; };
 		A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDB129E5414E00AF73E3 /* LoadingView.swift */; };
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
 		A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */; };
@@ -210,7 +210,7 @@
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
-		A930CDAF29E5414800AF73E3 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReducer.swift; sourceTree = "<group>"; };
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
 		A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseClient+Bundle.swift"; sourceTree = "<group>"; };
@@ -484,7 +484,7 @@
 		A930CDAE29E5414000AF73E3 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				A930CDAF29E5414800AF73E3 /* Loading.swift */,
+				A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */,
 				A930CDB129E5414E00AF73E3 /* LoadingView.swift */,
 			);
 			path = Loading;
@@ -1280,7 +1280,7 @@
 				A907C1B12A446C76007E7FE7 /* ApiClient.swift in Sources */,
 				A9FAD6C82A541BEC003A46F5 /* Showcase_Database.xcdatamodeld in Sources */,
 				A9B4D7B42A4C59C800B102FB /* ProductUsersView.swift in Sources */,
-				A930CDB029E5414800AF73E3 /* Loading.swift in Sources */,
+				A930CDB029E5414800AF73E3 /* LoadingReducer.swift in Sources */,
 				A9286A3E2A4EA3F500ED4CB3 /* User+Mapping.swift in Sources */,
 				A94BF89A2A56A939006FCE43 /* NotificationCenter+Async.swift in Sources */,
 				A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */,
@@ -1626,8 +1626,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.0.0;
 			};
 		};
 		A916BC012A1763F500AD114F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -1666,8 +1666,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-dependencies";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.0.0;
 			};
 		};
 		A990E52C2A41BC7D0004F4F9 /* XCRemoteSwiftPackageReference "Reachability" */ = {
@@ -1698,8 +1698,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

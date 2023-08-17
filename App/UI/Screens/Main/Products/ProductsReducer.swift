@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import SwiftUINavigation
 
-struct ProductsReducer: ReducerProtocol {
+struct ProductsReducer: Reducer {
 
     struct State: Equatable {
         var isLoading = false
@@ -48,7 +48,7 @@ struct ProductsReducer: ReducerProtocol {
         case path(StackAction<Path.State, Path.Action>)
     }
 
-    struct Path: ReducerProtocol {
+    struct Path: Reducer {
         enum State: Equatable {
             case details(ProductDetails.State)
             case inAppMessages(InAppMessagesReducer.State)
@@ -67,7 +67,7 @@ struct ProductsReducer: ReducerProtocol {
             case healthKit(HealthKitReducer.Action)
         }
 
-        var body: some ReducerProtocol<State, Action> {
+        var body: some Reducer<State, Action> {
             Scope(state: /State.details, action: /Action.details) {
                 ProductDetails()
             }
@@ -99,7 +99,7 @@ struct ProductsReducer: ReducerProtocol {
     @Dependency(\.productsClient) var productsClient
     @Dependency(\.uuid) var uuid
 
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Scope(state: \.account, action: /Action.account) {
             ProductAccountReducer()
         }

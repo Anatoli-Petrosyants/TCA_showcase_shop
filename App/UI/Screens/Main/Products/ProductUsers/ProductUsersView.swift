@@ -19,8 +19,8 @@ struct ProductUsersView {
 extension ProductUsersView: View {
     
     var body: some View {
-        content
-            .onAppear { ViewStore(self.store).send(.onViewAppear) }
+        content            
+            .onAppear { self.store.send(.onViewAppear) }
     }
     
     @ViewBuilder private var content: some View {

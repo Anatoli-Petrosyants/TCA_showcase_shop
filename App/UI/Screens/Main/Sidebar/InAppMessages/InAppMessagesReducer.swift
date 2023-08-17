@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct InAppMessagesReducer: ReducerProtocol {
+struct InAppMessagesReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isToastTopVersion1 = false
@@ -23,7 +23,7 @@ struct InAppMessagesReducer: ReducerProtocol {
         case binding(BindingAction<State>)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .binding:

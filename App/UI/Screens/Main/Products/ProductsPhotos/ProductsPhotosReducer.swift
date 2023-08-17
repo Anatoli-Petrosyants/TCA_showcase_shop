@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductPhotosReducer: ReducerProtocol {
+struct ProductPhotosReducer: Reducer {
     
     // MARK: State
     
@@ -25,11 +25,11 @@ struct ProductPhotosReducer: ReducerProtocol {
     
     @Dependency(\.dismiss) var dismiss
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .onCloseTap:
-                return .fireAndForget { await self.dismiss() }
+                return .run { _ in await self.dismiss() }
             }
         }
     }

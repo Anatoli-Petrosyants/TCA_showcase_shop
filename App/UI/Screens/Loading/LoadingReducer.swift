@@ -1,5 +1,5 @@
 //
-//  Loading.swift
+//  LoadingReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 11.04.23.
@@ -9,63 +9,68 @@ import ComposableArchitecture
 import SwiftUI
 import Dependencies
 
-struct Loading: ReducerProtocol {
-    
+struct LoadingReducer: Reducer {
+
     struct State: Equatable {
-        @BindingState var progress: Double = 0.0
+        @BindingState public var progress: Double = 0.0
+        @BindingState public var username = ""
     }
-    
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+
+    enum Action: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onViewAppear
+            case binding(BindingAction<State>)
         }
-        
+
         enum InternalAction: Equatable {
             case onProgressUpdated
         }
-        
+
         enum Delegate: Equatable {
             case onLoaded
         }
-        
+
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case binding(BindingAction<State>)
     }
 
     @Dependency(\.continuousClock) var clock
 
-    var body: some ReducerProtocol<State, Action> {
-        BindingReducer()
-        
+    var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+
         Reduce { state, action in
             switch action {
                 case let .view(viewAction):
                     switch viewAction {
                     case .onViewAppear:
-                        return .task {
-                            return .internal(.onProgressUpdated)
-                        }
+                        state.username = "test"
+                        // TODO:
+                        return .none
+                        // return .send(.internal(.onProgressUpdated))
+
+                    case .binding:
+                        return .none
                     }
-                    
+
                 case let .internal(internalAction):
                     switch internalAction {
                     case .onProgressUpdated:
-                        state.progress += 0.01                        
+                        state.progress += 0.01
                         return state.progress < 0.99
-                        ? .task {
+                        ? .run { send in
                             try await self.clock.sleep(for: .milliseconds(5))
-                            return .internal(.onProgressUpdated)
+                            await send(.internal(.onProgressUpdated))
                         }
-                        : .task {
-                            return .delegate(.onLoaded)
-                        }
+                        :
+                        .send(.delegate(.onLoaded))
                     }
-                    
-                case .delegate, .binding:
-                    return .none
+
+            case .delegate:
+                return .none
             }
         }
+        ._printChanges()
     }
 }

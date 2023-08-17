@@ -20,7 +20,7 @@ extension ProductAccountView: View {
     
     var body: some View {
         content
-            .onLoad { ViewStore(self.store).send(.view(.onViewLoad)) }
+            .onLoad { self.store.send(.view(.onViewLoad)) }
     }
     
     @ViewBuilder private var content: some View {

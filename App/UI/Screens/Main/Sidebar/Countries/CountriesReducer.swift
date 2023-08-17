@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct CountriesReducer: ReducerProtocol {
+struct CountriesReducer: Reducer {
     
     struct State: Equatable {
         var countryCodes = NSLocale.isoCountryCodes
@@ -36,19 +36,19 @@ struct CountriesReducer: ReducerProtocol {
     
     @Dependency(\.dismiss) var dismiss
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
                 // view actions
                 case let .view(viewAction):
                     switch viewAction {
                     case .onCloseTap:
-                        return .fireAndForget { await self.dismiss() }
+                        return .run { _ in await self.dismiss() }
                         
                     case let .onItemTap(code):
                         return .concatenate(
                             .send(.delegate(.didCountryCodeSelected(code))),
-                            .fireAndForget { await self.dismiss() }
+                            .run { _ in await self.dismiss() }
                         )
                     }
                     

@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductAnnouncementReducer: ReducerProtocol {
+struct ProductAnnouncementReducer: Reducer {
     
     struct State: Equatable {
         var url = URL(string: "https://picsum.photos/id/\(Int.random(in: 1..<50))/600/400")!
@@ -18,7 +18,7 @@ struct ProductAnnouncementReducer: ReducerProtocol {
         case onViewAppear
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .onViewAppear:

@@ -11,7 +11,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct CameraReducer: ReducerProtocol {
+struct CameraReducer: Reducer {
     
     struct State: Equatable {
         var image: Image?
@@ -30,7 +30,7 @@ struct CameraReducer: ReducerProtocol {
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.cameraClient) var cameraClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onViewAppear:

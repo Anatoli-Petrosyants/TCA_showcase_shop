@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SidebarReducer: ReducerProtocol {
+struct SidebarReducer: Reducer {
     
     enum SidebarItemType {
         case logout, share, contact, rate, messages, map, camera, countries, healthKit
@@ -49,7 +49,7 @@ struct SidebarReducer: ReducerProtocol {
         case binding(BindingAction<State>)
     }        
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case let .view(viewAction):

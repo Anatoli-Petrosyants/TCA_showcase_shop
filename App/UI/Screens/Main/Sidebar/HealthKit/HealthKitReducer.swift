@@ -11,7 +11,7 @@ import Dependencies
 import SwiftUINavigation
 import HealthKit
 
-struct HealthKitReducer: ReducerProtocol {
+struct HealthKitReducer: Reducer {
     
     struct Step: Identifiable, Equatable {
         let id = UUID()
@@ -56,7 +56,7 @@ struct HealthKitReducer: ReducerProtocol {
     @Dependency(\.continuousClock) var clock
     @Dependency(\.healthKitClient) var healthKitClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             // view actions

@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct SearchReducer: ReducerProtocol {
+struct SearchReducer: Reducer {
     
     struct State: Equatable {
         var items: IdentifiedArrayOf<SearchProductItemReducer.State> = []
@@ -46,7 +46,7 @@ struct SearchReducer: ReducerProtocol {
         case path(StackAction<Path.State, Path.Action>)
     }
     
-    struct Path: ReducerProtocol {
+    struct Path: Reducer {
         enum State: Equatable {
             case details(ProductDetails.State)
         }
@@ -55,7 +55,7 @@ struct SearchReducer: ReducerProtocol {
             case details(ProductDetails.Action)
         }
 
-        var body: some ReducerProtocol<State, Action> {
+        var body: some Reducer<State, Action> {
             Scope(state: /State.details, action: /Action.details) {
                 ProductDetails()
             }
@@ -67,7 +67,7 @@ struct SearchReducer: ReducerProtocol {
     @Dependency(\.productsClient) var productsClient
     @Dependency(\.uuid) var uuid
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Scope(state: \.wishlist, action: /Action.wishlist) {
             SearchWishlistReducer()
         }

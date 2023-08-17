@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct Help: ReducerProtocol {
+struct Help: Reducer {
     
     struct State: Equatable, Hashable {
         var items: [Onboarding] = Onboarding.pages
@@ -34,7 +34,7 @@ struct Help: ReducerProtocol {
     
     @Dependency(\.userDefaults) var userDefaults
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         BindingReducer()
         
         Reduce { state, action in
@@ -48,7 +48,7 @@ struct Help: ReducerProtocol {
                 case .onGetStartedTapped:
                     return .concatenate(
                         .send(.delegate(.didOnboardingFinished)),
-                        .fireAndForget {
+                        .run { _ in
                             await self.userDefaults.setHasShownFirstLaunchOnboarding(true)
                         }
                     )

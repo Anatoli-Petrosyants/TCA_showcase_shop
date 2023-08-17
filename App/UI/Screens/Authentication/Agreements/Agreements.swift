@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct Agreements: ReducerProtocol {
+struct Agreements: Reducer {
 
     struct State: Equatable {
         var text: String = ""
@@ -31,7 +31,7 @@ struct Agreements: ReducerProtocol {
     
     @Dependency(\.dismiss) var dismiss
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case let .view(viewAction):
@@ -43,7 +43,7 @@ struct Agreements: ReducerProtocol {
                 case .onAcceptTap:
                     return .concatenate(
                         .send(.delegate(.didAgreementsAccepted)),
-                        .fireAndForget { await self.dismiss() }
+                        .run { _ in await self.dismiss() }
                     )
                 }
                 

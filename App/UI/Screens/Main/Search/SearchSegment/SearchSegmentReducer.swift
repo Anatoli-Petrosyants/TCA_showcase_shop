@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchSegmentReducer: ReducerProtocol {
+struct SearchSegmentReducer: Reducer {
     
     struct State: Equatable, Hashable {
         var segments = Segment.allCases
@@ -24,7 +24,7 @@ struct SearchSegmentReducer: ReducerProtocol {
         case delegate(Delegate)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         BindingReducer()
         
         Reduce { state, action in

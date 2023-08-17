@@ -34,7 +34,7 @@ struct Showcase: App {
             AppView(store: self.appDelegate.store)
         }
         .onChange(of: scenePhase) { phase in
-            self.appDelegate.viewStore.send(.didChangeScenePhase(phase))
+            self.appDelegate.store.send(.didChangeScenePhase(phase))
         }
     }
 }

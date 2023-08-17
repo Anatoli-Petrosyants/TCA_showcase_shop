@@ -19,26 +19,29 @@ struct ProductLinkView {
 extension ProductLinkView: View {
     
     var body: some View {
-        WithViewStore(store) { viewStore in
-            Button(viewStore.text) {
-                viewStore.send(.present)
-            }
-            .foregroundColor(.blue)
-            .font(Font.headline)
-            .overlay(
-                Rectangle()
-                    .frame(height: 1)
-                    .padding(.vertical, 1)
-                    .foregroundColor(.blue),
-                alignment: .bottom
-            )
-            .sheet(isPresented: viewStore.binding(
-                get: \.isPresented,
-                send: .dismiss
-            )) {
-                SFSafariViewRepresentable(url: viewStore.url)
-                    .ignoresSafeArea()
-            }
-        }
+        EmptyView()
+        // TODO: 
+        
+//        WithViewStore(store) { viewStore in
+//            Button(viewStore.text) {
+//                viewStore.send(.present)
+//            }
+//            .foregroundColor(.blue)
+//            .font(Font.headline)
+//            .overlay(
+//                Rectangle()
+//                    .frame(height: 1)
+//                    .padding(.vertical, 1)
+//                    .foregroundColor(.blue),
+//                alignment: .bottom
+//            )
+//            .sheet(isPresented: viewStore.binding(
+//                get: \.isPresented,
+//                send: .dismiss
+//            )) {
+//                SFSafariViewRepresentable(url: viewStore.url)
+//                    .ignoresSafeArea()
+//            }
+//        }
     }
 }

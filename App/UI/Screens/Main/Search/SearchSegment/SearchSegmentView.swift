@@ -24,8 +24,8 @@ extension SearchSegmentView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            SearchSegmentControl(segments: viewStore.segments,
-                                selectedSegment: viewStore.binding(\.$selectedSegment))
+//            SearchSegmentControl(segments: viewStore.segments,
+//                                selectedSegment: viewStore.binding(\.$selectedSegment))
         }
     }
 }

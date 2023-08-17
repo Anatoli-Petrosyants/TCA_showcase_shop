@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductItemReducer: ReducerProtocol {
+struct ProductItemReducer: Reducer {
     
     struct State: Equatable, Identifiable {
         let id: UUID
@@ -28,7 +28,7 @@ struct ProductItemReducer: ReducerProtocol {
         case delegate(Delegate)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case let .view(viewAction):

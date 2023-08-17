@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchWishlistReducer: ReducerProtocol {
+struct SearchWishlistReducer: Reducer {
     
     struct State: Equatable, Hashable {
         var count: Int = 0
@@ -18,7 +18,7 @@ struct SearchWishlistReducer: ReducerProtocol {
         case onViewAppear
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .onViewAppear:

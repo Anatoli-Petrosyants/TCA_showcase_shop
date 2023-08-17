@@ -21,8 +21,8 @@ extension CameraView: View {
     typealias CameraReducerViewStore = ViewStore<CameraReducer.State, CameraReducer.Action>
     
     var body: some View {
-        content
-            .onAppear { ViewStore(self.store).send(.onViewAppear) }
+        content            
+            .onAppear { self.store.send(.onViewAppear) }
     }
     
     @ViewBuilder private var content: some View {

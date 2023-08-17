@@ -10,7 +10,7 @@ import ComposableArchitecture
 import SwiftUINavigation
 import Dependencies
 
-struct LoginReducer: ReducerProtocol {
+struct LoginReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isActivityIndicatorVisible = false
@@ -47,7 +47,7 @@ struct LoginReducer: ReducerProtocol {
         case binding(BindingAction<State>)
     }
     
-    struct Path: ReducerProtocol {
+    struct Path: Reducer {
         enum State: Equatable {
             case forgotPassword(ForgotPassword.State = .init())
         }
@@ -56,7 +56,7 @@ struct LoginReducer: ReducerProtocol {
             case forgotPassword(ForgotPassword.Action)
         }
         
-        var body: some ReducerProtocol<State, Action> {
+        var body: some Reducer<State, Action> {
             Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
                 ForgotPassword()
             }
@@ -69,7 +69,7 @@ struct LoginReducer: ReducerProtocol {
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.databaseClient) var databaseClient
 
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         BindingReducer()
         
         Reduce { state, action in
@@ -110,7 +110,7 @@ struct LoginReducer: ReducerProtocol {
                     Log.debug("loginResponse: \(data)")
                     state.isActivityIndicatorVisible = false
                     return .concatenate(
-                        .fireAndForget {
+                        .run { _ in
                             await self.userDefaults.setToken(data.token)
 
                             let account = Account(token: data.token)

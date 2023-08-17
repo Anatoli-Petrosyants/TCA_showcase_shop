@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct BasketReducer: ReducerProtocol {
+struct BasketReducer: Reducer {
     
     struct State: Equatable {
         var products: [Product] = []
@@ -44,7 +44,7 @@ struct BasketReducer: ReducerProtocol {
         case dialog(PresentationAction<DialogAction>)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             // view actions

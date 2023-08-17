@@ -10,7 +10,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductDetails: ReducerProtocol {
+struct ProductDetails: Reducer {
     
     struct State: Equatable, Identifiable {
         let id: UUID
@@ -51,7 +51,7 @@ struct ProductDetails: ReducerProtocol {
     @Dependency(\.productsClient) var productsClient
     @Dependency(\.usersClient) var usersClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Scope(state: \.users, action: /Action.users) {
             ProductUsers()
         }
@@ -81,9 +81,9 @@ struct ProductDetails: ReducerProtocol {
                     return .none
                     
                 case .onAddProductsTap:
-                    return .task { [product = state.product] in
+                    return .run { [product = state.product] send in
                         await self.feedbackGenerator.selectionChanged()
-                        return .delegate(.didItemAdded(product))
+                        return await send(.delegate(.didItemAdded(product)))
                     }
                 }
                 

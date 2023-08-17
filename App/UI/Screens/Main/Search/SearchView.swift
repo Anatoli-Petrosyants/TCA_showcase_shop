@@ -26,7 +26,7 @@ extension SearchView: View {
     
     var body: some View {
         content
-            .onLoad { ViewStore(self.store).send(.view(.onViewLoad)) }
+            .onLoad { self.store.send(.view(.onViewLoad)) }
     }
     
     @ViewBuilder private var content: some View {
@@ -88,8 +88,7 @@ extension SearchView: View {
             destination: {
                 switch $0 {
                 case .details:
-                    CaseLet(
-                        state: /SearchReducer.Path.State.details,
+                    CaseLet(/SearchReducer.Path.State.details,
                         action: SearchReducer.Path.Action.details,
                         then: ProductDetailsView.init(store:)
                     )

@@ -12,7 +12,7 @@ enum Tab {
     case products, search, basket, account
 }
 
-struct MainReducer: ReducerProtocol {
+struct MainReducer: Reducer {
     
     struct State: Equatable {
         var currentTab = Tab.products
@@ -39,7 +39,7 @@ struct MainReducer: ReducerProtocol {
         case delegate(Delegate)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Scope(state: \.products, action: /Action.products) {
             ProductsReducer()
         }

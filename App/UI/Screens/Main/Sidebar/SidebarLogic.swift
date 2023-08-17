@@ -8,12 +8,12 @@
 import UIKit
 import ComposableArchitecture
 
-struct SidebarLogic<State>: ReducerProtocol {
+struct SidebarLogic<State>: Reducer {
     
     @Dependency(\.applicationClient.open) var openURL
     @Dependency(\.applicationClient.setUserInterfaceStyle) var setUserInterfaceStyle
 
-    func reduce(into _: inout State, action: SidebarReducer.Action) -> EffectTask<SidebarReducer.Action> {
+    func reduce(into _: inout State, action: SidebarReducer.Action) -> Effect<SidebarReducer.Action> {
         switch action {
         case let .view(viewAction):
             switch viewAction {
@@ -33,12 +33,12 @@ struct SidebarLogic<State>: ReducerProtocol {
                 
             case .onDarkModeTap:
                 let style = UIApplication.shared.firstKeyWindow?.overrideUserInterfaceStyle
-                return .fireAndForget {
+                return .run { _ in
                     await self.setUserInterfaceStyle((style == .dark) ? .light : .dark)
                 }
                 
             case .onAppSettings:
-                return .fireAndForget {
+                return .run { _ in
                     _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
                 }
                 

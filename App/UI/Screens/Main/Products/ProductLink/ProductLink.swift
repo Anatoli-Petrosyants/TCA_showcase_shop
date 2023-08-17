@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductLink: ReducerProtocol {
+struct ProductLink: Reducer {
     
     struct State: Equatable {
         var text: LocalizedStringKey
@@ -21,7 +21,7 @@ struct ProductLink: ReducerProtocol {
         case dismiss
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .present:

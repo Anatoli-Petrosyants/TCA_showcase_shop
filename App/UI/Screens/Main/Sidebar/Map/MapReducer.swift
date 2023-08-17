@@ -10,7 +10,7 @@ import ComposableArchitecture
 import MapKit
 import CoreLocation
 
-struct MapReducer: ReducerProtocol {
+struct MapReducer: Reducer {
     
     struct State: Equatable {
         var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(
@@ -34,7 +34,7 @@ struct MapReducer: ReducerProtocol {
         case binding(BindingAction<State>)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case let .mapRegionChanged(region):

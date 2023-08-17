@@ -20,24 +20,25 @@ extension HelpView: View {
     
     var body: some View {
         content
-            .onAppear { ViewStore(self.store).send(.view(.onViewAppear)) }
+            .onAppear { self.store.send(.view(.onViewAppear)) }
     }
     
     @ViewBuilder private var content: some View {        
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
-                TabView(selection: viewStore.binding(\.$currentTab)) {
-                    ForEach(viewStore.items) { viewData in
-                        HelpPageView(data: viewData)
-                            .tag(viewData.tab)
-                            .padding(.bottom, 50)
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle())
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                .onChange(of: viewStore.currentTab) { newValue in
-                    viewStore.send(.view(.onTabChanged(tab: newValue)))
-                }
+                // TODO: binding state
+//                TabView(selection: viewStore.binding(\.$currentTab)) {
+//                    ForEach(viewStore.items) { viewData in
+//                        HelpPageView(data: viewData)
+//                            .tag(viewData.tab)
+//                            .padding(.bottom, 50)
+//                    }
+//                }
+//                .tabViewStyle(PageTabViewStyle())
+//                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+//                .onChange(of: viewStore.currentTab) { newValue in
+//                    viewStore.send(.view(.onTabChanged(tab: newValue)))
+//                }
                 
                 Button(Localization.Help.getStarted) {
                     viewStore.send(.view(.onGetStartedTapped))

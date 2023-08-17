@@ -20,7 +20,7 @@ extension SearchWishlistView: View {
     
     var body: some View {
         content
-            .onAppear { ViewStore(self.store).send(.onViewAppear) }
+            .onAppear { self.store.send(.onViewAppear) }
     }
     
     @ViewBuilder private var content: some View {

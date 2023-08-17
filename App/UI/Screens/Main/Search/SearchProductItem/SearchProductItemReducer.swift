@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchProductItemReducer: ReducerProtocol {
+struct SearchProductItemReducer: Reducer {
     
     struct State: Equatable, Identifiable {
         let id: UUID
@@ -33,7 +33,7 @@ struct SearchProductItemReducer: ReducerProtocol {
     
     @Dependency(\.feedbackGenerator) var feedbackGenerator
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Scope(state: \.favorite, action: /Action.favorite) {
             SearchFavoriteButtonReducer()
         }
@@ -52,9 +52,9 @@ struct SearchProductItemReducer: ReducerProtocol {
 //                    let isFavorite = state.favorite.isFavorite
 //                    return .send(.delegate(.didFavoriteTapped(isFavorite)))
                     
-                    return .task { [isFavorite = state.favorite.isFavorite] in
+                    return .run { [isFavorite = state.favorite.isFavorite] send in
                         await self.feedbackGenerator.selectionChanged()
-                        return .delegate(.didFavoriteTapped(isFavorite))
+                        return await send(.delegate(.didFavoriteTapped(isFavorite)))
                     }
                 }
                 

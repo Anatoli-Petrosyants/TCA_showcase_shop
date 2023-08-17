@@ -8,15 +8,15 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct AppReducer: ReducerProtocol {
+struct AppReducer: Reducer {
 
     enum State: Equatable {
-        case loading(Loading.State)
+        case loading(LoadingReducer.State)
         case help(Help.State)
         case login(LoginReducer.State)
         case main(MainReducer.State)
 
-        public init() { self = .loading(Loading.State()) }
+        public init() { self = .loading(LoadingReducer.State()) }
     }
 
     enum Action: Equatable {
@@ -26,7 +26,7 @@ struct AppReducer: ReducerProtocol {
         
         case appDelegate(AppDelegateAction)
         case didChangeScenePhase(ScenePhase)
-        case loading(Loading.Action)
+        case loading(LoadingReducer.Action)
         case help(Help.Action)
         case login(LoginReducer.Action)
         case main(MainReducer.Action)
@@ -34,7 +34,7 @@ struct AppReducer: ReducerProtocol {
     
     @Dependency(\.userDefaults) var userDefaults
 
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
     
@@ -80,7 +80,7 @@ struct AppReducer: ReducerProtocol {
             case let .main(action: .delegate(mainAction)):
                 switch mainAction {
                 case .didLogout:
-                    state = .loading(Loading.State())
+                    state = .loading(LoadingReducer.State())
                     return .none
                 }
                 
@@ -89,7 +89,7 @@ struct AppReducer: ReducerProtocol {
             }
         }
         .ifCaseLet(/State.loading, action: /Action.loading) {
-            Loading()
+            LoadingReducer()
         }
         .ifCaseLet(/State.help, action: /Action.help) {
             Help()

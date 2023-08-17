@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchFavoriteButtonReducer: ReducerProtocol {
+struct SearchFavoriteButtonReducer: Reducer {
     
     struct State: Equatable, Identifiable {
         let id = UUID()
@@ -19,7 +19,7 @@ struct SearchFavoriteButtonReducer: ReducerProtocol {
         case onTap
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .onTap:

@@ -64,10 +64,11 @@ extension SidebarView: View {
                 }
             }            
             .edgesIgnoringSafeArea(.all)
-            .sheet(isPresented: viewStore.binding(\.$isSharePresented)) {
-                ActivityViewRepresentable(activityItems: [Constant.shareURL])
-                    .presentationDetents([.medium])
-            }
+            // TODO: binding isSharePresented
+//            .sheet(isPresented: viewStore.binding(\.$isSharePresented)) {
+//                ActivityViewRepresentable(activityItems: [Constant.shareURL])
+//                    .presentationDetents([.medium])
+//            }
         }
     }
 }

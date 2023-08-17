@@ -21,7 +21,7 @@ extension BasketView: View {
     
     var body: some View {
         content
-            .onAppear { ViewStore(self.store).send(.view(.onViewAppear)) }
+            .onAppear { self.store.send(.view(.onViewAppear)) }
     }
     
     @ViewBuilder private var content: some View {

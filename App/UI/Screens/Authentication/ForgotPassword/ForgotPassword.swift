@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ForgotPassword: ReducerProtocol {
+struct ForgotPassword: Reducer {
     
     struct State: Equatable {
         @PresentationState var alert: AlertState<Action.AlertAction>?
@@ -32,7 +32,7 @@ struct ForgotPassword: ReducerProtocol {
         case destination(DestinationAction)
     }
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case let .view(viewAction):
