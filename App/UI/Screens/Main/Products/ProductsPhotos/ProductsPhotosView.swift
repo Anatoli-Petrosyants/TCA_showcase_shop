@@ -35,7 +35,7 @@ extension ProductPhotosView: View {
                     .padding([.leading, .trailing], 8)
                     .aspectRatio(1.0, contentMode: .fit)
                 }
-                .navigationTitle("Photos")
+                .navigationTitle(Localization.Product.detailsPhotos)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

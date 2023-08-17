@@ -42,7 +42,7 @@ extension ProductAnnouncementView: View {
             ZStack {
                 imageView(url: viewStore.state)
                 
-                Text("Announcement")
+                Text(Localization.Product.announcementTitle)
                     .font(.largeTitleBold)
                     .foregroundColor(.white)
             }

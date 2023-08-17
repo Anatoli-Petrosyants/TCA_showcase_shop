@@ -36,7 +36,7 @@ extension ProductDetailsView: View {
                             .foregroundColor(.black05)
                         
                         HStack(spacing: 0) {
-                            Text("View Photos")
+                            Text(Localization.Product.detailsViewPhotos)
                                 .foregroundColor(.black)
                                 .font(.bodyBold)
                             Spacer()
@@ -60,7 +60,7 @@ extension ProductDetailsView: View {
                             )
                         )
                         
-                        Text("Reviews")
+                        Text(Localization.Product.detailsReviews)
                             .font(.title1Bold)
                             .padding(.top, 16)
                         

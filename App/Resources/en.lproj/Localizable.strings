@@ -75,23 +75,10 @@
 "sidebar.item.rateUs" = "Rate us";
 "sidebar.item.contactUs" = "Contact us";
 
-
-
-// showcase
-"showcase.title" = "Showcase";
-
-// navigation bar
-"navigation.bar.title" = "Navigation Bar";
-"navigation.bar.info.alert.title" = "Info alert title";
-"navigation.bar.info.alert.description" = "Info alert description";
-"navigation.bar.add.alert.title" = "Add alert title";
-"navigation.bar.add.alert.description" = "Add alert description";
-
-"navigation.bar.confirmationDialog.title" = "Confirmation Dialog title";
-"navigation.bar.confirmationDialog.description" = "Confirmation Dialog description";
-
-
-// todo
-"todo.title" = "Todo";
-"todo.section.header" = "Section header";
-"todo.section.footer" = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
+// Product
+"product.toolbar.item.menu" = "Menu";
+"product.toolbar.item.refresh" = "Refresh products";
+"product.announcement.title" = "Announcement";
+"product.details.view.photos" = "View Photos";
+"product.details.reviews" = "Reviews";
+"product.details.photos" = "Photos";

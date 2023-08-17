@@ -68,13 +68,15 @@ extension ProductsView: View {
                             Button {
                                 viewStore.send(.view(.onMenuTap))
                             } label: {
-                                Label("Menu", systemImage: "line.3.horizontal.circle")
+                                Label(Localization.Product.toolbarItemMenu,
+                                      systemImage: "line.3.horizontal.circle")
                             }
 
                             Button {
                                 viewStore.send(.view(.onViewLoad))
                             } label: {
-                                Label("Refresh products", systemImage: "arrow.clockwise.circle")
+                                Label(Localization.Product.toolbarItemRefresh,
+                                      systemImage: "arrow.clockwise.circle")
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")
@@ -123,7 +125,6 @@ extension ProductsView: View {
         }
     }
 }
-
 
 //VStack {
 //    Group {

@@ -64,7 +64,7 @@ extension SearchView: View {
                                 .padding([.leading, .trailing], 8)
                                 .padding(.bottom, 16)
                             }
-                            .background(Color(uiColor: UIColor(named: "white")!))
+                            .background(Color.white)
                         }
                     }
                     .padding([.leading, .trailing], 8)
