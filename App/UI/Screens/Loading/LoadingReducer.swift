@@ -13,7 +13,6 @@ struct LoadingReducer: Reducer {
 
     struct State: Equatable {
         @BindingState var progress: Double = 0.0
-        @BindingState var username = ""
     }
 
     enum Action: Equatable {
@@ -45,12 +44,9 @@ struct LoadingReducer: Reducer {
                 case let .view(viewAction):
                     switch viewAction {
                     case .onViewAppear:
-                        state.username = "test"
-                        // TODO:
-                        return .none
-                        // return .send(.internal(.onProgressUpdated))
+                        return .send(.internal(.onProgressUpdated))
 
-                    case .binding(_):
+                    case .binding:
                         return .none
                     }
 

@@ -12,22 +12,25 @@ import ComposableArchitecture
 
 struct SidebarView {
     let store: StoreOf<SidebarReducer>
+
+    struct ViewState: Equatable {
+        var isVisible: Bool
+        @BindingViewState var isSharePresented: Bool
+    }
     
-    var sideBarWidth = UIScreen.main.bounds.size.width * 0.7
+    typealias SidebarReducerViewStore = ViewStore<SidebarView.ViewState, SidebarReducer.Action.ViewAction>
 }
 
 // MARK: - Views
 
 extension SidebarView: View {
     
-    typealias SidebarReducerViewStore = ViewStore<SidebarReducer.State, SidebarReducer.Action>
-    
     var body: some View {
         content
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             ZStack {
                 GeometryReader { _ in
                     EmptyView()
@@ -36,7 +39,7 @@ extension SidebarView: View {
                 .opacity(viewStore.isVisible ? 1 : 0)
                 .animation(.easeInOut.delay(0.1), value: viewStore.isVisible)
                 .onTapGesture {                                        
-                    viewStore.send(.view(.onDismiss))
+                    viewStore.send(.onDismiss)
                 }
                 
                 HStack(alignment: .top) {
@@ -56,95 +59,103 @@ extension SidebarView: View {
                         .padding([.top, .bottom], 24)
                         
                     }
-                    .frame(width: sideBarWidth)
-                    .offset(x: viewStore.isVisible ? 0 : -sideBarWidth)
+                    .frame(width: Constant.sideBarWidth)
+                    .offset(x: viewStore.isVisible ? 0 : -Constant.sideBarWidth)
                     .animation(.default, value: viewStore.isVisible)
 
                     Spacer()
                 }
             }            
             .edgesIgnoringSafeArea(.all)
-            // TODO: binding isSharePresented
-//            .sheet(isPresented: viewStore.binding(\.$isSharePresented)) {
-//                ActivityViewRepresentable(activityItems: [Constant.shareURL])
-//                    .presentationDetents([.medium])
-//            }
+            .sheet(isPresented: viewStore.$isSharePresented) {
+                ActivityViewRepresentable(activityItems: [Constant.shareURL])
+                    .presentationDetents([.medium])
+            }
         }
+    }
+}
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<SidebarReducer.State> {
+    var view: SidebarView.ViewState {
+        SidebarView.ViewState(isVisible: self.isVisible,
+                              isSharePresented: self.$isSharePresented)
     }
 }
 
 // MARK: Views
 
 extension SidebarView {
-    
+
     private func settingsView(viewStore: SidebarReducerViewStore) -> some View {
         Group {
             Button {
-                viewStore.send(.view(.onHealthKitTap))
+                viewStore.send(.onHealthKitTap)
             } label: {
                 Label(Localization.Sidebar.healthKit, systemImage: "cross.case")
             }
-            
+
             Button {
-                viewStore.send(.view(.onCameraTap))
+                viewStore.send(.onCameraTap)
             } label: {
                 Label(Localization.Sidebar.camera, systemImage: "camera")
             }
-            
+
             Button {
-                viewStore.send(.view(.onCountriesTap))
+                viewStore.send(.onCountriesTap)
             } label: {
                 Label(Localization.Sidebar.chooseCountry, systemImage: "house.and.flag")
             }
-            
+
             Button {
-                viewStore.send(.view(.onMapTap))
+                viewStore.send(.onMapTap)
             } label: {
                 Label(Localization.Sidebar.map, systemImage: "map")
             }
-            
+
             Button {
-                viewStore.send(.view(.onMessagesTap))
+                viewStore.send(.onMessagesTap)
             } label: {
                 Label(Localization.Sidebar.inAppMessages, systemImage: "list.dash.header.rectangle")
             }
         }
     }
-    
+
     private func featuresView(viewStore: SidebarReducerViewStore) -> some View {
         Group {
             Button {
-                viewStore.send(.view(.onDarkModeTap))
+                viewStore.send(.onDarkModeTap)
             } label: {
                 Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
             }
-            
+
             Button {
-                viewStore.send(.view(.onAppSettings))
+                viewStore.send(.onAppSettings)
             } label: {
                 Label(Localization.Sidebar.appSettings, systemImage: "gearshape")
             }
 
             Button {
-                viewStore.send(.view(.onShareTap))
+                viewStore.send(.onShareTap)
             } label: {
                 Label(Localization.Sidebar.shareApp, systemImage: "square.and.arrow.up")
             }
-            
+
             Button {
-                viewStore.send(.view(.onRateTap))
+                viewStore.send(.onRateTap)
             } label: {
                 Label(Localization.Sidebar.rateUs, systemImage: "person.2")
             }
-            
+
             Button {
-                viewStore.send(.view(.onContactTap))
+                viewStore.send(.onContactTap)
             } label: {
                 Label(Localization.Sidebar.contactUs, systemImage: "envelope")
             }
 
             Button {
-                viewStore.send(.view(.onLogoutTap))
+                viewStore.send(.onLogoutTap)
             } label: {
                 Label(Localization.Base.logout, systemImage: "rectangle.portrait.and.arrow.right")
             }

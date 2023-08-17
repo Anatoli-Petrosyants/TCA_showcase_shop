@@ -46,15 +46,13 @@ struct SearchInputReducer: Reducer {
             case let .onTextChanged(query):
                 state.searchQuery = query
                 state.isHiddenClearButton = query.isEmpty
-                
-                // TODO: EffectTask issue
-                return .none
-//                if query.isEmpty {
-//                    return .send(.internal(.cancel))
-//                } else {
-//                    return EffectTask(value: .delegate(.didSearchQueryChanged(query)))
-//                        .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
-//                }
+
+                if query.isEmpty {
+                    return .send(.internal(.cancel))
+                } else {
+                    return .send(.delegate(.didSearchQueryChanged(query)))
+                        .debounce(id: CancelID.search, for: 0.5, scheduler: self.mainQueue)
+                }
                 
             case .onClear:
                 state.searchQuery = ""

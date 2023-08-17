@@ -38,7 +38,7 @@
 		A92A22A029F8EEC50034469C /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A229F29F8EEC50034469C /* MainReducer.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
-		A930CDA629E41EF600AF73E3 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* Help.swift */; };
+		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
 		A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */; };
 		A930CDB029E5414800AF73E3 /* LoadingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */; };
 		A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDB129E5414E00AF73E3 /* LoadingView.swift */; };
@@ -204,7 +204,7 @@
 		A92A229F29F8EEC50034469C /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		A930CDA529E41EF600AF73E3 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
 		A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReducer.swift; sourceTree = "<group>"; };
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -458,7 +458,7 @@
 		A930CDA729E41EF900AF73E3 /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				A930CDA529E41EF600AF73E3 /* Help.swift */,
+				A930CDA529E41EF600AF73E3 /* HelpReducer.swift */,
 				A930CDA129E41DAD00AF73E3 /* HelpView.swift */,
 			);
 			path = Help;
@@ -1124,7 +1124,7 @@
 				A90A604B2A67D9500011B2BD /* ProductsPhotosReducer.swift in Sources */,
 				A94BF89D2A56B53D006FCE43 /* ProductAccountReducer.swift in Sources */,
 				A960AA262A49BAF9005CE9F9 /* BasketView.swift in Sources */,
-				A930CDA629E41EF600AF73E3 /* Help.swift in Sources */,
+				A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */,
 				A9947EE72A179CF300FC7FB8 /* BlurViewRepresentable.swift in Sources */,
 				A9E9864A29E7DAA10028D5DB /* AgreementsView.swift in Sources */,
 				A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */,

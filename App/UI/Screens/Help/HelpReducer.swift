@@ -1,5 +1,5 @@
 //
-//  Help.swift
+//  HelpReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 10.04.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct Help: Reducer {
+struct HelpReducer: Reducer {
     
     struct State: Equatable, Hashable {
         var items: [Onboarding] = Onboarding.pages
@@ -16,11 +16,12 @@ struct Help: Reducer {
         var showGetStarted = false
     }
     
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onViewAppear
             case onGetStartedTapped
             case onTabChanged(tab: Onboarding.Tab)
+            case binding(BindingAction<State>)
         }
         
         enum Delegate {
@@ -29,13 +30,12 @@ struct Help: Reducer {
         
         case view(ViewAction)
         case delegate(Delegate)
-        case binding(BindingAction<State>)
     }
     
     @Dependency(\.userDefaults) var userDefaults
     
     var body: some Reducer<State, Action> {
-        BindingReducer()
+        BindingReducer(action: /Action.view)
         
         Reduce { state, action in
             switch action {
@@ -56,9 +56,12 @@ struct Help: Reducer {
                 case let .onTabChanged(tab):
                     state.showGetStarted = (tab == .page3)
                     return .none
+                    
+                case .binding:
+                    return .none
                 }
                 
-            case .delegate, .binding:
+            case .delegate:
                 return .none
             }
         }

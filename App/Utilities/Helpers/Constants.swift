@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constant {
     static let email = "sowcasesupport@mail.com"
@@ -32,4 +33,6 @@ struct Constant {
     "\n\n" +
 
     "Looking forward to collaborating with you!"
+    
+    static let sideBarWidth = UIScreen.main.bounds.size.width * 0.7
 }

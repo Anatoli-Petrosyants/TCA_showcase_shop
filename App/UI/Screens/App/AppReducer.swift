@@ -12,7 +12,7 @@ struct AppReducer: Reducer {
 
     enum State: Equatable {
         case loading(LoadingReducer.State)
-        case help(Help.State)
+        case help(HelpReducer.State)
         case login(LoginReducer.State)
         case main(MainReducer.State)
 
@@ -27,7 +27,7 @@ struct AppReducer: Reducer {
         case appDelegate(AppDelegateAction)
         case didChangeScenePhase(ScenePhase)
         case loading(LoadingReducer.Action)
-        case help(Help.Action)
+        case help(HelpReducer.Action)
         case login(LoginReducer.Action)
         case main(MainReducer.Action)
     }
@@ -58,7 +58,7 @@ struct AppReducer: Reducer {
                             state = .login(LoginReducer.State())
                         }
                     } else {
-                        state = .help(Help.State())
+                        state = .help(HelpReducer.State())
                     }
                     return .none
                 }
@@ -92,7 +92,7 @@ struct AppReducer: Reducer {
             LoadingReducer()
         }
         .ifCaseLet(/State.help, action: /Action.help) {
-            Help()
+            HelpReducer()
         }
         .ifCaseLet(/State.login, action: /Action.login) {
             LoginReducer()

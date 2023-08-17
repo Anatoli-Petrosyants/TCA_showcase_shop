@@ -35,11 +35,12 @@ struct AccountReducer: Reducer {
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
     
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: Equatable {
+        enum ViewAction:  BindableAction, Equatable {
             case onViewLoad
             case onSaveTap
             case onLogoutTap
+            case binding(BindingAction<State>)
         }
         
         enum DialogAction: Equatable {
@@ -59,14 +60,13 @@ struct AccountReducer: Reducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case dialog(PresentationAction<Action.DialogAction>)
-        case binding(BindingAction<State>)
     }
     
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.databaseClient) var databaseClient
     
     var body: some Reducer<State, Action> {
-        BindingReducer()
+        BindingReducer(action: /Action.view)
         
         Reduce { state, action in
             switch action {
@@ -126,6 +126,9 @@ struct AccountReducer: Reducer {
                     }
 
                     return .none
+                    
+                case .binding:
+                    return .none
                 }
                
                 // internal actions
@@ -157,7 +160,7 @@ struct AccountReducer: Reducer {
                 case .dialog(.presented(.onConfirmLogout)):
                     return .send(.internal(.confirmLogout))
                 
-            case .delegate, .binding, .dialog:
+            case .delegate, .dialog:
                 return .none
             }
         }

@@ -10,7 +10,7 @@ import SwiftUI
 extension Color {
     static let black = Color("black")
     static let black01 = Color("black").opacity(0.1)
-    static let black03 = Color("black").opacity(0.1)
+    static let black03 = Color("black").opacity(0.3)
     static let black05 = Color("black").opacity(0.5)
         
     static let white = Color("white")

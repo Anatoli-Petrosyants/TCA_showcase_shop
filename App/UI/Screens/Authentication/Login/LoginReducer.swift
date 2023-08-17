@@ -21,11 +21,12 @@ struct LoginReducer: Reducer {
         @PresentationState var alert: AlertState<Never>?
     }
     
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onSignInButtonTap
             case onAgreementsTap
             case onForgotPasswordButtonTap
+            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -42,7 +43,6 @@ struct LoginReducer: Reducer {
         case path(StackAction<Path.State, Path.Action>)
         case agreements(PresentationAction<Agreements.Action>)
         case alert(PresentationAction<Never>)
-        case binding(BindingAction<State>)
     }
     
     struct Path: Reducer {
@@ -68,7 +68,7 @@ struct LoginReducer: Reducer {
     @Dependency(\.databaseClient) var databaseClient
 
     var body: some Reducer<State, Action> {
-        BindingReducer()
+        BindingReducer(action: /Action.view)
         
         Reduce { state, action in
             switch action {
@@ -99,6 +99,9 @@ struct LoginReducer: Reducer {
                 case .onForgotPasswordButtonTap:
                     state.path.append(.forgotPassword(.init()))                    
                     return .cancel(id: CancelID.login)
+                    
+                case .binding:
+                    return .none
                 }
                 
             // internal actions
@@ -145,7 +148,7 @@ struct LoginReducer: Reducer {
                 Log.debug("agreements dismiss")
                 return .none
                             
-            case .agreements, .delegate, .alert, .binding:
+            case .agreements, .delegate, .alert:
                 return .none
             }
         }

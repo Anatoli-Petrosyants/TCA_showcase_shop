@@ -12,6 +12,10 @@ import ComposableArchitecture
 
 struct LoadingView {
     let store: StoreOf<LoadingReducer>
+    
+    struct ViewState: Equatable {
+        @BindingViewState var progress: Double
+    }
 }
 
 // MARK: - Views
@@ -24,25 +28,25 @@ extension LoadingView: View {
     }
 
     @ViewBuilder private var content: some View {
+//        WithViewStore(self.store, observe: ViewState.init) { viewStore in
+//        WithViewStore(self.store, observe: { $0 }) { viewStore in
 //        WithViewStore(self.store, observe: \.progress) { viewStore in
 //        WithViewStore(self.store, observe: { $0 }, send: { .view($0) }) { viewStore in
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+//        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             VStack(spacing: 10) {
                 Text(Localization.Base.showcase).font(Font.title2)
-                
-                // ProgressViewWrapper(progress: viewStore.binding(get: \.progress))
-
                 ProgressViewWrapper(progress: viewStore.$progress)
-
-                // TextField("blob@pointfree.co", text: viewStore.$username)
-
-//                TextField(
-//                  "Type here",
-//                  text: viewStore.binding(get: \.username,
-//                                          send: LoadingReducer.Action.textChanged)
-//                )
             }
         }
+    }
+}
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<LoadingReducer.State> {
+    var view: LoadingView.ViewState {
+        LoadingView.ViewState(progress: self.$progress)
     }
 }
 

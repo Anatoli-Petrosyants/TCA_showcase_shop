@@ -11,7 +11,13 @@ import ComposableArchitecture
 // MARK: - HelpView
 
 struct HelpView {
-    let store: StoreOf<Help>
+    let store: StoreOf<HelpReducer>
+    
+    struct ViewState: Equatable {
+        var showGetStarted: Bool
+        var items: [Onboarding]
+        @BindingViewState var currentTab: Onboarding.Tab
+    }
 }
 
 // MARK: - Views
@@ -23,25 +29,24 @@ extension HelpView: View {
             .onAppear { self.store.send(.view(.onViewAppear)) }
     }
     
-    @ViewBuilder private var content: some View {        
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+    @ViewBuilder private var content: some View {
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in        
             VStack {
-                // TODO: binding state
-//                TabView(selection: viewStore.binding(\.$currentTab)) {
-//                    ForEach(viewStore.items) { viewData in
-//                        HelpPageView(data: viewData)
-//                            .tag(viewData.tab)
-//                            .padding(.bottom, 50)
-//                    }
-//                }
-//                .tabViewStyle(PageTabViewStyle())
-//                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-//                .onChange(of: viewStore.currentTab) { newValue in
-//                    viewStore.send(.view(.onTabChanged(tab: newValue)))
-//                }
+                TabView(selection: viewStore.$currentTab) {
+                    ForEach(viewStore.items) { viewData in
+                        HelpPageView(data: viewData)
+                            .tag(viewData.tab)
+                            .padding(.bottom, 50)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle())
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                .onChange(of: viewStore.currentTab) { newValue in
+                    viewStore.send(.onTabChanged(tab: newValue))
+                }
                 
                 Button(Localization.Help.getStarted) {
-                    viewStore.send(.view(.onGetStartedTapped))
+                    viewStore.send(.onGetStartedTapped)
                 }
                 .buttonStyle(.cta)
                 .padding(.bottom)
@@ -51,6 +56,19 @@ extension HelpView: View {
         }
     }
 }
+
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<HelpReducer.State> {
+    var view: HelpView.ViewState {
+        HelpView.ViewState(showGetStarted: self.showGetStarted,
+                           items: self.items,
+                           currentTab: self.$currentTab)
+    }
+}
+
+// MARK: HelpPageView
 
 struct HelpPageView: View {
     

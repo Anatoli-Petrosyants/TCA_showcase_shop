@@ -19,8 +19,8 @@ struct SidebarReducer: Reducer {
         @BindingState var isSharePresented = false
     }
     
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onDismiss
             case onLogoutTap
             case onContactTap
@@ -33,6 +33,7 @@ struct SidebarReducer: Reducer {
             case onCountriesTap
             case onCameraTap
             case onHealthKitTap
+            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -46,10 +47,12 @@ struct SidebarReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case binding(BindingAction<State>)
     }        
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        SidebarLogic()
+        
         Reduce { state, action in
             switch action {
             case let .view(viewAction):
@@ -108,19 +111,19 @@ struct SidebarReducer: Reducer {
                         .send(.internal(.toggleVisibility)),
                         .send(.delegate(.didSidebarTapped(.healthKit)))
                     )
+                    
+                case .binding:
+                    return .none
                 }
                 
             case .internal(.toggleVisibility):
                 state.isVisible.toggle()
                 return .none
 
-            case .delegate, .binding:
+            case .delegate:
                 return .none
             }
         }
-        
-        BindingReducer()
-        SidebarLogic()
     }
 }
 

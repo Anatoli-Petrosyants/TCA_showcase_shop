@@ -12,6 +12,11 @@ import ComposableArchitecture
 
 struct SearchSegmentView {
     let store: StoreOf<SearchSegmentReducer>
+    
+    struct ViewState: Equatable {
+        var segments: [Segment]
+        @BindingViewState var selectedSegment: Segment
+    }
 }
 
 // MARK: - Views
@@ -21,14 +26,26 @@ extension SearchSegmentView: View {
     var body: some View {
         content
     }
-    
+
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-//            SearchSegmentControl(segments: viewStore.segments,
-//                                selectedSegment: viewStore.binding(\.$selectedSegment))
+        WithViewStore(self.store, observe: \.view) { viewStore in
+            SearchSegmentControl(segments: viewStore.segments,
+                                selectedSegment: viewStore.$selectedSegment)
         }
     }
 }
+
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<SearchSegmentReducer.State> {
+    var view: SearchSegmentView.ViewState {
+        SearchSegmentView.ViewState(segments: self.segments,
+                                    selectedSegment: self.$selectedSegment)
+    }
+}
+
+// MARK: SearchSegmentControl
 
 struct SearchSegmentControl: View {
     var segments: [Segment]
