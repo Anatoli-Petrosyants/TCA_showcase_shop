@@ -7,8 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import Dependencies
-import SwiftUINavigation
 import HealthKit
 
 struct HealthKitReducer: Reducer {

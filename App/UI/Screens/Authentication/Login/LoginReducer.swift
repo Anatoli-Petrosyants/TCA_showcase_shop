@@ -7,8 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import SwiftUINavigation
-import Dependencies
 
 struct LoginReducer: Reducer {
     

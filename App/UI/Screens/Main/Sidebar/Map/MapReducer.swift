@@ -21,7 +21,12 @@ struct MapReducer: Reducer {
             longitudeDelta: 12
         ))
         
-        var annotations: [MapAnnotationData] = MapAnnotationData.mockedData
+//        var annotations: [MapAnnotationData] = MapAnnotationData.mockedData
+        
+        var annotations: [MapAnnotationData] = [MapAnnotationData(name: "Yerevan",
+                                                                  path: "https://picsum.photos/id/235/400/400",
+                                                                  coordinate: CLLocationCoordinate2D(latitude: .random(in: 30...45),
+                                                                                                                    longitude: .random(in: 43...50)))]
         
         static func == (lhs: MapReducer.State, rhs: MapReducer.State) -> Bool {
             return (lhs.mapRegion.center.latitude == rhs.mapRegion.center.latitude) &&

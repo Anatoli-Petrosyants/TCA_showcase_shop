@@ -23,11 +23,9 @@
 		A907C1B82A447CED007E7FE7 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A907C1B72A447CED007E7FE7 /* DictionaryEncoder.swift */; };
 		A90A604B2A67D9500011B2BD /* ProductsPhotosReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A604A2A67D9500011B2BD /* ProductsPhotosReducer.swift */; };
 		A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A604C2A67D95A0011B2BD /* ProductsPhotosView.swift */; };
-		A916BBE82A17518600AD114F /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A916BBE72A17518600AD114F /* ComposableArchitecture */; };
 		A916BBF62A17583F00AD114F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916BBF52A17583F00AD114F /* Product.swift */; };
 		A916BBF92A17586C00AD114F /* ProductDTO+MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916BBF82A17586C00AD114F /* ProductDTO+MockedData.swift */; };
 		A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916BBFF2A175E6B00AD114F /* ProductDTO.swift */; };
-		A916BC032A1763F500AD114F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A916BC022A1763F500AD114F /* Alamofire */; };
 		A91F587629E67C2C008C0F35 /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587529E67C2C008C0F35 /* LoginReducer.swift */; };
 		A91F587829E67C35008C0F35 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* LoginView.swift */; };
 		A91F587B29E68260008C0F35 /* AnyTransition+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587A29E68260008C0F35 /* AnyTransition+Extensions.swift */; };
@@ -72,12 +70,10 @@
 		A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97C84272A7D00F8008054E0 /* Loadable.swift */; };
 		A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0A529B5C22B0059F9BB /* Blocks.swift */; };
 		A988F0B929B5CC610059F9BB /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */; };
-		A988F0C029B5DA580059F9BB /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A988F0BF29B5DA580059F9BB /* Swinject */; };
 		A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D529B60B470059F9BB /* ErrorModifier.swift */; };
 		A988F0D829B60D170059F9BB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D729B60D170059F9BB /* AppError.swift */; };
 		A990E5042A4194820004F4F9 /* Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5032A4194820004F4F9 /* Showcase.swift */; };
 		A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */; };
-		A990E5092A41992A0004F4F9 /* Dependencies in Frameworks */ = {isa = PBXBuildFile; productRef = A990E5082A41992A0004F4F9 /* Dependencies */; };
 		A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */; };
 		A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E51B2A41A03C0004F4F9 /* Layout.swift */; };
 		A990E5202A41A03C0004F4F9 /* Layout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E51C2A41A03C0004F4F9 /* Layout+Extension.swift */; };
@@ -119,6 +115,7 @@
 		A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0CBBF29DAA01D0048A649 /* CameraPreview.swift */; };
 		A9A5237629C341CF0073177C /* UIViewRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5237529C341CF0073177C /* UIViewRepresented.swift */; };
 		A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5237929C342440073177C /* CircularProgressView.swift */; };
+		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */; };
 		A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -165,7 +162,6 @@
 		A9EEE3012A71086F007A6442 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEE3002A71086F007A6442 /* MapView.swift */; };
 		A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F53F6A2A8A49D7005D6182 /* ErrorView.swift */; };
 		A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F53F6C2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift */; };
-		A9F54DBA29E7ECA70078C80E /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = A9F54DB929E7ECA70078C80E /* SwiftUINavigation */; };
 		A9F665982A54302700D4FB8A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F665972A54302700D4FB8A /* Account.swift */; };
 		A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FAD6B82A54180A003A46F5 /* CoreData+Convertible.swift */; };
 		A9FAD6BB2A541865003A46F5 /* CoreData+Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FAD6BA2A541865003A46F5 /* CoreData+Attribute.swift */; };
@@ -352,15 +348,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A907C1B62A447152007E7FE7 /* Get in Frameworks */,
-				A916BBE82A17518600AD114F /* ComposableArchitecture in Frameworks */,
 				A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */,
+				A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */,
 				A96BF14D2A6A996300B14247 /* PopupView in Frameworks */,
 				A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */,
-				A988F0C029B5DA580059F9BB /* Swinject in Frameworks */,
-				A990E5092A41992A0004F4F9 /* Dependencies in Frameworks */,
-				A916BC032A1763F500AD114F /* Alamofire in Frameworks */,
 				A990E52E2A41BC7D0004F4F9 /* Reachability in Frameworks */,
-				A9F54DBA29E7ECA70078C80E /* SwiftUINavigation in Frameworks */,
 				A9A0CBB029D6F3180048A649 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1047,17 +1039,13 @@
 			);
 			name = Showcase;
 			packageProductDependencies = (
-				A988F0BF29B5DA580059F9BB /* Swinject */,
 				A9BEED3729D1B4EF007ADC33 /* SDWebImageSwiftUI */,
 				A9A0CBAF29D6F3180048A649 /* Lottie */,
-				A9F54DB929E7ECA70078C80E /* SwiftUINavigation */,
-				A916BBE72A17518600AD114F /* ComposableArchitecture */,
-				A916BC022A1763F500AD114F /* Alamofire */,
-				A990E5082A41992A0004F4F9 /* Dependencies */,
 				A990E52D2A41BC7D0004F4F9 /* Reachability */,
 				A907C1B52A447152007E7FE7 /* Get */,
 				A9286A3B2A4E9ED300ED4CB3 /* BackedCodable */,
 				A96BF14C2A6A996300B14247 /* PopupView */,
+				A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Showcase.app */;
@@ -1091,17 +1079,13 @@
 			);
 			mainGroup = A9DED59529AC7FA6003EFA02;
 			packageReferences = (
-				A988F0BE29B5DA580059F9BB /* XCRemoteSwiftPackageReference "Swinject" */,
 				A9BEED3629D1B4EF007ADC33 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				A9A0CBAE29D6F3180048A649 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				A9F54DB829E7ECA70078C80E /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
-				A916BBE62A17518600AD114F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
-				A916BC012A1763F500AD114F /* XCRemoteSwiftPackageReference "Alamofire" */,
-				A990E5072A41992A0004F4F9 /* XCRemoteSwiftPackageReference "swift-dependencies" */,
 				A990E52C2A41BC7D0004F4F9 /* XCRemoteSwiftPackageReference "Reachability" */,
 				A907C1B42A447152007E7FE7 /* XCRemoteSwiftPackageReference "Get" */,
 				A9286A3A2A4E9ED300ED4CB3 /* XCRemoteSwiftPackageReference "BackedCodable" */,
 				A96BF14B2A6A996300B14247 /* XCRemoteSwiftPackageReference "PopupView" */,
+				A9AA22B82A8DE77E0073E070 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -1622,22 +1606,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		A916BBE62A17518600AD114F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
-			};
-		};
-		A916BC012A1763F500AD114F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		A9286A3A2A4E9ED300ED4CB3 /* XCRemoteSwiftPackageReference "BackedCodable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jegnux/BackedCodable";
@@ -1652,22 +1620,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
-			};
-		};
-		A988F0BE29B5DA580059F9BB /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		A990E5072A41992A0004F4F9 /* XCRemoteSwiftPackageReference "swift-dependencies" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-dependencies";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
 			};
 		};
 		A990E52C2A41BC7D0004F4F9 /* XCRemoteSwiftPackageReference "Reachability" */ = {
@@ -1686,20 +1638,20 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		A9AA22B82A8DE77E0073E070 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		A9BEED3629D1B4EF007ADC33 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
-			};
-		};
-		A9F54DB829E7ECA70078C80E /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1709,16 +1661,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A907C1B42A447152007E7FE7 /* XCRemoteSwiftPackageReference "Get" */;
 			productName = Get;
-		};
-		A916BBE72A17518600AD114F /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A916BBE62A17518600AD114F /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		A916BC022A1763F500AD114F /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A916BC012A1763F500AD114F /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 		A9286A3B2A4E9ED300ED4CB3 /* BackedCodable */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1730,16 +1672,6 @@
 			package = A96BF14B2A6A996300B14247 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
 		};
-		A988F0BF29B5DA580059F9BB /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A988F0BE29B5DA580059F9BB /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
-		A990E5082A41992A0004F4F9 /* Dependencies */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A990E5072A41992A0004F4F9 /* XCRemoteSwiftPackageReference "swift-dependencies" */;
-			productName = Dependencies;
-		};
 		A990E52D2A41BC7D0004F4F9 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A990E52C2A41BC7D0004F4F9 /* XCRemoteSwiftPackageReference "Reachability" */;
@@ -1750,15 +1682,15 @@
 			package = A9A0CBAE29D6F3180048A649 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
+		A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9AA22B82A8DE77E0073E070 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		A9BEED3729D1B4EF007ADC33 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A9BEED3629D1B4EF007ADC33 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		A9F54DB929E7ECA70078C80E /* SwiftUINavigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A9F54DB829E7ECA70078C80E /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
-			productName = SwiftUINavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 

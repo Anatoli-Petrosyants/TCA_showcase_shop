@@ -12,8 +12,8 @@ import Dependencies
 struct LoadingReducer: Reducer {
 
     struct State: Equatable {
-        @BindingState public var progress: Double = 0.0
-        @BindingState public var username = ""
+        @BindingState var progress: Double = 0.0
+        @BindingState var username = ""
     }
 
     enum Action: Equatable {
@@ -50,7 +50,7 @@ struct LoadingReducer: Reducer {
                         return .none
                         // return .send(.internal(.onProgressUpdated))
 
-                    case .binding:
+                    case .binding(_):
                         return .none
                     }
 
