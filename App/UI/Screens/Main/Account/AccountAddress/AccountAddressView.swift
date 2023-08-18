@@ -25,7 +25,20 @@ extension AccountAddressView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Account Address View")
+            VStack {
+                Text("Add Address")
+                    .font(.largeTitle)
+                
+                SearchInputView(
+                    store: self.store.scope(
+                        state: \.input,
+                        action: AccountAddressReducer.Action.input
+                    )
+                )
+                .padding()
+                
+                Spacer()
+            }
         }
     }
 }

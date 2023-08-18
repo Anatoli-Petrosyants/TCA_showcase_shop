@@ -15,7 +15,7 @@ struct SearchInputReducer: Reducer {
         var placeholder = Localization.Search.inputPlacholder
         var searchQuery = ""
         var isHiddenClearButton = true
-        var isLoading = true
+        var isLoading = false
     }
     
     enum Action: Equatable {

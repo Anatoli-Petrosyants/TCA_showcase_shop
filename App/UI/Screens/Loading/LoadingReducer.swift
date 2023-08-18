@@ -67,6 +67,5 @@ struct LoadingReducer: Reducer {
                 return .none
             }
         }
-        ._printChanges()
     }
 }
