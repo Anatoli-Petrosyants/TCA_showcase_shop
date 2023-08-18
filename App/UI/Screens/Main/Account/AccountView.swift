@@ -66,12 +66,16 @@ extension AccountView: View {
                     }
                     .listRowBackground(Color.gray)
                     
-                    Section(header: Text("Address Information")) {
-                        LabeledContent("Address",
-                                       value: "Tap to add")
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            viewStore.send(.onAddressTap)
+                    Section(header: Text("Address provided by Google Place API")) {
+                        VStack {
+                            HStack {
+                                Text("Address")
+                                Spacer()
+                                Button("Add") {
+                                    viewStore.send(.onAddressTap)
+                                }
+                                .tint(Color.blue)
+                            }
                         }
                     }
                     .listRowBackground(Color.gray)

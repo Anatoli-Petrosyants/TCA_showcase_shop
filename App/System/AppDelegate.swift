@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import ComposableArchitecture
+import FirebaseCore
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -19,24 +20,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        FirebaseApp.configure()
         self.store.send(.appDelegate(.didFinishLaunching))
         return true
     }
-
-//    let store = Store(
-//        initialState: AppReducer.State(),
-//        reducer: AppReducer()
-//    )
-//
-//    var viewStore: ViewStore<Void, AppReducer.Action> {
-//        ViewStore(self.store.stateless)
-//    }
-//
-//    func application(
-//        _ application: UIApplication,
-//        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-//    ) -> Bool {
-//        self.viewStore.send(.appDelegate(.didFinishLaunching))
-//        return true
-//    }
 }
