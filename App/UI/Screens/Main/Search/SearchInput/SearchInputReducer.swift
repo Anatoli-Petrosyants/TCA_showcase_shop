@@ -12,7 +12,7 @@ import Dependencies
 struct SearchInputReducer: Reducer {
     
     struct State: Equatable {
-        var placeholder = Localization.Search.inputPlacholder
+        var placeholder: LocalizedStringKey
         var searchQuery = ""
         var isHiddenClearButton = true
         var isLoading = false

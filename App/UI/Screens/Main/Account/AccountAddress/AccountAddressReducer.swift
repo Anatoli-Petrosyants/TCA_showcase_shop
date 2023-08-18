@@ -11,7 +11,7 @@ import ComposableArchitecture
 struct AccountAddressReducer: Reducer {
     
     struct State: Equatable {
-        var input = SearchInputReducer.State()
+        var input = SearchInputReducer.State(placeholder: "Search address")
     }
     
     enum Action: Equatable {

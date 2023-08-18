@@ -154,7 +154,8 @@ extension AccountView: View {
             .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountReducer.Action.dialog))
             .sheet(
                 store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
-                content: AccountAddressView.init(store:)
+                content:
+                    AccountAddressView.init(store:)                        
             )
         }
     }

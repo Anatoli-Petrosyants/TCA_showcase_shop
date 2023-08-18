@@ -15,7 +15,7 @@ struct SearchReducer: Reducer {
         var items: IdentifiedArrayOf<SearchProductItemReducer.State> = []
         var initalItems: IdentifiedArrayOf<SearchProductItemReducer.State> = []
         var wishlist = SearchWishlistReducer.State()
-        var input = SearchInputReducer.State()
+        var input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
         var segment = SearchSegmentReducer.State()
         var searchError: AppError? = nil
         var path = StackState<Path.State>()
@@ -121,7 +121,7 @@ struct SearchReducer: Reducer {
             case let .segment(segmentAction):
                 switch segmentAction {
                 case let .delegate(.didSegmentedChanged(segment)):
-                    state.input = SearchInputReducer.State()
+                    state.input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
                     state.wishlist.count = 0
                     return .run { send in
                         await send(
