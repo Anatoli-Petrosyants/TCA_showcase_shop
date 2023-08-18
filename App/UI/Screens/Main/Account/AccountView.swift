@@ -65,6 +65,16 @@ extension AccountView: View {
                         }
                     }
                     .listRowBackground(Color.gray)
+                    
+                    Section(header: Text("Address Information")) {
+                        LabeledContent("Address",
+                                       value: "Tap to add")
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewStore.send(.onAddressTap)
+                        }
+                    }
+                    .listRowBackground(Color.gray)
 
                     Section(header: Text(Localization.Account.sectionHeaderContact)) {
                         TextField(Localization.Account.sectionHeaderContactEmail,
@@ -142,6 +152,10 @@ extension AccountView: View {
                  .autohideIn(3)
             }
             .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountReducer.Action.dialog))
+            .sheet(
+                store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
+                content: AccountAddressView.init(store:)
+            )
         }
     }
 }

@@ -91,7 +91,7 @@ extension LoginView: View {
                 }
             }
             .sheet(
-                store: store.scope(state: \.$agreements, action: LoginReducer.Action.agreements),
+                store: self.store.scope(state: \.$agreements, action: LoginReducer.Action.agreements),
                 content: AgreementsView.init(store:)
             )
             .alert(store: self.store.scope(state: \.$alert, action: LoginReducer.Action.alert))

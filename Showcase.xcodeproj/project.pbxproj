@@ -118,6 +118,8 @@
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */; };
 		A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */; };
+		A9AA22C02A8F3E5F0073E070 /* AccountAddressReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */; };
+		A9AA22C22A8F3E660073E070 /* AccountAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */; };
 		A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */; };
 		A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -283,6 +285,8 @@
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Product.swift"; sourceTree = "<group>"; };
 		A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Search.swift"; sourceTree = "<group>"; };
+		A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddressReducer.swift; sourceTree = "<group>"; };
+		A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddressView.swift; sourceTree = "<group>"; };
 		A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementReducer.swift; sourceTree = "<group>"; };
 		A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementView.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 			children = (
 				A90110172A4445F200DD08C4 /* AccountReducer.swift */,
 				A90110192A4445F900DD08C4 /* AccountView.swift */,
+				A9AA22C32A8F3E6B0073E070 /* AccountAddress */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -810,6 +815,15 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		A9AA22C32A8F3E6B0073E070 /* AccountAddress */ = {
+			isa = PBXGroup;
+			children = (
+				A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */,
+				A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */,
+			);
+			path = AccountAddress;
+			sourceTree = "<group>";
+		};
 		A9AF26012A73E57000631158 /* ProductAnnouncement */ = {
 			isa = PBXGroup;
 			children = (
@@ -1134,6 +1148,8 @@
 				A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */,
 				A9947EF22A179DD900FC7FB8 /* ActivityViewRepresentable.swift in Sources */,
 				A990E5042A4194820004F4F9 /* Showcase.swift in Sources */,
+				A9AA22C22A8F3E660073E070 /* AccountAddressView.swift in Sources */,
+				A9AA22C02A8F3E5F0073E070 /* AccountAddressReducer.swift in Sources */,
 				A9B4D7A32A4AD30600B102FB /* FeedbackGeneratorClient.swift in Sources */,
 				A90072CC2A73D48E000551E1 /* Camera.swift in Sources */,
 				A9947EE52A179CEB00FC7FB8 /* ActivityIndicatorViewRepresentable.swift in Sources */,

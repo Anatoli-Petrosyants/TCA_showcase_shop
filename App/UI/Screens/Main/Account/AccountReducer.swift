@@ -33,11 +33,14 @@ struct AccountReducer: Reducer {
         
         @BindingState var toastMessage: LocalizedStringKey? = nil
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
+        
+        @PresentationState var address: AccountAddressReducer.State?
     }
     
     enum Action: Equatable {
         enum ViewAction:  BindableAction, Equatable {
             case onViewLoad
+            case onAddressTap
             case onSaveTap
             case onLogoutTap
             case binding(BindingAction<State>)
@@ -60,6 +63,7 @@ struct AccountReducer: Reducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case dialog(PresentationAction<Action.DialogAction>)
+        case address(PresentationAction<AccountAddressReducer.Action>)
     }
     
     @Dependency(\.userDefaults) var userDefaults
@@ -127,6 +131,10 @@ struct AccountReducer: Reducer {
 
                     return .none
                     
+                case .onAddressTap:
+                    state.address = AccountAddressReducer.State()
+                    return .none
+                    
                 case .binding:
                     return .none
                 }
@@ -160,10 +168,11 @@ struct AccountReducer: Reducer {
                 case .dialog(.presented(.onConfirmLogout)):
                     return .send(.internal(.confirmLogout))
                 
-            case .delegate, .dialog:
+            case .delegate, .dialog, .address:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
+        .ifLet(\.$address, action: /Action.address) { AccountAddressReducer() }
     }    
 }
