@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import ComposableArchitecture
 import FirebaseCore
+import FirebaseFirestore
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -19,7 +20,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-    ) -> Bool {
+    ) -> Bool {        
         FirebaseApp.configure()
         self.store.send(.appDelegate(.didFinishLaunching))
         return true

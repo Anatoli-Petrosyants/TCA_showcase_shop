@@ -118,8 +118,9 @@
 		A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */; };
 		A9AA22C02A8F3E5F0073E070 /* AccountAddressReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */; };
 		A9AA22C22A8F3E660073E070 /* AccountAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */; };
-		A9AA22C52A8F94D60073E070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA22C42A8F94D60073E070 /* GoogleService-Info.plist */; };
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
+		A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */; };
+		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
 		A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */; };
 		A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -284,7 +285,8 @@
 		A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Search.swift"; sourceTree = "<group>"; };
 		A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddressReducer.swift; sourceTree = "<group>"; };
 		A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddressView.swift; sourceTree = "<group>"; };
-		A9AA22C42A8F94D60073E070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementReducer.swift; sourceTree = "<group>"; };
 		A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementView.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 			isa = PBXGroup;
 			children = (
 				A9AF260B2A77B5DC00631158 /* HealthKitClient.swift */,
+				A9AA22CD2A8F9C020073E070 /* Firestore */,
 				A90072D12A73D4AA000551E1 /* Camera */,
 				A9FAD6B42A541715003A46F5 /* DatabaseClient */,
 				A990E54B2A431E240004F4F9 /* AuthenticationClient.swift */,
@@ -817,6 +820,14 @@
 				A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */,
 			);
 			path = AccountAddress;
+			sourceTree = "<group>";
+		};
+		A9AA22CD2A8F9C020073E070 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */,
+			);
+			path = Firestore;
 			sourceTree = "<group>";
 		};
 		A9AF26012A73E57000631158 /* ProductAnnouncement */ = {
@@ -939,7 +950,7 @@
 			isa = PBXGroup;
 			children = (
 				A9AF260D2A78E8D400631158 /* Showcase.entitlements */,
-				A9AA22C42A8F94D60073E070 /* GoogleService-Info.plist */,
+				A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */,
 				A9AF26042A77997900631158 /* Showcase-Info.plist */,
 				A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */,
 				A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */,
@@ -1125,7 +1136,7 @@
 				A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */,
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
-				A9AA22C52A8F94D60073E070 /* GoogleService-Info.plist in Resources */,
+				A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */,
 				A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */,
 				A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */,
 			);
@@ -1190,6 +1201,7 @@
 				A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */,
 				A9AFC16A2A5D878E003A95C3 /* SearchSegmentView.swift in Sources */,
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
+				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
 				A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */,
 				A9DED5B329AC93E6003EFA02 /* Colors.swift in Sources */,
 				A9BEED4129D2DAA2007ADC33 /* Color+Extensions.swift in Sources */,
@@ -1396,7 +1408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ap.showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = ap.Showcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1549,7 +1561,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ap.showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = ap.Showcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1585,7 +1597,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ap.showcase;
+				PRODUCT_BUNDLE_IDENTIFIER = ap.Showcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

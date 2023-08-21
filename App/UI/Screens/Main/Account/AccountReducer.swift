@@ -51,7 +51,7 @@ struct AccountReducer: Reducer {
         }
         
         enum InternalAction: Equatable {
-            case account(TaskResult<Account?>)
+            case accountResponse(TaskResult<Account?>)
             case confirmLogout
         }
         
@@ -85,7 +85,7 @@ struct AccountReducer: Reducer {
                     return .run { send in
                         await send(
                             .internal(
-                                .account(
+                                .accountResponse(
                                     await TaskResult {
                                         try await self.databaseClient.fetch(request).first
                                     }
@@ -148,7 +148,7 @@ struct AccountReducer: Reducer {
                             await send(.delegate(.didLogout))
                         }
                         
-                    case let .account(.success(data)):
+                    case let .accountResponse(.success(data)):
                         state.accountId = data?.id
                         state.firstName = data?.firstName ?? ""
                         state.lastName = data?.lastName ?? ""
@@ -159,7 +159,7 @@ struct AccountReducer: Reducer {
                         state.enableNotifications = data?.enableNotifications ?? false
                         return .none
 
-                    case let .account(.failure(error)):
+                    case let .accountResponse(.failure(error)):
                         Log.debug("account failure: \(error.localizedDescription)")
                         return .none
                     }
