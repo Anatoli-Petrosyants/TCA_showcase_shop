@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "codablefirebase",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alickbass/CodableFirebase",
+      "state" : {
+        "branch" : "master",
+        "revision" : "5491be775c22311c7ee0542dc5856b3ff4c99958"
+      }
+    },
+    {
       "identity" : "combine-schedulers",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/combine-schedulers",

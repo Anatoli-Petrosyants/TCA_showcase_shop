@@ -42,6 +42,8 @@
 		A930CDB029E5414800AF73E3 /* LoadingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */; };
 		A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDB129E5414E00AF73E3 /* LoadingView.swift */; };
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
+		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
+		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
 		A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */; };
 		A94BF89A2A56A939006FCE43 /* NotificationCenter+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */; };
 		A94BF89D2A56B53D006FCE43 /* ProductAccountReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF89C2A56B53D006FCE43 /* ProductAccountReducer.swift */; };
@@ -211,6 +213,7 @@
 		A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReducer.swift; sourceTree = "<group>"; };
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
+		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseClient+Bundle.swift"; sourceTree = "<group>"; };
 		A94BF8982A56A6D4006FCE43 /* Showcase_Database v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Showcase_Database v2.xcdatamodel"; sourceTree = "<group>"; };
 		A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Async.swift"; sourceTree = "<group>"; };
@@ -353,6 +356,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */,
 				A907C1B62A447152007E7FE7 /* Get in Frameworks */,
 				A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */,
 				A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */,
@@ -658,6 +662,7 @@
 				A990E5242A41BA5C0004F4F9 /* UIApplication+Extensions.swift */,
 				A990E5262A41BABF0004F4F9 /* Binding+Extensions.swift */,
 				A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */,
+				A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1073,6 +1078,7 @@
 				A96BF14C2A6A996300B14247 /* PopupView */,
 				A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */,
 				A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */,
+				A94A63C02A93949C0068903C /* CodableFirebase */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Showcase.app */;
@@ -1114,6 +1120,7 @@
 				A96BF14B2A6A996300B14247 /* XCRemoteSwiftPackageReference "PopupView" */,
 				A9AA22B82A8DE77E0073E070 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				A9AA22C62A8F96900073E070 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -1282,6 +1289,7 @@
 				A960AA202A49A867005CE9F9 /* OnLoadModifier.swift in Sources */,
 				A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */,
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,
+				A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */,
 				A990E5482A42D9D40004F4F9 /* Localization+Agreements.swift in Sources */,
 				A90072CE2A73D498000551E1 /* CameraSetting.swift in Sources */,
 				A990E5232A41BA3E0004F4F9 /* Bundle+Extensions.swift in Sources */,
@@ -1647,6 +1655,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alickbass/CodableFirebase";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A96BF14B2A6A996300B14247 /* XCRemoteSwiftPackageReference "PopupView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/PopupView";
@@ -1707,6 +1723,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A9286A3A2A4E9ED300ED4CB3 /* XCRemoteSwiftPackageReference "BackedCodable" */;
 			productName = BackedCodable;
+		};
+		A94A63C02A93949C0068903C /* CodableFirebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */;
+			productName = CodableFirebase;
 		};
 		A96BF14C2A6A996300B14247 /* PopupView */ = {
 			isa = XCSwiftPackageProductDependency;
