@@ -12,7 +12,7 @@ struct AccountAddressReducer: Reducer {
     
     struct State: Equatable {
         var input = SearchInputReducer.State(placeholder: "Search address")
-        var places: [Place] = []
+        var data: Loadable<[Place]> = .idle
     }
     
     enum Action: Equatable {
@@ -47,6 +47,7 @@ struct AccountAddressReducer: Reducer {
             switch action {
             case .onViewAppear:
                 state.input.isLoading = true
+                state.data = .loading
                 return .run { send in
                     await send(
                         .internal(
@@ -71,14 +72,14 @@ struct AccountAddressReducer: Reducer {
             case let .internal(internalAction):
                 switch internalAction {
                 case let .placesResponse(.success(data)):
-                    Log.debug("places \(data)")                    
                     state.input.isLoading = false
-                    state.places.append(contentsOf: data)
+                    state.data = .loaded(data)
+                    // state.places.append(contentsOf: data)
                     return .none
 
-                case let .placesResponse(.failure(error)):
-                    Log.debug("account failure: \(error.localizedDescription)")
+                case let .placesResponse(.failure(error)):                    
                     state.input.isLoading = false
+                    state.data = .failed(error)
                     return .none
                 }
                 

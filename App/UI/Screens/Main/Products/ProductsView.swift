@@ -125,30 +125,3 @@ extension ProductsView: View {
         }
     }
 }
-
-//VStack {
-//    Group {
-//        (/Loadable<IdentifiedArrayOf<ProductItemReducer.State>>.loading).extract(from: viewStore.data).map {
-//            ProgressView()
-//                .progressViewStyle(.main)
-//        }
-//
-//        (/Loadable<IdentifiedArrayOf<ProductItemReducer.State>>.loaded).extract(from: viewStore.data).map { reducers in
-//            ScrollView {
-//                LazyVStack(spacing: 0) {
-//                    ProductAnnouncementView(
-//                        store: self.store.scope(
-//                            state: \.announcement,
-//                            action: ProductsReducer.Action.announcement
-//                        )
-//                    )
-//
-//                    ForEach(reducers) { reducer in
-//                        let store = Store(initialState: reducer, reducer: ProductItemReducer())
-//                        ProductItemView(store: store)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}

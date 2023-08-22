@@ -42,15 +42,15 @@
 
 // Account
 "account.title" = "Account";
-"account.section.personal.header" = "Personal Information";
+"account.section.personal" = "Personal Information";
 "account.section.personal.first.name" = "First Name";
 "account.section.personal.last.name" = "Last Name";
 "account.section.personal.birthDate" = "BirthDate";
 "account.section.personal.gender" = "Gender";
 
 "account.section.city" = "City Information";
-"account.section.city.placholder" = "Gender";
-"account.section.city.footer" = "Gender";
+"account.section.city.placholder" = "Choose City";
+"account.section.city.footer" = "Cities Provided by Firestore API. Please add or edit it by tapping on above row.";
 
 "account.section.contact" = "Contact Information";
 "account.section.contact.email" = "Email";
