@@ -24,9 +24,10 @@ extension FieldValue: FieldValueType {}
 extension Timestamp: TimestampType {}
 
 /// A struct representing a place with an `id` and a `name`.
-struct Place: Codable, Equatable {
-    let id: String
+struct Place: Codable, Equatable, Identifiable, Hashable {
+    let id: Int
     let name: String
+    let description: String
 }
 
 /// A struct representing a client for Firestore operations.

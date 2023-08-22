@@ -55,7 +55,7 @@ extension SearchInputView: View {
             .padding(4)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(.black, lineWidth: 1)
+                    .stroke(Color.black, lineWidth: 1)
             )
         }
     }

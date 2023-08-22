@@ -26,9 +26,24 @@ extension AccountAddressView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
-                VStack {
-                    
+                List(viewStore.places, id: \.self) { place in
+                    VStack(alignment: .leading) {
+                        Text("\(place.name)")
+                        Text("\(place.description)")
+                            .lineLimit(2)
+                    }
+                    .contentShape(Rectangle())
+//                    .onTapGesture {
+//                        viewStore.send(.view(.onItemTap(code: countryCode)))
+//                    }
                 }
+                .padding(.top, 16)
+                .environment(\.defaultMinListRowHeight, 44)
+                .listRowBackground(Color.clear)
+                .listStyle(.plain)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Countries")
+                .modifier(NavigationBarModifier())
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {

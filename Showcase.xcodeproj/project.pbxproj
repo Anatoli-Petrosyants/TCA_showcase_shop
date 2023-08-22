@@ -710,10 +710,10 @@
 		A990E5372A41BFCA0004F4F9 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				A9AF260B2A77B5DC00631158 /* HealthKitClient.swift */,
-				A9AA22CD2A8F9C020073E070 /* Firestore */,
 				A90072D12A73D4AA000551E1 /* Camera */,
 				A9FAD6B42A541715003A46F5 /* DatabaseClient */,
+				A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */,
+				A9AF260B2A77B5DC00631158 /* HealthKitClient.swift */,
 				A990E54B2A431E240004F4F9 /* AuthenticationClient.swift */,
 				A907C1A72A4460DA007E7FE7 /* ProductsClient.swift */,
 				A9B4D7A92A4C51D600B102FB /* UsersClient.swift */,
@@ -825,14 +825,6 @@
 				A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */,
 			);
 			path = AccountAddress;
-			sourceTree = "<group>";
-		};
-		A9AA22CD2A8F9C020073E070 /* Firestore */ = {
-			isa = PBXGroup;
-			children = (
-				A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */,
-			);
-			path = Firestore;
 			sourceTree = "<group>";
 		};
 		A9AF26012A73E57000631158 /* ProductAnnouncement */ = {
