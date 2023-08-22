@@ -29,8 +29,12 @@ extension AccountAddressView: View {
                 List(viewStore.places, id: \.self) { place in
                     VStack(alignment: .leading) {
                         Text("\(place.name)")
+                            .font(.bodyBold)
+                        
                         Text("\(place.description)")
-                            .lineLimit(2)
+                            .font(.footnote)
+                            .foregroundColor(Color.black05)
+                            .lineLimit(3)
                     }
                     .contentShape(Rectangle())
 //                    .onTapGesture {
@@ -42,9 +46,7 @@ extension AccountAddressView: View {
                 .listRowBackground(Color.clear)
                 .listStyle(.plain)
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Countries")
                 .modifier(NavigationBarModifier())
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         SearchInputView(
@@ -53,7 +55,7 @@ extension AccountAddressView: View {
                                 action: AccountAddressReducer.Action.input
                             )
                         )
-                        .padding(.top, 16)
+                        .padding(.top, 24)
                     }
                 }
             }

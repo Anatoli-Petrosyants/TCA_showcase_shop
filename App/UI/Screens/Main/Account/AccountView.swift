@@ -66,10 +66,11 @@ extension AccountView: View {
                     }
                     .listRowBackground(Color.gray)
                     
-                    Section(header: Text("Address provided by Google Place API")) {
+                    Section(header: Text("City Information"),
+                            footer: Text("Cities Provided by Firestore API. Please to add or edit city.")) {
                         VStack {
                             HStack {
-                                Text("Address")
+                                Text("City")
                                 Spacer()
                                 Button("Add") {
                                     viewStore.send(.onAddressTap)
