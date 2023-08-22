@@ -43,22 +43,22 @@ extension AccountView: View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             NavigationStack {
                 Form {
-                    Section(header: Text(Localization.Account.sectionHeaderPersonal)) {
-                        TextField(Localization.Account.sectionHeaderPersonalFirstName,
+                    Section(header: Text(Localization.Account.sectionPersonal)) {
+                        TextField(Localization.Account.sectionPersonalFirstName,
                                   text: viewStore.$firstName)
                         .keyboardType(.namePhonePad)
                         .textContentType(.name)
 
-                        TextField(Localization.Account.sectionHeaderPersonalLastName,
+                        TextField(Localization.Account.sectionPersonalLastName,
                                   text: viewStore.$lastName)
                         .keyboardType(.namePhonePad)
                         .textContentType(.name)
 
-                        DatePicker(Localization.Account.sectionHeaderPersonalBirthDate,
+                        DatePicker(Localization.Account.sectionPersonalBirthDate,
                                    selection: viewStore.$birthDate,
                                    displayedComponents: .date)
 
-                        Picker(Localization.Account.sectionHeaderPersonalGender,
+                        Picker(Localization.Account.sectionPersonalGender,
                                selection: viewStore.$gender) {
                             ForEach(AccountReducer.Gender.allCases, id: \.self) { gender in
                                 Text(gender.rawValue.capitalized)
@@ -67,13 +67,13 @@ extension AccountView: View {
                     }
                     .listRowBackground(Color.gray)
                     
-                    Section(header: Text("City Information"),
-                            footer: Text("Cities Provided by Firestore API. Please to add or edit city.")) {
+                    Section(header: Text(Localization.Account.sectionCity),
+                            footer: Text(Localization.Account.sectionCityFooter)) {
                         VStack {
                             HStack {
                                 Text(viewStore.city)
                                 Spacer()
-                                Button("Add") {
+                                Button("Add / Edit") {
                                     viewStore.send(.onAddressTap)
                                 }
                                 .tint(Color.blue)
@@ -82,43 +82,43 @@ extension AccountView: View {
                     }
                     .listRowBackground(Color.gray)
 
-                    Section(header: Text(Localization.Account.sectionHeaderContact)) {
-                        TextField(Localization.Account.sectionHeaderContactEmail,
+                    Section(header: Text(Localization.Account.sectionContact)) {
+                        TextField(Localization.Account.sectionContactEmail,
                                   text: viewStore.$email)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
                         .textContentType(.emailAddress)
 
-                        TextField(Localization.Account.sectionHeaderContactPhone,
+                        TextField(Localization.Account.sectionContactPhone,
                                   text: viewStore.$phone)
                         .keyboardType(.phonePad)
                         .textContentType(.telephoneNumber)
 
-                        Link(Localization.Account.sectionHeaderContactLinkedin,
+                        Link(Localization.Account.sectionContactLinkedin,
                              destination: Constant.linkedinURL)
                         .foregroundColor(Color.blue)
 
-                        Link(Localization.Account.sectionHeaderContactUpwork,
+                        Link(Localization.Account.sectionContactUpwork,
                               destination: Constant.upworkURL)
                         .foregroundColor(Color.blue)
                     }
                     .listRowBackground(Color.gray)
 
-                    Section(header: Text(Localization.Account.sectionHeaderAdditional)) {
-                        DisclosureGroup(Localization.Account.sectionHeaderAdditionalAboutMe) {
+                    Section(header: Text(Localization.Account.sectionAdditional)) {
+                        DisclosureGroup(Localization.Account.sectionAdditionalAboutMe) {
                             Text(Constant.aboutMe)
                         }
 
-                        LabeledContent(Localization.Account.sectionHeaderAdditionalSupportedVersion,
+                        LabeledContent(Localization.Account.sectionAdditionalSupportedVersion,
                                        value: viewStore.supportedVersion)
 
-                        LabeledContent(Localization.Account.sectionHeaderAdditionalAppVersion,
+                        LabeledContent(Localization.Account.sectionAdditionalAppVersion,
                                        value: viewStore.appVersion)
                     }
                     .listRowBackground(Color.gray)
 
-                    Section(header: Text(Localization.Account.sectionHeaderSettings)) {
-                        Toggle(Localization.Account.sectionHeaderSettingsEnableNotifications,
+                    Section(header: Text(Localization.Account.sectionSettings)) {
+                        Toggle(Localization.Account.sectionSettingsEnableNotifications,
                                isOn: viewStore.$enableNotifications)
 
                         Text(Localization.Base.logout)

@@ -11,24 +11,28 @@ extension Localization {
     enum Account {
         static var title: LocalizedStringKey { return "account.title" }
     
-        static var sectionHeaderPersonal: LocalizedStringKey { return "account.section.header.personal" }
-        static var sectionHeaderPersonalFirstName: LocalizedStringKey { return "account.section.header.personal.first.name" }
-        static var sectionHeaderPersonalLastName: LocalizedStringKey { return "account.section.header.personal.last.name" }
-        static var sectionHeaderPersonalBirthDate: LocalizedStringKey { return "account.section.header.personal.birthDate" }
-        static var sectionHeaderPersonalGender: LocalizedStringKey { return "account.section.header.personal.gender" }        
+        static var sectionPersonal: LocalizedStringKey { return "account.section.personal" }
+        static var sectionPersonalFirstName: LocalizedStringKey { return "account.section.personal.first.name" }
+        static var sectionPersonalLastName: LocalizedStringKey { return "account.section.personal.last.name" }
+        static var sectionPersonalBirthDate: LocalizedStringKey { return "account.section.personal.birthDate" }
+        static var sectionPersonalGender: LocalizedStringKey { return "account.section.personal.gender" }
         
-        static var sectionHeaderContact: LocalizedStringKey { return "account.section.header.contact" }
-        static var sectionHeaderContactEmail: LocalizedStringKey { return "account.section.header.contact.email" }
-        static var sectionHeaderContactPhone: LocalizedStringKey { return "account.section.header.contact.phone" }
-        static var sectionHeaderContactLinkedin: LocalizedStringKey { return "account.section.header.contact.linkedin" }
-        static var sectionHeaderContactUpwork: LocalizedStringKey { return "account.section.header.contact.upwork" }
+        static var sectionCity: LocalizedStringKey { return "account.section.city" }
+        static var sectionCityPlacholder: LocalizedStringKey { return "account.section.city.placholder" }
+        static var sectionCityFooter: LocalizedStringKey { return "account.section.city.footer" }                
         
-        static var sectionHeaderAdditional: LocalizedStringKey { return "account.section.header.additional" }
-        static var sectionHeaderAdditionalAboutMe: LocalizedStringKey { return "account.section.header.additional.about.me" }
-        static var sectionHeaderAdditionalSupportedVersion: LocalizedStringKey { return "account.section.header.additional.supported.version" }
-        static var sectionHeaderAdditionalAppVersion: LocalizedStringKey { return "account.section.header.additional.app.version" }
+        static var sectionContact: LocalizedStringKey { return "account.section.contact" }
+        static var sectionContactEmail: LocalizedStringKey { return "account.section.contact.email" }
+        static var sectionContactPhone: LocalizedStringKey { return "account.section.contact.phone" }
+        static var sectionContactLinkedin: LocalizedStringKey { return "account.section.contact.linkedin" }
+        static var sectionContactUpwork: LocalizedStringKey { return "account.section.contact.upwork" }
+        
+        static var sectionAdditional: LocalizedStringKey { return "account.section.additional" }
+        static var sectionAdditionalAboutMe: LocalizedStringKey { return "account.section.additional.about.me" }
+        static var sectionAdditionalSupportedVersion: LocalizedStringKey { return "account.section.additional.supported.version" }
+        static var sectionAdditionalAppVersion: LocalizedStringKey { return "account.section.additional.app.version" }
                 
-        static var sectionHeaderSettings: LocalizedStringKey { return "account.section.header.settings" }
-        static var sectionHeaderSettingsEnableNotifications: LocalizedStringKey { return "account.section.header.settings.enable.notifications" }        
+        static var sectionSettings: LocalizedStringKey { return "account.section.settings" }
+        static var sectionSettingsEnableNotifications: LocalizedStringKey { return "account.section.settings.enable.notifications" }
     }
 }

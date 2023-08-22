@@ -19,8 +19,9 @@ extension Account: ManagedObjectConvertible {
         .init(\.lastName, "lastName"),
         .init(\.birthDate, "birthDate"),
         .init(\.gender, "gender"),
+        .init(\.city, "city"),
         .init(\.email, "email"),
         .init(\.phone, "phone"),
-        .init(\.enableNotifications, "enableNotifications"),        
+        .init(\.enableNotifications, "enableNotifications"),
     ]
 }

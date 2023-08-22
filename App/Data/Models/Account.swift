@@ -14,6 +14,7 @@ struct Account: Identifiable, Equatable {
     var lastName = ""
     var birthDate = Date()
     var gender = ""
+    var city = ""
     var email = ""
     var phone = ""
     var enableNotifications = false

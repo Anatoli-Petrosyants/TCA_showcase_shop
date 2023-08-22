@@ -104,6 +104,7 @@ struct AccountReducer: Reducer {
                                    lastName = state.lastName,
                                    birthDate = state.birthDate,
                                    gender = state.gender,
+                                   city = state.city,
                                    email = state.email,
                                    phone = state.phone,
                                    enableNotifications = state.enableNotifications
@@ -112,6 +113,7 @@ struct AccountReducer: Reducer {
                         try await databaseClient.update(id!, \Account.lastName, lastName)
                         try await databaseClient.update(id!, \Account.birthDate, birthDate)
                         try await databaseClient.update(id!, \Account.gender, gender.rawValue)
+                        try await databaseClient.update(id!, \Account.city, city)
                         try await databaseClient.update(id!, \Account.email, email)
                         try await databaseClient.update(id!, \Account.phone, phone)
                         try await databaseClient.update(id!, \Account.enableNotifications, enableNotifications)
@@ -156,6 +158,7 @@ struct AccountReducer: Reducer {
                         state.lastName = data?.lastName ?? ""
                         state.birthDate = data?.birthDate ?? Date()
                         state.gender = Gender(rawValue: data?.gender ?? "") ?? .other
+                        state.city = data?.city ?? ""
                         state.email = data?.email ?? ""
                         state.phone = data?.phone ?? ""
                         state.enableNotifications = data?.enableNotifications ?? false

@@ -42,25 +42,29 @@
 
 // Account
 "account.title" = "Account";
-"account.section.header.personal" = "Personal Information";
-"account.section.header.personal.first.name" = "First Name";
-"account.section.header.personal.last.name" = "Last Name";
-"account.section.header.personal.birthDate" = "BirthDate";
-"account.section.header.personal.gender" = "Gender";
+"account.section.personal.header" = "Personal Information";
+"account.section.personal.first.name" = "First Name";
+"account.section.personal.last.name" = "Last Name";
+"account.section.personal.birthDate" = "BirthDate";
+"account.section.personal.gender" = "Gender";
 
-"account.section.header.contact" = "Contact Information";
-"account.section.header.contact.email" = "Email";
-"account.section.header.contact.phone" = "Phone";
-"account.section.header.contact.linkedin" = "Linkedin account";
-"account.section.header.contact.upwork" = "Upwork account";
+"account.section.city" = "City Information";
+"account.section.city.placholder" = "Gender";
+"account.section.city.footer" = "Gender";
 
-"account.section.header.additional" = "Additional Information";
-"account.section.header.additional.about.me" = "About me";
-"account.section.header.additional.supported.version" = "Supported Version";
-"account.section.header.additional.app.version" = "App Version";
+"account.section.contact" = "Contact Information";
+"account.section.contact.email" = "Email";
+"account.section.contact.phone" = "Phone";
+"account.section.contact.linkedin" = "Linkedin account";
+"account.section.contact.upwork" = "Upwork account";
 
-"account.section.header.settings" = "Account Settings";
-"account.section.header.settings.enable.notifications" = "Enable notifications";
+"account.section.additional" = "Additional Information";
+"account.section.additional.about.me" = "About me";
+"account.section.additional.supported.version" = "Supported Version";
+"account.section.additional.app.version" = "App Version";
+
+"account.section.settings" = "Account Settings";
+"account.section.settings.enable.notifications" = "Enable notifications";
 
 // Sidebar
 "sidebar.title" = "Menu";
