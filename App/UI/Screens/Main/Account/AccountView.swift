@@ -24,6 +24,7 @@ struct AccountView {
         @BindingViewState var enableNotifications: Bool
         @BindingViewState var toastMessage: LocalizedStringKey?
         
+        var city: String
         var appVersion: String
         var supportedVersion: String
     }
@@ -70,7 +71,7 @@ extension AccountView: View {
                             footer: Text("Cities Provided by Firestore API. Please to add or edit city.")) {
                         VStack {
                             HStack {
-                                Text("City")
+                                Text(viewStore.city)
                                 Spacer()
                                 Button("Add") {
                                     viewStore.send(.onAddressTap)
@@ -178,6 +179,7 @@ extension BindingViewStore<AccountReducer.State> {
                               phone: self.$phone,
                               enableNotifications: self.$enableNotifications,
                               toastMessage: self.$toastMessage,
+                              city: self.city,
                               appVersion: self.appVersion,
                               supportedVersion: self.supportedVersion)
     }

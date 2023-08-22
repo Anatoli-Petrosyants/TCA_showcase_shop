@@ -37,9 +37,9 @@ extension AccountAddressView: View {
                             .lineLimit(3)
                     }
                     .contentShape(Rectangle())
-//                    .onTapGesture {
-//                        viewStore.send(.view(.onItemTap(code: countryCode)))
-//                    }
+                    .onTapGesture {
+                        viewStore.send(.onItemTap(city: place.name))
+                    }
                 }
                 .padding(.top, 16)
                 .environment(\.defaultMinListRowHeight, 44)

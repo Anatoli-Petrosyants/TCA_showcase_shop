@@ -17,18 +17,26 @@ struct AccountAddressReducer: Reducer {
     
     enum Action: Equatable {
         case onViewAppear
+        case onItemTap(city: String)
+        
         case input(SearchInputReducer.Action)
         
         enum InternalAction: Equatable {
             case placesResponse(TaskResult<[Place]>)
         }
         
+        enum Delegate: Equatable {
+            case didCitySelected(String)
+        }
+        
         case `internal`(InternalAction)
+        case delegate(Delegate)
     }
     
     private enum CancelID { case places }
     
     @Dependency(\.firestoreClient) var firestoreClient
+    @Dependency(\.dismiss) var dismiss
     
     var body: some ReducerOf<Self> {
         Scope(state: \.input, action: /Action.input) {
@@ -53,12 +61,17 @@ struct AccountAddressReducer: Reducer {
                 }
                 .cancellable(id: CancelID.places)
                 
+            case let .onItemTap(city):
+                return .concatenate(
+                    .send(.delegate(.didCitySelected(city))),
+                    .run { _ in await self.dismiss() }
+                )
+                
             // internal actions
             case let .internal(internalAction):
                 switch internalAction {
                 case let .placesResponse(.success(data)):
-                    Log.debug("places \(data)")
-                    
+                    Log.debug("places \(data)")                    
                     state.input.isLoading = false
                     state.places.append(contentsOf: data)
                     return .none
@@ -82,6 +95,9 @@ struct AccountAddressReducer: Reducer {
                 default:
                     return .none
                 }
+                
+            case .delegate:
+                return .none
             }
         }
     }

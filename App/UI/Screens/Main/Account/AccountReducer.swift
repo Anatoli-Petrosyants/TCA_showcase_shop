@@ -20,13 +20,15 @@ struct AccountReducer: Reducer {
     struct State: Equatable {
         var accountId: UUID? = nil
         var appVersion = "\(Configuration.current.appVersion)"
-        var supportedVersion = "16.0"        
+        var supportedVersion = "16.0"
         
         @BindingState var firstName = ""
         @BindingState var lastName = ""
         @BindingState var birthDate = Date()
         @BindingState var gender = Gender.male
         @BindingState var enableNotifications = true
+        
+        var city = "Choose City"
         
         @BindingState var email = ""
         @BindingState var phone = ""
@@ -167,6 +169,10 @@ struct AccountReducer: Reducer {
                 // dialog actions
                 case .dialog(.presented(.onConfirmLogout)):
                     return .send(.internal(.confirmLogout))
+            
+            case let .address(.presented(.delegate(.didCitySelected(city)))):
+                state.city = city
+                return .none
                 
             case .delegate, .dialog, .address:
                 return .none
