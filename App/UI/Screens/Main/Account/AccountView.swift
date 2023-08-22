@@ -161,7 +161,7 @@ extension AccountView: View {
             .sheet(
                 store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
                 content:
-                    AccountAddressView.init(store:)                        
+                    AccountCitiesView.init(store:)                        
             )
         }
     }

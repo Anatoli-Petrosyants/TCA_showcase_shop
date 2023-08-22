@@ -11,6 +11,7 @@
 "base.continue" = "Continue";
 "base.save" = "Save";
 "base.logout" = "Logout";
+"base.done" = "Done";
 "base.cancel" = "Cancel";
 "base.attention" = "Attention";
 "base.are.you.sure" = "Are you sure?";

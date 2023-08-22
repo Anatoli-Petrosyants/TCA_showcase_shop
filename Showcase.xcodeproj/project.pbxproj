@@ -118,8 +118,8 @@
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */; };
 		A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */; };
-		A9AA22C02A8F3E5F0073E070 /* AccountAddressReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */; };
-		A9AA22C22A8F3E660073E070 /* AccountAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */; };
+		A9AA22C02A8F3E5F0073E070 /* AccountCitiesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BF2A8F3E5E0073E070 /* AccountCitiesReducer.swift */; };
+		A9AA22C22A8F3E660073E070 /* AccountCitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */; };
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
 		A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */; };
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
@@ -286,8 +286,8 @@
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Product.swift"; sourceTree = "<group>"; };
 		A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Search.swift"; sourceTree = "<group>"; };
-		A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddressReducer.swift; sourceTree = "<group>"; };
-		A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAddressView.swift; sourceTree = "<group>"; };
+		A9AA22BF2A8F3E5E0073E070 /* AccountCitiesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCitiesReducer.swift; sourceTree = "<group>"; };
+		A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCitiesView.swift; sourceTree = "<group>"; };
 		A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementReducer.swift; sourceTree = "<group>"; };
@@ -411,7 +411,7 @@
 			children = (
 				A90110172A4445F200DD08C4 /* AccountReducer.swift */,
 				A90110192A4445F900DD08C4 /* AccountView.swift */,
-				A9AA22C32A8F3E6B0073E070 /* AccountAddress */,
+				A9AA22C32A8F3E6B0073E070 /* AccountCities */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -818,13 +818,13 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		A9AA22C32A8F3E6B0073E070 /* AccountAddress */ = {
+		A9AA22C32A8F3E6B0073E070 /* AccountCities */ = {
 			isa = PBXGroup;
 			children = (
-				A9AA22BF2A8F3E5E0073E070 /* AccountAddressReducer.swift */,
-				A9AA22C12A8F3E660073E070 /* AccountAddressView.swift */,
+				A9AA22BF2A8F3E5E0073E070 /* AccountCitiesReducer.swift */,
+				A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */,
 			);
-			path = AccountAddress;
+			path = AccountCities;
 			sourceTree = "<group>";
 		};
 		A9AF26012A73E57000631158 /* ProductAnnouncement */ = {
@@ -1157,8 +1157,8 @@
 				A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */,
 				A9947EF22A179DD900FC7FB8 /* ActivityViewRepresentable.swift in Sources */,
 				A990E5042A4194820004F4F9 /* Showcase.swift in Sources */,
-				A9AA22C22A8F3E660073E070 /* AccountAddressView.swift in Sources */,
-				A9AA22C02A8F3E5F0073E070 /* AccountAddressReducer.swift in Sources */,
+				A9AA22C22A8F3E660073E070 /* AccountCitiesView.swift in Sources */,
+				A9AA22C02A8F3E5F0073E070 /* AccountCitiesReducer.swift in Sources */,
 				A9B4D7A32A4AD30600B102FB /* FeedbackGeneratorClient.swift in Sources */,
 				A90072CC2A73D48E000551E1 /* Camera.swift in Sources */,
 				A9947EE52A179CEB00FC7FB8 /* ActivityIndicatorViewRepresentable.swift in Sources */,

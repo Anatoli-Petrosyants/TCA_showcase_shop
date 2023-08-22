@@ -17,6 +17,7 @@ extension Localization {
         static var save: LocalizedStringKey { return "base.save" }
         static var logout: LocalizedStringKey { return "base.logout" }
         static var cancel: LocalizedStringKey { return "base.cancel" }
+        static var done: LocalizedStringKey { return "base.done" }
         static var attention: LocalizedStringKey { return "base.attention" }
         static var oops: LocalizedStringKey { return "base.oops" }
         static var noNetworkConnection: LocalizedStringKey { return "base.no.network.connection" }

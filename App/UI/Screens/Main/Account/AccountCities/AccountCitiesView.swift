@@ -1,5 +1,5 @@
 //
-//  AccountAddressView.swift
+//  AccountCitiesView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 18.08.23.
@@ -8,15 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-// MARK: - AccountAddressView
+// MARK: - AccountCitiesView
 
-struct AccountAddressView {
-    let store: StoreOf<AccountAddressReducer>
+struct AccountCitiesView {
+    let store: StoreOf<AccountCitiesReducer>
 }
 
 // MARK: - Views
 
-extension AccountAddressView: View {
+extension AccountCitiesView: View {
     
     var body: some View {
         content
@@ -49,7 +49,6 @@ extension AccountAddressView: View {
                                     viewStore.send(.onItemTap(city: place.name))
                                 }
                             }
-                            .padding(.top, 16)
                             .environment(\.defaultMinListRowHeight, 44)
                             .listRowBackground(Color.clear)
                             .listStyle(.plain)
@@ -62,22 +61,19 @@ extension AccountAddressView: View {
                         }
                     }
                 }
-                .navigationBarTitleDisplayMode(.inline)
                 .modifier(NavigationBarModifier())
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(Localization.Account.sectionCityPlacholder)
                 .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        SearchInputView(
-                            store: self.store.scope(
-                                state: \.input,
-                                action: AccountAddressReducer.Action.input
-                            )
-                        )
-                        .padding(.top, 24)
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(Localization.Base.cancel) {
+                            viewStore.send(.onClose)
+                        }
                     }
                 }
             }
-            .presentationDetents([.large])
-            .presentationDragIndicator(.visible)
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.hidden)
         }
     }
 }

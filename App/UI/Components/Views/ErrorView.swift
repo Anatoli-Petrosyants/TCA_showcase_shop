@@ -12,7 +12,7 @@ struct ErrorView: View {
     let retryAction: () -> Void
 
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             Text("An Error Occured")
                 .font(.title)
             Text(error.localizedDescription)
