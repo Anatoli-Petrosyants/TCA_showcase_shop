@@ -21,10 +21,8 @@ extension ProductItemView: View {
     
     var body: some View {
         content
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.black03, lineWidth: 0.5)
-            )          
+            .background(Color.gray)
+            .cornerRadius(8)
             .padding([.leading, .trailing, .bottom], 8)
             .onTapGesture { self.store.send(.view(.onItemTap)) }            
     }

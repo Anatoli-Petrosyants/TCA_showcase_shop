@@ -73,7 +73,7 @@ extension AccountView: View {
                             HStack {
                                 Text(viewStore.city)
                                 Spacer()
-                                Button("Add / Edit") {
+                                Button("Add") {
                                     viewStore.send(.onAddressTap)
                                 }
                                 .tint(Color.blue)
