@@ -9,6 +9,7 @@ import Foundation
 import Dependencies
 import Get
 
+/// A structure representing the products request parameters.
 struct ProductsRequest: Encodable {
     var category: String
 
@@ -17,6 +18,7 @@ struct ProductsRequest: Encodable {
     }
 }
 
+/// An enumeration representing possible products errors.
 enum ProductsError: Equatable, LocalizedError, Sendable {
     case notFound
 
@@ -28,13 +30,20 @@ enum ProductsError: Equatable, LocalizedError, Sendable {
     }
 }
 
+/// A client for handling products-related operations.
 struct ProductsClient {
+    /// A method for fetching all products.
     var products: @Sendable () async throws -> [Product]
+    
+    /// A method for fetching products with a specific category.
     var productsWithCategory: @Sendable (ProductsRequest) async throws -> [Product]
+    
+    /// A method for fetching a specific product by its ID.
     var product: @Sendable (Int) async throws -> Product
 }
 
 extension DependencyValues {
+    /// Accessor for the ProductsClient in the dependency values.
     var productsClient: ProductsClient {
         get { self[ProductsClient.self] }
         set { self[ProductsClient.self] = newValue }
@@ -42,6 +51,7 @@ extension DependencyValues {
 }
 
 extension ProductsClient: DependencyKey {
+    /// A live implementation of ProductsClient.
     static let liveValue: Self = {
         return Self(
             products: {
@@ -80,3 +90,4 @@ extension ProductsClient: DependencyKey {
         )
     }()
 }
+
