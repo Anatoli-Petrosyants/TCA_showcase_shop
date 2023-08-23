@@ -79,6 +79,7 @@
 "sidebar.item.appSettings" = "App Settings";
 "sidebar.item.rateUs" = "Rate us";
 "sidebar.item.contactUs" = "Contact us";
+"sidebar.item.videoPlayer" = "Video Player";
 
 // Product
 "product.toolbar.item.menu" = "Menu";

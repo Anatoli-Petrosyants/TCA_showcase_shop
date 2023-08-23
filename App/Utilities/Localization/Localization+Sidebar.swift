@@ -20,5 +20,6 @@ extension Localization {
         static var appSettings: LocalizedStringKey { return "sidebar.item.appSettings" }
         static var rateUs: LocalizedStringKey { return "sidebar.item.rateUs" }
         static var contactUs: LocalizedStringKey { return "sidebar.item.contactUs" }
+        static var videoPlayer: LocalizedStringKey { return "sidebar.item.videoPlayer" }        
     }
 }

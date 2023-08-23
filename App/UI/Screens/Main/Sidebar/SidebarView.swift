@@ -129,6 +129,12 @@ extension SidebarView {
             } label: {
                 Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
             }
+            
+            Button {
+                viewStore.send(.onAppSettings)
+            } label: {
+                Label(Localization.Sidebar.videoPlayer, systemImage: "video")
+            }
 
             Button {
                 viewStore.send(.onAppSettings)

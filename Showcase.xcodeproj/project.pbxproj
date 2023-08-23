@@ -114,6 +114,7 @@
 		A9A0CBB029D6F3180048A649 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A9A0CBAF29D6F3180048A649 /* Lottie */; };
 		A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */; };
 		A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0CBBF29DAA01D0048A649 /* CameraPreview.swift */; };
+		A9A4DDA82A96387F00602EB4 /* AVPlayerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4DDA72A96387F00602EB4 /* AVPlayerViewRepresentable.swift */; };
 		A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5237929C342440073177C /* CircularProgressView.swift */; };
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */; };
@@ -283,6 +284,7 @@
 		A9A0CBA829D6F2BB0048A649 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A9A0CBBF29DAA01D0048A649 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		A9A4DDA72A96387F00602EB4 /* AVPlayerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerViewRepresentable.swift; sourceTree = "<group>"; };
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Product.swift"; sourceTree = "<group>"; };
 		A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Search.swift"; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */,
 				A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */,
 				A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */,
+				A9A4DDA72A96387F00602EB4 /* AVPlayerViewRepresentable.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -1241,6 +1244,7 @@
 				A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */,
 				A990E5422A42CB6A0004F4F9 /* ForgotPassword.swift in Sources */,
 				A90110182A4445F200DD08C4 /* AccountReducer.swift in Sources */,
+				A9A4DDA82A96387F00602EB4 /* AVPlayerViewRepresentable.swift in Sources */,
 				A990E5462A42D6120004F4F9 /* Localization+ForgotPassword.swift in Sources */,
 				A979AC042A8C9E610050E028 /* Localization+Sidebar.swift in Sources */,
 				A9947EEB2A179D6A00FC7FB8 /* BlurredActivityIndicatorView.swift in Sources */,
