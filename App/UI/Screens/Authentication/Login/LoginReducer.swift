@@ -145,7 +145,6 @@ struct LoginReducer: Reducer {
                 }
                 
             case .agreements(.dismiss):
-                Log.debug("agreements dismiss")
                 return .none
                             
             case .agreements, .delegate, .alert:

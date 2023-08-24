@@ -17,6 +17,7 @@ struct SidebarReducer: Reducer {
     struct State: Equatable, Hashable {
         var isVisible = false
         @BindingState var isSharePresented = false
+        @PresentationState var videoPlayer: VideoPlayerReducer.State?
     }
     
     enum Action: Equatable {
@@ -45,6 +46,7 @@ struct SidebarReducer: Reducer {
             case didSidebarTapped(SidebarItemType)
         }
 
+        case videoPlayer(PresentationAction<VideoPlayerReducer.Action>)
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
@@ -114,8 +116,9 @@ struct SidebarReducer: Reducer {
                     )
                     
                 case .onVideoPlayerTap:
-                    return .none
-                    
+                    state.videoPlayer = VideoPlayerReducer.State(url: Constant.videoURL)
+                    return .send(.internal(.toggleVisibility))
+
                 case .binding:
                     return .none
                 }
@@ -124,10 +127,11 @@ struct SidebarReducer: Reducer {
                 state.isVisible.toggle()
                 return .none
 
-            case .delegate:
+            case .delegate, .videoPlayer:
                 return .none
             }
         }
+        .ifLet(\.$videoPlayer, action: /Action.videoPlayer) { VideoPlayerReducer() }
     }
 }
 

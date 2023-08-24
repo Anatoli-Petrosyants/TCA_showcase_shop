@@ -71,6 +71,12 @@ extension SidebarView: View {
                 ActivityViewRepresentable(activityItems: [Constant.shareURL])
                     .presentationDetents([.medium])
             }
+            .sheet(
+                store: self.store.scope(state: \.$videoPlayer,
+                                        action: SidebarReducer.Action.videoPlayer),
+                content:
+                    VideoPlayerView.init(store:)
+            )
         }
     }
 }

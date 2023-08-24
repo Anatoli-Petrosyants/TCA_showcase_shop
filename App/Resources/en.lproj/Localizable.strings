@@ -13,6 +13,7 @@
 "base.logout" = "Logout";
 "base.done" = "Done";
 "base.cancel" = "Cancel";
+"base.close" = "Close";
 "base.attention" = "Attention";
 "base.are.you.sure" = "Are you sure?";
 "base.successfully.saved" = "Successfully saved!";
