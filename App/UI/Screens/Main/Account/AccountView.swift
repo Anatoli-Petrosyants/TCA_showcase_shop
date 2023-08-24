@@ -119,7 +119,8 @@ extension AccountView: View {
 
                     Section(header: Text(Localization.Account.sectionSettings)) {
                         Toggle(Localization.Account.sectionSettingsEnableNotifications,
-                               isOn: viewStore.$enableNotifications)                        
+                               isOn: viewStore.$enableNotifications)
+                        .tint(Color.blue)
 
                         Text(Localization.Base.logout)
                             .foregroundColor(.red)
