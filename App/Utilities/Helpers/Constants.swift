@@ -17,7 +17,7 @@ struct Constant {
     static let shareURL = URL(string: "https://www.google.com")!
     static let linkedinURL = URL(string: "https://www.linkedin.com/in/anatoli-petrosyants")!
     static let upworkURL = URL(string: "https://www.upwork.com/freelancers/iosappdeveloper")!
-    
+    static let videoURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!    
     static let aboutMe = "GREETINGS AND WELCOME TO MY PROFILE!" +
     
     "\n\n" +

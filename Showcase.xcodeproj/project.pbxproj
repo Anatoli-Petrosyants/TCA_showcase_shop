@@ -114,7 +114,8 @@
 		A9A0CBB029D6F3180048A649 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A9A0CBAF29D6F3180048A649 /* Lottie */; };
 		A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */; };
 		A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0CBBF29DAA01D0048A649 /* CameraPreview.swift */; };
-		A9A4DDA82A96387F00602EB4 /* AVPlayerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4DDA72A96387F00602EB4 /* AVPlayerViewRepresentable.swift */; };
+		A9A459892A977C6000594963 /* VideoPlayerReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A459882A977C6000594963 /* VideoPlayerReducer.swift */; };
+		A9A4598B2A977C6600594963 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4598A2A977C6600594963 /* VideoPlayerView.swift */; };
 		A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A5237929C342440073177C /* CircularProgressView.swift */; };
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */; };
@@ -284,7 +285,8 @@
 		A9A0CBA829D6F2BB0048A649 /* onboarding_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_2.json; sourceTree = "<group>"; };
 		A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding_1.json; sourceTree = "<group>"; };
 		A9A0CBBF29DAA01D0048A649 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
-		A9A4DDA72A96387F00602EB4 /* AVPlayerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerViewRepresentable.swift; sourceTree = "<group>"; };
+		A9A459882A977C6000594963 /* VideoPlayerReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerReducer.swift; sourceTree = "<group>"; };
+		A9A4598A2A977C6600594963 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Product.swift"; sourceTree = "<group>"; };
 		A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Search.swift"; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				A96BF1532A6AAAA500B14247 /* SidebarLogic.swift */,
 				A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */,
 				A96BF1482A6A700300B14247 /* SidebarView.swift */,
+				A9A4598C2A977C6B00594963 /* VideoPlayer */,
 				A9AF260A2A77AC8D00631158 /* HealthKit */,
 				A9CEE74F2A695A380062128B /* Countries */,
 				A90072D62A73DC0E000551E1 /* Camera */,
@@ -634,8 +637,8 @@
 		A990E5152A419FE50004F4F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				A990E5172A41A01C0004F4F9 /* Extensions */,
 				A990E5182A41A01C0004F4F9 /* Helpers */,
+				A990E5172A41A01C0004F4F9 /* Extensions */,
 				A990E5162A41A01C0004F4F9 /* Layout */,
 				A990E5192A41A01C0004F4F9 /* Localization */,
 			);
@@ -776,7 +779,6 @@
 				A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */,
 				A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */,
 				A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */,
-				A9A4DDA72A96387F00602EB4 /* AVPlayerViewRepresentable.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -819,6 +821,15 @@
 				A9A0CBA729D6F2BB0048A649 /* onboarding_3.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		A9A4598C2A977C6B00594963 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				A9A459882A977C6000594963 /* VideoPlayerReducer.swift */,
+				A9A4598A2A977C6600594963 /* VideoPlayerView.swift */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		A9AA22C32A8F3E6B0073E070 /* AccountCities */ = {
@@ -1212,6 +1223,7 @@
 				A9FAD6BF2A541981003A46F5 /* CoreData+Request.swift in Sources */,
 				A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */,
 				A9AFC16F2A5D9631003A95C3 /* SearchInputView.swift in Sources */,
+				A9A459892A977C6000594963 /* VideoPlayerReducer.swift in Sources */,
 				A9B4D7AA2A4C51D600B102FB /* UsersClient.swift in Sources */,
 				A9CEE74C2A695A2E0062128B /* CountriesReducer.swift in Sources */,
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
@@ -1219,6 +1231,7 @@
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A90072D52A73DC05000551E1 /* CameraView.swift in Sources */,
+				A9A4598B2A977C6600594963 /* VideoPlayerView.swift in Sources */,
 				A9A0CB7129D41F000048A649 /* MapAnnotationData.swift in Sources */,
 				A9CEE74E2A695A340062128B /* CountriesView.swift in Sources */,
 				A990E54A2A42F6910004F4F9 /* AppTextFieldStyle.swift in Sources */,
@@ -1244,7 +1257,6 @@
 				A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */,
 				A990E5422A42CB6A0004F4F9 /* ForgotPassword.swift in Sources */,
 				A90110182A4445F200DD08C4 /* AccountReducer.swift in Sources */,
-				A9A4DDA82A96387F00602EB4 /* AVPlayerViewRepresentable.swift in Sources */,
 				A990E5462A42D6120004F4F9 /* Localization+ForgotPassword.swift in Sources */,
 				A979AC042A8C9E610050E028 /* Localization+Sidebar.swift in Sources */,
 				A9947EEB2A179D6A00FC7FB8 /* BlurredActivityIndicatorView.swift in Sources */,

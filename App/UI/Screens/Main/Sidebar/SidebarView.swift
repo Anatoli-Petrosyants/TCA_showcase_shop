@@ -64,7 +64,7 @@ extension SidebarView: View {
                     .animation(.default, value: viewStore.isVisible)
 
                     Spacer()
-                }
+                }                                    
             }            
             .edgesIgnoringSafeArea(.all)
             .sheet(isPresented: viewStore.$isSharePresented) {
@@ -131,7 +131,7 @@ extension SidebarView {
             }
             
             Button {
-                viewStore.send(.onAppSettings)
+                viewStore.send(.onVideoPlayerTap)
             } label: {
                 Label(Localization.Sidebar.videoPlayer, systemImage: "video")
             }

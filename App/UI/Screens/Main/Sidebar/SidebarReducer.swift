@@ -33,6 +33,7 @@ struct SidebarReducer: Reducer {
             case onCountriesTap
             case onCameraTap
             case onHealthKitTap
+            case onVideoPlayerTap
             case binding(BindingAction<State>)
         }
         
@@ -111,6 +112,9 @@ struct SidebarReducer: Reducer {
                         .send(.internal(.toggleVisibility)),
                         .send(.delegate(.didSidebarTapped(.healthKit)))
                     )
+                    
+                case .onVideoPlayerTap:
+                    return .none
                     
                 case .binding:
                     return .none
