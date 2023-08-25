@@ -38,18 +38,22 @@ protocol DatabaseClientProtocol {
 
 // MARK: - DatabaseClientKey
 
+// An enum representing the database client as a dependency key.
 enum DatabaseClientKey: DependencyKey {
     public static let liveValue = DatabaseClient.shared as DatabaseClientProtocol
 }
 
 extension DependencyValues {
+    // A property to access the database client dependency.
     var databaseClient: DatabaseClientProtocol {
         get { self[DatabaseClientKey.self] }
         set { self[DatabaseClientKey.self] = newValue }
     }
 }
 
+// The main class that handles database operations.
 final class DatabaseClient: DatabaseClientProtocol, @unchecked Sendable {
+    // Singleton instance of the database client.
     static let shared = DatabaseClient()
     private let persistentContainer: NSPersistentContainer
 
