@@ -64,6 +64,8 @@
 		A96FBD8229AF6BA300DB1D61 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FBD8129AF6BA300DB1D61 /* ActivityIndicator.swift */; };
 		A96FEB5C2A9E12FF008DC5BC /* PhoneLoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */; };
 		A96FEB5E2A9E1305008DC5BC /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */; };
+		A96FEB612A9E13E0008DC5BC /* LoginOptionsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB602A9E13E0008DC5BC /* LoginOptionsReducer.swift */; };
+		A96FEB632A9E13E7008DC5BC /* LoginOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB622A9E13E7008DC5BC /* LoginOptionsView.swift */; };
 		A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */; };
 		A97572192A5FE21500C812D3 /* SearchFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */; };
 		A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */; };
@@ -239,6 +241,8 @@
 		A96FBD8129AF6BA300DB1D61 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginReducer.swift; sourceTree = "<group>"; };
 		A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
+		A96FEB602A9E13E0008DC5BC /* LoginOptionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsReducer.swift; sourceTree = "<group>"; };
+		A96FEB622A9E13E7008DC5BC /* LoginOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsView.swift; sourceTree = "<group>"; };
 		A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButtonReducer.swift; sourceTree = "<group>"; };
 		A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButton.swift; sourceTree = "<group>"; };
 		A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductItemReducer.swift; sourceTree = "<group>"; };
@@ -588,6 +592,15 @@
 			path = PhoneLogin;
 			sourceTree = "<group>";
 		};
+		A96FEB642A9E13EC008DC5BC /* LoginOptions */ = {
+			isa = PBXGroup;
+			children = (
+				A96FEB602A9E13E0008DC5BC /* LoginOptionsReducer.swift */,
+				A96FEB622A9E13E7008DC5BC /* LoginOptionsView.swift */,
+			);
+			path = LoginOptions;
+			sourceTree = "<group>";
+		};
 		A975721A2A5FE21A00C812D3 /* SearchFavoriteButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +771,7 @@
 		A990E53C2A41D1850004F4F9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				A96FEB642A9E13EC008DC5BC /* LoginOptions */,
 				A96FEB5F2A9E130A008DC5BC /* PhoneLogin */,
 				A91F587929E67C39008C0F35 /* Login */,
 				A9E9864B29E7DAA50028D5DB /* Agreements */,
@@ -1202,6 +1216,7 @@
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,
 				A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */,
+				A96FEB632A9E13E7008DC5BC /* LoginOptionsView.swift in Sources */,
 				A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */,
 				A92A229E29F8EAAD0034469C /* MainView.swift in Sources */,
 				A96BF1542A6AAAA500B14247 /* SidebarLogic.swift in Sources */,
@@ -1299,6 +1314,7 @@
 				A990E54C2A431E240004F4F9 /* AuthenticationClient.swift in Sources */,
 				A97572202A6015AC00C812D3 /* SearchWishlistView.swift in Sources */,
 				A990E5352A41BE330004F4F9 /* ReachabilityManager.swift in Sources */,
+				A96FEB612A9E13E0008DC5BC /* LoginOptionsReducer.swift in Sources */,
 				A96BF14F2A6AA50C00B14247 /* Constants.swift in Sources */,
 				A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */,
 				A9947EE12A1794A700FC7FB8 /* ProductDetailsView.swift in Sources */,
