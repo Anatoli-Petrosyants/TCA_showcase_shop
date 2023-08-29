@@ -62,6 +62,8 @@
 		A96BF14F2A6AA50C00B14247 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF14E2A6AA50C00B14247 /* Constants.swift */; };
 		A96BF1542A6AAAA500B14247 /* SidebarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1532A6AAAA500B14247 /* SidebarLogic.swift */; };
 		A96FBD8229AF6BA300DB1D61 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FBD8129AF6BA300DB1D61 /* ActivityIndicator.swift */; };
+		A96FEB5C2A9E12FF008DC5BC /* PhoneLoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */; };
+		A96FEB5E2A9E1305008DC5BC /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */; };
 		A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */; };
 		A97572192A5FE21500C812D3 /* SearchFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */; };
 		A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */; };
@@ -235,6 +237,8 @@
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A96BF1532A6AAAA500B14247 /* SidebarLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarLogic.swift; sourceTree = "<group>"; };
 		A96FBD8129AF6BA300DB1D61 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginReducer.swift; sourceTree = "<group>"; };
+		A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
 		A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButtonReducer.swift; sourceTree = "<group>"; };
 		A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButton.swift; sourceTree = "<group>"; };
 		A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductItemReducer.swift; sourceTree = "<group>"; };
@@ -575,6 +579,15 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
+		A96FEB5F2A9E130A008DC5BC /* PhoneLogin */ = {
+			isa = PBXGroup;
+			children = (
+				A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */,
+				A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */,
+			);
+			path = PhoneLogin;
+			sourceTree = "<group>";
+		};
 		A975721A2A5FE21A00C812D3 /* SearchFavoriteButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -745,6 +758,7 @@
 		A990E53C2A41D1850004F4F9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				A96FEB5F2A9E130A008DC5BC /* PhoneLogin */,
 				A91F587929E67C39008C0F35 /* Login */,
 				A9E9864B29E7DAA50028D5DB /* Agreements */,
 				A990E53D2A41D1A20004F4F9 /* ForgotPassword */,
@@ -1202,6 +1216,7 @@
 				A901101A2A4445F900DD08C4 /* AccountView.swift in Sources */,
 				A990E5202A41A03C0004F4F9 /* Layout+Extension.swift in Sources */,
 				A916BBF62A17583F00AD114F /* Product.swift in Sources */,
+				A96FEB5E2A9E1305008DC5BC /* PhoneLoginView.swift in Sources */,
 				A91F587B29E68260008C0F35 /* AnyTransition+Extensions.swift in Sources */,
 				A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */,
 				A9EEE2F32A6E8C4D007A6442 /* InAppMessagesReducer.swift in Sources */,
@@ -1273,6 +1288,7 @@
 				A91F587629E67C2C008C0F35 /* EmailLoginReducer.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
 				A9FAD6CA2A541DB3003A46F5 /* Account+CoreData.swift in Sources */,
+				A96FEB5C2A9E12FF008DC5BC /* PhoneLoginReducer.swift in Sources */,
 				A988F0D829B60D170059F9BB /* AppError.swift in Sources */,
 				A9DED5C429AC96CF003EFA02 /* AppDelegate.swift in Sources */,
 				A90110102A4434A800DD08C4 /* UserDefaultsClient.swift in Sources */,
