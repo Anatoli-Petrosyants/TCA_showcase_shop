@@ -13,6 +13,7 @@ struct AppReducer: Reducer {
     enum State: Equatable {
         case loading(LoadingReducer.State)
         case help(HelpReducer.State)
+        case loginOptions(LoginOptionsReducer.State)
         case login(EmailLoginReducer.State)
         case main(MainReducer.State)
 
@@ -28,6 +29,7 @@ struct AppReducer: Reducer {
         case didChangeScenePhase(ScenePhase)
         case loading(LoadingReducer.Action)
         case help(HelpReducer.Action)
+        case loginOptions(LoginOptionsReducer.Action)
         case login(EmailLoginReducer.Action)
         case main(MainReducer.Action)
     }
@@ -55,7 +57,8 @@ struct AppReducer: Reducer {
                         if (self.userDefaults.token != nil) {
                             state = .main(MainReducer.State())
                         } else {
-                            state = .login(EmailLoginReducer.State())
+                            // state = .login(EmailLoginReducer.State())
+                            state = .loginOptions(LoginOptionsReducer.State())
                         }
                     } else {
                         state = .help(HelpReducer.State())
@@ -69,6 +72,16 @@ struct AppReducer: Reducer {
                     state = .login(EmailLoginReducer.State())
                     return .none
                 }
+                
+            case .loginOptions:
+                return .none
+                
+//            case let .loginOptions(action: .delegate(loginOptionsAction)):
+//                switch loginOptionsAction {
+//                case .didEmailLoginSelected:
+//                    state = .login(EmailLoginReducer.State())
+//                    return .none
+//                }
                 
             case let .login(action: .delegate(loginAction)):
                 switch loginAction {
@@ -93,6 +106,9 @@ struct AppReducer: Reducer {
         }
         .ifCaseLet(/State.help, action: /Action.help) {
             HelpReducer()
+        }
+        .ifCaseLet(/State.loginOptions, action: /Action.loginOptions) {
+            LoginOptionsReducer()
         }
         .ifCaseLet(/State.login, action: /Action.login) {
             EmailLoginReducer()

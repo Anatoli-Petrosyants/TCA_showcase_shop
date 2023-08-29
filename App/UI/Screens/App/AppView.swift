@@ -38,6 +38,12 @@ extension AppView: View {
                         .transition(.delayAndFade)
                 }
                 
+            case .loginOptions:
+                CaseLet(/AppReducer.State.loginOptions, action: AppReducer.Action.loginOptions) { store in
+                    LoginOptionsView(store: store)
+                        .transition(.delayAndFade)
+                }
+                
             case .login:
                 CaseLet(/AppReducer.State.login, action: AppReducer.Action.login) { store in
                     EmailLoginView(store: store)
