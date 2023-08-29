@@ -10,8 +10,8 @@ import ComposableArchitecture
 
 // MARK: - LoginView
 
-struct LoginView {
-    let store: StoreOf<LoginReducer>
+struct EmailLoginView {
+    let store: StoreOf<EmailLoginReducer>
     
     struct ViewState: Equatable {
         @BindingViewState var isActivityIndicatorVisible: Bool
@@ -22,7 +22,7 @@ struct LoginView {
 
 // MARK: - Views
 
-extension LoginView: View {
+extension EmailLoginView: View {
     
     var body: some View {
         content
@@ -31,7 +31,7 @@ extension LoginView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             NavigationStackStore(
-                self.store.scope(state: \.path, action: LoginReducer.Action.path)
+                self.store.scope(state: \.path, action: EmailLoginReducer.Action.path)
             ) {
                 BlurredActivityIndicatorView(
                     isShowing: viewStore.$isActivityIndicatorVisible)
@@ -84,26 +84,26 @@ extension LoginView: View {
             } destination: {
                 switch $0 {
                 case .forgotPassword:
-                    CaseLet(/LoginReducer.Path.State.forgotPassword,
-                        action: LoginReducer.Path.Action.forgotPassword,
+                    CaseLet(/EmailLoginReducer.Path.State.forgotPassword,
+                        action: EmailLoginReducer.Path.Action.forgotPassword,
                         then: ForgotPasswordView.init(store:)
                     )
                 }
             }
             .sheet(
-                store: self.store.scope(state: \.$agreements, action: LoginReducer.Action.agreements),
+                store: self.store.scope(state: \.$agreements, action: EmailLoginReducer.Action.agreements),
                 content: AgreementsView.init(store:)
             )
-            .alert(store: self.store.scope(state: \.$alert, action: LoginReducer.Action.alert))
+            .alert(store: self.store.scope(state: \.$alert, action: EmailLoginReducer.Action.alert))
         }
     }
 }
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<LoginReducer.State> {
-    var view: LoginView.ViewState {
-        LoginView.ViewState(isActivityIndicatorVisible: self.$isActivityIndicatorVisible,
+extension BindingViewStore<EmailLoginReducer.State> {
+    var view: EmailLoginView.ViewState {
+        EmailLoginView.ViewState(isActivityIndicatorVisible: self.$isActivityIndicatorVisible,
                             email: self.$email,
                             password: self.$password)
     }

@@ -98,7 +98,7 @@ struct Log {
     }
 
     // Log debug information.
-    static func debug(_ logText: CustomDescriptionConvertible?, file: String = #file, function: String = #function, line: UInt = #line) {
+    static func debug(_ logText: CustomStringConvertible?, file: String = #file, function: String = #function, line: UInt = #line) {
         guard let logText = logText else {
             return
         }
@@ -111,7 +111,7 @@ struct Log {
     }
 
     // Log error information.
-    static func error(_ logText: CustomDescriptionConvertible?, file: String = #file, function: String = #function, line: UInt = #line) {
+    static func error(_ logText: CustomStringConvertible?, file: String = #file, function: String = #function, line: UInt = #line) {
         guard let logText = logText else {
             return
         }
@@ -124,7 +124,7 @@ struct Log {
     }
 
     // Log info information.
-    static func info(_ logText: CustomDescriptionConvertible?, file: String = #file, function: String = #function, line: UInt = #line) {
+    static func info(_ logText: CustomStringConvertible?, file: String = #file, function: String = #function, line: UInt = #line) {
         guard let logText = logText else {
             return
         }

@@ -13,7 +13,7 @@ struct AppReducer: Reducer {
     enum State: Equatable {
         case loading(LoadingReducer.State)
         case help(HelpReducer.State)
-        case login(LoginReducer.State)
+        case login(EmailLoginReducer.State)
         case main(MainReducer.State)
 
         public init() { self = .loading(LoadingReducer.State()) }
@@ -28,7 +28,7 @@ struct AppReducer: Reducer {
         case didChangeScenePhase(ScenePhase)
         case loading(LoadingReducer.Action)
         case help(HelpReducer.Action)
-        case login(LoginReducer.Action)
+        case login(EmailLoginReducer.Action)
         case main(MainReducer.Action)
     }
     
@@ -55,7 +55,7 @@ struct AppReducer: Reducer {
                         if (self.userDefaults.token != nil) {
                             state = .main(MainReducer.State())
                         } else {
-                            state = .login(LoginReducer.State())
+                            state = .login(EmailLoginReducer.State())
                         }
                     } else {
                         state = .help(HelpReducer.State())
@@ -66,7 +66,7 @@ struct AppReducer: Reducer {
             case let .help(action: .delegate(helpAction)):
                 switch helpAction {
                 case .didOnboardingFinished:
-                    state = .login(LoginReducer.State())
+                    state = .login(EmailLoginReducer.State())
                     return .none
                 }
                 
@@ -95,7 +95,7 @@ struct AppReducer: Reducer {
             HelpReducer()
         }
         .ifCaseLet(/State.login, action: /Action.login) {
-            LoginReducer()
+            EmailLoginReducer()
         }
         .ifCaseLet(/State.main, action: /Action.main) {
             MainReducer()

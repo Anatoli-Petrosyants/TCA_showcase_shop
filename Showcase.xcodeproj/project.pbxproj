@@ -25,8 +25,8 @@
 		A916BBF62A17583F00AD114F /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916BBF52A17583F00AD114F /* Product.swift */; };
 		A916BBF92A17586C00AD114F /* ProductDTO+MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916BBF82A17586C00AD114F /* ProductDTO+MockedData.swift */; };
 		A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916BBFF2A175E6B00AD114F /* ProductDTO.swift */; };
-		A91F587629E67C2C008C0F35 /* LoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587529E67C2C008C0F35 /* LoginReducer.swift */; };
-		A91F587829E67C35008C0F35 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* LoginView.swift */; };
+		A91F587629E67C2C008C0F35 /* EmailLoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587529E67C2C008C0F35 /* EmailLoginReducer.swift */; };
+		A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* EmailLoginView.swift */; };
 		A91F587B29E68260008C0F35 /* AnyTransition+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587A29E68260008C0F35 /* AnyTransition+Extensions.swift */; };
 		A9286A362A4DB0EE00ED4CB3 /* ProductLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A352A4DB0EE00ED4CB3 /* ProductLink.swift */; };
 		A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */; };
@@ -199,8 +199,8 @@
 		A916BBF52A17583F00AD114F /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A916BBF82A17586C00AD114F /* ProductDTO+MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductDTO+MockedData.swift"; sourceTree = "<group>"; };
 		A916BBFF2A175E6B00AD114F /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
-		A91F587529E67C2C008C0F35 /* LoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReducer.swift; sourceTree = "<group>"; };
-		A91F587729E67C35008C0F35 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A91F587529E67C2C008C0F35 /* EmailLoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginReducer.swift; sourceTree = "<group>"; };
+		A91F587729E67C35008C0F35 /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		A91F587A29E68260008C0F35 /* AnyTransition+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+Extensions.swift"; sourceTree = "<group>"; };
 		A9286A352A4DB0EE00ED4CB3 /* ProductLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLink.swift; sourceTree = "<group>"; };
 		A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLinkView.swift; sourceTree = "<group>"; };
@@ -442,8 +442,8 @@
 		A91F587929E67C39008C0F35 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A91F587529E67C2C008C0F35 /* LoginReducer.swift */,
-				A91F587729E67C35008C0F35 /* LoginView.swift */,
+				A91F587529E67C2C008C0F35 /* EmailLoginReducer.swift */,
+				A91F587729E67C35008C0F35 /* EmailLoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1267,10 +1267,10 @@
 				A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */,
 				A90072D02A73D4A5000551E1 /* CameraClient.swift in Sources */,
 				A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */,
-				A91F587829E67C35008C0F35 /* LoginView.swift in Sources */,
+				A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */,
 				A9947EEE2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift in Sources */,
 				A95E758B29ACA1540081A170 /* Logger.swift in Sources */,
-				A91F587629E67C2C008C0F35 /* LoginReducer.swift in Sources */,
+				A91F587629E67C2C008C0F35 /* EmailLoginReducer.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
 				A9FAD6CA2A541DB3003A46F5 /* Account+CoreData.swift in Sources */,
 				A988F0D829B60D170059F9BB /* AppError.swift in Sources */,

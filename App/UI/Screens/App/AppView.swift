@@ -40,7 +40,7 @@ extension AppView: View {
                 
             case .login:
                 CaseLet(/AppReducer.State.login, action: AppReducer.Action.login) { store in
-                    LoginView(store: store)
+                    EmailLoginView(store: store)
                         .transition(.delayAndFade)
                 }
                 

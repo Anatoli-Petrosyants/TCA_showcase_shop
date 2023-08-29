@@ -1,5 +1,5 @@
 //
-//  Login.swift
+//  LoginReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 12.04.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct LoginReducer: Reducer {
+struct EmailLoginReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isActivityIndicatorVisible = false
