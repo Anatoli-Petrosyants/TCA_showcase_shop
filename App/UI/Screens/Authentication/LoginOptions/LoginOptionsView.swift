@@ -19,12 +19,37 @@ struct LoginOptionsView {
 extension LoginOptionsView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Login options view")
+        WithViewStore(self.store, observe: { $0 }) { viewStore in            
+            NavigationStackStore(
+                self.store.scope(state: \.path, action: LoginOptionsReducer.Action.path)
+            ) {
+                VStack {
+                    Text("Login options view")
+                    
+                    Button(Localization.Base.continue, action: {
+                        viewStore.send(.onEmailLoginButtonTap)
+                    })
+                    .buttonStyle(.cta)
+                    .padding(.top, 24)
+                }
+                .padding()
+                .navigationTitle(Localization.Login.title)
+                .modifier(NavigationBarModifier())
+            } destination: {
+                switch $0 {
+                case .emailLogin:
+                    CaseLet(/LoginOptionsReducer.Path.State.emailLogin,
+                        action: LoginOptionsReducer.Path.Action.emailLogin,
+                        then: EmailLoginView.init(store:)
+                    )
+                }
+            }
+            
+            
         }
     }
 }

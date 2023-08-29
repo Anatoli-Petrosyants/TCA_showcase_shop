@@ -30,9 +30,9 @@ extension EmailLoginView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            NavigationStackStore(
-                self.store.scope(state: \.path, action: EmailLoginReducer.Action.path)
-            ) {
+//            NavigationStackStore(
+//                self.store.scope(state: \.path, action: EmailLoginReducer.Action.path)
+//            ) {
                 BlurredActivityIndicatorView(
                     isShowing: viewStore.$isActivityIndicatorVisible)
                 {
@@ -81,15 +81,15 @@ extension EmailLoginView: View {
                     .navigationTitle(Localization.Login.title)
                     .modifier(NavigationBarModifier())
                 }
-            } destination: {
-                switch $0 {
-                case .forgotPassword:
-                    CaseLet(/EmailLoginReducer.Path.State.forgotPassword,
-                        action: EmailLoginReducer.Path.Action.forgotPassword,
-                        then: ForgotPasswordView.init(store:)
-                    )
-                }
-            }
+//            } destination: {
+//                switch $0 {
+//                case .forgotPassword:
+//                    CaseLet(/EmailLoginReducer.Path.State.forgotPassword,
+//                        action: EmailLoginReducer.Path.Action.forgotPassword,
+//                        then: ForgotPasswordView.init(store:)
+//                    )
+//                }
+//            }
             .sheet(
                 store: self.store.scope(state: \.$agreements, action: EmailLoginReducer.Action.agreements),
                 content: AgreementsView.init(store:)

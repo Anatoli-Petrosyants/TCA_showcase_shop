@@ -16,7 +16,7 @@ struct EmailLoginReducer: Reducer {
         @BindingState var email: String = "mor_2314"
         @BindingState var password: String = "83r5^_"
         
-        var path = StackState<Path.State>()
+//        var path = StackState<Path.State>()
         @PresentationState var agreements: Agreements.State?
         @PresentationState var alert: AlertState<Never>?
     }
@@ -40,26 +40,26 @@ struct EmailLoginReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case path(StackAction<Path.State, Path.Action>)
+//        case path(StackAction<Path.State, Path.Action>)
         case agreements(PresentationAction<Agreements.Action>)
         case alert(PresentationAction<Never>)
     }
     
-    struct Path: Reducer {
-        enum State: Equatable {
-            case forgotPassword(ForgotPassword.State = .init())
-        }
-        
-        enum Action: Equatable {
-            case forgotPassword(ForgotPassword.Action)
-        }
-        
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
-                ForgotPassword()
-            }
-        }
-    }
+//    struct Path: Reducer {
+//        enum State: Equatable {
+//            case forgotPassword(ForgotPassword.State = .init())
+//        }
+//
+//        enum Action: Equatable {
+//            case forgotPassword(ForgotPassword.Action)
+//        }
+//
+//        var body: some Reducer<State, Action> {
+//            Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
+//                ForgotPassword()
+//            }
+//        }
+//    }
     
     private enum CancelID { case login }
     
@@ -97,7 +97,7 @@ struct EmailLoginReducer: Reducer {
                     return .none
                     
                 case .onForgotPasswordButtonTap:
-                    state.path.append(.forgotPassword(.init()))                    
+//                    state.path.append(.forgotPassword(.init()))                    
                     return .cancel(id: CancelID.login)
                     
                 case .binding:
@@ -126,16 +126,16 @@ struct EmailLoginReducer: Reducer {
                     return .none
                 }
                 
-            // path actions
-            case let .path(pathAction):
-                switch pathAction {
-                case .element(id: _, action: .forgotPassword(.destination(.pop))):
-                    state.path.removeAll()
-                    return .none
-                    
-                default:
-                    return .none
-                }
+//            // path actions
+//            case let .path(pathAction):
+//                switch pathAction {
+//                case .element(id: _, action: .forgotPassword(.destination(.pop))):
+//                    state.path.removeAll()
+//                    return .none
+//
+//                default:
+//                    return .none
+//                }
                 
             case let .agreements(.presented(.delegate(agreementsAction))):
                 switch agreementsAction {
@@ -153,8 +153,8 @@ struct EmailLoginReducer: Reducer {
         }
         .ifLet(\.$agreements, action: /Action.agreements) { Agreements() }
         .ifLet(\.$alert, action: /Action.alert)
-        .forEach(\.path, action: /Action.path) {
-            Path()
-        }
+//        .forEach(\.path, action: /Action.path) {
+//            Path()
+//        }
     }
 }
