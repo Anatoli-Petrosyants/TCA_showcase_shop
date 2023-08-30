@@ -34,7 +34,7 @@ extension LoginOptionsView: View {
                         .font(.system(size: 100))
 
                     VStack(spacing: 6) {
-                        Text("Please select the login option to explore the showcase project developed by")
+                        Text(Localization.LoginOptions.description)
                             .multilineTextAlignment(.center)
                             .font(.headline)
                         
@@ -48,12 +48,12 @@ extension LoginOptionsView: View {
                     
                     Spacer()
                     
-                    Button("Login with email", action: {
+                    Button(Localization.LoginOptions.loginEmail, action: {
                         viewStore.send(.onEmailLoginButtonTap)
                     })
                     .buttonStyle(.cta)
                     
-                    Button("Login with phone", action: {
+                    Button(Localization.LoginOptions.loginPhone, action: {
                         viewStore.send(.onEmailLoginButtonTap)
                     })
                     .buttonStyle(.cta)
@@ -64,7 +64,7 @@ extension LoginOptionsView: View {
                         .padding([.top, .bottom], 24)
                 }
                 .padding(24)
-                .navigationTitle("Welcome")
+                .navigationTitle(Localization.LoginOptions.title)
                 .modifier(NavigationBarModifier())
             } destination: {
                 switch $0 {

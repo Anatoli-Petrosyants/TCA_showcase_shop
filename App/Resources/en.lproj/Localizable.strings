@@ -29,6 +29,12 @@
 "onboarding.description3" = "Immediate, accurate air quality data to help you create healthier.";
 "onboarding.get.started" = "Get Started";
 
+// Login Options
+"loginOptions.title" = "Welcome";
+"loginOptions.description" = "Please select the login option to explore the showcase project developed by";
+"loginOptions.login.email" = "Login with email";
+"loginOptions.login.phone" = "Login with phone";
+
 // Login
 "login.title" = "Login";
 "login.forgot.password" = "Forgot Password";
@@ -38,7 +44,7 @@
 "forgotPassword.changePassword" = "Change Password";
 
 // DevelopedBy
-"DevelopedBy.title" = "Developed By";
+"developedBy.title" = "Developed By";
 
 // Account
 "account.title" = "Account";

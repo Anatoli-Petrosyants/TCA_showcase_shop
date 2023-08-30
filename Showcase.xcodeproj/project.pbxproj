@@ -77,6 +77,7 @@
 		A988F0B929B5CC610059F9BB /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */; };
 		A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D529B60B470059F9BB /* ErrorModifier.swift */; };
 		A988F0D829B60D170059F9BB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D729B60D170059F9BB /* AppError.swift */; };
+		A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */; };
 		A990E5042A4194820004F4F9 /* Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5032A4194820004F4F9 /* Showcase.swift */; };
 		A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */; };
 		A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */; };
@@ -96,7 +97,7 @@
 		A990E5422A42CB6A0004F4F9 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5412A42CB6A0004F4F9 /* ForgotPassword.swift */; };
 		A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5432A42CB6F0004F4F9 /* ForgotPasswordView.swift */; };
 		A990E5462A42D6120004F4F9 /* Localization+ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5452A42D6120004F4F9 /* Localization+ForgotPassword.swift */; };
-		A990E5482A42D9D40004F4F9 /* Localization+Agreements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5472A42D9D40004F4F9 /* Localization+Agreements.swift */; };
+		A990E5482A42D9D40004F4F9 /* Localization+DevelopedBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5472A42D9D40004F4F9 /* Localization+DevelopedBy.swift */; };
 		A990E54A2A42F6910004F4F9 /* AppTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5492A42F6910004F4F9 /* AppTextFieldStyle.swift */; };
 		A990E54C2A431E240004F4F9 /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E54B2A431E240004F4F9 /* AuthenticationClient.swift */; };
 		A9947EDF2A1794A100FC7FB8 /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9947EDE2A1794A100FC7FB8 /* ProductDetails.swift */; };
@@ -254,6 +255,7 @@
 		A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		A988F0D529B60B470059F9BB /* ErrorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModifier.swift; sourceTree = "<group>"; };
 		A988F0D729B60D170059F9BB /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+LoginOptions.swift"; sourceTree = "<group>"; };
 		A990E5032A4194820004F4F9 /* Showcase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Showcase.swift; sourceTree = "<group>"; };
 		A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewWrapper.swift; sourceTree = "<group>"; };
 		A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
@@ -272,7 +274,7 @@
 		A990E5412A42CB6A0004F4F9 /* ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		A990E5432A42CB6F0004F4F9 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		A990E5452A42D6120004F4F9 /* Localization+ForgotPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+ForgotPassword.swift"; sourceTree = "<group>"; };
-		A990E5472A42D9D40004F4F9 /* Localization+Agreements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Agreements.swift"; sourceTree = "<group>"; };
+		A990E5472A42D9D40004F4F9 /* Localization+DevelopedBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+DevelopedBy.swift"; sourceTree = "<group>"; };
 		A990E5492A42F6910004F4F9 /* AppTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextFieldStyle.swift; sourceTree = "<group>"; };
 		A990E54B2A431E240004F4F9 /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		A9947EDE2A1794A100FC7FB8 /* ProductDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
@@ -718,9 +720,10 @@
 			children = (
 				A990E5282A41BB720004F4F9 /* Localization.swift */,
 				A990E5392A41C00B0004F4F9 /* Localization+Help.swift */,
+				A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */,
 				A990E53E2A42C9B20004F4F9 /* Localization+Login.swift */,
 				A990E5452A42D6120004F4F9 /* Localization+ForgotPassword.swift */,
-				A990E5472A42D9D40004F4F9 /* Localization+Agreements.swift */,
+				A990E5472A42D9D40004F4F9 /* Localization+DevelopedBy.swift */,
 				A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */,
 				A979AC032A8C9E610050E028 /* Localization+Sidebar.swift */,
 				A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */,
@@ -1259,6 +1262,7 @@
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
 				A9B4D7AD2A4C52AF00B102FB /* User.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
+				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A90072D52A73DC05000551E1 /* CameraView.swift in Sources */,
 				A9A4598B2A977C6600594963 /* VideoPlayerView.swift in Sources */,
@@ -1330,7 +1334,7 @@
 				A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */,
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,
 				A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */,
-				A990E5482A42D9D40004F4F9 /* Localization+Agreements.swift in Sources */,
+				A990E5482A42D9D40004F4F9 /* Localization+DevelopedBy.swift in Sources */,
 				A90072CE2A73D498000551E1 /* CameraSetting.swift in Sources */,
 				A990E5232A41BA3E0004F4F9 /* Bundle+Extensions.swift in Sources */,
 				A9EEE2FF2A710868007A6442 /* MapReducer.swift in Sources */,
