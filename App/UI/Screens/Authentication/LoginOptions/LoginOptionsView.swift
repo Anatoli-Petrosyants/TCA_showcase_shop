@@ -28,16 +28,33 @@ extension LoginOptionsView: View {
                 self.store.scope(state: \.path, action: LoginOptionsReducer.Action.path)
             ) {
                 VStack {
-                    Text("Login options view")
+                    Image(systemName: "pencil.slash")
+                        .font(.system(size: 100))
+                        .padding(.top, 64)
                     
-                    Button(Localization.Base.continue, action: {
+                    Text("Please select the login option to explore the showcase project developed by Anatoli Petrosyants.")
+                        .multilineTextAlignment(.center)
+                        .font(.headline)
+                        .padding(.top, 24)
+                    
+                    Spacer()
+                    
+                    Button("Login with email", action: {
                         viewStore.send(.onEmailLoginButtonTap)
                     })
                     .buttonStyle(.cta)
-                    .padding(.top, 24)
+                                        
+                    Text("or")
+                        .font(.headline)
+                        .foregroundColor(Color.black05)
+                    
+                    Button("Login with phone", action: {
+                        viewStore.send(.onEmailLoginButtonTap)
+                    })
+                    .buttonStyle(.cta)
                 }
                 .padding()
-                .navigationTitle(Localization.Login.title)
+                .navigationTitle("Welcome")
                 .modifier(NavigationBarModifier())
             } destination: {
                 switch $0 {
