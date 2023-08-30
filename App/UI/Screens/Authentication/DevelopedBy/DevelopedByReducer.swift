@@ -1,5 +1,5 @@
 //
-//  Agreements.swift
+//  DevelopedByReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 13.04.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct Agreements: Reducer {
+struct DevelopedByReducer: Reducer {
 
     struct State: Equatable {
         var text: String = ""
@@ -22,7 +22,7 @@ struct Agreements: Reducer {
         }
         
         enum Delegate: Equatable {
-            case didAgreementsAccepted
+            case didDevelopedByViewed
         }
         
         case view(ViewAction)
@@ -37,12 +37,12 @@ struct Agreements: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onViewAppear:
-                    state.text = randomString(length: 3000)
+                    state.text = Constant.aboutMe
                     return .none
                     
                 case .onAcceptTap:
                     return .concatenate(
-                        .send(.delegate(.didAgreementsAccepted)),
+                        .send(.delegate(.didDevelopedByViewed)),
                         .run { _ in await self.dismiss() }
                     )
                 }

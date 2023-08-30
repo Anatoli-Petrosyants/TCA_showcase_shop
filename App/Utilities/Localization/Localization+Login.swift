@@ -10,7 +10,6 @@ import SwiftUI
 extension Localization {
     enum Login {
         static var title: LocalizedStringKey { return "login.title" }
-        static var forgotPassword: LocalizedStringKey { return "login.forgot.password" }
-        static var agreements: LocalizedStringKey { return "login.agreements" }
+        static var forgotPassword: LocalizedStringKey { return "login.forgot.password" }        
     }
 }

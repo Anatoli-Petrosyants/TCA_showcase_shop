@@ -1,5 +1,5 @@
 //
-//  AgreementsView.swift
+//  DevelopedByView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 13.04.23.
@@ -8,15 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-// MARK: - AgreementsView
+// MARK: - DevelopedByView
 
-struct AgreementsView {
-    let store: StoreOf<Agreements>
+struct DevelopedByView {
+    let store: StoreOf<DevelopedByReducer>
 }
 
 // MARK: - Views
 
-extension AgreementsView: View {
+extension DevelopedByView: View {
     
     var body: some View {
         content
@@ -27,7 +27,7 @@ extension AgreementsView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(alignment: .leading) {
-                Text(Localization.Agreements.title)
+                Text("Developed By")
                     .font(.largeTitleBold)
                     .multilineTextAlignment(.leading)
                     .padding(.top, 24)
@@ -39,7 +39,7 @@ extension AgreementsView: View {
             }
             .padding(24)
             
-            Button(Localization.Agreements.accept, action: {
+            Button(Localization.Base.continue, action: {
                 viewStore.send(.view(.onAcceptTap))
             })
             .buttonStyle(.cta)

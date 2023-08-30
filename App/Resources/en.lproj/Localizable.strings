@@ -32,15 +32,13 @@
 // Login
 "login.title" = "Login";
 "login.forgot.password" = "Forgot Password";
-"login.agreements" = "Agreements and Policy";
 
 // Forgot Password
 "forgotPassword.title" = "Forgot Password";
 "forgotPassword.changePassword" = "Change Password";
 
-// Agreements
-"agreements.title" = "Agreements";
-"agreements.accept" = "Accept";
+// DevelopedBy
+"DevelopedBy.title" = "Developed By";
 
 // Account
 "account.title" = "Account";

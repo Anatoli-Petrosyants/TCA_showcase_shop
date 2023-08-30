@@ -164,8 +164,8 @@
 		A9DED5C429AC96CF003EFA02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */; };
 		A9DED5C929AC9F64003EFA02 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5C829AC9F64003EFA02 /* config.plist */; };
 		A9DED5CB29AC9FC6003EFA02 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5CA29AC9FC6003EFA02 /* Configuration.swift */; };
-		A9E9864829E7DA9A0028D5DB /* Agreements.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9864729E7DA9A0028D5DB /* Agreements.swift */; };
-		A9E9864A29E7DAA10028D5DB /* AgreementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9864929E7DAA10028D5DB /* AgreementsView.swift */; };
+		A9E9864829E7DA9A0028D5DB /* DevelopedByReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9864729E7DA9A0028D5DB /* DevelopedByReducer.swift */; };
+		A9E9864A29E7DAA10028D5DB /* DevelopedByView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E9864929E7DAA10028D5DB /* DevelopedByView.swift */; };
 		A9EEE2F32A6E8C4D007A6442 /* InAppMessagesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEE2F22A6E8C4D007A6442 /* InAppMessagesReducer.swift */; };
 		A9EEE2F52A6E8C54007A6442 /* InAppMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEE2F42A6E8C54007A6442 /* InAppMessagesView.swift */; };
 		A9EEE2FD2A6FDB34007A6442 /* InAppMessages+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEE2FC2A6FDB34007A6442 /* InAppMessages+Views.swift */; };
@@ -342,8 +342,8 @@
 		A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9DED5C829AC9F64003EFA02 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		A9DED5CA29AC9FC6003EFA02 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		A9E9864729E7DA9A0028D5DB /* Agreements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agreements.swift; sourceTree = "<group>"; };
-		A9E9864929E7DAA10028D5DB /* AgreementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementsView.swift; sourceTree = "<group>"; };
+		A9E9864729E7DA9A0028D5DB /* DevelopedByReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopedByReducer.swift; sourceTree = "<group>"; };
+		A9E9864929E7DAA10028D5DB /* DevelopedByView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevelopedByView.swift; sourceTree = "<group>"; };
 		A9EEE2F22A6E8C4D007A6442 /* InAppMessagesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagesReducer.swift; sourceTree = "<group>"; };
 		A9EEE2F42A6E8C54007A6442 /* InAppMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagesView.swift; sourceTree = "<group>"; };
 		A9EEE2FC2A6FDB34007A6442 /* InAppMessages+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InAppMessages+Views.swift"; sourceTree = "<group>"; };
@@ -774,7 +774,7 @@
 				A96FEB642A9E13EC008DC5BC /* LoginOptions */,
 				A96FEB5F2A9E130A008DC5BC /* PhoneLogin */,
 				A91F587929E67C39008C0F35 /* Login */,
-				A9E9864B29E7DAA50028D5DB /* Agreements */,
+				A9E9864B29E7DAA50028D5DB /* DevelopedBy */,
 				A990E53D2A41D1A20004F4F9 /* ForgotPassword */,
 			);
 			path = Authentication;
@@ -1018,13 +1018,13 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		A9E9864B29E7DAA50028D5DB /* Agreements */ = {
+		A9E9864B29E7DAA50028D5DB /* DevelopedBy */ = {
 			isa = PBXGroup;
 			children = (
-				A9E9864729E7DA9A0028D5DB /* Agreements.swift */,
-				A9E9864929E7DAA10028D5DB /* AgreementsView.swift */,
+				A9E9864729E7DA9A0028D5DB /* DevelopedByReducer.swift */,
+				A9E9864929E7DAA10028D5DB /* DevelopedByView.swift */,
 			);
-			path = Agreements;
+			path = DevelopedBy;
 			sourceTree = "<group>";
 		};
 		A9EEE2F62A6E8C57007A6442 /* InAppMessages */ = {
@@ -1195,7 +1195,7 @@
 				A960AA262A49BAF9005CE9F9 /* BasketView.swift in Sources */,
 				A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */,
 				A9947EE72A179CF300FC7FB8 /* BlurViewRepresentable.swift in Sources */,
-				A9E9864A29E7DAA10028D5DB /* AgreementsView.swift in Sources */,
+				A9E9864A29E7DAA10028D5DB /* DevelopedByView.swift in Sources */,
 				A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */,
 				A9947EF22A179DD900FC7FB8 /* ActivityViewRepresentable.swift in Sources */,
 				A990E5042A4194820004F4F9 /* Showcase.swift in Sources */,
@@ -1293,7 +1293,7 @@
 				A92A22A029F8EEC50034469C /* MainReducer.swift in Sources */,
 				A96FBD8229AF6BA300DB1D61 /* ActivityIndicator.swift in Sources */,
 				A990E5272A41BABF0004F4F9 /* Binding+Extensions.swift in Sources */,
-				A9E9864829E7DA9A0028D5DB /* Agreements.swift in Sources */,
+				A9E9864829E7DA9A0028D5DB /* DevelopedByReducer.swift in Sources */,
 				A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */,
 				A90072D02A73D4A5000551E1 /* CameraClient.swift in Sources */,
 				A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */,

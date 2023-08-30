@@ -32,12 +32,19 @@ extension LoginOptionsView: View {
                     
                     Image(systemName: "pencil.slash")
                         .font(.system(size: 100))
-                        // .padding(.top, 64)
-                    
-                    Text("Please select the login option to explore the showcase project developed by Anatoli Petrosyants.")
-                        .multilineTextAlignment(.center)
-                        .font(.headline)
-                        .padding(24)
+
+                    VStack(spacing: 6) {
+                        Text("Please select the login option to explore the showcase project developed by")
+                            .multilineTextAlignment(.center)
+                            .font(.headline)
+                        
+                        Button("Anatoli Petrosyants", action: {
+                            viewStore.send(.onDevelopedByTap)
+                        })
+                        .buttonStyle(.linkButton)
+                        .font(.headlineBold)
+                    }
+                    .padding(.top, 24)
                     
                     Spacer()
                     
@@ -50,19 +57,13 @@ extension LoginOptionsView: View {
                         viewStore.send(.onEmailLoginButtonTap)
                     })
                     .buttonStyle(.cta)
-                                        
-//                    Button(Localization.Login.agreements, action: {
-//                        viewStore.send(.onAgreementsTap)
-//                    })
-//                    .buttonStyle(.linkButton)
-//                    .padding([.top, .bottom], 24)
                     
                     Text(viewStore.agreementsAttributedString)
                         .multilineTextAlignment(.center)
                         .font(.footnote)
                         .padding([.top, .bottom], 24)
                 }
-                .padding()
+                .padding(24)
                 .navigationTitle("Welcome")
                 .modifier(NavigationBarModifier())
             } destination: {
@@ -75,8 +76,8 @@ extension LoginOptionsView: View {
                 }
             }
             .sheet(
-                store: self.store.scope(state: \.$agreements, action: LoginOptionsReducer.Action.agreements),
-                content: AgreementsView.init(store:)
+                store: self.store.scope(state: \.$developedBy, action: LoginOptionsReducer.Action.developedBy),
+                content: DevelopedByView.init(store:)
             )            
         }
     }

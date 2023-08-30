@@ -31,13 +31,13 @@ struct LoginOptionsReducer: Reducer {
         }
 
         var path = StackState<Path.State>()
-        @PresentationState var agreements: Agreements.State?
+        @PresentationState var developedBy: DevelopedByReducer.State?
     }
     
     enum Action: Equatable {
-        case onAgreementsTap
+        case onDevelopedByTap
         case onEmailLoginButtonTap
-        case agreements(PresentationAction<Agreements.Action>)
+        case developedBy(PresentationAction<DevelopedByReducer.Action>)
         case path(StackAction<Path.State, Path.Action>)
     }
     
@@ -64,25 +64,25 @@ struct LoginOptionsReducer: Reducer {
                 state.path.append(.emailLogin(.init()))
                 return .none
                 
-            case .onAgreementsTap:
-                state.agreements = Agreements.State()
+            case .onDevelopedByTap:
+                state.developedBy = DevelopedByReducer.State()
                 return .none
                 
-            case let .agreements(.presented(.delegate(agreementsAction))):
-                switch agreementsAction {
-                case .didAgreementsAccepted:
-                    Log.info("delegate didAgreementsAccepted")
+            case let .developedBy(.presented(.delegate(developedByAction))):
+                switch developedByAction {
+                case .didDevelopedByViewed:
+                    Log.info("delegate didDevelopedByViewed")
                     return .none
                 }
                 
-            case .agreements(.dismiss):
+            case .developedBy(.dismiss):
                 return .none
                             
-            case .agreements, .path:
+            case .developedBy, .path:
                 return .none
             }
         }
-        .ifLet(\.$agreements, action: /Action.agreements) { Agreements() }
+        .ifLet(\.$developedBy, action: /Action.developedBy) { DevelopedByReducer() }
         .forEach(\.path, action: /Action.path) {
             Path()
         }
