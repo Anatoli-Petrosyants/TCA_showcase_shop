@@ -33,54 +33,54 @@ extension EmailLoginView: View {
 //            NavigationStackStore(
 //                self.store.scope(state: \.path, action: EmailLoginReducer.Action.path)
 //            ) {
-                BlurredActivityIndicatorView(
-                    isShowing: viewStore.$isActivityIndicatorVisible)
-                {
-                    VStack {
-                        VStack {
-                            TextField(
-                                Localization.Base.emailPlacholder,
-                                text: viewStore.$email
-                            )
-                            .autocapitalization(.none)
-                            .keyboardType(.emailAddress)
-                            .textContentType(.emailAddress)
-                            .textFieldStyle(.main)
-
-                            SecureField(
-                                "••••••••",
-                                text: viewStore.$password
-                            )
-                            .textFieldStyle(.main)
-
-                            HStack {
-                                Spacer()
-                                Button(Localization.Login.forgotPassword, action: {
-                                    viewStore.send(.onForgotPasswordButtonTap)
-                                })
-                                .buttonStyle(.linkButton)
-                            }
-                            .padding(.top, 16)
-
-                            Button(Localization.Base.continue, action: {
-                                viewStore.send(.onSignInButtonTap)
-                            })
-                            .buttonStyle(.cta)
-                            .padding(.top, 24)
-                        }
-                        .padding(24)
-                        
-                        Spacer()
-
-                        Button(Localization.Login.agreements, action: {
-                            viewStore.send(.onAgreementsTap)
-                        })
-                        .buttonStyle(.linkButton)
-                        .padding(.bottom, 24)
-                    }
-                    .navigationTitle(Localization.Login.title)
-                    .modifier(NavigationBarModifier())
-                }
+//                BlurredActivityIndicatorView(
+//                    isShowing: viewStore.$isActivityIndicatorVisible)
+//                {
+//                    VStack {
+//                        VStack {
+//                            TextField(
+//                                Localization.Base.emailPlacholder,
+//                                text: viewStore.$email
+//                            )
+//                            .autocapitalization(.none)
+//                            .keyboardType(.emailAddress)
+//                            .textContentType(.emailAddress)
+//                            .textFieldStyle(.main)
+//
+//                            SecureField(
+//                                "••••••••",
+//                                text: viewStore.$password
+//                            )
+//                            .textFieldStyle(.main)
+//
+//                            HStack {
+//                                Spacer()
+//                                Button(Localization.Login.forgotPassword, action: {
+//                                    viewStore.send(.onForgotPasswordButtonTap)
+//                                })
+//                                .buttonStyle(.linkButton)
+//                            }
+//                            .padding(.top, 16)
+//
+//                            Button(Localization.Base.continue, action: {
+//                                viewStore.send(.onSignInButtonTap)
+//                            })
+//                            .buttonStyle(.cta)
+//                            .padding(.top, 24)
+//                        }
+//                        .padding(24)
+//
+//                        Spacer()
+//
+//                        Button(Localization.Login.agreements, action: {
+//                            viewStore.send(.onAgreementsTap)
+//                        })
+//                        .buttonStyle(.linkButton)
+//                        .padding(.bottom, 24)
+//                    }
+//                    .navigationTitle(Localization.Login.title)
+//                    .modifier(NavigationBarModifier())
+//                }
 //            } destination: {
 //                switch $0 {
 //                case .forgotPassword:
@@ -90,11 +90,13 @@ extension EmailLoginView: View {
 //                    )
 //                }
 //            }
-            .sheet(
-                store: self.store.scope(state: \.$agreements, action: EmailLoginReducer.Action.agreements),
-                content: AgreementsView.init(store:)
-            )
-            .alert(store: self.store.scope(state: \.$alert, action: EmailLoginReducer.Action.alert))
+//            .sheet(
+//                store: self.store.scope(state: \.$agreements, action: EmailLoginReducer.Action.agreements),
+//                content: AgreementsView.init(store:)
+//            )
+//            .alert(store: self.store.scope(state: \.$alert, action: EmailLoginReducer.Action.alert))
+            
+            Text("test")
         }
     }
 }

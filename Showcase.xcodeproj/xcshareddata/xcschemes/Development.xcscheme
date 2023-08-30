@@ -64,7 +64,7 @@
          <EnvironmentVariable
             key = "info_level_enable"
             value = ""
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "memory_info_level_enable"

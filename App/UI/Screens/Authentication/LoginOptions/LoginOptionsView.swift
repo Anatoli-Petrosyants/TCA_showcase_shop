@@ -28,14 +28,16 @@ extension LoginOptionsView: View {
                 self.store.scope(state: \.path, action: LoginOptionsReducer.Action.path)
             ) {
                 VStack {
+                    Spacer()
+                    
                     Image(systemName: "pencil.slash")
                         .font(.system(size: 100))
-                        .padding(.top, 64)
+                        // .padding(.top, 64)
                     
                     Text("Please select the login option to explore the showcase project developed by Anatoli Petrosyants.")
                         .multilineTextAlignment(.center)
                         .font(.headline)
-                        .padding(.top, 24)
+                        .padding(24)
                     
                     Spacer()
                     
@@ -43,15 +45,22 @@ extension LoginOptionsView: View {
                         viewStore.send(.onEmailLoginButtonTap)
                     })
                     .buttonStyle(.cta)
-                                        
-                    Text("or")
-                        .font(.headline)
-                        .foregroundColor(Color.black05)
                     
                     Button("Login with phone", action: {
                         viewStore.send(.onEmailLoginButtonTap)
                     })
                     .buttonStyle(.cta)
+                                        
+//                    Button(Localization.Login.agreements, action: {
+//                        viewStore.send(.onAgreementsTap)
+//                    })
+//                    .buttonStyle(.linkButton)
+//                    .padding([.top, .bottom], 24)
+                    
+                    Text(viewStore.agreementsAttributedString)
+                        .multilineTextAlignment(.center)
+                        .font(.footnote)
+                        .padding([.top, .bottom], 24)
                 }
                 .padding()
                 .navigationTitle("Welcome")
@@ -65,8 +74,10 @@ extension LoginOptionsView: View {
                     )
                 }
             }
-            
-            
+            .sheet(
+                store: self.store.scope(state: \.$agreements, action: LoginOptionsReducer.Action.agreements),
+                content: AgreementsView.init(store:)
+            )            
         }
     }
 }

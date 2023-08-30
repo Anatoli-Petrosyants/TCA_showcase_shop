@@ -16,15 +16,13 @@ struct EmailLoginReducer: Reducer {
         @BindingState var email: String = "mor_2314"
         @BindingState var password: String = "83r5^_"
         
-//        var path = StackState<Path.State>()
-        @PresentationState var agreements: Agreements.State?
+//        var path = StackState<Path.State>()        
         @PresentationState var alert: AlertState<Never>?
     }
     
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
-            case onSignInButtonTap
-            case onAgreementsTap
+            case onSignInButtonTap            
             case onForgotPasswordButtonTap
             case binding(BindingAction<State>)
         }
@@ -40,8 +38,7 @@ struct EmailLoginReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-//        case path(StackAction<Path.State, Path.Action>)
-        case agreements(PresentationAction<Agreements.Action>)
+//        case path(StackAction<Path.State, Path.Action>)        
         case alert(PresentationAction<Never>)
     }
     
@@ -92,10 +89,6 @@ struct EmailLoginReducer: Reducer {
                     }
                     .cancellable(id: CancelID.login)
                     
-                case .onAgreementsTap:
-                    state.agreements = Agreements.State()
-                    return .none
-                    
                 case .onForgotPasswordButtonTap:
 //                    state.path.append(.forgotPassword(.init()))                    
                     return .cancel(id: CancelID.login)
@@ -136,22 +129,11 @@ struct EmailLoginReducer: Reducer {
 //                default:
 //                    return .none
 //                }
-                
-            case let .agreements(.presented(.delegate(agreementsAction))):
-                switch agreementsAction {
-                case .didAgreementsAccepted:
-                    Log.debug("delegate didAgreementsAccepted")
-                    return .none
-                }
-                
-            case .agreements(.dismiss):
-                return .none
                             
-            case .agreements, .delegate, .alert:
+            case .delegate, .alert:
                 return .none
             }
-        }
-        .ifLet(\.$agreements, action: /Action.agreements) { Agreements() }
+        }        
         .ifLet(\.$alert, action: /Action.alert)
 //        .forEach(\.path, action: /Action.path) {
 //            Path()

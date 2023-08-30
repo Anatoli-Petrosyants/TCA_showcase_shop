@@ -12,8 +12,8 @@ struct Constant {
     static let email = "sowcasesupport@mail.com"
     static let itunesURL = ""
     static let faqURL = ""
-    static let privacyURL = "https://google.com"
-    static let termsURL = "https://google.com"
+    static let privacyURL = URL(string: "https://google.com")!
+    static let termsURL = URL(string: "https://apple.com")!
     static let shareURL = URL(string: "https://www.google.com")!
     static let linkedinURL = URL(string: "https://www.linkedin.com/in/anatoli-petrosyants")!
     static let upworkURL = URL(string: "https://www.upwork.com/freelancers/iosappdeveloper")!
