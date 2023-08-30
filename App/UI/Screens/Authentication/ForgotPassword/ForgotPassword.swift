@@ -19,8 +19,8 @@ struct ForgotPassword: Reducer {
             case onChangePasswordButtonTap
         }
         
-        enum DestinationAction: Equatable {
-            case pop
+        enum DelegateAction: Equatable {
+            case didPasswordChanged
         }
         
         enum AlertAction: Equatable {
@@ -29,7 +29,7 @@ struct ForgotPassword: Reducer {
         
         case view(ViewAction)
         case alert(PresentationAction<AlertAction>)
-        case destination(DestinationAction)
+        case delegate(DelegateAction)
     }
     
     var body: some Reducer<State, Action> {
@@ -49,9 +49,9 @@ struct ForgotPassword: Reducer {
                 }
                 
             case .alert(.presented(.confirmPasswordChange)):
-                return .send(.destination(.pop))
+                return .send(.delegate(.didPasswordChanged))
                 
-            case .destination, .alert:
+            case .delegate, .alert:
                 return .none
             }
         }

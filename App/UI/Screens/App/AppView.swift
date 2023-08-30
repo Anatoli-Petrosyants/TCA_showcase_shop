@@ -44,12 +44,6 @@ extension AppView: View {
                         .transition(.delayAndFade)
                 }
                 
-            case .emailLogin:
-                CaseLet(/AppReducer.State.emailLogin, action: AppReducer.Action.emailLogin) { store in
-                    EmailLoginView(store: store)
-                        .transition(.delayAndFade)
-                }
-                
             case .main:
                 CaseLet(/AppReducer.State.main, action: AppReducer.Action.main) { store in
                     MainView(store: store)

@@ -14,7 +14,6 @@ struct AppReducer: Reducer {
         case loading(LoadingReducer.State)
         case help(HelpReducer.State)
         case loginOptions(LoginOptionsReducer.State)
-        case emailLogin(EmailLoginReducer.State)
         case main(MainReducer.State)
 
         public init() { self = .loading(LoadingReducer.State()) }
@@ -30,7 +29,6 @@ struct AppReducer: Reducer {
         case loading(LoadingReducer.Action)
         case help(HelpReducer.Action)
         case loginOptions(LoginOptionsReducer.Action)
-        case emailLogin(EmailLoginReducer.Action)
         case main(MainReducer.Action)
     }
     
@@ -57,7 +55,6 @@ struct AppReducer: Reducer {
                         if (self.userDefaults.token != nil) {
                             state = .main(MainReducer.State())
                         } else {
-                            // state = .login(EmailLoginReducer.State())
                             state = .loginOptions(LoginOptionsReducer.State())
                         }
                     } else {
@@ -72,19 +69,9 @@ struct AppReducer: Reducer {
                     state = .loginOptions(LoginOptionsReducer.State())
                     return .none
                 }
-                
-            case .loginOptions:
-                return .none
-                
-//            case let .loginOptions(action: .delegate(loginOptionsAction)):
-//                switch loginOptionsAction {
-//                case .didEmailLoginSelected:
-//                    state = .login(EmailLoginReducer.State())
-//                    return .none
-//                }
-                
-            case let .emailLogin(action: .delegate(emailLoginAction)):
-                switch emailLoginAction {
+
+            case let .loginOptions(action: .delegate(loginOptionsAction)):
+                switch loginOptionsAction {
                 case .didAuthenticated:
                     state = .main(MainReducer.State())
                     return .none
@@ -97,7 +84,7 @@ struct AppReducer: Reducer {
                     return .none
                 }
                 
-            case .loading, .help, .emailLogin, .main:
+            case .loading, .help, .loginOptions, .main:
                 return .none
             }
         }
@@ -109,9 +96,6 @@ struct AppReducer: Reducer {
         }
         .ifCaseLet(/State.loginOptions, action: /Action.loginOptions) {
             LoginOptionsReducer()
-        }
-        .ifCaseLet(/State.emailLogin, action: /Action.emailLogin) {
-            EmailLoginReducer()
         }
         .ifCaseLet(/State.main, action: /Action.main) {
             MainReducer()

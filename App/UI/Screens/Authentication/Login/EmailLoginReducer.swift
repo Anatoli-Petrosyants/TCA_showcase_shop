@@ -12,11 +12,8 @@ struct EmailLoginReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isActivityIndicatorVisible = false
-
         @BindingState var email: String = "mor_2314"
         @BindingState var password: String = "83r5^_"
-        
-//        var path = StackState<Path.State>()        
         @PresentationState var alert: AlertState<Never>?
     }
     
@@ -32,31 +29,15 @@ struct EmailLoginReducer: Reducer {
         }
         
         enum Delegate {
-            case didAuthenticated
+            case didEmailAuthenticated
+            case didForgotPasswordPressed
         }
         
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-//        case path(StackAction<Path.State, Path.Action>)        
         case alert(PresentationAction<Never>)
     }
-    
-//    struct Path: Reducer {
-//        enum State: Equatable {
-//            case forgotPassword(ForgotPassword.State = .init())
-//        }
-//
-//        enum Action: Equatable {
-//            case forgotPassword(ForgotPassword.Action)
-//        }
-//
-//        var body: some Reducer<State, Action> {
-//            Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
-//                ForgotPassword()
-//            }
-//        }
-//    }
     
     private enum CancelID { case login }
     
@@ -90,8 +71,18 @@ struct EmailLoginReducer: Reducer {
                     .cancellable(id: CancelID.login)
                     
                 case .onForgotPasswordButtonTap:
-//                    state.path.append(.forgotPassword(.init()))                    
-                    return .cancel(id: CancelID.login)
+                    Log.debug("onForgotPasswordButtonTap")
+                    return .send(.delegate(.didForgotPasswordPressed))
+                    
+//                    return .none
+//                    return .run { send in
+//                        return await send(.delegate(.didForgotPasswordPressed))
+//                    }
+//                    return .send(.delegate(.didForgotPasswordPressed))
+//                    return .concatenate(
+//                        .send(.delegate(.didForgotPasswordPressed)),
+//                        .cancel(id: CancelID.login)
+//                    )
                     
                 case .binding:
                     return .none
@@ -101,7 +92,7 @@ struct EmailLoginReducer: Reducer {
             case let .internal(internalAction):
                 switch internalAction {
                 case let .loginResponse(.success(data)):
-                    Log.debug("loginResponse: \(data)")
+                    Log.info("loginResponse: \(data)")
                     state.isActivityIndicatorVisible = false
                     return .concatenate(
                         .run { _ in
@@ -110,33 +101,20 @@ struct EmailLoginReducer: Reducer {
                             let account = Account(token: data.token)
                             try await self.databaseClient.insert(account)
                         },
-                        .send(.delegate(.didAuthenticated))
+                        .send(.delegate(.didEmailAuthenticated))
                     )
                     
                 case let .loginResponse(.failure(error)):
+                    Log.error("loginResponse: \(error)")
                     state.isActivityIndicatorVisible = false
-                    state.alert = AlertState { TextState(error.localizedDescription) }
+//                    state.alert = AlertState { TextState(error.localizedDescription) }
                     return .none
                 }
-                
-//            // path actions
-//            case let .path(pathAction):
-//                switch pathAction {
-//                case .element(id: _, action: .forgotPassword(.destination(.pop))):
-//                    state.path.removeAll()
-//                    return .none
-//
-//                default:
-//                    return .none
-//                }
                             
             case .delegate, .alert:
                 return .none
             }
         }        
         .ifLet(\.$alert, action: /Action.alert)
-//        .forEach(\.path, action: /Action.path) {
-//            Path()
-//        }
     }
 }

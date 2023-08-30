@@ -73,6 +73,12 @@ extension LoginOptionsView: View {
                         action: LoginOptionsReducer.Path.Action.emailLogin,
                         then: EmailLoginView.init(store:)
                     )
+                    
+                case .forgotPassword:
+                    CaseLet(/LoginOptionsReducer.Path.State.forgotPassword,
+                        action: LoginOptionsReducer.Path.Action.forgotPassword,
+                        then: ForgotPasswordView.init(store:)
+                    )
                 }
             }
             .sheet(

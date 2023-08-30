@@ -61,13 +61,13 @@ extension AuthenticationClient: DependencyKey {
             login: { data in
                 try await Task.sleep(nanoseconds: NSEC_PER_SEC)
                                 
-                // Validate email
-                guard data.email.isValidEmail()
-                else { throw AuthenticationError.invalidEmail }
-
-                // Validate password
-                guard data.password.isValidPassword()
-                else { throw AuthenticationError.invalidUserPassword }
+//                // Validate email
+//                guard data.email.isValidEmail()
+//                else { throw AuthenticationError.invalidEmail }
+//
+//                // Validate password
+//                guard data.password.isValidPassword()
+//                else { throw AuthenticationError.invalidUserPassword }
 
                 // Construct parameters and perform API request
                 let parameters = ["username" : data.email, "password" : data.password]

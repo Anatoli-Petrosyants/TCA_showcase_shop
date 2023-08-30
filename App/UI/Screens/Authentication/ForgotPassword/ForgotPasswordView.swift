@@ -32,8 +32,8 @@ extension ForgotPasswordView: View {
                     viewStore.send(.view(.onChangePasswordButtonTap))
                 })
                 .buttonStyle(.cta)
-                .padding([.leading, .trailing], 48.0.scaled())
             }
+            .padding(24)
         }
         .alert(store: self.store.scope(state: \.$alert, action: ForgotPassword.Action.alert))
     }

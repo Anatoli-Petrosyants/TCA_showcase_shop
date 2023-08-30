@@ -39,20 +39,31 @@ struct LoginOptionsReducer: Reducer {
         case onEmailLoginButtonTap
         case developedBy(PresentationAction<DevelopedByReducer.Action>)
         case path(StackAction<Path.State, Path.Action>)
+        
+        enum Delegate {
+            case didAuthenticated
+        }
+        case delegate(Delegate)
     }
     
     struct Path: Reducer {
         enum State: Equatable {
             case emailLogin(EmailLoginReducer.State = .init())
+            case forgotPassword(ForgotPassword.State = .init())
         }
         
         enum Action: Equatable {
             case emailLogin(EmailLoginReducer.Action)
+            case forgotPassword(ForgotPassword.Action)
         }
         
         var body: some Reducer<State, Action> {
             Scope(state: /State.emailLogin, action: /Action.emailLogin) {
                 EmailLoginReducer()
+            }
+            
+            Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
+                ForgotPassword()
             }
         }
     }
@@ -77,8 +88,26 @@ struct LoginOptionsReducer: Reducer {
                 
             case .developedBy(.dismiss):
                 return .none
+                
+            // path actions
+            case let .path(pathAction):
+                switch pathAction {
+                case .element(id: _, action: .emailLogin(.delegate(.didEmailAuthenticated))):
+                    return .send(.delegate(.didAuthenticated))
+                    
+                case .element(id: _, action: .emailLogin(.delegate(.didForgotPasswordPressed))):
+                    state.path.append(.forgotPassword(.init()))
+                    return .none
+                    
+                case .element(id: _, action: .forgotPassword(.delegate(.didPasswordChanged))):
+                    _ = state.path.popLast()
+                    return .none
+
+                default:
+                    return .none
+                }
                             
-            case .developedBy, .path:
+            case .developedBy, .delegate:
                 return .none
             }
         }

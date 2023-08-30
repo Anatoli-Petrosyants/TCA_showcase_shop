@@ -47,7 +47,7 @@ struct ProductAccountReducer: Reducer {
                     return .run { send in
                         let accountsStream: AsyncStream<[Account]> = databaseClient.observe(
                             Account.all
-                                .where(\Account.token == self.userDefaults.token!)
+                                .where(\Account.token == self.userDefaults.token.valueOr("showcase_token"))
                                 .limit(1)
                         )
                         
