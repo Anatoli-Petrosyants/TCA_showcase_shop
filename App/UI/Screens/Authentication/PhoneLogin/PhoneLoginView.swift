@@ -15,7 +15,11 @@ struct PhoneLoginView {
     let store: StoreOf<PhoneLoginReducer>
     
     @FocusState private var focused: Bool
-    @State private var text = ""
+    
+    struct ViewState: Equatable {
+        @BindingViewState var number: String
+        var isContinueButtonDisabled: Bool
+    }
 }
 
 // MARK: - Views
@@ -29,19 +33,18 @@ extension PhoneLoginView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             VStack(spacing: 24) {
-                Text("Type '6' for all numbers to pass validation.")
+                Text("Chosse USA '(302) 666-6666' number to pass validation.")
                     .multilineTextAlignment(.center)
                     .font(.headline)
                 
-                iPhoneNumberField(text: $text)
+                iPhoneNumberField(text: viewStore.$number)
                     .flagHidden(false)
                     .flagSelectable(true)
                     .maximumDigits(10)
                     .foregroundColor(Color.black)
                     .clearButtonMode(.whileEditing)
-                    // .onClear { _ in self.focused = false }
                     .accentColor(Color.black)
                     .padding()
                     .background(Color.white)
@@ -52,14 +55,24 @@ extension PhoneLoginView: View {
                     .focused(self.$focused)
                 
                 Button(Localization.Base.continue, action: {
-                    
+                    viewStore.send(.onContinueButtonTap)
                 })
                 .buttonStyle(.cta)
+                .disabled(viewStore.isContinueButtonDisabled)
                 
                 Spacer()
             }
             .padding(24)
             .navigationTitle("Login with phone")
         }
+    }
+}
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<PhoneLoginReducer.State> {
+    var view: PhoneLoginView.ViewState {
+        PhoneLoginView.ViewState(number: self.$number,
+                                 isContinueButtonDisabled: self.isContinueButtonDisabled)
     }
 }

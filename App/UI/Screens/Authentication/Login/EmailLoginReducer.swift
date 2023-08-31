@@ -12,14 +12,14 @@ struct EmailLoginReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isActivityIndicatorVisible = false
-        @BindingState var email: String = "mor_2314"
-        @BindingState var password: String = "83r5^_"
+        @BindingState var email = "mor_2314"
+        @BindingState var password = "83r5^_"
         @PresentationState var alert: AlertState<Never>?
     }
     
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
-            case onSignInButtonTap            
+            case onSignInButtonTap   
             case onForgotPasswordButtonTap
             case binding(BindingAction<State>)
         }
