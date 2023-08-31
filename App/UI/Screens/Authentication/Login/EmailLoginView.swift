@@ -70,7 +70,6 @@ extension EmailLoginView: View {
                     Spacer()
                 }
                 .navigationTitle(Localization.Login.title)
-                .modifier(NavigationBarModifier())
             }
             .alert(store: self.store.scope(state: \.$alert, action: EmailLoginReducer.Action.alert))
         }

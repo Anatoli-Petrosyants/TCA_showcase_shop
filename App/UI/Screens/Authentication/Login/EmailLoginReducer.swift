@@ -71,18 +71,7 @@ struct EmailLoginReducer: Reducer {
                     .cancellable(id: CancelID.login)
                     
                 case .onForgotPasswordButtonTap:
-                    Log.debug("onForgotPasswordButtonTap")
                     return .send(.delegate(.didForgotPasswordPressed))
-                    
-//                    return .none
-//                    return .run { send in
-//                        return await send(.delegate(.didForgotPasswordPressed))
-//                    }
-//                    return .send(.delegate(.didForgotPasswordPressed))
-//                    return .concatenate(
-//                        .send(.delegate(.didForgotPasswordPressed)),
-//                        .cancel(id: CancelID.login)
-//                    )
                     
                 case .binding:
                     return .none
@@ -107,7 +96,7 @@ struct EmailLoginReducer: Reducer {
                 case let .loginResponse(.failure(error)):
                     Log.error("loginResponse: \(error)")
                     state.isActivityIndicatorVisible = false
-//                    state.alert = AlertState { TextState(error.localizedDescription) }
+                    state.alert = AlertState { TextState(error.localizedDescription) }
                     return .none
                 }
                             

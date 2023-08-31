@@ -39,7 +39,7 @@ extension LoginOptionsView: View {
                             .font(.headline)
                         
                         Button("Anatoli Petrosyants", action: {
-                            viewStore.send(.onDevelopedByTap)
+                            viewStore.send(.view(.onDevelopedByTap))
                         })
                         .buttonStyle(.linkButton)
                         .font(.headlineBold)
@@ -49,12 +49,12 @@ extension LoginOptionsView: View {
                     Spacer()
                     
                     Button(Localization.LoginOptions.loginEmail, action: {
-                        viewStore.send(.onEmailLoginButtonTap)
+                        viewStore.send(.view(.onEmailLoginButtonTap))
                     })
                     .buttonStyle(.cta)
                     
                     Button(Localization.LoginOptions.loginPhone, action: {
-                        viewStore.send(.onEmailLoginButtonTap)
+                        viewStore.send(.view(.onPhoneLoginButtonTap))
                     })
                     .buttonStyle(.cta)
                     
@@ -78,6 +78,12 @@ extension LoginOptionsView: View {
                     CaseLet(/LoginOptionsReducer.Path.State.forgotPassword,
                         action: LoginOptionsReducer.Path.Action.forgotPassword,
                         then: ForgotPasswordView.init(store:)
+                    )
+                    
+                case .phoneLogin:
+                    CaseLet(/LoginOptionsReducer.Path.State.phoneLogin,
+                        action: LoginOptionsReducer.Path.Action.phoneLogin,
+                        then: PhoneLoginView.init(store:)
                     )
                 }
             }

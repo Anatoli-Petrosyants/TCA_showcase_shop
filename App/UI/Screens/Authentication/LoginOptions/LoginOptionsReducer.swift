@@ -35,26 +35,33 @@ struct LoginOptionsReducer: Reducer {
     }
     
     enum Action: Equatable {
-        case onDevelopedByTap
-        case onEmailLoginButtonTap
-        case developedBy(PresentationAction<DevelopedByReducer.Action>)
-        case path(StackAction<Path.State, Path.Action>)
+        enum ViewAction: Equatable {
+            case onDevelopedByTap
+            case onEmailLoginButtonTap
+            case onPhoneLoginButtonTap
+        }
         
         enum Delegate {
             case didAuthenticated
         }
+
+        case view(ViewAction)
         case delegate(Delegate)
+        case developedBy(PresentationAction<DevelopedByReducer.Action>)
+        case path(StackAction<Path.State, Path.Action>)
     }
     
     struct Path: Reducer {
         enum State: Equatable {
             case emailLogin(EmailLoginReducer.State = .init())
             case forgotPassword(ForgotPassword.State = .init())
+            case phoneLogin(PhoneLoginReducer.State = .init())
         }
         
         enum Action: Equatable {
             case emailLogin(EmailLoginReducer.Action)
             case forgotPassword(ForgotPassword.Action)
+            case phoneLogin(PhoneLoginReducer.Action)
         }
         
         var body: some Reducer<State, Action> {
@@ -65,30 +72,32 @@ struct LoginOptionsReducer: Reducer {
             Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
                 ForgotPassword()
             }
+            
+            Scope(state: /State.phoneLogin, action: /Action.phoneLogin) {
+                PhoneLoginReducer()
+            }
         }
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .onEmailLoginButtonTap:
-                state.path.append(.emailLogin(.init()))
-                return .none
-                
-            case .onDevelopedByTap:
-                state.developedBy = DevelopedByReducer.State()
-                return .none
-                
-            case let .developedBy(.presented(.delegate(developedByAction))):
-                switch developedByAction {
-                case .didDevelopedByViewed:
-                    Log.info("delegate didDevelopedByViewed")
+            // view actions
+            case let .view(viewAction):
+                switch viewAction {
+                case .onEmailLoginButtonTap:
+                    state.path.append(.emailLogin(.init()))
+                    return .none
+                    
+                case .onPhoneLoginButtonTap:
+                    state.path.append(.phoneLogin(.init()))
+                    return .none
+                    
+                case .onDevelopedByTap:
+                    state.developedBy = DevelopedByReducer.State()
                     return .none
                 }
-                
-            case .developedBy(.dismiss):
-                return .none
-                
+    
             // path actions
             case let .path(pathAction):
                 switch pathAction {
@@ -106,6 +115,17 @@ struct LoginOptionsReducer: Reducer {
                 default:
                     return .none
                 }
+                
+            // #dev Here we will try to implement analytics client. A.P.
+            case let .developedBy(.presented(.delegate(developedByAction))):
+                switch developedByAction {
+                case .didDevelopedByViewed:
+                    Log.info("delegate didDevelopedByViewed")
+                    return .none
+                }
+                
+            case .developedBy(.dismiss):
+                return .none
                             
             case .developedBy, .delegate:
                 return .none

@@ -36,7 +36,7 @@
 "loginOptions.login.phone" = "Login with phone";
 
 // Login
-"login.title" = "Login";
+"login.title" = "Login with email";
 "login.forgot.password" = "Forgot Password";
 
 // Forgot Password

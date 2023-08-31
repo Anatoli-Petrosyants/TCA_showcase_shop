@@ -43,7 +43,7 @@ extension DevelopedByView: View {
                 viewStore.send(.view(.onAcceptTap))
             })
             .buttonStyle(.cta)
-            .padding([.leading, .trailing], 48.0.scaled())
+            .padding(24)
         }
     }
 }

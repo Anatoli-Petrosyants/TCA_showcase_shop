@@ -78,6 +78,7 @@
 		A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D529B60B470059F9BB /* ErrorModifier.swift */; };
 		A988F0D829B60D170059F9BB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988F0D729B60D170059F9BB /* AppError.swift */; };
 		A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98DD15D2A9F31DA00B39EDC /* Localization+LoginOptions.swift */; };
+		A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = A98DD1602A9F545100B39EDC /* iPhoneNumberField */; };
 		A990E5042A4194820004F4F9 /* Showcase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5032A4194820004F4F9 /* Showcase.swift */; };
 		A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */; };
 		A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A990E50B2A419A7C0004F4F9 /* NavigationBarModifier.swift */; };
@@ -373,6 +374,7 @@
 				A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */,
 				A907C1B62A447152007E7FE7 /* Get in Frameworks */,
 				A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */,
+				A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */,
 				A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */,
 				A96BF14D2A6A996300B14247 /* PopupView in Frameworks */,
 				A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */,
@@ -1116,6 +1118,7 @@
 				A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */,
 				A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */,
 				A94A63C02A93949C0068903C /* CodableFirebase */,
+				A98DD1602A9F545100B39EDC /* iPhoneNumberField */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Showcase.app */;
@@ -1158,6 +1161,7 @@
 				A9AA22B82A8DE77E0073E070 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				A9AA22C62A8F96900073E070 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */,
+				A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -1715,6 +1719,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 		A990E52C2A41BC7D0004F4F9 /* XCRemoteSwiftPackageReference "Reachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tonymillion/Reachability";
@@ -1777,6 +1789,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A96BF14B2A6A996300B14247 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
+		};
+		A98DD1602A9F545100B39EDC /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 		A990E52D2A41BC7D0004F4F9 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
