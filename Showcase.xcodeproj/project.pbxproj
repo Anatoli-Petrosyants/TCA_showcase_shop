@@ -44,6 +44,8 @@
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
 		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
+		A94A87282AA0B4EE00168BC1 /* PhoneOTPReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */; };
+		A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */; };
 		A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */; };
 		A94BF89A2A56A939006FCE43 /* NotificationCenter+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */; };
 		A94BF89D2A56B53D006FCE43 /* ProductAccountReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF89C2A56B53D006FCE43 /* ProductAccountReducer.swift */; };
@@ -222,6 +224,8 @@
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
+		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
+		A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPView.swift; sourceTree = "<group>"; };
 		A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseClient+Bundle.swift"; sourceTree = "<group>"; };
 		A94BF8982A56A6D4006FCE43 /* Showcase_Database v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Showcase_Database v2.xcdatamodel"; sourceTree = "<group>"; };
 		A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Async.swift"; sourceTree = "<group>"; };
@@ -510,6 +514,15 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
+		A94A872B2AA0B4F800168BC1 /* PhoneOTP */ = {
+			isa = PBXGroup;
+			children = (
+				A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */,
+				A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */,
+			);
+			path = PhoneOTP;
+			sourceTree = "<group>";
+		};
 		A94BF8A02A56B547006FCE43 /* ProductAccount */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,6 +789,7 @@
 		A990E53C2A41D1850004F4F9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				A94A872B2AA0B4F800168BC1 /* PhoneOTP */,
 				A96FEB642A9E13EC008DC5BC /* LoginOptions */,
 				A96FEB5F2A9E130A008DC5BC /* PhoneLogin */,
 				A91F587929E67C39008C0F35 /* Login */,
@@ -1231,6 +1245,7 @@
 				A9947EF02A179DBF00FC7FB8 /* LottieViewRepresentable.swift in Sources */,
 				A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */,
 				A9B4D7AF2A4C52B700B102FB /* UserDTO.swift in Sources */,
+				A94A87282AA0B4EE00168BC1 /* PhoneOTPReducer.swift in Sources */,
 				A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */,
 				A9EEE3012A71086F007A6442 /* MapView.swift in Sources */,
 				A90110152A44459D00DD08C4 /* ProductsView.swift in Sources */,
@@ -1281,6 +1296,7 @@
 				A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */,
 				A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */,
 				A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */,
+				A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */,
 				A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */,
 				A9AFC1722A5EA410003A95C3 /* SearchProductItemView.swift in Sources */,
 				A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */,
