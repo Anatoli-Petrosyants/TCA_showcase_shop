@@ -85,6 +85,12 @@ extension LoginOptionsView: View {
                         action: LoginOptionsReducer.Path.Action.phoneLogin,
                         then: PhoneLoginView.init(store:)
                     )
+                    
+                case .phoneOTP:
+                    CaseLet(/LoginOptionsReducer.Path.State.phoneOTP,
+                        action: LoginOptionsReducer.Path.Action.phoneOTP,
+                        then: PhoneOTPView.init(store:)
+                    )
                 }
             }
             .sheet(

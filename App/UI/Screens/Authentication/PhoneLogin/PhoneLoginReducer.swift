@@ -13,6 +13,7 @@ struct PhoneLoginReducer: Reducer {
     struct State: Equatable {
         @BindingState var number = ""
         var isContinueButtonDisabled = true
+        var isActivityIndicatorVisible = false
     }
     
     enum Action: Equatable {
@@ -21,8 +22,15 @@ struct PhoneLoginReducer: Reducer {
             case binding(BindingAction<State>)
         }
         
+        enum Delegate {
+            case didPhoneAuthenticated
+        }
+        
         case view(ViewAction)
+        case delegate(Delegate)
     }
+    
+    @Dependency(\.continuousClock) var clock
     
     var body: some ReducerOf<Self> {
         BindingReducer(action: /Action.view)
@@ -31,8 +39,12 @@ struct PhoneLoginReducer: Reducer {
             switch action {
             case let .view(viewAction):
                 switch viewAction {
-                case .onContinueButtonTap:                    
-                    return .none
+                case .onContinueButtonTap:
+                    state.isActivityIndicatorVisible = true
+                    return .run { send in
+                        try await self.clock.sleep(for: .milliseconds(4))
+                        await send(.delegate(.didPhoneAuthenticated))
+                    }
     
                 case .binding(\.$number):
                     state.isContinueButtonDisabled = !(state.number == Constant.validPhoneNumber)
@@ -41,6 +53,9 @@ struct PhoneLoginReducer: Reducer {
                 case .binding:
                     return .none
                 }
+                
+            case .delegate:
+                return .none
             }
         }
     }

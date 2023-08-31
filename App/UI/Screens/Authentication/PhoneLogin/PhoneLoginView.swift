@@ -19,6 +19,7 @@ struct PhoneLoginView {
     struct ViewState: Equatable {
         @BindingViewState var number: String
         var isContinueButtonDisabled: Bool
+        var isActivityIndicatorVisible: Bool        
     }
 }
 
@@ -52,9 +53,10 @@ extension PhoneLoginView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.black03, lineWidth: 0.5)
                     )
-                    .focused(self.$focused)
+                    .focused($focused)
                 
                 Button(Localization.Base.continue, action: {
+                    focused = false
                     viewStore.send(.onContinueButtonTap)
                 })
                 .buttonStyle(.cta)
@@ -62,6 +64,7 @@ extension PhoneLoginView: View {
                 
                 Spacer()
             }
+            .loader(isLoading: viewStore.isActivityIndicatorVisible)
             .padding(24)
             .navigationTitle("Login with phone")
         }
@@ -73,6 +76,7 @@ extension PhoneLoginView: View {
 extension BindingViewStore<PhoneLoginReducer.State> {
     var view: PhoneLoginView.ViewState {
         PhoneLoginView.ViewState(number: self.$number,
-                                 isContinueButtonDisabled: self.isContinueButtonDisabled)
+                                 isContinueButtonDisabled: self.isContinueButtonDisabled,
+                                 isActivityIndicatorVisible: self.isActivityIndicatorVisible)
     }
 }

@@ -56,12 +56,14 @@ struct LoginOptionsReducer: Reducer {
             case emailLogin(EmailLoginReducer.State = .init())
             case forgotPassword(ForgotPassword.State = .init())
             case phoneLogin(PhoneLoginReducer.State = .init())
+            case phoneOTP(PhoneOTPReducer.State = .init())
         }
         
         enum Action: Equatable {
             case emailLogin(EmailLoginReducer.Action)
             case forgotPassword(ForgotPassword.Action)
             case phoneLogin(PhoneLoginReducer.Action)
+            case phoneOTP(PhoneOTPReducer.Action)
         }
         
         var body: some Reducer<State, Action> {
@@ -75,6 +77,10 @@ struct LoginOptionsReducer: Reducer {
             
             Scope(state: /State.phoneLogin, action: /Action.phoneLogin) {
                 PhoneLoginReducer()
+            }
+            
+            Scope(state: /State.phoneOTP, action: /Action.phoneOTP) {
+                PhoneOTPReducer()
             }
         }
     }
@@ -110,6 +116,10 @@ struct LoginOptionsReducer: Reducer {
                     
                 case .element(id: _, action: .forgotPassword(.delegate(.didPasswordChanged))):
                     _ = state.path.popLast()
+                    return .none
+                    
+                case .element(id: _, action: .phoneLogin(.delegate(.didPhoneAuthenticated))):
+                    state.path.append(.phoneOTP(.init()))
                     return .none
 
                 default:

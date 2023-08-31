@@ -789,8 +789,8 @@
 		A990E53C2A41D1850004F4F9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				A94A872B2AA0B4F800168BC1 /* PhoneOTP */,
 				A96FEB642A9E13EC008DC5BC /* LoginOptions */,
+				A94A872B2AA0B4F800168BC1 /* PhoneOTP */,
 				A96FEB5F2A9E130A008DC5BC /* PhoneLogin */,
 				A91F587929E67C39008C0F35 /* Login */,
 				A9E9864B29E7DAA50028D5DB /* DevelopedBy */,

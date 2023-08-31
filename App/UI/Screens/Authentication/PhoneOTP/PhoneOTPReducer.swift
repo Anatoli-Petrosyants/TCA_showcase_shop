@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct PhoneOTPReducer: Reducer {
     
-    struct State: Equatable, Hashable {
+    struct State: Equatable {
         
     }
     
