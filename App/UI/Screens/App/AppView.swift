@@ -38,9 +38,9 @@ extension AppView: View {
                         .transition(.delayAndFade)
                 }
                 
-            case .loginOptions:
-                CaseLet(/AppReducer.State.loginOptions, action: AppReducer.Action.loginOptions) { store in
-                    LoginOptionsView(store: store)
+            case .join:
+                CaseLet(/AppReducer.State.join, action: AppReducer.Action.join) { store in
+                    JoinView(store: store)
                         .transition(.delayAndFade)
                 }
                 

@@ -24,20 +24,20 @@ extension Onboarding {
     static let pages: [Onboarding] = [
         Onboarding(id: 0,
                    lottie: "onboarding_1",
-                   title: "Get healthy and live peacfully",
-                   description: "Living a happier, more satisfied life is within reach.",
+                   title: "Lorem Ipsum is simply dummy text",
+                   description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                    tab: .page1),
         
         Onboarding(id: 1,
                    lottie: "onboarding_2",
-                   title: "Predict weather",
-                   description: "Predict weather trends and conditions with current solar activity.",
+                   title: "Lorem Ipsum is simply dummy text",
+                   description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
                    tab: .page2),
         
         Onboarding(id: 2,
                    lottie: "onboarding_3",
-                   title: "Get air quality information",
-                   description: "Immediate, accurate air quality data to help you create healthier.",
+                   title: "Lorem Ipsum is simply dummy text",
+                   description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                    tab: .page3),
     ]
 }

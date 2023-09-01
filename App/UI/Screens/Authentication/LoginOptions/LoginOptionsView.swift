@@ -2,7 +2,7 @@
 //  LoginOptionsView.swift
 //  Showcase
 //
-//  Created by Anatoli Petrosyants on 29.08.23.
+//  Created by Anatoli Petrosyants on 01.09.23.
 //
 
 import SwiftUI
@@ -23,80 +23,29 @@ extension LoginOptionsView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in            
-            NavigationStackStore(
-                self.store.scope(state: \.path, action: LoginOptionsReducer.Action.path)
-            ) {
-                VStack {
-                    Spacer()
-                    
-                    Image(systemName: "pencil.slash")
-                        .font(.system(size: 100))
-
-                    VStack(spacing: 6) {
-                        Text(Localization.LoginOptions.description)
-                            .multilineTextAlignment(.center)
-                            .font(.headline)
-                        
-                        Button("Anatoli Petrosyants", action: {
-                            viewStore.send(.view(.onDevelopedByTap))
-                        })
-                        .buttonStyle(.linkButton)
-                        .font(.headlineBold)
-                    }
-                    .padding(.top, 24)
-                    
-                    Spacer()
-                    
-                    Button(Localization.LoginOptions.loginEmail, action: {
-                        viewStore.send(.view(.onEmailLoginButtonTap))
-                    })
-                    .buttonStyle(.cta)
-                    
-                    Button(Localization.LoginOptions.loginPhone, action: {
-                        viewStore.send(.view(.onPhoneLoginButtonTap))
-                    })
-                    .buttonStyle(.cta)
-                    
-                    Text(viewStore.agreementsAttributedString)
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                        .padding([.top, .bottom], 24)
-                }
-                .padding(24)
-                .navigationTitle(Localization.LoginOptions.title)
-                .modifier(NavigationBarModifier())
-            } destination: {
-                switch $0 {
-                case .emailLogin:
-                    CaseLet(/LoginOptionsReducer.Path.State.emailLogin,
-                        action: LoginOptionsReducer.Path.Action.emailLogin,
-                        then: EmailLoginView.init(store:)
-                    )
-                    
-                case .forgotPassword:
-                    CaseLet(/LoginOptionsReducer.Path.State.forgotPassword,
-                        action: LoginOptionsReducer.Path.Action.forgotPassword,
-                        then: ForgotPasswordView.init(store:)
-                    )
-                    
-                case .phoneLogin:
-                    CaseLet(/LoginOptionsReducer.Path.State.phoneLogin,
-                        action: LoginOptionsReducer.Path.Action.phoneLogin,
-                        then: PhoneLoginView.init(store:)
-                    )
-                    
-                case .phoneOTP:
-                    CaseLet(/LoginOptionsReducer.Path.State.phoneOTP,
-                        action: LoginOptionsReducer.Path.Action.phoneOTP,
-                        then: PhoneOTPView.init(store:)
-                    )
-                }
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
+            VStack {
+                Button(Localization.LoginOptions.loginEmail, action: {
+                    viewStore.send(.view(.onEmailLoginButtonTap))
+                })
+                .buttonStyle(.cta)
+                .padding(.top, 6)
+                
+                Button(Localization.LoginOptions.loginPhone, action: {
+                    viewStore.send(.view(.onPhoneLoginButtonTap))
+                })
+                .buttonStyle(.cta)
+                
+                Text(viewStore.agreementsAttributedString)
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .padding([.top, .bottom], 24)
+                
+                Spacer()
             }
-            .sheet(
-                store: self.store.scope(state: \.$developedBy, action: LoginOptionsReducer.Action.developedBy),
-                content: DevelopedByView.init(store:)
-            )            
+            .padding(24)
+            .presentationDetents([.height(262)])
+            .presentationDragIndicator(.visible)
         }
     }
 }

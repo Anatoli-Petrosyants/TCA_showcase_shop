@@ -13,7 +13,7 @@ struct AppReducer: Reducer {
     enum State: Equatable {
         case loading(LoadingReducer.State)
         case help(HelpReducer.State)
-        case loginOptions(LoginOptionsReducer.State)
+        case join(JoinReducer.State)
         case main(MainReducer.State)
 
         public init() { self = .loading(LoadingReducer.State()) }
@@ -28,7 +28,7 @@ struct AppReducer: Reducer {
         case didChangeScenePhase(ScenePhase)
         case loading(LoadingReducer.Action)
         case help(HelpReducer.Action)
-        case loginOptions(LoginOptionsReducer.Action)
+        case join(JoinReducer.Action)
         case main(MainReducer.Action)
     }
     
@@ -55,7 +55,7 @@ struct AppReducer: Reducer {
                         if (self.userDefaults.token != nil) {
                             state = .main(MainReducer.State())
                         } else {
-                            state = .loginOptions(LoginOptionsReducer.State())
+                            state = .join(JoinReducer.State())
                         }
                     } else {
                         state = .help(HelpReducer.State())
@@ -66,12 +66,12 @@ struct AppReducer: Reducer {
             case let .help(action: .delegate(helpAction)):
                 switch helpAction {
                 case .didOnboardingFinished:
-                    state = .loginOptions(LoginOptionsReducer.State())
+                    state = .join(JoinReducer.State())
                     return .none
                 }
 
-            case let .loginOptions(action: .delegate(loginOptionsAction)):
-                switch loginOptionsAction {
+            case let .join(action: .delegate(joinAction)):
+                switch joinAction {
                 case .didAuthenticated:
                     Log.debug("didAuthenticated")
                     state = .main(MainReducer.State())
@@ -85,7 +85,7 @@ struct AppReducer: Reducer {
                     return .none
                 }
                 
-            case .loading, .help, .loginOptions, .main:
+            case .loading, .help, .join, .main:
                 return .none
             }
         }
@@ -95,8 +95,8 @@ struct AppReducer: Reducer {
         .ifCaseLet(/State.help, action: /Action.help) {
             HelpReducer()
         }
-        .ifCaseLet(/State.loginOptions, action: /Action.loginOptions) {
-            LoginOptionsReducer()
+        .ifCaseLet(/State.join, action: /Action.join) {
+            JoinReducer()
         }
         .ifCaseLet(/State.main, action: /Action.main) {
             MainReducer()

@@ -47,6 +47,8 @@
 		A94A87282AA0B4EE00168BC1 /* PhoneOTPReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */; };
 		A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */; };
 		A94A872D2AA0BAC100168BC1 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A872C2AA0BAC100168BC1 /* OTPView.swift */; };
+		A94A87342AA1FF7E00168BC1 /* LoginOptionsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87332AA1FF7E00168BC1 /* LoginOptionsReducer.swift */; };
+		A94A87362AA1FF8400168BC1 /* LoginOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87352AA1FF8400168BC1 /* LoginOptionsView.swift */; };
 		A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */; };
 		A94BF89A2A56A939006FCE43 /* NotificationCenter+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */; };
 		A94BF89D2A56B53D006FCE43 /* ProductAccountReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF89C2A56B53D006FCE43 /* ProductAccountReducer.swift */; };
@@ -67,8 +69,8 @@
 		A96FBD8229AF6BA300DB1D61 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FBD8129AF6BA300DB1D61 /* ActivityIndicator.swift */; };
 		A96FEB5C2A9E12FF008DC5BC /* PhoneLoginReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */; };
 		A96FEB5E2A9E1305008DC5BC /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */; };
-		A96FEB612A9E13E0008DC5BC /* LoginOptionsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB602A9E13E0008DC5BC /* LoginOptionsReducer.swift */; };
-		A96FEB632A9E13E7008DC5BC /* LoginOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB622A9E13E7008DC5BC /* LoginOptionsView.swift */; };
+		A96FEB612A9E13E0008DC5BC /* JoinReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB602A9E13E0008DC5BC /* JoinReducer.swift */; };
+		A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB622A9E13E7008DC5BC /* JoinView.swift */; };
 		A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */; };
 		A97572192A5FE21500C812D3 /* SearchFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */; };
 		A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */; };
@@ -228,6 +230,8 @@
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
 		A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPView.swift; sourceTree = "<group>"; };
 		A94A872C2AA0BAC100168BC1 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		A94A87332AA1FF7E00168BC1 /* LoginOptionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsReducer.swift; sourceTree = "<group>"; };
+		A94A87352AA1FF8400168BC1 /* LoginOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsView.swift; sourceTree = "<group>"; };
 		A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseClient+Bundle.swift"; sourceTree = "<group>"; };
 		A94BF8982A56A6D4006FCE43 /* Showcase_Database v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Showcase_Database v2.xcdatamodel"; sourceTree = "<group>"; };
 		A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Async.swift"; sourceTree = "<group>"; };
@@ -249,8 +253,8 @@
 		A96FBD8129AF6BA300DB1D61 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A96FEB5B2A9E12FF008DC5BC /* PhoneLoginReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginReducer.swift; sourceTree = "<group>"; };
 		A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
-		A96FEB602A9E13E0008DC5BC /* LoginOptionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsReducer.swift; sourceTree = "<group>"; };
-		A96FEB622A9E13E7008DC5BC /* LoginOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOptionsView.swift; sourceTree = "<group>"; };
+		A96FEB602A9E13E0008DC5BC /* JoinReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinReducer.swift; sourceTree = "<group>"; };
+		A96FEB622A9E13E7008DC5BC /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButtonReducer.swift; sourceTree = "<group>"; };
 		A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButton.swift; sourceTree = "<group>"; };
 		A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductItemReducer.swift; sourceTree = "<group>"; };
@@ -457,13 +461,13 @@
 			path = Products;
 			sourceTree = "<group>";
 		};
-		A91F587929E67C39008C0F35 /* Login */ = {
+		A91F587929E67C39008C0F35 /* EmailLogin */ = {
 			isa = PBXGroup;
 			children = (
 				A91F587529E67C2C008C0F35 /* EmailLoginReducer.swift */,
 				A91F587729E67C35008C0F35 /* EmailLoginView.swift */,
 			);
-			path = Login;
+			path = EmailLogin;
 			sourceTree = "<group>";
 		};
 		A9286A392A4DB10000ED4CB3 /* ProductLink */ = {
@@ -524,6 +528,15 @@
 				A94A872C2AA0BAC100168BC1 /* OTPView.swift */,
 			);
 			path = PhoneOTP;
+			sourceTree = "<group>";
+		};
+		A94A87372AA1FF8800168BC1 /* LoginOptions */ = {
+			isa = PBXGroup;
+			children = (
+				A94A87332AA1FF7E00168BC1 /* LoginOptionsReducer.swift */,
+				A94A87352AA1FF8400168BC1 /* LoginOptionsView.swift */,
+			);
+			path = LoginOptions;
 			sourceTree = "<group>";
 		};
 		A94BF8A02A56B547006FCE43 /* ProductAccount */ = {
@@ -612,13 +625,13 @@
 			path = PhoneLogin;
 			sourceTree = "<group>";
 		};
-		A96FEB642A9E13EC008DC5BC /* LoginOptions */ = {
+		A96FEB642A9E13EC008DC5BC /* Join */ = {
 			isa = PBXGroup;
 			children = (
-				A96FEB602A9E13E0008DC5BC /* LoginOptionsReducer.swift */,
-				A96FEB622A9E13E7008DC5BC /* LoginOptionsView.swift */,
+				A96FEB602A9E13E0008DC5BC /* JoinReducer.swift */,
+				A96FEB622A9E13E7008DC5BC /* JoinView.swift */,
 			);
-			path = LoginOptions;
+			path = Join;
 			sourceTree = "<group>";
 		};
 		A975721A2A5FE21A00C812D3 /* SearchFavoriteButton */ = {
@@ -792,10 +805,11 @@
 		A990E53C2A41D1850004F4F9 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				A96FEB642A9E13EC008DC5BC /* LoginOptions */,
+				A96FEB642A9E13EC008DC5BC /* Join */,
+				A94A87372AA1FF8800168BC1 /* LoginOptions */,
 				A94A872B2AA0B4F800168BC1 /* PhoneOTP */,
 				A96FEB5F2A9E130A008DC5BC /* PhoneLogin */,
-				A91F587929E67C39008C0F35 /* Login */,
+				A91F587929E67C39008C0F35 /* EmailLogin */,
 				A9E9864B29E7DAA50028D5DB /* DevelopedBy */,
 				A990E53D2A41D1A20004F4F9 /* ForgotPassword */,
 			);
@@ -1240,7 +1254,7 @@
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,
 				A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */,
-				A96FEB632A9E13E7008DC5BC /* LoginOptionsView.swift in Sources */,
+				A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */,
 				A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */,
 				A92A229E29F8EAAD0034469C /* MainView.swift in Sources */,
 				A96BF1542A6AAAA500B14247 /* SidebarLogic.swift in Sources */,
@@ -1265,6 +1279,7 @@
 				A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */,
 				A960AA1A2A496989005CE9F9 /* ProductItem.swift in Sources */,
 				A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */,
+				A94A87342AA1FF7E00168BC1 /* LoginOptionsReducer.swift in Sources */,
 				A9EEE2FD2A6FDB34007A6442 /* InAppMessages+Views.swift in Sources */,
 				A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */,
 				A9AFC16A2A5D878E003A95C3 /* SearchSegmentView.swift in Sources */,
@@ -1326,6 +1341,7 @@
 				A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */,
 				A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */,
 				A9947EEE2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift in Sources */,
+				A94A87362AA1FF8400168BC1 /* LoginOptionsView.swift in Sources */,
 				A95E758B29ACA1540081A170 /* Logger.swift in Sources */,
 				A91F587629E67C2C008C0F35 /* EmailLoginReducer.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
@@ -1341,7 +1357,7 @@
 				A990E54C2A431E240004F4F9 /* AuthenticationClient.swift in Sources */,
 				A97572202A6015AC00C812D3 /* SearchWishlistView.swift in Sources */,
 				A990E5352A41BE330004F4F9 /* ReachabilityManager.swift in Sources */,
-				A96FEB612A9E13E0008DC5BC /* LoginOptionsReducer.swift in Sources */,
+				A96FEB612A9E13E0008DC5BC /* JoinReducer.swift in Sources */,
 				A96BF14F2A6AA50C00B14247 /* Constants.swift in Sources */,
 				A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */,
 				A9947EE12A1794A700FC7FB8 /* ProductDetailsView.swift in Sources */,
