@@ -5,90 +5,85 @@
 //  Created by Anatoli Petrosyants on 31.08.23.
 //
 
-// https://github.com/mukeshsolanki/otpview-swiftui/blob/main/Sources/OTPView/OTPView.swift
+// https://github.com/kenagt/OtpView-SwiftUI/blob/master/Sources/OtpView-SwiftUI/OtpView_SwiftUI.swift
 
 import SwiftUI
+import Combine
 
-struct OTPView: View {
+public struct OTPView: View {
     
-    private var activeIndicatorColor: Color
-    private var inactiveIndicatorColor: Color
-    private let doSomething: (String) -> Void
-    private let length: Int
-    
-    @State private var otpText = ""
-    @FocusState private var isKeyboardShowing: Bool
-    
-    init(activeIndicatorColor:Color,inactiveIndicatorColor:Color, length:Int, doSomething: @escaping (String) -> Void) {
-        self.activeIndicatorColor = activeIndicatorColor
-        self.inactiveIndicatorColor = inactiveIndicatorColor
-        self.length = length
-        self.doSomething = doSomething
+    // MARK: Fields
+    enum FocusField: Hashable {
+        case field
     }
     
-    var body: some View {
-        HStack(spacing: 0){
-            ForEach(0...length-1, id: \.self) { index in
-                OTPTextBox(index)
-            }
-        }.background(content: {
-            TextField("", text: $otpText.limit(4))
+    @FocusState private var focusedField: FocusField?
+    @Binding var code: String
+    
+    // MARK: Constructor
+    public init(code: Binding<String>) {
+        self._code = code
+    }
+    
+    // MARK: Body
+    public var body: some View {
+        ZStack(alignment: .center) {
+            TextField("", text: $code)
+                .frame(width: 0, height: 0, alignment: .center)
+                .font(Font.system(size: 0))
+                .accentColor(.clear)
+                .foregroundColor(.clear)
+                .multilineTextAlignment(.center)
                 .keyboardType(.numberPad)
-                .textContentType(.oneTimeCode)
-                .frame(width: 1, height: 1)
-                .opacity(0.001)
-                .blendMode(.screen)
-                .focused($isKeyboardShowing)
-                .onChange(of: otpText) { newValue in
-                    if newValue.count == length {
-                        doSomething(newValue)
+                .onReceive(Just(code)) { _ in limitText(6) }
+                .focused($focusedField, equals: .field)
+                .task {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
+                    {
+                        self.focusedField = .field
                     }
                 }
-                .onAppear {
-                    DispatchQueue.main.async {
-                        isKeyboardShowing = true
+                .padding()
+            
+            HStack {
+                ForEach(0 ..< 6) { index in
+                    ZStack {
+                        Text(self.getPin(at: index))
+                            .font(.title)
+                            .foregroundColor(.black)
+                        
+                        Rectangle()
+                            .frame(height: 2)
+                            .padding(.vertical, 20)
+                            .foregroundColor(.black05)
+                            .padding(.trailing, 5)
+                            .padding(.leading, 5)
+                            .opacity(self.code.count <= index ? 1 : 0)
                     }
                 }
-        })
-        .contentShape(Rectangle())
-        .onTapGesture {
-            isKeyboardShowing = true
-        }
-    }
-    
-    @ViewBuilder
-    func OTPTextBox(_ index: Int) -> some View {
-        ZStack{
-            if otpText.count > index {
-                let startIndex = otpText.startIndex
-                let charIndex = otpText.index(startIndex, offsetBy: index)
-                let charToString = String(otpText[charIndex])
-                Text(charToString)
-                    .font(.title2)
-            } else {
-                Text(" ")
             }
         }
-        .frame(width: 45, height: 55)
-        .background {
-            let status = (isKeyboardShowing && otpText.count == index)
-            RoundedRectangle(cornerRadius: 6, style: .continuous)
-                .stroke(status ? activeIndicatorColor : inactiveIndicatorColor)
-                .animation(.easeInOut(duration: 0.2), value: status)
-
+        .frame(height: 50)
+    }
+    
+    // MARK: Heleprs
+    
+    private func getPin(at index: Int) -> String {
+        guard self.code.count > index else {
+            return ""
         }
-        .padding()
+        return self.code[index]
+    }
+    
+    private func limitText(_ upper: Int) {
+        if code.count > upper {
+            code = String(code.prefix(upper))
+        }
     }
 }
 
-@available(iOS 13.0, *)
-extension Binding where Value == String {
-    func limit(_ length: Int)->Self {
-        if self.wrappedValue.count > length {
-            DispatchQueue.main.async {
-                self.wrappedValue = String(self.wrappedValue.prefix(length))
-            }
-        }
-        return self
+extension String {
+    subscript(idx: Int) -> String {
+        String(self[index(startIndex, offsetBy: idx)])
     }
 }

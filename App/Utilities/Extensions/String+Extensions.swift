@@ -8,6 +8,10 @@
 import UIKit
 
 extension String {
+
+    func trimmed()-> String {
+        return trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     
     func replaceAllChars(with char: String) -> String {
         var result = ""
@@ -60,3 +64,4 @@ extension String {
         }))
     }
 }
+

@@ -35,5 +35,6 @@ struct Constant {
     "Looking forward to collaborating with you!"
     
     static let sideBarWidth = UIScreen.main.bounds.size.width * 0.7
-    static let validPhoneNumber = "(302) 666-6666"
+    static let validPhoneNumber = "(320) 666-6666"
+    static let validPhoneCode = "6666"
 }

@@ -73,6 +73,7 @@ struct AppReducer: Reducer {
             case let .loginOptions(action: .delegate(loginOptionsAction)):
                 switch loginOptionsAction {
                 case .didAuthenticated:
+                    Log.debug("didAuthenticated")
                     state = .main(MainReducer.State())
                     return .none
                 }
