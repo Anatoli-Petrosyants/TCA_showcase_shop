@@ -19,12 +19,34 @@ struct PhoneOTPView {
 extension PhoneOTPView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
+            .onAppear { self.store.send(.onViewAppear) }
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("PhoneOTP View")
+            VStack(spacing: 24) {
+                Text("We sent you code via SMS")
+                    .multilineTextAlignment(.center)
+                .font(.headline)
+                
+                OTPView(activeIndicatorColor: Color.black,
+                        inactiveIndicatorColor: Color.black03,
+                        length: 4,
+                        doSomething: { value in
+                    print("OTPView value \(value)")
+                })
+                
+                Button("Resend", action: {
+                    // viewStore.send(.onContinueButtonTap)
+                })
+                .buttonStyle(.linkButton)
+                
+                Spacer()
+            }
+            // .loader(isLoading: viewStore.isActivityIndicatorVisible)
+            .padding(24)
+            .navigationTitle("Enter Code")
         }
     }
 }

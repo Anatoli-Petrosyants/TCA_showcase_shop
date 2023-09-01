@@ -46,6 +46,7 @@
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
 		A94A87282AA0B4EE00168BC1 /* PhoneOTPReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */; };
 		A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */; };
+		A94A872D2AA0BAC100168BC1 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A872C2AA0BAC100168BC1 /* OTPView.swift */; };
 		A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */; };
 		A94BF89A2A56A939006FCE43 /* NotificationCenter+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */; };
 		A94BF89D2A56B53D006FCE43 /* ProductAccountReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94BF89C2A56B53D006FCE43 /* ProductAccountReducer.swift */; };
@@ -226,6 +227,7 @@
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
 		A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPView.swift; sourceTree = "<group>"; };
+		A94A872C2AA0BAC100168BC1 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		A94BF8962A5687A5006FCE43 /* DatabaseClient+Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseClient+Bundle.swift"; sourceTree = "<group>"; };
 		A94BF8982A56A6D4006FCE43 /* Showcase_Database v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Showcase_Database v2.xcdatamodel"; sourceTree = "<group>"; };
 		A94BF8992A56A939006FCE43 /* NotificationCenter+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Async.swift"; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 			children = (
 				A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */,
 				A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */,
+				A94A872C2AA0BAC100168BC1 /* OTPView.swift */,
 			);
 			path = PhoneOTP;
 			sourceTree = "<group>";
@@ -1351,6 +1354,7 @@
 				A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */,
 				A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */,
 				A960AA202A49A867005CE9F9 /* OnLoadModifier.swift in Sources */,
+				A94A872D2AA0BAC100168BC1 /* OTPView.swift in Sources */,
 				A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */,
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,
 				A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */,
