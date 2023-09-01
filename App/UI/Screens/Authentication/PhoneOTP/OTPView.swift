@@ -49,7 +49,7 @@ public struct OTPView: View {
                 ForEach(0 ..< 6) { index in
                     ZStack {
                         Text(self.getPin(at: index))
-                            .font(.title)
+                            .font(.largeTitle)
                             .foregroundColor(.black)
                         
                         Rectangle()

@@ -36,7 +36,7 @@ extension PhoneLoginView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             VStack(spacing: 24) {
-                Text("Chosse USA '(302) 666-6666' number to pass validation.")
+                Text("Chosse USA '(320) 666-6666' number to pass validation.")
                     .multilineTextAlignment(.center)
                     .font(.headline)
                 

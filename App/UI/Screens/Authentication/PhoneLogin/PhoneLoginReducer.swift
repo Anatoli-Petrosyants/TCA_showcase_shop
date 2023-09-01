@@ -42,7 +42,7 @@ struct PhoneLoginReducer: Reducer {
                 case .onContinueButtonTap:
                     state.isActivityIndicatorVisible = true
                     return .run { send in
-                        try await self.clock.sleep(for: .milliseconds(4))
+                        try await self.clock.sleep(for: .seconds(2))
                         await send(.delegate(.didPhoneAuthenticated))
                     }
     

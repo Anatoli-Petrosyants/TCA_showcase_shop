@@ -11,13 +11,18 @@ import ComposableArchitecture
 struct PhoneOTPReducer: Reducer {
     
     struct State: Equatable, Hashable {
-        
+        @BindingState var code = ""
+        var isActivityIndicatorVisible = false
     }
     
     enum Action: Equatable {
-        enum ViewAction: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onResendButtonTap
-            case onCodeChanged(String)
+            case binding(BindingAction<State>)
+        }
+        
+        enum InternalAction: Equatable {
+            case codeResponse
         }
 
         enum Delegate {
@@ -25,27 +30,36 @@ struct PhoneOTPReducer: Reducer {
         }
 
         case view(ViewAction)
+        case `internal`(InternalAction)
         case delegate(Delegate)
     }
     
+    @Dependency(\.continuousClock) var clock
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.databaseClient) var databaseClient
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        
         Reduce { state, action in
             switch action {
-            case let .view(.onCodeChanged(code)):
-                Log.debug("onCodeChanged code \(code)")
+            case .view(.onResendButtonTap):
                 return .none
                 
-            case .view(.onResendButtonTap):
-                // return .send(.delegate(.didCodeAuthenticated))
-                // state.isActivityIndicatorVisible = false
-                Log.debug("onResendButtonTap")                
+            case .view(.binding(\.$code)):
+                return .send(.internal(.codeResponse))
+                
+            case .view(.binding):
+                return .none
+                                
+            case .internal(.codeResponse):
+                guard state.code == Constant.validPhoneCode else { return .none }
+                state.isActivityIndicatorVisible = true
+                
                 return .concatenate(
                     .run { _ in
+                        try await self.clock.sleep(for: .seconds(2))
                         await self.userDefaults.setToken("otp_token")
-
                         let account = Account(token: "otp_token")
                         try await self.databaseClient.insert(account)
                     },
@@ -58,51 +72,3 @@ struct PhoneOTPReducer: Reducer {
         }
     }
 }
-
-//import SwiftUI
-//import ComposableArchitecture
-//
-//struct PhoneOTPReducer: Reducer {
-//
-//    struct State: Equatable {
-//        var isActivityIndicatorVisible = false
-//    }
-//
-//    enum Action: Equatable {
-//        enum ViewAction: Equatable {
-//            case onResendButtonTap
-//            case onCodeChanged(String)
-//        }
-//
-//        enum Delegate {
-//            case didCodeAuthenticated
-//        }
-//
-//        case view(ViewAction)
-//        case delegate(Delegate)
-//    }
-//
-//    var body: some ReducerOf<Self> {
-//        Reduce { state, action in
-//            switch action {
-//            case let .view(viewAction):
-//                switch viewAction {
-//                case let .onCodeChanged(code):
-//                    Log.debug("onCodeChanged \(code)")
-//                    return .none
-////                    return (code == Constant.validPhoneCode)
-////                    ? .send(.delegate(.didCodeAuthenticated))
-////                    : .none
-//
-//                case .onResendButtonTap:
-//                    Log.debug("onResendButtonTap")
-//                    state.isActivityIndicatorVisible = true
-//                    return .none
-//                }
-//
-//            case .delegate:
-//                return .none
-//            }
-//        }
-//    }
-//}

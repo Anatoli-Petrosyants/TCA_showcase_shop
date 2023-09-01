@@ -13,7 +13,10 @@ import ComposableArchitecture
 struct PhoneOTPView {
     let store: StoreOf<PhoneOTPReducer>
     
-    @State private var code: String = ""
+    struct ViewState: Equatable {
+        @BindingViewState var code: String
+        var isActivityIndicatorVisible: Bool
+    }
 }
 
 // MARK: - Views
@@ -25,77 +28,34 @@ extension PhoneOTPView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             VStack(spacing: 24) {
-                Text("We sent you code via SMS. For test proposal please enter 6666.")
+                Text("We sent you code via SMS. For test proposal please enter 999999.")
                     .multilineTextAlignment(.center)
                     .font(.headline)
+
+                OTPView(code: viewStore.$code)
+                    .padding([.leading, .trailing, .top], 40)
                 
-//                OTPView(activeIndicatorColor: Color.black,
-//                        inactiveIndicatorColor: Color.black03,
-//                        length: 4,
-//                        doSomething: { value in
-//                    viewStore.send(.view(.onCodeChanged(value)))
+//                Button("Resend", action: {
+//                    viewStore.send(.onResendButtonTap)
 //                })
-                
-                OTPView(code: $code)
-                    .padding(40)
-                
-                Button("Resend", action: {
-                    viewStore.send(.view(.onResendButtonTap))
-                })
-                .buttonStyle(.linkButton)
+//                .buttonStyle(.linkButton)
 
                 Spacer()
             }
+            .loader(isLoading: viewStore.isActivityIndicatorVisible)
             .padding(24)
             .navigationTitle("Enter Code")
         }
     }
 }
 
-//import SwiftUI
-//import ComposableArchitecture
-//
-//// MARK: - PhoneOTPView
-//
-//struct PhoneOTPView {
-//    let store: StoreOf<PhoneOTPReducer>
-//}
-//
-//// MARK: - Views
-//
-//extension PhoneOTPView: View {
-//
-//    var body: some View {
-//        content
-//    }
-//
-//    @ViewBuilder private var content: some View {
-//        WithViewStore(self.store, observe: { $0 }) { viewStore in
-//            VStack(spacing: 24) {
-//                Text("We sent you code via SMS")
-//                    .multilineTextAlignment(.center)
-//                .font(.headline)
-//
-//                OTPView(activeIndicatorColor: Color.black,
-//                        inactiveIndicatorColor: Color.black03,
-//                        length: 4,
-//                        doSomething: { value in
-//                    print("onCodeChanged value \(value)")
-////                    viewStore.send(.view(.onCodeChanged(value)))
-//                })
-//
-//                Button("Resend", action: {
-//                    viewStore.send(.view(.onResendButtonTap))
-//                })
-//                .buttonStyle(.linkButton)
-//
-//                Spacer()
-//            }
-//            // .loader(isLoading: viewStore.isActivityIndicatorVisible)
-//            .padding(24)
-//            .navigationTitle("Enter Code")
-//        }
-//    }
-//}
+// MARK: BindingViewStore
+
+extension BindingViewStore<PhoneOTPReducer.State> {
+    var view: PhoneOTPView.ViewState {
+        PhoneOTPView.ViewState(code: self.$code,
+                               isActivityIndicatorVisible: self.isActivityIndicatorVisible)
+    }
+}

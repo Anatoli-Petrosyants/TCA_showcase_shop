@@ -96,8 +96,7 @@ struct LoginOptionsReducer: Reducer {
                     return .none
                     
                 case .onPhoneLoginButtonTap:
-                    // state.path.append(.phoneLogin(.init()))
-                    state.path.append(.phoneOTP(.init()))
+                    state.path.append(.phoneLogin(.init()))                    
                     return .none
                     
                 case .onDevelopedByTap:

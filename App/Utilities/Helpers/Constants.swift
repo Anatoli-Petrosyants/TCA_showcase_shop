@@ -36,5 +36,5 @@ struct Constant {
     
     static let sideBarWidth = UIScreen.main.bounds.size.width * 0.7
     static let validPhoneNumber = "(320) 666-6666"
-    static let validPhoneCode = "6666"
+    static let validPhoneCode = "999999"
 }
