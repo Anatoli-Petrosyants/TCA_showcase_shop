@@ -9,9 +9,15 @@ import Foundation
 import Dependencies
 import UIKit
 
+/// A client for handling remote notifications, including registration and unregistration.
 struct RemoteNotificationsClient {
+    /// Checks if the app is registered for remote notifications.
     var isRegistered: @Sendable () async -> Bool
+    
+    /// Registers the app for remote notifications.
     var register: @Sendable () async -> Void
+    
+    /// Unregisters the app from receiving remote notifications.
     var unregister: @Sendable () async -> Void
 }
 
@@ -24,10 +30,12 @@ extension DependencyValues {
 }
 
 extension RemoteNotificationsClient: DependencyKey {
+    /// Provides a live implementation of RemoteNotificationsClient with appropriate functions.
     static let liveValue = Self(
         isRegistered: { await UIApplication.shared.isRegisteredForRemoteNotifications },
         register: { await UIApplication.shared.registerForRemoteNotifications() },
         unregister: { await UIApplication.shared.unregisterForRemoteNotifications() }
     )
 }
+
 
