@@ -19,12 +19,21 @@ struct PermissionsView {
 extension PermissionsView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
+            .onAppear { self.store.send(.view(.onViewAppear)) }
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Permissions")
+        WithViewStore(self.store, observe: { $0 }, send: { .view($0) }) { viewStore in
+            VStack {
+                Text("Permissions")
+                
+                Button("Notifications", action: {
+                    viewStore.send(.onNotificationsTap)
+                })
+                .buttonStyle(.cta)
+            }
+            .padding()
         }
     }
 }

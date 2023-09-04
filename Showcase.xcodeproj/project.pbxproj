@@ -138,6 +138,8 @@
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
 		A9ABFB362AA5BA5B0093EBF3 /* PermissionsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB352AA5BA5B0093EBF3 /* PermissionsReducer.swift */; };
 		A9ABFB382AA5BA610093EBF3 /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB372AA5BA610093EBF3 /* PermissionsView.swift */; };
+		A9ABFB3B2AA5FADC0093EBF3 /* UserNotificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */; };
+		A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */; };
 		A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */; };
 		A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -319,6 +321,8 @@
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9ABFB352AA5BA5B0093EBF3 /* PermissionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsReducer.swift; sourceTree = "<group>"; };
 		A9ABFB372AA5BA610093EBF3 /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
+		A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationClient.swift; sourceTree = "<group>"; };
+		A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationsClient.swift; sourceTree = "<group>"; };
 		A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementReducer.swift; sourceTree = "<group>"; };
 		A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementView.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
@@ -791,6 +795,8 @@
 				A901100F2A4434A800DD08C4 /* UserDefaultsClient.swift */,
 				A9B4D7A22A4AD30600B102FB /* FeedbackGeneratorClient.swift */,
 				A9AF26022A73E8A500631158 /* UIApplicationClient.swift */,
+				A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */,
+				A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1332,6 +1338,7 @@
 				A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */,
 				A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */,
 				A9AFC1722A5EA410003A95C3 /* SearchProductItemView.swift in Sources */,
+				A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */,
 				A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */,
 				A990E5292A41BB720004F4F9 /* Localization.swift in Sources */,
 				A9AF26092A77AC8A00631158 /* HealthKitView.swift in Sources */,
@@ -1382,6 +1389,7 @@
 				A9AFC1682A5D877A003A95C3 /* SearchSegmentReducer.swift in Sources */,
 				A9ABFB362AA5BA5B0093EBF3 /* PermissionsReducer.swift in Sources */,
 				A9EEE2F52A6E8C54007A6442 /* InAppMessagesView.swift in Sources */,
+				A9ABFB3B2AA5FADC0093EBF3 /* UserNotificationClient.swift in Sources */,
 				A9286A362A4DB0EE00ED4CB3 /* ProductLink.swift in Sources */,
 				A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */,
 				A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */,
