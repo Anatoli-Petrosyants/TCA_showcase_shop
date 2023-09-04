@@ -34,7 +34,7 @@ extension LoginOptionsView: View {
                 Button(Localization.LoginOptions.loginPhone, action: {
                     viewStore.send(.view(.onPhoneLoginButtonTap))
                 })
-                .buttonStyle(.cta)
+                .buttonStyle(.linkButton)
                 
                 Text(viewStore.agreementsAttributedString)
                     .multilineTextAlignment(.center)
