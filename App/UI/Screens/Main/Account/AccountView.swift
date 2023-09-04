@@ -43,6 +43,27 @@ extension AccountView: View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             NavigationStack {
                 Form {
+                    Section(header: Text(Localization.Account.sectionSettings)) {
+                        LabeledContent("Permissions") {
+                            Image(systemName: "chevron.right")
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewStore.send(.onPermissionsTap)
+                        }
+                        
+                        Toggle(Localization.Account.sectionSettingsEnableNotifications,
+                               isOn: viewStore.$enableNotifications)
+                        .tint(Color.blue)
+
+                        Text(Localization.Base.logout)
+                            .foregroundColor(.red)
+                            .onTapGesture {
+                                viewStore.send(.onLogoutTap)
+                            }
+                    }
+                    .listRowBackground(Color.gray)
+
                     Section(header: Text(Localization.Account.sectionPersonal)) {
                         TextField(Localization.Account.sectionPersonalFirstName,
                                   text: viewStore.$firstName)
@@ -62,21 +83,6 @@ extension AccountView: View {
                                selection: viewStore.$gender) {
                             ForEach(AccountReducer.Gender.allCases, id: \.self) { gender in
                                 Text(gender.rawValue.capitalized)
-                            }
-                        }
-                    }
-                    .listRowBackground(Color.gray)
-                    
-                    Section(header: Text(Localization.Account.sectionCity),
-                            footer: Text(Localization.Account.sectionCityFooter)) {
-                        VStack {
-                            HStack {
-                                Text(viewStore.city)
-                                Spacer()
-                                Button("Add") {
-                                    viewStore.send(.onAddressTap)
-                                }
-                                .tint(Color.blue)
                             }
                         }
                     }
@@ -103,6 +109,21 @@ extension AccountView: View {
                         .foregroundColor(Color.blue)
                     }
                     .listRowBackground(Color.gray)
+                    
+                    Section(header: Text(Localization.Account.sectionCity),
+                            footer: Text(Localization.Account.sectionCityFooter)) {
+                        VStack {
+                            HStack {
+                                Text(viewStore.city)
+                                Spacer()
+                                Button("Add") {
+                                    viewStore.send(.onAddressTap)
+                                }
+                                .tint(Color.blue)
+                            }
+                        }
+                    }
+                    .listRowBackground(Color.gray)
 
                     Section(header: Text(Localization.Account.sectionAdditional)) {
                         DisclosureGroup(Localization.Account.sectionAdditionalAboutMe) {
@@ -114,19 +135,6 @@ extension AccountView: View {
 
                         LabeledContent(Localization.Account.sectionAdditionalAppVersion,
                                        value: viewStore.appVersion)
-                    }
-                    .listRowBackground(Color.gray)
-
-                    Section(header: Text(Localization.Account.sectionSettings)) {
-                        Toggle(Localization.Account.sectionSettingsEnableNotifications,
-                               isOn: viewStore.$enableNotifications)
-                        .tint(Color.blue)
-
-                        Text(Localization.Base.logout)
-                            .foregroundColor(.red)
-                            .onTapGesture {
-                                viewStore.send(.onLogoutTap)
-                            }
                     }
                     .listRowBackground(Color.gray)
                 }
@@ -163,6 +171,11 @@ extension AccountView: View {
                 store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
                 content:
                     AccountCitiesView.init(store:)                        
+            )
+            .sheet(
+                store: self.store.scope(state: \.$permissions, action: AccountReducer.Action.permissions),
+                content:
+                    PermissionsView.init(store:)
             )
         }
     }

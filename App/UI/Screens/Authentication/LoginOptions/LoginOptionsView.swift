@@ -29,12 +29,17 @@ extension LoginOptionsView: View {
                     viewStore.send(.view(.onEmailLoginButtonTap))
                 })
                 .buttonStyle(.cta)
-                .padding(.top, 6)
+                .padding(.top, 16)
                 
-                Button(Localization.LoginOptions.loginPhone, action: {
+                Button {
                     viewStore.send(.view(.onPhoneLoginButtonTap))
-                })
-                .buttonStyle(.linkButton)
+                } label: {
+                    Text(Localization.LoginOptions.loginPhone)
+                        .font(.subheadlineBold)
+                        .foregroundColor(.black)
+                        .underline()
+                }
+                .padding(.top, 16)
                 
                 Text(viewStore.agreementsAttributedString)
                     .multilineTextAlignment(.center)

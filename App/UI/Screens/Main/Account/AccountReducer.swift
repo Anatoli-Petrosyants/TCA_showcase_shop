@@ -37,6 +37,7 @@ struct AccountReducer: Reducer {
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
         
         @PresentationState var address: AccountCitiesReducer.State?
+        @PresentationState var permissions: PermissionsReducer.State?
     }
     
     enum Action: Equatable {
@@ -44,6 +45,7 @@ struct AccountReducer: Reducer {
             case onViewLoad
             case onAddressTap
             case onSaveTap
+            case onPermissionsTap
             case onLogoutTap
             case binding(BindingAction<State>)
         }
@@ -66,6 +68,7 @@ struct AccountReducer: Reducer {
         case delegate(Delegate)
         case dialog(PresentationAction<Action.DialogAction>)
         case address(PresentationAction<AccountCitiesReducer.Action>)
+        case permissions(PresentationAction<PermissionsReducer.Action>)
     }
     
     @Dependency(\.userDefaults) var userDefaults
@@ -139,6 +142,10 @@ struct AccountReducer: Reducer {
                     state.address = AccountCitiesReducer.State()
                     return .none
                     
+                case .onPermissionsTap:
+                    state.permissions = PermissionsReducer.State()
+                    return .none
+                    
                 case .binding:
                     return .none
                 }
@@ -177,11 +184,12 @@ struct AccountReducer: Reducer {
                 state.city = city
                 return .none
                 
-            case .delegate, .dialog, .address:
+            case .delegate, .dialog, .address, .permissions:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
         .ifLet(\.$address, action: /Action.address) { AccountCitiesReducer() }
+        .ifLet(\.$permissions, action: /Action.permissions) { PermissionsReducer() }
     }    
 }

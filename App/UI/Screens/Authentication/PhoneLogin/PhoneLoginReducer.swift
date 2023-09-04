@@ -47,7 +47,7 @@ struct PhoneLoginReducer: Reducer {
                     }
     
                 case .binding(\.$number):
-                    state.isContinueButtonDisabled = !(state.number == Constant.validPhoneNumber)
+                    state.isContinueButtonDisabled = !(state.number.count > 0)
                     return .none
                     
                 case .binding:

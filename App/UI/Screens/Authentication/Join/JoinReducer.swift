@@ -128,9 +128,6 @@ struct JoinReducer: Reducer {
                     Log.info("delegate didDevelopedByViewed")
                     return .none
                 }
-                
-            case .developedBy(.dismiss):
-                return .none
                             
             case .developedBy, .loginOptions, .delegate:
                 return .none

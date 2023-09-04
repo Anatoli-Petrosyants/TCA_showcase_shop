@@ -136,6 +136,8 @@
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
 		A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */; };
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
+		A9ABFB362AA5BA5B0093EBF3 /* PermissionsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB352AA5BA5B0093EBF3 /* PermissionsReducer.swift */; };
+		A9ABFB382AA5BA610093EBF3 /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB372AA5BA610093EBF3 /* PermissionsView.swift */; };
 		A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */; };
 		A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -315,6 +317,8 @@
 		A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCitiesView.swift; sourceTree = "<group>"; };
 		A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
+		A9ABFB352AA5BA5B0093EBF3 /* PermissionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsReducer.swift; sourceTree = "<group>"; };
+		A9ABFB372AA5BA610093EBF3 /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
 		A9AF25FD2A73E54900631158 /* ProductAnnouncementReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementReducer.swift; sourceTree = "<group>"; };
 		A9AF25FF2A73E55100631158 /* ProductAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAnnouncementView.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
@@ -437,6 +441,7 @@
 			children = (
 				A90110172A4445F200DD08C4 /* AccountReducer.swift */,
 				A90110192A4445F900DD08C4 /* AccountView.swift */,
+				A9ABFB392AA5BA660093EBF3 /* Permissions */,
 				A9AA22C32A8F3E6B0073E070 /* AccountCities */,
 			);
 			path = Account;
@@ -905,6 +910,15 @@
 			path = AccountCities;
 			sourceTree = "<group>";
 		};
+		A9ABFB392AA5BA660093EBF3 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				A9ABFB352AA5BA5B0093EBF3 /* PermissionsReducer.swift */,
+				A9ABFB372AA5BA610093EBF3 /* PermissionsView.swift */,
+			);
+			path = Permissions;
+			sourceTree = "<group>";
+		};
 		A9AF26012A73E57000631158 /* ProductAnnouncement */ = {
 			isa = PBXGroup;
 			children = (
@@ -1286,6 +1300,7 @@
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
 				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
 				A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */,
+				A9ABFB382AA5BA610093EBF3 /* PermissionsView.swift in Sources */,
 				A9DED5B329AC93E6003EFA02 /* Colors.swift in Sources */,
 				A9BEED4129D2DAA2007ADC33 /* Color+Extensions.swift in Sources */,
 				A9A0CBA329D6F1B50048A649 /* Onboarding.swift in Sources */,
@@ -1365,6 +1380,7 @@
 				A96BF1472A6A6FFB00B14247 /* SidebarReducer.swift in Sources */,
 				A9FAD6BB2A541865003A46F5 /* CoreData+Attribute.swift in Sources */,
 				A9AFC1682A5D877A003A95C3 /* SearchSegmentReducer.swift in Sources */,
+				A9ABFB362AA5BA5B0093EBF3 /* PermissionsReducer.swift in Sources */,
 				A9EEE2F52A6E8C54007A6442 /* InAppMessagesView.swift in Sources */,
 				A9286A362A4DB0EE00ED4CB3 /* ProductLink.swift in Sources */,
 				A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */,
