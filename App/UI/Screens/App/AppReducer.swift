@@ -35,7 +35,8 @@ struct AppReducer: Reducer {
     }
     
     @Dependency(\.userDefaults) var userDefaults
-
+    @Dependency(\.userNotificationClient) var userNotificationClient
+    
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
@@ -44,6 +45,9 @@ struct AppReducer: Reducer {
                 switch appDelegateAction {
                 case .didFinishLaunching:
                     Log.initialize()
+                    
+                    let userNotificationsEventStream = self.userNotificationClient.delegate()
+                    
                     return .none
                     
                 case let .didRegisterForRemoteNotifications(.failure(error)):
