@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import SwiftUI
+import Foundation
 
 struct AppReducer: Reducer {
 
@@ -22,6 +23,7 @@ struct AppReducer: Reducer {
     enum Action: Equatable {
         enum AppDelegateAction: Equatable {
             case didFinishLaunching
+            case didRegisterForRemoteNotifications(TaskResult<Data>)
         }
         
         case appDelegate(AppDelegateAction)
@@ -42,6 +44,15 @@ struct AppReducer: Reducer {
                 switch appDelegateAction {
                 case .didFinishLaunching:
                     Log.initialize()
+                    return .none
+                    
+                case let .didRegisterForRemoteNotifications(.failure(error)):
+                    Log.info("didRegisterForRemoteNotifications failure: \(error)")
+                    return .none
+
+                case let .didRegisterForRemoteNotifications(.success(tokenData)):
+                    let token = tokenData.map { String(format: "%02.2hhx", $0) }.joined()
+                    Log.info("didRegisterForRemoteNotifications token: \(token)")
                     return .none
                 }
                 
