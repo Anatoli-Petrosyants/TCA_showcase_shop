@@ -25,11 +25,16 @@ extension PermissionsView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }, send: { .view($0) }) { viewStore in
-            VStack {
+            VStack(spacing: 24) {
                 Text("Permissions")
                 
-                Button("Notifications", action: {
+                Button("Check Status", action: {
                     viewStore.send(.onNotificationsTap)
+                })
+                .buttonStyle(.cta)
+                
+                Button("Request Permissions", action: {
+                    viewStore.send(.onRequestNotificationsPermissionTap)
                 })
                 .buttonStyle(.cta)
             }
