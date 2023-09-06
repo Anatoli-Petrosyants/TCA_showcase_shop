@@ -10,20 +10,34 @@ import UIKit
 import Dependencies
 import UserNotifications
 
+/// A client for managing user notifications including authorization, status, and delegate events.
 struct UserNotificationClient {
+    /// Requests authorization for specific notification options.
     var requestAuthorization: @Sendable (UNAuthorizationOptions) async throws -> Bool
+    
+    /// Retrieves the authorization status for notifications.
     var authorizationStatus: @Sendable () async -> UNAuthorizationStatus
+    
+    /// Adds a notification request.
     var add: @Sendable (UNNotificationRequest) async throws -> Void
+    
+    /// Removes delivered notifications with specified identifiers.
     var removeDeliveredNotificationsWithIdentifiers: @Sendable ([String]) async -> Void
+    
+    /// Removes pending notification requests with specified identifiers.
     var removePendingNotificationRequestsWithIdentifiers: @Sendable ([String]) async -> Void
+    
+    /// Provides an asynchronous stream of delegate events for user notifications.
     var delegate: @Sendable () -> AsyncStream<DelegateEvent>
     
+    /// Delegate events for user notifications.
     enum DelegateEvent: Equatable {
         case didReceiveResponse(Notification.Response, completionHandler: @Sendable () -> Void)
         case openSettingsForNotification(Notification?)
         case willPresentNotification(Notification, completionHandler: @Sendable (UNNotificationPresentationOptions) -> Void)
 
         static func == (lhs: Self, rhs: Self) -> Bool {
+            // Equatable implementation for DelegateEvent
             switch (lhs, rhs) {
             case let (.didReceiveResponse(lhs, _), .didReceiveResponse(rhs, _)):
                 return lhs == rhs
@@ -37,6 +51,7 @@ struct UserNotificationClient {
         }
     }
 
+    /// Represents a user notification with date and request information.
     struct Notification: Equatable {
         var date: Date
         var request: UNNotificationRequest
@@ -46,6 +61,7 @@ struct UserNotificationClient {
             self.request = request
         }
 
+        /// Represents a response to a user notification.
         struct Response: Equatable {
             var notification: Notification
 
@@ -74,7 +90,7 @@ extension UserNotificationClient: DependencyKey {
             await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
         },
         add: {
-            try await UNUserNotificationCenter.current().add($0)            
+            try await UNUserNotificationCenter.current().add($0)
         },
         removeDeliveredNotificationsWithIdentifiers: {
             UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: $0)
@@ -95,6 +111,9 @@ extension UserNotificationClient: DependencyKey {
 }
 
 extension UserNotificationClient.Notification {
+    /// Initializes a `UserNotificationClient.Notification` instance from a raw UNNotification.
+    ///
+    /// - Parameter rawValue: The raw UNNotification instance to convert.
     init(rawValue: UNNotification) {
         self.date = rawValue.date
         self.request = rawValue.request
@@ -102,41 +121,54 @@ extension UserNotificationClient.Notification {
 }
 
 extension UserNotificationClient.Notification.Response {
+    /// Initializes a `UserNotificationClient.Notification.Response` instance from a raw UNNotificationResponse.
+    ///
+    /// - Parameter rawValue: The raw UNNotificationResponse instance to convert.
     init(rawValue: UNNotificationResponse) {
         self.notification = .init(rawValue: rawValue.notification)
     }
 }
 
 extension UserNotificationClient {
+    /// A private class that acts as the delegate for user notification events.
     fileprivate class Delegate: NSObject, UNUserNotificationCenterDelegate {
         let continuation: AsyncStream<UserNotificationClient.DelegateEvent>.Continuation
 
+        /// Initializes the delegate with an asynchronous stream continuation.
         init(continuation: AsyncStream<UserNotificationClient.DelegateEvent>.Continuation) {
             self.continuation = continuation
         }
 
+        /// Called when a user notification response is received.
         func userNotificationCenter(
             _ center: UNUserNotificationCenter,
             didReceive response: UNNotificationResponse,
             withCompletionHandler completionHandler: @escaping () -> Void
         ) {
+            // Yield a `didReceiveResponse` event with the response and its completion handler.
             self.continuation.yield(.didReceiveResponse(.init(rawValue: response)) { completionHandler() })
         }
 
+        /// Called when the user opens settings for a notification.
         func userNotificationCenter(
             _ center: UNUserNotificationCenter,
             openSettingsFor notification: UNNotification?
         ) {
+            // Yield an `openSettingsForNotification` event with the notification (if available).
             self.continuation.yield(.openSettingsForNotification(notification.map(Notification.init(rawValue:))))
         }
 
+        /// Called when a notification is about to be presented.
         func userNotificationCenter(
             _ center: UNUserNotificationCenter,
             willPresent notification: UNNotification,
             withCompletionHandler completionHandler:
             @escaping (UNNotificationPresentationOptions) -> Void
         ) {
+            // Yield a `willPresentNotification` event with the notification and its presentation options completion handler.
             self.continuation.yield(.willPresentNotification(.init(rawValue: notification)) { completionHandler($0) })
         }
     }
 }
+
+
