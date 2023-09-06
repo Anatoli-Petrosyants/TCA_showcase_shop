@@ -10,29 +10,79 @@ import UIKit
 import Dependencies
 import UserNotifications
 
-struct APS: Codable {
-    let alert: APSAlert?
-    let badge: Int?
-    let sound: String?
-    let navigateTo: String?
+// Test push on iPhone 14 Pro Max
+// xcrun simctl push CD54D208-0E7F-4C30-8DD9-69020F239CC5 ap.Showcase test_push_notification.apns
+
+/// Represents a push notification received from APNs (Apple Push Notification Service).
+struct Push: Decodable {
+    let aps: APS // The payload of the push notification.
+
+    /// Represents the payload of the push notification.
+    struct APS: Decodable {
+        let alert: Alert         // The alert information to display.
+        let badge: Int?          // The badge number to display.
+        let sound: String?      // The name of the sound to play.
+        let navigateTo: String? // The destination to navigate to in response to the notification.
+
+        /// Represents the alert information to display in the push notification.
+        struct Alert: Decodable {
+            let title: String?    // The title of the notification.
+            let subtitle: String? // The subtitle of the notification.
+            let body: String?     // The main body text of the notification.
+        }
+    }
+
+    /// Initializes a `Push` instance by decoding a dictionary of notification data.
+    /// - Parameter userInfo: The dictionary containing notification data received from APNs.
+    /// - Throws: An error if decoding the notification data fails.
+    init(decoding userInfo: [AnyHashable : Any]) throws {
+        let data = try JSONSerialization.data(withJSONObject: userInfo, options: .prettyPrinted)
+        self = try JSONDecoder().decode(Push.self, from: data)
+    }
 }
 
-struct APSAlert: Codable {
-    let title: String?
-    let subtitle: String?
-    let body: String?
+/// Represents a push notification and its associated information.
+struct PushNotification: Equatable {
+    var date: Date              // The date when the push notification was received.
+    var request: UNNotificationRequest // The UNNotificationRequest associated with the notification.
+
+    /// Initializes a `PushNotification` with the given date and request.
+    /// - Parameters:
+    ///   - date: The date when the push notification was received.
+    ///   - request: The UNNotificationRequest associated with the notification.
+    init(date: Date, request: UNNotificationRequest) {
+        self.date = date
+        self.request = request
+    }
+
+    /// Represents a response to a push notification.
+    struct Response: Equatable {
+        var notification: PushNotification // The push notification associated with the response.
+
+        /// Initializes a `Response` with the given push notification.
+        /// - Parameter notification: The push notification associated with the response.
+        init(notification: PushNotification) {
+            self.notification = notification
+        }
+    }
 }
 
-struct PushNotification: Decodable {
-    let aps: APS
+extension PushNotification {
+    /// Initializes a `PushNotification` instance from a raw UNNotification.
+    ///
+    /// - Parameter rawValue: The raw UNNotification instance to convert.
+    init(rawValue: UNNotification) {
+        self.date = rawValue.date
+        self.request = rawValue.request
+    }
 }
 
-extension UNNotification {
-    
-    func pushNotification() -> PushNotification? {
-        let userInfo = request.content.userInfo
-        let decoder = DictionaryDecoder()
-        return try? decoder.decode(PushNotification.self, from: userInfo)
+extension PushNotification.Response {
+    /// Initializes a `UserNotificationClient.Notification.Response` instance from a raw UNNotificationResponse.
+    ///
+    /// - Parameter rawValue: The raw UNNotificationResponse instance to convert.
+    init(rawValue: UNNotificationResponse) {
+        self.notification = .init(rawValue: rawValue.notification)
     }
 }
 
@@ -58,41 +108,18 @@ struct UserNotificationClient {
     
     /// Delegate events for user notifications.
     enum DelegateEvent: Equatable {
-        case didReceiveResponse(Notification.Response, completionHandler: @Sendable () -> Void)
-        case openSettingsForNotification(Notification?)
-        case willPresentNotification(Notification, completionHandler: @Sendable (UNNotificationPresentationOptions) -> Void)
+        case didReceiveResponse(PushNotification, completionHandler: @Sendable () -> Void)
+        case willPresentNotification(PushNotification, completionHandler: @Sendable (UNNotificationPresentationOptions) -> Void)
 
         static func == (lhs: Self, rhs: Self) -> Bool {
             // Equatable implementation for DelegateEvent
             switch (lhs, rhs) {
             case let (.didReceiveResponse(lhs, _), .didReceiveResponse(rhs, _)):
                 return lhs == rhs
-            case let (.openSettingsForNotification(lhs), .openSettingsForNotification(rhs)):
-                return lhs == rhs
             case let (.willPresentNotification(lhs, _), .willPresentNotification(rhs, _)):
                 return lhs == rhs
             default:
                 return false
-            }
-        }
-    }
-
-    /// Represents a user notification with date and request information.
-    struct Notification: Equatable {
-        var date: Date
-        var request: UNNotificationRequest
-
-        init(date: Date, request: UNNotificationRequest) {
-            self.date = date
-            self.request = request
-        }
-
-        /// Represents a response to a user notification.
-        struct Response: Equatable {
-            var notification: Notification
-
-            init(notification: Notification) {
-                self.notification = notification
             }
         }
     }
@@ -136,25 +163,6 @@ extension UserNotificationClient: DependencyKey {
     )
 }
 
-extension UserNotificationClient.Notification {
-    /// Initializes a `UserNotificationClient.Notification` instance from a raw UNNotification.
-    ///
-    /// - Parameter rawValue: The raw UNNotification instance to convert.
-    init(rawValue: UNNotification) {
-        self.date = rawValue.date
-        self.request = rawValue.request
-    }
-}
-
-extension UserNotificationClient.Notification.Response {
-    /// Initializes a `UserNotificationClient.Notification.Response` instance from a raw UNNotificationResponse.
-    ///
-    /// - Parameter rawValue: The raw UNNotificationResponse instance to convert.
-    init(rawValue: UNNotificationResponse) {
-        self.notification = .init(rawValue: rawValue.notification)
-    }
-}
-
 extension UserNotificationClient {
     /// A private class that acts as the delegate for user notification events.
     fileprivate class Delegate: NSObject, UNUserNotificationCenterDelegate {
@@ -172,16 +180,13 @@ extension UserNotificationClient {
             withCompletionHandler completionHandler: @escaping () -> Void
         ) {
             // Yield a `didReceiveResponse` event with the response and its completion handler.
-            self.continuation.yield(.didReceiveResponse(.init(rawValue: response)) { completionHandler() })
-        }
-
-        /// Called when the user opens settings for a notification.
-        func userNotificationCenter(
-            _ center: UNUserNotificationCenter,
-            openSettingsFor notification: UNNotification?
-        ) {
-            // Yield an `openSettingsForNotification` event with the notification (if available).
-            self.continuation.yield(.openSettingsForNotification(notification.map(Notification.init(rawValue:))))
+            self.continuation.yield(
+                .didReceiveResponse(.init(rawValue: response.notification)) {
+                    DispatchQueue.main.async {
+                        completionHandler()
+                    }
+                }
+            )
         }
 
         /// Called when a notification is about to be presented.
@@ -192,10 +197,9 @@ extension UserNotificationClient {
             @escaping (UNNotificationPresentationOptions) -> Void
         ) {
             // Yield a `willPresentNotification` event with the notification and its presentation options completion handler.
-            self.continuation.yield(.willPresentNotification(.init(rawValue: notification)) { completionHandler($0) })
+            self.continuation.yield(
+                .willPresentNotification(.init(rawValue: notification)) { completionHandler($0) }
+            )
         }
     }
 }
-
-// Test push on iPhone 14 Pro Max
-// xcrun simctl push CD54D208-0E7F-4C30-8DD9-69020F239CC5 ap.Showcase test_push_notification.apns

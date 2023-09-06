@@ -59,7 +59,7 @@ struct AppReducer: Reducer {
                     }
                     
                 case let .didRegisterForRemoteNotifications(.failure(error)):
-                    Log.info("didRegisterForRemoteNotifications failure: \(error)")
+                    Log.error("didRegisterForRemoteNotifications failure: \(error)")
                     return .none
 
                 case let .didRegisterForRemoteNotifications(.success(tokenData)):
@@ -69,13 +69,20 @@ struct AppReducer: Reducer {
                     
                     
                 case let .userNotifications(.willPresentNotification(notification, completionHandler)):
-                    Log.debug("userNotifications willPresentNotification notification: \(notification)")
+                    Log.debug("userNotifications willPresentNotification notification: \(notification.request.content.userInfo)")
+                    if let push = try? Push(decoding: notification.request.content.userInfo) {
+                        Log.debug("userNotifications willPresentNotification push: \(push)")
+                    }
+                    
                     return .run { _ in
                         completionHandler(.banner)
                     }
                     
                 case let .userNotifications(.didReceiveResponse(response, completionHandler)):
-                    Log.debug("userNotifications didReceiveResponse response: \(response)")
+                    Log.debug("userNotifications didReceiveResponse response: \(response.request.content.userInfo))")
+                    if let push = try? Push(decoding: response.request.content.userInfo) {
+                        Log.debug("userNotifications didReceiveResponse push: \(push.aps.navigateTo!)")
+                    }
                     return .run { _ in
                         completionHandler()
                     }
