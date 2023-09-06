@@ -24,6 +24,7 @@ struct AppReducer: Reducer {
         enum AppDelegateAction: Equatable {
             case didFinishLaunching
             case didRegisterForRemoteNotifications(TaskResult<Data>)
+            case userNotifications(UserNotificationClient.DelegateEvent)
         }
         
         case appDelegate(AppDelegateAction)
@@ -47,8 +48,16 @@ struct AppReducer: Reducer {
                     Log.initialize()
                     
                     let userNotificationsEventStream = self.userNotificationClient.delegate()
-                    
-                    return .none
+                    return .run { send in
+                        await withThrowingTaskGroup(of: Void.self) { group in
+                            group.addTask {
+                                for await event in userNotificationsEventStream {
+                                    Log.debug("withThrowingTaskGroup userNotifications event: \(event)")
+                                    await send(.appDelegate(.userNotifications(event)))
+                                }
+                            }
+                        }
+                    }
                     
                 case let .didRegisterForRemoteNotifications(.failure(error)):
                     Log.info("didRegisterForRemoteNotifications failure: \(error)")
@@ -57,6 +66,15 @@ struct AppReducer: Reducer {
                 case let .didRegisterForRemoteNotifications(.success(tokenData)):
                     let token = tokenData.map { String(format: "%02.2hhx", $0) }.joined()
                     Log.info("didRegisterForRemoteNotifications token: \(token)")
+                    return .none
+                    
+                    
+                case let .userNotifications(.willPresentNotification(_, completionHandler)):
+                    return .run { _ in
+                        completionHandler(.banner)
+                    }
+
+                case .userNotifications:
                     return .none
                 }
                 

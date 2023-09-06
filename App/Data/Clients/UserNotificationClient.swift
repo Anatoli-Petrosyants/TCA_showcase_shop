@@ -13,6 +13,9 @@ import UserNotifications
 struct UserNotificationClient {
     var requestAuthorization: @Sendable (UNAuthorizationOptions) async throws -> Bool
     var authorizationStatus: @Sendable () async -> UNAuthorizationStatus
+    var add: @Sendable (UNNotificationRequest) async throws -> Void
+    var removeDeliveredNotificationsWithIdentifiers: @Sendable ([String]) async -> Void
+    var removePendingNotificationRequestsWithIdentifiers: @Sendable ([String]) async -> Void
     var delegate: @Sendable () -> AsyncStream<DelegateEvent>
     
     enum DelegateEvent: Equatable {
@@ -69,6 +72,15 @@ extension UserNotificationClient: DependencyKey {
         },
         authorizationStatus: {
             await UNUserNotificationCenter.current().notificationSettings().authorizationStatus
+        },
+        add: {
+            try await UNUserNotificationCenter.current().add($0)            
+        },
+        removeDeliveredNotificationsWithIdentifiers: {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: $0)
+        },
+        removePendingNotificationRequestsWithIdentifiers: {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: $0)
         },
         delegate: {
             AsyncStream { continuation in
