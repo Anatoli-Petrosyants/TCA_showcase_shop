@@ -71,6 +71,7 @@
 		A96FEB5E2A9E1305008DC5BC /* PhoneLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */; };
 		A96FEB612A9E13E0008DC5BC /* JoinReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB602A9E13E0008DC5BC /* JoinReducer.swift */; };
 		A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96FEB622A9E13E7008DC5BC /* JoinView.swift */; };
+		A971F15A2AA8707F00CCCC95 /* DictionaryDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A971F1592AA8707F00CCCC95 /* DictionaryDecoder.swift */; };
 		A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */; };
 		A97572192A5FE21500C812D3 /* SearchFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */; };
 		A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */; };
@@ -260,6 +261,7 @@
 		A96FEB5D2A9E1305008DC5BC /* PhoneLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLoginView.swift; sourceTree = "<group>"; };
 		A96FEB602A9E13E0008DC5BC /* JoinReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinReducer.swift; sourceTree = "<group>"; };
 		A96FEB622A9E13E7008DC5BC /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
+		A971F1592AA8707F00CCCC95 /* DictionaryDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDecoder.swift; sourceTree = "<group>"; };
 		A97572162A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButtonReducer.swift; sourceTree = "<group>"; };
 		A97572182A5FE21500C812D3 /* SearchFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteButton.swift; sourceTree = "<group>"; };
 		A975721B2A5FE59700C812D3 /* SearchProductItemReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductItemReducer.swift; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				A990E5342A41BE330004F4F9 /* ReachabilityManager.swift */,
 				A97C84272A7D00F8008054E0 /* Loadable.swift */,
 				A9ABFB3E2AA71A120093EBF3 /* NotificationHelper.swift */,
+				A971F1592AA8707F00CCCC95 /* DictionaryDecoder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1364,6 +1367,7 @@
 				A9E9864829E7DA9A0028D5DB /* DevelopedByReducer.swift in Sources */,
 				A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */,
 				A90072D02A73D4A5000551E1 /* CameraClient.swift in Sources */,
+				A971F15A2AA8707F00CCCC95 /* DictionaryDecoder.swift in Sources */,
 				A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */,
 				A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */,
 				A9947EEE2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift in Sources */,

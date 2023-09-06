@@ -52,7 +52,6 @@ struct AppReducer: Reducer {
                         await withThrowingTaskGroup(of: Void.self) { group in
                             group.addTask {
                                 for await event in userNotificationsEventStream {
-                                    Log.debug("withThrowingTaskGroup userNotifications event: \(event)")
                                     await send(.appDelegate(.userNotifications(event)))
                                 }
                             }
@@ -69,9 +68,16 @@ struct AppReducer: Reducer {
                     return .none
                     
                     
-                case let .userNotifications(.willPresentNotification(_, completionHandler)):
+                case let .userNotifications(.willPresentNotification(notification, completionHandler)):
+                    Log.debug("userNotifications willPresentNotification notification: \(notification)")
                     return .run { _ in
                         completionHandler(.banner)
+                    }
+                    
+                case let .userNotifications(.didReceiveResponse(response, completionHandler)):
+                    Log.debug("userNotifications didReceiveResponse response: \(response)")
+                    return .run { _ in
+                        completionHandler()
                     }
 
                 case .userNotifications:

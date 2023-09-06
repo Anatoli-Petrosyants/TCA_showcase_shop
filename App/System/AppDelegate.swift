@@ -40,3 +40,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         self.store.send(.appDelegate(.didRegisterForRemoteNotifications(.failure(error))))
     }
 }
+
+//// MARK: - UNUserNotificationCenterDelegate
+//func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//    PushNotificationManager.shared.userNotificationCenter(center, didReceive: response, withCompletionHandler: completionHandler)
+//    ChatAnalytics.shared.userNotificationCenter(center, didReceive: response, withCompletionHandler: completionHandler)
+//}
+//
+//func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//    PushNotificationManager.shared.userNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
+//}

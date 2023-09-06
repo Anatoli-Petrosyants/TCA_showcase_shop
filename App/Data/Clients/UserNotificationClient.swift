@@ -10,6 +10,32 @@ import UIKit
 import Dependencies
 import UserNotifications
 
+struct APS: Codable {
+    let alert: APSAlert?
+    let badge: Int?
+    let sound: String?
+    let navigateTo: String?
+}
+
+struct APSAlert: Codable {
+    let title: String?
+    let subtitle: String?
+    let body: String?
+}
+
+struct PushNotification: Decodable {
+    let aps: APS
+}
+
+extension UNNotification {
+    
+    func pushNotification() -> PushNotification? {
+        let userInfo = request.content.userInfo
+        let decoder = DictionaryDecoder()
+        return try? decoder.decode(PushNotification.self, from: userInfo)
+    }
+}
+
 /// A client for managing user notifications including authorization, status, and delegate events.
 struct UserNotificationClient {
     /// Requests authorization for specific notification options.
@@ -171,4 +197,5 @@ extension UserNotificationClient {
     }
 }
 
-
+// Test push on iPhone 14 Pro Max
+// xcrun simctl push CD54D208-0E7F-4C30-8DD9-69020F239CC5 ap.Showcase test_push_notification.apns
