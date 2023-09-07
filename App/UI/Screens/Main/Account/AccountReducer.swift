@@ -175,7 +175,7 @@ struct AccountReducer: Reducer {
                             state.lastName = data.lastName
                             state.birthDate = data.birthDate
                             state.gender = Gender(rawValue: data.gender) ?? .other
-                            state.city = data.city.isEmpty ? "Choose City" : data.city
+                            state.city = data.city
                             state.email = data.email
                             state.phone = data.phone
                             state.enableNotifications = data.enableNotifications

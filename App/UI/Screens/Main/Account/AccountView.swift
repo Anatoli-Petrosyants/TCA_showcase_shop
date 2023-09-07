@@ -92,15 +92,13 @@ extension AccountView: View {
                     
                     Section(header: Text(Localization.Account.sectionCity),
                             footer: Text(Localization.Account.sectionCityFooter)) {
-                        VStack {
-                            HStack {
-                                Text(viewStore.city)
-                                Spacer()
-                                Button("Add") {
-                                    viewStore.send(.onAddressTap)
-                                }
-                                .tint(Color.blue)
-                            }
+                        LabeledContent("Add City") {
+                            Text(viewStore.city)
+                            Image(systemName: "chevron.right")
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewStore.send(.onAddressTap)
                         }
                     }
                     .listRowBackground(Color.gray)
