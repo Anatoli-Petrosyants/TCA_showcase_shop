@@ -35,7 +35,7 @@ struct PhoneOTPReducer: Reducer {
     }
     
     @Dependency(\.continuousClock) var clock
-    @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.databaseClient) var databaseClient
     
     var body: some ReducerOf<Self> {
@@ -55,11 +55,10 @@ struct PhoneOTPReducer: Reducer {
             case .internal(.codeResponse):
                 guard state.code == Constant.validPhoneCode else { return .none }
                 state.isActivityIndicatorVisible = true
-                
+                userKeychainClient.storeToken("otp_token")
                 return .concatenate(
                     .run { _ in
                         try await self.clock.sleep(for: .seconds(2))
-                        await self.userDefaults.setToken("otp_token")
                         let account = Account(token: "otp_token")
                         try await self.databaseClient.insert(account)
                     },

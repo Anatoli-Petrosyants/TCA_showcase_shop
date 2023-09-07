@@ -167,7 +167,7 @@
 		A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */; };
 		A9CEE74C2A695A2E0062128B /* CountriesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEE74B2A695A2E0062128B /* CountriesReducer.swift */; };
 		A9CEE74E2A695A340062128B /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEE74D2A695A340062128B /* CountriesView.swift */; };
-		A9DD83EB2AA9BC5700FD9927 /* UserCredentialsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD83EA2AA9BC5700FD9927 /* UserCredentialsClient.swift */; };
+		A9DD83EB2AA9BC5700FD9927 /* UserKeychainClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD83EA2AA9BC5700FD9927 /* UserKeychainClient.swift */; };
 		A9DD83EE2AA9C21B00FD9927 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */; };
 		A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */; };
 		A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */; };
@@ -355,7 +355,7 @@
 		A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderModifier.swift; sourceTree = "<group>"; };
 		A9CEE74B2A695A2E0062128B /* CountriesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesReducer.swift; sourceTree = "<group>"; };
 		A9CEE74D2A695A340062128B /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
-		A9DD83EA2AA9BC5700FD9927 /* UserCredentialsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentialsClient.swift; sourceTree = "<group>"; };
+		A9DD83EA2AA9BC5700FD9927 /* UserKeychainClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeychainClient.swift; sourceTree = "<group>"; };
 		A9DED59E29AC7FA6003EFA02 /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -807,7 +807,7 @@
 				A9AF26022A73E8A500631158 /* UIApplicationClient.swift */,
 				A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */,
 				A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */,
-				A9DD83EA2AA9BC5700FD9927 /* UserCredentialsClient.swift */,
+				A9DD83EA2AA9BC5700FD9927 /* UserKeychainClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1357,7 +1357,7 @@
 				A990E5292A41BB720004F4F9 /* Localization.swift in Sources */,
 				A9AF26092A77AC8A00631158 /* HealthKitView.swift in Sources */,
 				A9FAD6C12A541990003A46F5 /* CoreData+SortDescriptors.swift in Sources */,
-				A9DD83EB2AA9BC5700FD9927 /* UserCredentialsClient.swift in Sources */,
+				A9DD83EB2AA9BC5700FD9927 /* UserKeychainClient.swift in Sources */,
 				A94BF89F2A56B543006FCE43 /* ProductAccountView.swift in Sources */,
 				A9AFC1602A5C08CC003A95C3 /* SearchView.swift in Sources */,
 				A975721E2A6015A700C812D3 /* SearchWishlistReducer.swift in Sources */,

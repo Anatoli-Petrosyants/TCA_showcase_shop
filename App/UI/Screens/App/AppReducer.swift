@@ -36,6 +36,7 @@ struct AppReducer: Reducer {
     }
     
     @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.userNotificationClient) var userNotificationClient
     
     var body: some Reducer<State, Action> {
@@ -98,7 +99,7 @@ struct AppReducer: Reducer {
                 switch loadingAction {
                 case .onLoaded:
                     if self.userDefaults.hasShownFirstLaunchOnboarding {
-                        if (self.userDefaults.token != nil) {
+                        if (self.userKeychainClient.retrieveToken() != nil) {
                             state = .main(MainReducer.State())
                         } else {
                             state = .join(JoinReducer.State())

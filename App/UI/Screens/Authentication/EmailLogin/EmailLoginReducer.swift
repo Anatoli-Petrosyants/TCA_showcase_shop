@@ -42,7 +42,7 @@ struct EmailLoginReducer: Reducer {
     private enum CancelID { case login }
     
     @Dependency(\.authenticationClient) var authenticationClient
-    @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.databaseClient) var databaseClient
 
     var body: some Reducer<State, Action> {
@@ -83,10 +83,9 @@ struct EmailLoginReducer: Reducer {
                 case let .loginResponse(.success(data)):
                     Log.info("loginResponse: \(data)")
                     state.isActivityIndicatorVisible = false
+                    userKeychainClient.storeToken(data.token)
                     return .concatenate(
                         .run { _ in
-                            await self.userDefaults.setToken(data.token)
-
                             let account = Account(token: data.token)
                             try await self.databaseClient.insert(account)
                         },
