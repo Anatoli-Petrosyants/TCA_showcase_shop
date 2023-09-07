@@ -167,6 +167,8 @@
 		A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */; };
 		A9CEE74C2A695A2E0062128B /* CountriesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEE74B2A695A2E0062128B /* CountriesReducer.swift */; };
 		A9CEE74E2A695A340062128B /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CEE74D2A695A340062128B /* CountriesView.swift */; };
+		A9DD83EB2AA9BC5700FD9927 /* UserCredentialsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DD83EA2AA9BC5700FD9927 /* UserCredentialsClient.swift */; };
+		A9DD83EE2AA9C21B00FD9927 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */; };
 		A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */; };
 		A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */; };
 		A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5B029AC93BE003EFA02 /* Fonts.swift */; };
@@ -353,6 +355,7 @@
 		A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderModifier.swift; sourceTree = "<group>"; };
 		A9CEE74B2A695A2E0062128B /* CountriesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesReducer.swift; sourceTree = "<group>"; };
 		A9CEE74D2A695A340062128B /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
+		A9DD83EA2AA9BC5700FD9927 /* UserCredentialsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentialsClient.swift; sourceTree = "<group>"; };
 		A9DED59E29AC7FA6003EFA02 /* Showcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Showcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DED5A529AC7FA7003EFA02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9DED5A829AC7FA7003EFA02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -402,6 +405,7 @@
 				A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */,
 				A990E52E2A41BC7D0004F4F9 /* Reachability in Frameworks */,
 				A9A0CBB029D6F3180048A649 /* Lottie in Frameworks */,
+				A9DD83EE2AA9C21B00FD9927 /* SwiftKeychainWrapper in Frameworks */,
 				A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -803,6 +807,7 @@
 				A9AF26022A73E8A500631158 /* UIApplicationClient.swift */,
 				A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */,
 				A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */,
+				A9DD83EA2AA9BC5700FD9927 /* UserCredentialsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1176,6 +1181,7 @@
 				A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */,
 				A94A63C02A93949C0068903C /* CodableFirebase */,
 				A98DD1602A9F545100B39EDC /* iPhoneNumberField */,
+				A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Showcase.app */;
@@ -1219,6 +1225,7 @@
 				A9AA22C62A8F96900073E070 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */,
 				A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				A9DD83EC2AA9C21B00FD9927 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -1350,6 +1357,7 @@
 				A990E5292A41BB720004F4F9 /* Localization.swift in Sources */,
 				A9AF26092A77AC8A00631158 /* HealthKitView.swift in Sources */,
 				A9FAD6C12A541990003A46F5 /* CoreData+SortDescriptors.swift in Sources */,
+				A9DD83EB2AA9BC5700FD9927 /* UserCredentialsClient.swift in Sources */,
 				A94BF89F2A56B543006FCE43 /* ProductAccountView.swift in Sources */,
 				A9AFC1602A5C08CC003A95C3 /* SearchView.swift in Sources */,
 				A975721E2A6015A700C812D3 /* SearchWishlistReducer.swift in Sources */,
@@ -1835,6 +1843,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A9DD83EC2AA9C21B00FD9927 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1887,6 +1903,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A9BEED3629D1B4EF007ADC33 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9DD83EC2AA9C21B00FD9927 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 
