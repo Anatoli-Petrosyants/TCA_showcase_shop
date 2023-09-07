@@ -19,16 +19,17 @@ struct AccountReducer: Reducer {
     
     struct State: Equatable {
         var accountId: UUID? = nil
-        var appVersion = "\(Configuration.current.appVersion)"
-        var supportedVersion = "16.0"
+        let appVersion = "\(Configuration.current.appVersion)"
+        let supportedVersion = "16.0"
+        var notificationsPermissionStatus = ""
         
         @BindingState var firstName = ""
         @BindingState var lastName = ""
         @BindingState var birthDate = Date()
         @BindingState var gender = Gender.male
-        @BindingState var enableNotifications = true
+        @BindingState var enableNotifications = false
         
-        var city = "Choose City"
+        var city = ""
         
         @BindingState var email = ""
         @BindingState var phone = ""
@@ -56,6 +57,7 @@ struct AccountReducer: Reducer {
         
         enum InternalAction: Equatable {
             case accountResponse(TaskResult<Account?>)
+            case notificationPermissionsStatusResponse(UNAuthorizationStatus)
             case confirmLogout
         }
         
@@ -73,6 +75,7 @@ struct AccountReducer: Reducer {
     
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.databaseClient) var databaseClient
+    @Dependency(\.userNotificationClient.authorizationStatus) var authorizationStatus
     
     var body: some Reducer<State, Action> {
         BindingReducer(action: /Action.view)
@@ -86,18 +89,24 @@ struct AccountReducer: Reducer {
                     let request = Account.all
                         .where(\Account.token == self.userDefaults.token!)
                         .limit(1)
-
-                    return .run { send in
-                        await send(
-                            .internal(
-                                .accountResponse(
-                                    await TaskResult {
-                                        try await self.databaseClient.fetch(request).first
-                                    }
+                    
+                    return .concatenate(
+                        .run { send in
+                            let status = await self.authorizationStatus()
+                            await send(.internal(.notificationPermissionsStatusResponse(status)))
+                        },
+                        .run { send in
+                            await send(
+                                .internal(
+                                    .accountResponse(
+                                        await TaskResult {
+                                            try await self.databaseClient.fetch(request).first
+                                        }
+                                    )
                                 )
                             )
-                        )
-                    }
+                        }
+                    )
                     
                 case .onSaveTap:
                     state.toastMessage = Localization.Base.successfullySaved
@@ -160,19 +169,25 @@ struct AccountReducer: Reducer {
                         }
                         
                     case let .accountResponse(.success(data)):
-                        state.accountId = data?.id
-                        state.firstName = data?.firstName ?? ""
-                        state.lastName = data?.lastName ?? ""
-                        state.birthDate = data?.birthDate ?? Date()
-                        state.gender = Gender(rawValue: data?.gender ?? "") ?? .other
-                        state.city = data?.city ?? ""
-                        state.email = data?.email ?? ""
-                        state.phone = data?.phone ?? ""
-                        state.enableNotifications = data?.enableNotifications ?? false
+                        if let data = data {
+                            state.accountId = data.id
+                            state.firstName = data.firstName
+                            state.lastName = data.lastName
+                            state.birthDate = data.birthDate
+                            state.gender = Gender(rawValue: data.gender) ?? .other
+                            state.city = data.city.isEmpty ? "Choose City" : data.city
+                            state.email = data.email
+                            state.phone = data.phone
+                            state.enableNotifications = data.enableNotifications
+                        }
                         return .none
 
                     case let .accountResponse(.failure(error)):
                         Log.debug("account failure: \(error.localizedDescription)")
+                        return .none
+                        
+                    case let .notificationPermissionsStatusResponse(status):
+                        state.notificationsPermissionStatus = status.description
                         return .none
                     }
                 
@@ -192,4 +207,24 @@ struct AccountReducer: Reducer {
         .ifLet(\.$address, action: /Action.address) { AccountCitiesReducer() }
         .ifLet(\.$permissions, action: /Action.permissions) { PermissionsReducer() }
     }    
+}
+
+
+import UserNotifications
+
+extension UNAuthorizationStatus {
+    var description: String {
+        switch self {
+        case .notDetermined:
+            return "Not Determined"
+        case .denied:
+            return "Denied"
+        case .authorized:
+            return "Authorized"
+        case .provisional:
+            return "Provisional"
+        default:
+            return "Unknown"
+        }
+    }
 }

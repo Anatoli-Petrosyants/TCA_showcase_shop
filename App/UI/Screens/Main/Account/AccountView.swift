@@ -27,6 +27,7 @@ struct AccountView {
         var city: String
         var appVersion: String
         var supportedVersion: String
+        var notificationsPermissionStatus: String
     }
 }
 
@@ -43,27 +44,6 @@ extension AccountView: View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             NavigationStack {
                 Form {
-                    Section(header: Text(Localization.Account.sectionSettings)) {
-                        LabeledContent("Permissions") {
-                            Image(systemName: "chevron.right")
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            viewStore.send(.onPermissionsTap)
-                        }
-                        
-                        Toggle(Localization.Account.sectionSettingsEnableNotifications,
-                               isOn: viewStore.$enableNotifications)
-                        .tint(Color.blue)
-
-                        Text(Localization.Base.logout)
-                            .foregroundColor(.red)
-                            .onTapGesture {
-                                viewStore.send(.onLogoutTap)
-                            }
-                    }
-                    .listRowBackground(Color.gray)
-
                     Section(header: Text(Localization.Account.sectionPersonal)) {
                         TextField(Localization.Account.sectionPersonalFirstName,
                                   text: viewStore.$firstName)
@@ -137,6 +117,28 @@ extension AccountView: View {
                                        value: viewStore.appVersion)
                     }
                     .listRowBackground(Color.gray)
+                    
+                    Section(header: Text(Localization.Account.sectionSettings)) {
+                        LabeledContent("Permissions") {
+                            Text(viewStore.notificationsPermissionStatus)
+                            Image(systemName: "chevron.right")
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewStore.send(.onPermissionsTap)
+                        }
+                        
+                        Toggle(Localization.Account.sectionSettingsEnableNotifications,
+                               isOn: viewStore.$enableNotifications)
+                        .tint(Color.blue)
+
+                        Text(Localization.Base.logout)
+                            .foregroundColor(.red)
+                            .onTapGesture {
+                                viewStore.send(.onLogoutTap)
+                            }
+                    }
+                    .listRowBackground(Color.gray)
                 }
                 .submitLabel(.done)
                 .scrollContentBackground(.hidden)
@@ -195,6 +197,7 @@ extension BindingViewStore<AccountReducer.State> {
                               toastMessage: self.$toastMessage,
                               city: self.city,
                               appVersion: self.appVersion,
-                              supportedVersion: self.supportedVersion)
+                              supportedVersion: self.supportedVersion,
+                              notificationsPermissionStatus: self.notificationsPermissionStatus)
     }
 }
