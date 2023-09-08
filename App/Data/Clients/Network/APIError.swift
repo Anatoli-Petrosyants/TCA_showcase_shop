@@ -37,15 +37,15 @@ extension APIError: LocalizedError {
                              NSURLErrorNetworkConnectionLost:
                             return error.localizedDescription
                         default:
-                            return NSLocalizedString("error.unknown", comment: "")
+                            return "Error unknown."
                         }
                     default:
-                        return NSLocalizedString("error.unknown", comment: "")
+                        return "Error unknown."
                     }
                 }
-                return NSLocalizedString("error.unknown", comment: "")
+                return "Error unknown."
             default:
-                return NSLocalizedString("error.unknown", comment: "")
+                return "Error unknown."
             }
         }
     }

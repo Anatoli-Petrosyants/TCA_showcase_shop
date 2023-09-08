@@ -47,6 +47,7 @@
 		A93B20042AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */; };
 		A93B20062AAAF10C00E05DD1 /* MoyaProvider+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */; };
 		A93B20082AAAF22300E05DD1 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20072AAAF22300E05DD1 /* APIError.swift */; };
+		A93B200A2AAAF5A900E05DD1 /* MoyaError+Extenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20092AAAF5A900E05DD1 /* MoyaError+Extenstions.swift */; };
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
 		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
@@ -244,6 +245,7 @@
 		A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extensions.swift"; sourceTree = "<group>"; };
 		A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Async.swift"; sourceTree = "<group>"; };
 		A93B20072AAAF22300E05DD1 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		A93B20092AAAF5A900E05DD1 /* MoyaError+Extenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaError+Extenstions.swift"; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
@@ -557,6 +559,7 @@
 				A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */,
 				A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */,
 				A93B20072AAAF22300E05DD1 /* APIError.swift */,
+				A93B20092AAAF5A900E05DD1 /* MoyaError+Extenstions.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1357,6 +1360,7 @@
 				A9FAD6BF2A541981003A46F5 /* CoreData+Request.swift in Sources */,
 				A990E50C2A419A7C0004F4F9 /* NavigationBarModifier.swift in Sources */,
 				A9AFC16F2A5D9631003A95C3 /* SearchInputView.swift in Sources */,
+				A93B200A2AAAF5A900E05DD1 /* MoyaError+Extenstions.swift in Sources */,
 				A9A459892A977C6000594963 /* VideoPlayerReducer.swift in Sources */,
 				A9B4D7AA2A4C51D600B102FB /* UsersClient.swift in Sources */,
 				A9CEE74C2A695A2E0062128B /* CountriesReducer.swift in Sources */,
