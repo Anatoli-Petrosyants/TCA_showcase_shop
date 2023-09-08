@@ -43,6 +43,9 @@
 		A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDB129E5414E00AF73E3 /* LoadingView.swift */; };
 		A93B1FF62AA9E92A00E05DD1 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A93B1FF52AA9E92A00E05DD1 /* Moya */; };
 		A93B20002AAAF06B00E05DD1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */; };
+		A93B20022AAAF0AD00E05DD1 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20012AAAF0AD00E05DD1 /* APIProvider.swift */; };
+		A93B20042AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */; };
+		A93B20062AAAF10C00E05DD1 /* MoyaProvider+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */; };
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
 		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
@@ -236,6 +239,9 @@
 		A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReducer.swift; sourceTree = "<group>"; };
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = ../../../../../Network/Endpoint.swift; sourceTree = "<group>"; };
+		A93B20012AAAF0AD00E05DD1 /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIProvider.swift; path = ../../../../../Network/APIProvider.swift; sourceTree = "<group>"; };
+		A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extensions.swift"; sourceTree = "<group>"; };
+		A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Async.swift"; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
@@ -544,7 +550,10 @@
 		A93B1FEF2AA9E57A00E05DD1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A93B20012AAAF0AD00E05DD1 /* APIProvider.swift */,
+				A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */,
 				A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */,
+				A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1289,6 +1298,7 @@
 				A9AA22C02A8F3E5F0073E070 /* AccountCitiesReducer.swift in Sources */,
 				A9B4D7A32A4AD30600B102FB /* FeedbackGeneratorClient.swift in Sources */,
 				A90072CC2A73D48E000551E1 /* Camera.swift in Sources */,
+				A93B20022AAAF0AD00E05DD1 /* APIProvider.swift in Sources */,
 				A9947EE52A179CEB00FC7FB8 /* ActivityIndicatorViewRepresentable.swift in Sources */,
 				A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */,
 				A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */,
@@ -1416,6 +1426,7 @@
 				A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */,
 				A9947EE12A1794A700FC7FB8 /* ProductDetailsView.swift in Sources */,
 				A90072D32A73DBFF000551E1 /* CameraReducer.swift in Sources */,
+				A93B20062AAAF10C00E05DD1 /* MoyaProvider+Async.swift in Sources */,
 				A96BF1472A6A6FFB00B14247 /* SidebarReducer.swift in Sources */,
 				A9FAD6BB2A541865003A46F5 /* CoreData+Attribute.swift in Sources */,
 				A9AFC1682A5D877A003A95C3 /* SearchSegmentReducer.swift in Sources */,
@@ -1430,6 +1441,7 @@
 				A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */,
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,
 				A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */,
+				A93B20042AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift in Sources */,
 				A990E5482A42D9D40004F4F9 /* Localization+DevelopedBy.swift in Sources */,
 				A90072CE2A73D498000551E1 /* CameraSetting.swift in Sources */,
 				A990E5232A41BA3E0004F4F9 /* Bundle+Extensions.swift in Sources */,
