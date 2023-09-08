@@ -5,6 +5,8 @@
 //  Created by Anatoli Petrosyants on 08.09.23.
 //
 
+// https://github.com/Moya/Moya/issues/2265
+
 import Foundation
 import Moya
 

@@ -46,6 +46,7 @@
 		A93B20022AAAF0AD00E05DD1 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20012AAAF0AD00E05DD1 /* APIProvider.swift */; };
 		A93B20042AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */; };
 		A93B20062AAAF10C00E05DD1 /* MoyaProvider+Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */; };
+		A93B20082AAAF22300E05DD1 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B20072AAAF22300E05DD1 /* APIError.swift */; };
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
 		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
@@ -242,6 +243,7 @@
 		A93B20012AAAF0AD00E05DD1 /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIProvider.swift; path = ../../../../../Network/APIProvider.swift; sourceTree = "<group>"; };
 		A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extensions.swift"; sourceTree = "<group>"; };
 		A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Async.swift"; sourceTree = "<group>"; };
+		A93B20072AAAF22300E05DD1 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 				A93B20052AAAF10C00E05DD1 /* MoyaProvider+Async.swift */,
 				A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */,
 				A93B20032AAAF0DA00E05DD1 /* JSONDecoder+Extensions.swift */,
+				A93B20072AAAF22300E05DD1 /* APIError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 				A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */,
 				A9EEE2F32A6E8C4D007A6442 /* InAppMessagesReducer.swift in Sources */,
 				A93B20002AAAF06B00E05DD1 /* Endpoint.swift in Sources */,
+				A93B20082AAAF22300E05DD1 /* APIError.swift in Sources */,
 				A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */,
 				A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */,
 				A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */,
