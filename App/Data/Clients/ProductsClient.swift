@@ -8,6 +8,7 @@
 import Foundation
 import Dependencies
 import Get
+import Moya
 
 /// A structure representing the products request parameters.
 struct ProductsRequest: Encodable {
@@ -53,12 +54,13 @@ extension DependencyValues {
 extension ProductsClient: DependencyKey {
     /// A live implementation of ProductsClient.
     static let liveValue: Self = {
+        let provider = MoyaProvider<Endpoint>()
+        
         return Self(
             products: {
-                var request = Request(path: "/products",
-                                      method: .get)
-                    .withResponse([ProductDTO].self)
-                return try await apiClient.send(request).value.compactMap { $0.toEntity() }
+                return try await provider.async.request(.products)
+                    .map([ProductDTO].self)
+                    .compactMap { $0.toEntity() }
             },
             productsWithCategory: { data in
                 let category = data.category.isEmpty ? "" : "/category/\(data.category)"

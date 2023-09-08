@@ -41,6 +41,8 @@
 		A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */; };
 		A930CDB029E5414800AF73E3 /* LoadingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */; };
 		A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDB129E5414E00AF73E3 /* LoadingView.swift */; };
+		A93B1FF62AA9E92A00E05DD1 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A93B1FF52AA9E92A00E05DD1 /* Moya */; };
+		A93B20002AAAF06B00E05DD1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */; };
 		A93FDAD62A861ECE0094C1F5 /* Localization+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */; };
 		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
@@ -233,6 +235,7 @@
 		A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReducer.swift; sourceTree = "<group>"; };
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Endpoint.swift; path = ../../../../../Network/Endpoint.swift; sourceTree = "<group>"; };
 		A93FDAD52A861ECE0094C1F5 /* Localization+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Account.swift"; sourceTree = "<group>"; };
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPReducer.swift; sourceTree = "<group>"; };
@@ -398,6 +401,7 @@
 			files = (
 				A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */,
 				A907C1B62A447152007E7FE7 /* Get in Frameworks */,
+				A93B1FF62AA9E92A00E05DD1 /* Moya in Frameworks */,
 				A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */,
 				A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */,
 				A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */,
@@ -535,6 +539,14 @@
 				A930CDB129E5414E00AF73E3 /* LoadingView.swift */,
 			);
 			path = Loading;
+			sourceTree = "<group>";
+		};
+		A93B1FEF2AA9E57A00E05DD1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A93B1FFF2AAAF06B00E05DD1 /* Endpoint.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A94A872B2AA0B4F800168BC1 /* PhoneOTP */ = {
@@ -794,6 +806,7 @@
 		A990E5372A41BFCA0004F4F9 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				A93B1FEF2AA9E57A00E05DD1 /* Network */,
 				A90072D12A73D4AA000551E1 /* Camera */,
 				A9FAD6B42A541715003A46F5 /* DatabaseClient */,
 				A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */,
@@ -1182,6 +1195,7 @@
 				A94A63C02A93949C0068903C /* CodableFirebase */,
 				A98DD1602A9F545100B39EDC /* iPhoneNumberField */,
 				A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */,
+				A93B1FF52AA9E92A00E05DD1 /* Moya */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Showcase.app */;
@@ -1226,6 +1240,7 @@
 				A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */,
 				A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				A9DD83EC2AA9C21B00FD9927 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				A93B1FF42AA9E92A00E05DD1 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -1307,6 +1322,7 @@
 				A91F587B29E68260008C0F35 /* AnyTransition+Extensions.swift in Sources */,
 				A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */,
 				A9EEE2F32A6E8C4D007A6442 /* InAppMessagesReducer.swift in Sources */,
+				A93B20002AAAF06B00E05DD1 /* Endpoint.swift in Sources */,
 				A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */,
 				A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */,
 				A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */,
@@ -1779,6 +1795,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		A93B1FF42AA9E92A00E05DD1 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A94A63BF2A93949C0068903C /* XCRemoteSwiftPackageReference "CodableFirebase" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alickbass/CodableFirebase";
@@ -1863,6 +1887,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A9286A3A2A4E9ED300ED4CB3 /* XCRemoteSwiftPackageReference "BackedCodable" */;
 			productName = BackedCodable;
+		};
+		A93B1FF52AA9E92A00E05DD1 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A93B1FF42AA9E92A00E05DD1 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 		A94A63C02A93949C0068903C /* CodableFirebase */ = {
 			isa = XCSwiftPackageProductDependency;

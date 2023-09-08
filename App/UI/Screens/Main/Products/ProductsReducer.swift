@@ -127,7 +127,7 @@ struct ProductsReducer: Reducer {
             // internal actions
             case let .internal(internalAction):
                 switch internalAction {
-                case .loadProducts:
+                case .loadProducts:                    
                     return .run { send in
                         await send(
                             .internal(
