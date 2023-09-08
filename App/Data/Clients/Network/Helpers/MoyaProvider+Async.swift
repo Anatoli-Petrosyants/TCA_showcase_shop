@@ -38,11 +38,13 @@ extension MoyaProvider {
                 provider.request(endpoint) { result in
                     switch result {
                     case .success(let response):
-                        guard let res = try? JSONDecoder.default.decode(D.self, from: response.data) else {
-                            continuation.resume(throwing: MoyaError.jsonMapping(response))
-                            return
+                        do {                            
+                            let res = try JSONDecoder.default.decode(D.self, from: response.data)
+                            continuation.resume(returning: res)
                         }
-                        continuation.resume(returning: res)
+                        catch {
+                            continuation.resume(throwing: error)
+                        }
                     case .failure(let error):
                         continuation.resume(throwing: error.asAPIError)
                     }

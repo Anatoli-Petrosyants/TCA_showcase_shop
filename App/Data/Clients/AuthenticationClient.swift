@@ -7,18 +7,6 @@
 
 import Foundation
 import Dependencies
-import Get
-
-/// A structure representing the login request parameters.
-struct LoginRequest: Encodable {
-    var email: String
-    var password: String
-
-    init(email: String, password: String) {
-        self.email = email
-        self.password = password
-    }
-}
 
 /// A structure representing the authentication response.
 struct AuthenticationResponse: Equatable, Decodable {
@@ -43,7 +31,7 @@ enum AuthenticationError: Equatable, LocalizedError, Sendable {
 /// A client for handling authentication operations.
 struct AuthenticationClient {
     /// A method for performing login using the provided credentials.
-    var login: @Sendable (LoginRequest) async throws -> AuthenticationResponse
+    var login: @Sendable (LoginEmailRequest) async throws -> AuthenticationResponse
 }
 
 extension DependencyValues {
@@ -60,7 +48,7 @@ extension AuthenticationClient: DependencyKey {
         return Self(
             login: { data in
                 try await Task.sleep(nanoseconds: NSEC_PER_SEC)
-                                
+                
 //                // Validate email
 //                guard data.email.isValidEmail()
 //                else { throw AuthenticationError.invalidEmail }
@@ -68,14 +56,11 @@ extension AuthenticationClient: DependencyKey {
 //                // Validate password
 //                guard data.password.isValidPassword()
 //                else { throw AuthenticationError.invalidUserPassword }
-
+                
                 // Construct parameters and perform API request
-                let parameters = ["username" : data.email, "password" : data.password]
-                var request = Request(path: "/auth/login",
-                                      method: .post,
-                                      body: parameters)
-                    .withResponse(AuthenticationResponse.self)
-                return try await apiClient.send(request).value
+                let request = LoginEmailRequest(username: data.username, password: data.password)
+                return try await API.provider.async.request(.login(request))
+                    .map(AuthenticationResponse.self)
             }
         )
     }()

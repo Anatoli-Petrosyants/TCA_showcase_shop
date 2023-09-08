@@ -123,7 +123,7 @@ struct ProductDetails: Reducer {
                     return .none
 
                 case let .productResponse(.failure(error)):
-                    Log.debug("productsResponse: \(error)")
+                    Log.error("productsResponse: \(error)")
                     return .none
                     
                 case let .usersResponse(.success(data)):
@@ -132,7 +132,7 @@ struct ProductDetails: Reducer {
                     return .none
 
                 case let .usersResponse(.failure(error)):
-                    Log.debug("usersResponse: \(error)")
+                    Log.error("usersResponse: \(error)")
                     return .none
                 }
                 
@@ -140,7 +140,6 @@ struct ProductDetails: Reducer {
                 return .none
                 
             case .productPhotos(.dismiss):
-                Log.debug("productPhotos dismiss")
                 state.productPhotos = nil
                 return .none
                 

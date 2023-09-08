@@ -7,7 +7,6 @@
 
 import Foundation
 import Dependencies
-import Get
 
 /// A client for handling users-related operations.
 struct UsersClient {
@@ -28,10 +27,9 @@ extension UsersClient: DependencyKey {
     static let liveValue: Self = {
         return Self(
             users: {
-                var request = Request(path: "/users",
-                                      method: .get)
-                    .withResponse([UserDTO].self)
-                return try await apiClient.send(request).value.compactMap { $0.toEntity() }
+                return try await API.provider.async.request(.users)
+                    .map([UserDTO].self)
+                    .compactMap { $0.toEntity() }
             }
         )
     }()

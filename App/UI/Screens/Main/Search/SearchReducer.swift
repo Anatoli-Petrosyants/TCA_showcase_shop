@@ -120,22 +120,36 @@ struct SearchReducer: Reducer {
             
             case let .segment(segmentAction):
                 switch segmentAction {
-                case let .delegate(.didSegmentedChanged(segment)):
+                case let .delegate(.didSegmentedChanged(segment)):                    
                     state.input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
+                    state.input.isLoading = true
                     state.wishlist.count = 0
                     return .run { send in
-                        await send(
-                            .internal(
-                                .productsResponse(
-                                    await TaskResult {
-                                        try await self.productsClient.productsWithCategory(
-                                            .init(category: segment)
-                                        )
-                                    }
-                                )
-                            ),
-                            animation: .default
-                        )
+                        if segment.isEmpty {
+                            await send(
+                                .internal(
+                                    .productsResponse(
+                                        await TaskResult {
+                                            try await self.productsClient.products()
+                                        }
+                                    )
+                                ),
+                                animation: .default
+                            )
+                        } else {
+                            await send(
+                                .internal(
+                                    .productsResponse(
+                                        await TaskResult {
+                                            try await self.productsClient.productsWithCategory(
+                                                .init(category: segment)
+                                            )
+                                        }
+                                    )
+                                ),
+                                animation: .default
+                            )
+                        }
                     }
                     .cancellable(id: CancelID.products)
 

@@ -7,29 +7,7 @@
 
 import Foundation
 import Dependencies
-import Get
 import Moya
-
-/// A structure representing the products request parameters.
-struct ProductsRequest: Encodable {
-    var category: String
-
-    init(category: String) {
-        self.category = category
-    }
-}
-
-/// An enumeration representing possible products errors.
-enum ProductsError: Equatable, LocalizedError, Sendable {
-    case notFound
-
-    var errorDescription: String? {
-        switch self {
-        case .notFound:
-            return "Products not found."
-        }
-    }
-}
 
 /// A client for handling products-related operations.
 struct ProductsClient {
@@ -37,7 +15,7 @@ struct ProductsClient {
     var products: @Sendable () async throws -> [Product]
     
     /// A method for fetching products with a specific category.
-    var productsWithCategory: @Sendable (ProductsRequest) async throws -> [Product]
+    var productsWithCategory: @Sendable (ProductsWithCategoryRequest) async throws -> [Product]
     
     /// A method for fetching a specific product by its ID.
     var product: @Sendable (Int) async throws -> Product
@@ -54,40 +32,23 @@ extension DependencyValues {
 extension ProductsClient: DependencyKey {
     /// A live implementation of ProductsClient.
     static let liveValue: Self = {
-        let provider = MoyaProvider<Endpoint>()
-        
         return Self(
             products: {
-                return try await provider.async.request(.products)
+                return try await API.provider.async.request(.products)
                     .map([ProductDTO].self)
                     .compactMap { $0.toEntity() }
             },
             productsWithCategory: { data in
-                let category = data.category.isEmpty ? "" : "/category/\(data.category)"
-                let path = (Configuration.current.baseURL + "/products" + category)
-                    .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                    .valueOr("")
-                
-                guard let url = URL(string: path) else {
-                    throw AppError.general
-                }
-                
-                let urlRequest = URLRequest(url: url)
-                let (data, response) = try await URLSession.shared.data(for: urlRequest)
-                
-                guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-                    throw AppError.general
-                }
-                
-                let productDTOs = try JSONDecoder().decode([ProductDTO].self, from: data)
-                
-                return productDTOs.compactMap { $0.toEntity() }
+                let request = ProductsWithCategoryRequest(category: data.category)
+                return try await API.provider.async.request(.productsWithCategory(request))
+                    .map([ProductDTO].self)
+                    .compactMap { $0.toEntity() }
             },
             product: { productId in
-                var request = Request(path: "/products/\(productId)",
-                                      method: .get)
-                    .withResponse(ProductDTO.self)
-                return try await apiClient.send(request).value.toEntity()
+                let request = ProductRequest(id: productId)
+                return try await API.provider.async.request(.product(request))
+                    .map(ProductDTO.self)
+                    .toEntity()
             }
         )
     }()

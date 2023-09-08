@@ -12,7 +12,7 @@ struct EmailLoginReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isActivityIndicatorVisible = false
-        @BindingState var email = "mor_2314"
+        @BindingState var username = "mor_2314"
         @BindingState var password = "83r5^_"
         @PresentationState var alert: AlertState<Never>?
     }
@@ -55,13 +55,13 @@ struct EmailLoginReducer: Reducer {
                 switch viewAction {                    
                 case .onSignInButtonTap:
                     state.isActivityIndicatorVisible = true
-                    return .run { [email = state.email, password = state.password] send in
+                    return .run { [username = state.username, password = state.password] send in
                         await send(
                             .internal(
                                 .loginResponse(
                                     await TaskResult {
                                         try await self.authenticationClient.login(
-                                            .init(email: email, password: password)
+                                            .init(username: username, password: password)
                                         )
                                     }
                                 )

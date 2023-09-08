@@ -15,7 +15,7 @@ struct EmailLoginView {
     
     struct ViewState: Equatable {
         @BindingViewState var isActivityIndicatorVisible: Bool
-        @BindingViewState var email: String
+        @BindingViewState var username: String
         @BindingViewState var password: String
     }
 }
@@ -37,7 +37,7 @@ extension EmailLoginView: View {
                     VStack {
                         TextField(
                             Localization.Base.emailPlacholder,
-                            text: viewStore.$email
+                            text: viewStore.$username
                         )
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
@@ -81,7 +81,7 @@ extension EmailLoginView: View {
 extension BindingViewStore<EmailLoginReducer.State> {
     var view: EmailLoginView.ViewState {
         EmailLoginView.ViewState(isActivityIndicatorVisible: self.$isActivityIndicatorVisible,
-                            email: self.$email,
-                            password: self.$password)
+                                 username: self.$username,
+                                 password: self.$password)
     }
 }
