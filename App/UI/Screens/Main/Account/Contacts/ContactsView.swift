@@ -19,15 +19,12 @@ struct ContactsView {
 extension ContactsView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content.onAppear { self.store.send(.view(.onViewAppear)) }
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Text("Contacts")
-                .onError(error: viewStore.contactsError) {
-                    
-                }
         }
     }
 }

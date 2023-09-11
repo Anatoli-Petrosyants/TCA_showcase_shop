@@ -13,7 +13,7 @@ import Dependencies
 struct ContactsClient {
     var requestAccess: @Sendable () async throws -> Bool
     var authorizationStatus: CNAuthorizationStatus
-    var contacts: @Sendable () async throws -> [CNContact]
+    var contacts: @Sendable () async throws -> [Contact]
 }
 
 extension DependencyValues {
@@ -35,10 +35,10 @@ extension ContactsClient: DependencyKey {
                 return try await withCheckedThrowingContinuation { continuation in
                     let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey]
                     let request = CNContactFetchRequest(keysToFetch: keysToFetch as [CNKeyDescriptor])
-                    var contacts: [CNContact] = []
+                    var contacts: [Contact] = []
                     do {
                         try store.enumerateContacts(with: request) { contact, _ in
-                            contacts.append(contact)
+                            contacts.append(contact.toContact())
                         }
                         return continuation.resume(with: .success(contacts))
                     } catch {

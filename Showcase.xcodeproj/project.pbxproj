@@ -71,6 +71,8 @@
 		A960AA242A49BAF3005CE9F9 /* BasketReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */; };
 		A960AA262A49BAF9005CE9F9 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA252A49BAF9005CE9F9 /* BasketView.swift */; };
 		A96593892AAF067500E7EACA /* ContactsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593882AAF067500E7EACA /* ContactsClient.swift */; };
+		A965938B2AAF35F600E7EACA /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938A2AAF35F600E7EACA /* Contact.swift */; };
+		A965938D2AAF366900E7EACA /* Contact+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938C2AAF366900E7EACA /* Contact+Mapping.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -276,6 +278,8 @@
 		A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketReducer.swift; sourceTree = "<group>"; };
 		A960AA252A49BAF9005CE9F9 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		A96593882AAF067500E7EACA /* ContactsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsClient.swift; sourceTree = "<group>"; };
+		A965938A2AAF35F600E7EACA /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		A965938C2AAF366900E7EACA /* Contact+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+Mapping.swift"; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarReducer.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -657,6 +661,15 @@
 			path = Basket;
 			sourceTree = "<group>";
 		};
+		A965938E2AAF368700E7EACA /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				A965938A2AAF35F600E7EACA /* Contact.swift */,
+				A965938C2AAF366900E7EACA /* Contact+Mapping.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
 		A96BF14A2A6A700700B14247 /* Sidebar */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +904,7 @@
 			isa = PBXGroup;
 			children = (
 				A9F665972A54302700D4FB8A /* Account.swift */,
+				A965938E2AAF368700E7EACA /* Contact */,
 				A9A0CB6C29D41CB00048A649 /* Map */,
 				A9B4D7AB2A4C527100B102FB /* Users */,
 				A9A0CBA429D6F1B80048A649 /* Onboarding */,
@@ -1436,6 +1450,7 @@
 				A95E758D29ACA1F50081A170 /* String+Extensions.swift in Sources */,
 				A93B200E2AAB069D00E05DD1 /* LoginEmailRequest.swift in Sources */,
 				A988F0B929B5CC610059F9BB /* Optional+Extensions.swift in Sources */,
+				A965938D2AAF366900E7EACA /* Contact+Mapping.swift in Sources */,
 				A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */,
 				A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */,
 				A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */,
@@ -1498,6 +1513,7 @@
 				A93B20062AAAF10C00E05DD1 /* MoyaProvider+Async.swift in Sources */,
 				A96BF1472A6A6FFB00B14247 /* SidebarReducer.swift in Sources */,
 				A9FAD6BB2A541865003A46F5 /* CoreData+Attribute.swift in Sources */,
+				A965938B2AAF35F600E7EACA /* Contact.swift in Sources */,
 				A9AFC1682A5D877A003A95C3 /* SearchSegmentReducer.swift in Sources */,
 				A9ABFB362AA5BA5B0093EBF3 /* PermissionsReducer.swift in Sources */,
 				A9EEE2F52A6E8C54007A6442 /* InAppMessagesView.swift in Sources */,

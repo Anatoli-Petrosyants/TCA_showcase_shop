@@ -26,7 +26,7 @@ struct PermissionsReducer: Reducer {
         }
         
         enum InternalAction: Equatable {
-            case notificationsAuthorizationStatusResponse(TaskResult<UNAuthorizationStatus>)
+            case contactsAuthorizationStatusResult(TaskResult<UNAuthorizationStatus>)
             case requestNotificationsPermission
         }
 
@@ -52,7 +52,7 @@ struct PermissionsReducer: Reducer {
                     return .run { send in
                         await send(
                             .internal(
-                                .notificationsAuthorizationStatusResponse(
+                                .contactsAuthorizationStatusResult(
                                     await TaskResult {
                                         await self.authorizationStatus()
                                     }
@@ -92,7 +92,7 @@ struct PermissionsReducer: Reducer {
                         )
                     }
 
-                case let .notificationsAuthorizationStatusResponse(.success(status)):
+                case let .contactsAuthorizationStatusResult(.success(status)):
                     state.authorizationStatus = status
                     switch status {
                     case .authorized:
@@ -115,7 +115,7 @@ struct PermissionsReducer: Reducer {
                     }
                     return .none
                     
-                case let .notificationsAuthorizationStatusResponse(.failure(error)):
+                case let .contactsAuthorizationStatusResult(.failure(error)):
                     Log.error("authorizationStatus failure: \(error.localizedDescription)")
                     return .none
                 }
