@@ -38,7 +38,7 @@ extension HealthKitClient: DependencyKey {
     static let liveValue: HealthKitClient = {
         let healthStore = HKHealthStore()
 
-        return Self (
+        return Self(
             requestAuthorization: { identifiers in
                 return try await withCheckedThrowingContinuation { continuation in
                     let types = Set(identifiers.compactMap { HKQuantityType.quantityType(forIdentifier: $0) })

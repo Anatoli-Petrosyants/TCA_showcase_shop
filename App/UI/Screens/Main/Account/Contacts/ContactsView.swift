@@ -25,6 +25,9 @@ extension ContactsView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Text("Contacts")
+                .onError(error: viewStore.contactsError) {
+                    
+                }
         }
     }
 }

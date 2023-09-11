@@ -10,19 +10,25 @@ import ComposableArchitecture
 
 struct ContactsReducer: Reducer {
     
-    struct State: Equatable, Hashable {
-        
+    struct State: Equatable {
+        var contactsError: AppError? = nil
     }
     
     enum Action: Equatable {
         case onViewAppear
     }
     
+    @Dependency(\.contactsClient) var contactsClient
+    
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onViewAppear:
-                return .none
+                return .run { send in
+                    _ = try await contactsClient.requestAccess()
+                    let status = contactsClient.authorizationStatus
+                    Log.debug("status \(status)")
+                }
             }
         }
     }

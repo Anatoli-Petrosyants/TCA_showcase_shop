@@ -70,6 +70,7 @@
 		A960AA222A49AB61005CE9F9 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA212A49AB61005CE9F9 /* RatingView.swift */; };
 		A960AA242A49BAF3005CE9F9 /* BasketReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */; };
 		A960AA262A49BAF9005CE9F9 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA252A49BAF9005CE9F9 /* BasketView.swift */; };
+		A96593892AAF067500E7EACA /* ContactsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593882AAF067500E7EACA /* ContactsClient.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -274,6 +275,7 @@
 		A960AA212A49AB61005CE9F9 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketReducer.swift; sourceTree = "<group>"; };
 		A960AA252A49BAF9005CE9F9 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
+		A96593882AAF067500E7EACA /* ContactsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsClient.swift; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarReducer.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -880,6 +882,7 @@
 				A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */,
 				A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */,
 				A9DD83EA2AA9BC5700FD9927 /* UserKeychainClient.swift */,
+				A96593882AAF067500E7EACA /* ContactsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1349,6 +1352,7 @@
 				A9947EE72A179CF300FC7FB8 /* BlurViewRepresentable.swift in Sources */,
 				A9E9864A29E7DAA10028D5DB /* DevelopedByView.swift in Sources */,
 				A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */,
+				A96593892AAF067500E7EACA /* ContactsClient.swift in Sources */,
 				A9947EF22A179DD900FC7FB8 /* ActivityViewRepresentable.swift in Sources */,
 				A990E5042A4194820004F4F9 /* Showcase.swift in Sources */,
 				A9AA22C22A8F3E660073E070 /* AccountCitiesView.swift in Sources */,
@@ -1620,9 +1624,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = showcase;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location, etc";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1773,9 +1778,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = showcase;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location, etc";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1809,9 +1815,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = showcase;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location, etc";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
