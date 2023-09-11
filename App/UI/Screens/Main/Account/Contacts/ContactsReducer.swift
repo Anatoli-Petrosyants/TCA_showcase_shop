@@ -12,17 +12,20 @@ import Contacts
 struct ContactsReducer: Reducer {
     
     struct State: Equatable {        
-        
+        var data: Loadable<[Contact]> = .idle
     }
     
     enum Action: Equatable {
         enum ViewAction: Equatable {
             case onViewAppear
+            case onDone
+            case onOpenSettings
         }
         
         enum InternalAction: Equatable {
-            case requestContactsPermission
+            case fetchContacts
             case contactsAuthorizationStatusResult(CNAuthorizationStatus)
+            case contactsResponse(TaskResult<[Contact]>)
         }
 
         case view(ViewAction)
@@ -40,11 +43,20 @@ struct ContactsReducer: Reducer {
             case let .view(viewAction):
             switch viewAction {
             case .onViewAppear:
+                state.data = .loading
                 return .run { send in
                     await send(.internal(
                         .contactsAuthorizationStatusResult(self.contactsClient.authorizationStatus))
                     )
                 }
+                
+            case .onOpenSettings:
+                return .run { _ in
+                        _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
+                    }
+                
+            case .onDone:
+                return .run { _ in await self.dismiss() }
             }
                 
             // internal actions
@@ -53,26 +65,43 @@ struct ContactsReducer: Reducer {
                 case let .contactsAuthorizationStatusResult(status):
                     switch status {
                     case .denied:
-                        Log.info("show open settings button")
+                        state.data = .failed(AppError.general)
                         return .none
                         
                     case .notDetermined:
-                        return .send(.internal(.requestContactsPermission))
+                        return .run { send in
+                            _ = try await self.contactsClient.requestAccess()
+                            await send(.internal(.fetchContacts))
+                        }
+                        
+                    case .authorized:
+                        return .send(.internal(.fetchContacts))
                         
                     default:
                         return .none
                     }
                     
-                case .requestContactsPermission:
-                    return .run { _ in
-                        do {
-                            _ = try await self.contactsClient.requestAccess()
-                            let contacts = try await self.contactsClient.contacts()
-                            Log.debug("contacts \(contacts)")
-                        } catch {
-                            Log.error("requestContactsPermission error: \(error)")
-                        }
+                case .fetchContacts:
+                    return .run { send in
+                        await send(
+                            .internal(
+                                .contactsResponse(
+                                    await TaskResult {
+                                        try await self.contactsClient.contacts()
+                                    }
+                                )
+                            ),
+                            animation: .default
+                        )
                     }
+                    
+                case let .contactsResponse(.success(data)):
+                    state.data = .loaded(data)
+                    return .none
+
+                case let .contactsResponse(.failure(error)):
+                    state.data = .failed(error)
+                    return .none
                 }
             }
         }

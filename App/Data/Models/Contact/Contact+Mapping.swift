@@ -10,6 +10,8 @@ import Contacts
 extension CNContact {
     
     func toContact() -> Contact {
-        return Contact(firstName: self.givenName, lastName: self.familyName)
+        return Contact(firstName: self.givenName,
+                       lastName: self.familyName,
+                       organization: self.organizationName)
     }
 }

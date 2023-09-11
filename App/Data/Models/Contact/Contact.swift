@@ -7,12 +7,9 @@
 
 import Contacts
 
-struct Contact {
+struct Contact: Equatable, Identifiable, Hashable {
+    let id: UUID = UUID()
     var firstName: String
     var lastName: String
-
-    init(firstName: String, lastName: String) {
-        self.firstName = firstName
-        self.lastName = lastName
-    }
+    var organization: String
 }

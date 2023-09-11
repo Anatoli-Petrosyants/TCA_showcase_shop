@@ -24,7 +24,53 @@ extension ContactsView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Contacts")
+            NavigationStack {
+                VStack {
+                    Group {
+                        (/Loadable<[Contact]>.loading).extract(from: viewStore.data).map {
+                            ProgressView()
+                                .progressViewStyle(.main)
+                        }
+
+                        (/Loadable<[Contact]>.loaded).extract(from: viewStore.data).map { contacts in
+                            List(contacts, id: \.self) { contact in
+                                HStack {
+                                    Text("\(contact.firstName)")
+                                        .font(.bodyBold)
+
+                                    Text("\(contact.lastName)")
+                                        .font(.bodyBold)
+                                    
+                                    Spacer()
+                                    
+                                    Text("\(contact.organization)")
+                                        .font(.body)
+                                        .foregroundColor(Color.black05)
+                                }
+                            }
+                            .environment(\.defaultMinListRowHeight, 44)
+                            .listRowBackground(Color.clear)
+                            .listStyle(.plain)
+                        }
+
+                        (/Loadable<[Contact]>.failed).extract(from: viewStore.data).map { error in
+                            ErrorView(error: error) {
+                                viewStore.send(.view(.onOpenSettings))
+                            }
+                        }
+                    }
+                }
+                .modifier(NavigationBarModifier())
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("Contacts")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(Localization.Base.done) {
+                            viewStore.send(.view(.onDone))
+                        }
+                    }
+                }
+            }
         }
     }
 }
