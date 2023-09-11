@@ -198,6 +198,8 @@
 		A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F53F6A2A8A49D7005D6182 /* ErrorView.swift */; };
 		A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F53F6C2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift */; };
 		A9F665982A54302700D4FB8A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F665972A54302700D4FB8A /* Account.swift */; };
+		A9F705742AAB399500895E52 /* ContactsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F705732AAB399500895E52 /* ContactsReducer.swift */; };
+		A9F705762AAB399A00895E52 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F705752AAB399A00895E52 /* ContactsView.swift */; };
 		A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FAD6B82A54180A003A46F5 /* CoreData+Convertible.swift */; };
 		A9FAD6BB2A541865003A46F5 /* CoreData+Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FAD6BA2A541865003A46F5 /* CoreData+Attribute.swift */; };
 		A9FAD6BD2A54195A003A46F5 /* CoreData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FAD6BC2A54195A003A46F5 /* CoreData+Extensions.swift */; };
@@ -398,6 +400,8 @@
 		A9F53F6A2A8A49D7005D6182 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A9F53F6C2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+DismissKeyboardOnTap.swift"; sourceTree = "<group>"; };
 		A9F665972A54302700D4FB8A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		A9F705732AAB399500895E52 /* ContactsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsReducer.swift; sourceTree = "<group>"; };
+		A9F705752AAB399A00895E52 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		A9FAD6B82A54180A003A46F5 /* CoreData+Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Convertible.swift"; sourceTree = "<group>"; };
 		A9FAD6BA2A541865003A46F5 /* CoreData+Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Attribute.swift"; sourceTree = "<group>"; };
 		A9FAD6BC2A54195A003A46F5 /* CoreData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extensions.swift"; sourceTree = "<group>"; };
@@ -471,6 +475,7 @@
 			children = (
 				A90110172A4445F200DD08C4 /* AccountReducer.swift */,
 				A90110192A4445F900DD08C4 /* AccountView.swift */,
+				A9F705772AAB399F00895E52 /* Contacts */,
 				A9ABFB392AA5BA660093EBF3 /* Permissions */,
 				A9AA22C32A8F3E6B0073E070 /* AccountCities */,
 			);
@@ -1180,6 +1185,15 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		A9F705772AAB399F00895E52 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				A9F705732AAB399500895E52 /* ContactsReducer.swift */,
+				A9F705752AAB399A00895E52 /* ContactsView.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 		A9FAD6B42A541715003A46F5 /* DatabaseClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -1376,6 +1390,7 @@
 				A9AF26002A73E55100631158 /* ProductAnnouncementView.swift in Sources */,
 				A9EEE2F32A6E8C4D007A6442 /* InAppMessagesReducer.swift in Sources */,
 				A93B20082AAAF22300E05DD1 /* APIError.swift in Sources */,
+				A9F705762AAB399A00895E52 /* ContactsView.swift in Sources */,
 				A975721C2A5FE59700C812D3 /* SearchProductItemReducer.swift in Sources */,
 				A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */,
 				A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */,
@@ -1433,6 +1448,7 @@
 				A9DD83EB2AA9BC5700FD9927 /* UserKeychainClient.swift in Sources */,
 				A94BF89F2A56B543006FCE43 /* ProductAccountView.swift in Sources */,
 				A9AFC1602A5C08CC003A95C3 /* SearchView.swift in Sources */,
+				A9F705742AAB399500895E52 /* ContactsReducer.swift in Sources */,
 				A975721E2A6015A700C812D3 /* SearchWishlistReducer.swift in Sources */,
 				A960AA222A49AB61005CE9F9 /* RatingView.swift in Sources */,
 				A990E5312A41BCC00004F4F9 /* NoNetwork.swift in Sources */,

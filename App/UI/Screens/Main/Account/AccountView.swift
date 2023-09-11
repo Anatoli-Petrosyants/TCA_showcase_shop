@@ -102,6 +102,19 @@ extension AccountView: View {
                         }
                     }
                     .listRowBackground(Color.gray)
+                    
+                    Section(header: Text("Contacts Information"),
+                            footer: Text("Sync contacts description.")) {
+                        LabeledContent("Contacts") {
+                            Text("Count")
+                            Image(systemName: "chevron.right")
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewStore.send(.onContactsTap)
+                        }
+                    }
+                    .listRowBackground(Color.gray)
 
                     Section(header: Text(Localization.Account.sectionAdditional)) {
                         DisclosureGroup(Localization.Account.sectionAdditionalAboutMe) {
@@ -176,6 +189,11 @@ extension AccountView: View {
                 store: self.store.scope(state: \.$permissions, action: AccountReducer.Action.permissions),
                 content:
                     PermissionsView.init(store:)
+            )
+            .sheet(
+                store: self.store.scope(state: \.$contacts, action: AccountReducer.Action.contacts),
+                content:
+                    ContactsView.init(store:)
             )
         }
     }
