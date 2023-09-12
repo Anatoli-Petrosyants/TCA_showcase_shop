@@ -105,8 +105,7 @@ extension AccountView: View {
                     }
                     .listRowBackground(Color.gray)
                     
-                    Section(header: Text("Contacts Information"),
-                            footer: Text("Sync contacts description.")) {
+                    Section(header: Text("Contacts Information")) {
                         LabeledContent("Contacts") {                            
                             Image(systemName: "chevron.right")
                         }
