@@ -74,6 +74,7 @@
 		A965938B2AAF35F600E7EACA /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938A2AAF35F600E7EACA /* Contact.swift */; };
 		A965938D2AAF366900E7EACA /* Contact+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938C2AAF366900E7EACA /* Contact+Mapping.swift */; };
 		A96593902AB047AD00E7EACA /* ContactViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */; };
+		A96593942AB0870700E7EACA /* ContactPickerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -145,8 +146,8 @@
 		A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22B92A8DE77E0073E070 /* ComposableArchitecture */; };
 		A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */; };
 		A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */; };
-		A9AA22C02A8F3E5F0073E070 /* AccountCitiesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BF2A8F3E5E0073E070 /* AccountCitiesReducer.swift */; };
-		A9AA22C22A8F3E660073E070 /* AccountCitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */; };
+		A9AA22C02A8F3E5F0073E070 /* CitiesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22BF2A8F3E5E0073E070 /* CitiesReducer.swift */; };
+		A9AA22C22A8F3E660073E070 /* CitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22C12A8F3E660073E070 /* CitiesView.swift */; };
 		A9AA22C82A8F96900073E070 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A9AA22C72A8F96900073E070 /* FirebaseFirestoreSwift */; };
 		A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */; };
 		A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */; };
@@ -282,6 +283,7 @@
 		A965938A2AAF35F600E7EACA /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		A965938C2AAF366900E7EACA /* Contact+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+Mapping.swift"; sourceTree = "<group>"; };
 		A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewRepresentable.swift; sourceTree = "<group>"; };
+		A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewRepresentable.swift; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarReducer.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -348,8 +350,8 @@
 		A9A5237929C342440073177C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Product.swift"; sourceTree = "<group>"; };
 		A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Search.swift"; sourceTree = "<group>"; };
-		A9AA22BF2A8F3E5E0073E070 /* AccountCitiesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCitiesReducer.swift; sourceTree = "<group>"; };
-		A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCitiesView.swift; sourceTree = "<group>"; };
+		A9AA22BF2A8F3E5E0073E070 /* CitiesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesReducer.swift; sourceTree = "<group>"; };
+		A9AA22C12A8F3E660073E070 /* CitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesView.swift; sourceTree = "<group>"; };
 		A9AA22C92A8F9B460073E070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A9AA22CB2A8F9BF90073E070 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		A9ABFB352AA5BA5B0093EBF3 /* PermissionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsReducer.swift; sourceTree = "<group>"; };
@@ -485,7 +487,7 @@
 				A90110192A4445F900DD08C4 /* AccountView.swift */,
 				A9F705772AAB399F00895E52 /* Contacts */,
 				A9ABFB392AA5BA660093EBF3 /* Permissions */,
-				A9AA22C32A8F3E6B0073E070 /* AccountCities */,
+				A9AA22C32A8F3E6B0073E070 /* Cities */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -957,6 +959,7 @@
 				A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */,
 				A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */,
 				A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */,
+				A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -1010,13 +1013,13 @@
 			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
-		A9AA22C32A8F3E6B0073E070 /* AccountCities */ = {
+		A9AA22C32A8F3E6B0073E070 /* Cities */ = {
 			isa = PBXGroup;
 			children = (
-				A9AA22BF2A8F3E5E0073E070 /* AccountCitiesReducer.swift */,
-				A9AA22C12A8F3E660073E070 /* AccountCitiesView.swift */,
+				A9AA22BF2A8F3E5E0073E070 /* CitiesReducer.swift */,
+				A9AA22C12A8F3E660073E070 /* CitiesView.swift */,
 			);
-			path = AccountCities;
+			path = Cities;
 			sourceTree = "<group>";
 		};
 		A9ABFB392AA5BA660093EBF3 /* Permissions */ = {
@@ -1372,8 +1375,8 @@
 				A96593892AAF067500E7EACA /* ContactsClient.swift in Sources */,
 				A9947EF22A179DD900FC7FB8 /* ActivityViewRepresentable.swift in Sources */,
 				A990E5042A4194820004F4F9 /* Showcase.swift in Sources */,
-				A9AA22C22A8F3E660073E070 /* AccountCitiesView.swift in Sources */,
-				A9AA22C02A8F3E5F0073E070 /* AccountCitiesReducer.swift in Sources */,
+				A9AA22C22A8F3E660073E070 /* CitiesView.swift in Sources */,
+				A9AA22C02A8F3E5F0073E070 /* CitiesReducer.swift in Sources */,
 				A9B4D7A32A4AD30600B102FB /* FeedbackGeneratorClient.swift in Sources */,
 				A90072CC2A73D48E000551E1 /* Camera.swift in Sources */,
 				A9947EE52A179CEB00FC7FB8 /* ActivityIndicatorViewRepresentable.swift in Sources */,
@@ -1416,6 +1419,7 @@
 				A990E5062A41970B0004F4F9 /* ProgressViewWrapper.swift in Sources */,
 				A990E51F2A41A03C0004F4F9 /* Layout.swift in Sources */,
 				A960AA1A2A496989005CE9F9 /* ProductItem.swift in Sources */,
+				A96593942AB0870700E7EACA /* ContactPickerViewRepresentable.swift in Sources */,
 				A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */,
 				A94A87342AA1FF7E00168BC1 /* LoginOptionsReducer.swift in Sources */,
 				A9EEE2FD2A6FDB34007A6442 /* InAppMessages+Views.swift in Sources */,

@@ -36,9 +36,7 @@ extension AccountReducer {
         @BindingState var phone = ""
         
         @BindingState var toastMessage: LocalizedStringKey? = nil
-        @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
-        
-        @PresentationState var address: AccountCitiesReducer.State?
+        @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?        
         @PresentationState var permissions: PermissionsReducer.State?
         
         var path = StackState<Path.State>()
@@ -49,7 +47,7 @@ extension AccountReducer {
     enum Action: Equatable {
         enum ViewAction:  BindableAction, Equatable {
             case onViewLoad
-            case onAddressTap
+            case onCityTap
             case onSaveTap
             case onPermissionsTap
             case onContactsTap
@@ -63,7 +61,7 @@ extension AccountReducer {
         
         enum InternalAction: Equatable {
             case accountResponse(TaskResult<Account?>)
-            case notificationPermissionsStatusResponse(UNAuthorizationStatus)
+            case notificationPermissionsStatusResult(UNAuthorizationStatus)
             case confirmLogout
         }
         
@@ -75,7 +73,6 @@ extension AccountReducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case dialog(PresentationAction<Action.DialogAction>)
-        case address(PresentationAction<AccountCitiesReducer.Action>)
         case permissions(PresentationAction<PermissionsReducer.Action>)
         case path(StackAction<Path.State, Path.Action>)
     }
@@ -85,15 +82,21 @@ extension AccountReducer {
     struct Path: Reducer {
         enum State: Equatable {
             case contacts(ContactsReducer.State)
+            case cities(CitiesReducer.State)
         }
 
         enum Action: Equatable {
             case contacts(ContactsReducer.Action)
+            case cities(CitiesReducer.Action)
         }
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.contacts, action: /Action.contacts) {
                 ContactsReducer()
+            }
+            
+            Scope(state: /State.cities, action: /Action.cities) {
+                CitiesReducer()
             }
         }
     }
@@ -122,7 +125,7 @@ struct AccountReducer: Reducer {
                     return .concatenate(
                         .run { send in
                             let status = await self.authorizationStatus()
-                            await send(.internal(.notificationPermissionsStatusResponse(status)))
+                            await send(.internal(.notificationPermissionsStatusResult(status)))
                         },
                         .run { send in
                             await send(
@@ -176,8 +179,8 @@ struct AccountReducer: Reducer {
 
                     return .none
                     
-                case .onAddressTap:
-                    state.address = AccountCitiesReducer.State()
+                case .onCityTap:
+                    state.path.append(.cities(.init()))
                     return .none
                     
                 case .onPermissionsTap:
@@ -192,73 +195,60 @@ struct AccountReducer: Reducer {
                     return .none
                 }
                
-                // internal actions
-                case let .internal(internalAction):
-                    switch internalAction {
-                    case .confirmLogout:
-                        userKeychainClient.removeToken()
-                        return .run { send in
-                            await self.userDefaults.reset()
-                            await send(.delegate(.didLogout))
-                        }
-                        
-                    case let .accountResponse(.success(data)):
-                        if let data = data {
-                            state.accountId = data.id
-                            state.firstName = data.firstName
-                            state.lastName = data.lastName
-                            state.birthDate = data.birthDate
-                            state.gender = Gender(rawValue: data.gender) ?? .other
-                            state.city = data.city
-                            state.email = data.email
-                            state.phone = data.phone
-                            state.enableNotifications = data.enableNotifications
-                        }
-                        return .none
-
-                    case let .accountResponse(.failure(error)):
-                        Log.debug("account failure: \(error.localizedDescription)")
-                        return .none
-                        
-                    case let .notificationPermissionsStatusResponse(status):
-                        state.notificationsPermissionStatus = status.description
-                        return .none
+            // internal actions
+            case let .internal(internalAction):
+                switch internalAction {
+                case .confirmLogout:
+                    userKeychainClient.removeToken()
+                    return .run { send in
+                        await self.userDefaults.reset()
+                        await send(.delegate(.didLogout))
                     }
+                    
+                case let .accountResponse(.success(data)):
+                    if let data = data {
+                        state.accountId = data.id
+                        state.firstName = data.firstName
+                        state.lastName = data.lastName
+                        state.birthDate = data.birthDate
+                        state.gender = Gender(rawValue: data.gender) ?? .other
+                        state.city = data.city
+                        state.email = data.email
+                        state.phone = data.phone
+                        state.enableNotifications = data.enableNotifications
+                    }
+                    return .none
+
+                case let .accountResponse(.failure(error)):
+                    Log.debug("account failure: \(error.localizedDescription)")
+                    return .none
+                    
+                case let .notificationPermissionsStatusResult(status):
+                    state.notificationsPermissionStatus = status.description
+                    return .none
+                }
                 
-                // dialog actions
-                case .dialog(.presented(.onConfirmLogout)):
-                    return .send(.internal(.confirmLogout))
-            
-            case let .address(.presented(.delegate(.didCitySelected(city)))):
-                state.city = city
-                return .none
-                
+            // dialog actions
+            case .dialog(.presented(.onConfirmLogout)):
+                return .send(.internal(.confirmLogout))
+
             // path actions
             case let .path(pathAction):
                 switch pathAction {
+                case let .element(id: _, action: .cities(.delegate(.didCitySelected(city)))):
+                    // _ = state.path.popLast()
+                    state.city = city
+                    return .none
+                    
                 default:
                     return .none
                 }
-//                switch pathAction {
-//                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
-//                    state.path.removeAll()
-//                    return .send(.delegate(.didItemAddedToBasket(product)))
-//
-//                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):
-//                    state.path.removeAll()
-//                    state.account.countryCode = code
-//                    return .none
-//
-//                default:
-//                    return .none
-//                }
                 
-            case .delegate, .dialog, .address, .permissions:
+            case .delegate, .dialog, .permissions:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
-        .ifLet(\.$address, action: /Action.address) { AccountCitiesReducer() }
         .ifLet(\.$permissions, action: /Action.permissions) { PermissionsReducer() }
         .forEach(\.path, action: /Action.path) {
             Path()

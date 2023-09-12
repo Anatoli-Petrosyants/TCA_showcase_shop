@@ -1,5 +1,5 @@
 //
-//  AccountCitiesReducer.swift
+//  CitiesReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 18.08.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AccountCitiesReducer: Reducer {
+struct CitiesReducer: Reducer {
     
     struct State: Equatable {
         var input = SearchInputReducer.State(placeholder: "Search address")

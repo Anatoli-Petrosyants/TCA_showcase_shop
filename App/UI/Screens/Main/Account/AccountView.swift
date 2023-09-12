@@ -100,7 +100,7 @@ extension AccountView: View {
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            viewStore.send(.onAddressTap)
+                            viewStore.send(.onCityTap)
                         }
                     }
                     .listRowBackground(Color.gray)
@@ -170,13 +170,14 @@ extension AccountView: View {
                         action: AccountReducer.Path.Action.contacts,
                         then: ContactsView.init(store:)
                     )
+                    
+                case .cities:
+                    CaseLet(/AccountReducer.Path.State.cities,
+                        action: AccountReducer.Path.Action.cities,
+                        then: CitiesView.init(store:)
+                    )
                 }
             }
-            .sheet(
-                store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
-                content:
-                    AccountCitiesView.init(store:)
-            )
             .sheet(
                 store: self.store.scope(state: \.$permissions, action: AccountReducer.Action.permissions),
                 content:
