@@ -13,13 +13,17 @@ struct ContactsReducer: Reducer {
     
     struct State: Equatable {        
         var data: Loadable<[Contact]> = .idle
+        @BindingState var isContactPresented = false
+        var contactToShow: CNContact? = nil
     }
     
     enum Action: Equatable {
-        enum ViewAction: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onViewAppear
-            case onDone
-            case onOpenSettings
+            case onAddButtonTap
+            case onOpenSettingsButtonTap
+            case onContactTap(Contact)
+            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -34,9 +38,10 @@ struct ContactsReducer: Reducer {
         
     @Dependency(\.contactsClient) var contactsClient
     @Dependency(\.applicationClient.open) var openURL
-    @Dependency(\.dismiss) var dismiss
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        
         Reduce { state, action in
             switch action {
             // view actions
@@ -50,13 +55,22 @@ struct ContactsReducer: Reducer {
                     )
                 }
                 
-            case .onOpenSettings:
+            case let .onContactTap(contact):
+                state.contactToShow = contact.toCNContact()
+                state.isContactPresented = true
+                return .none
+                
+            case .onOpenSettingsButtonTap:
                 return .run { _ in
                         _ = await self.openURL(URL(string: UIApplication.openSettingsURLString)!, [:])
                     }
                 
-            case .onDone:
-                return .run { _ in await self.dismiss() }
+            case .onAddButtonTap:
+                state.isContactPresented = true
+                return .none
+                
+            case .binding:
+                return .none
             }
                 
             // internal actions

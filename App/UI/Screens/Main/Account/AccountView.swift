@@ -42,7 +42,9 @@ extension AccountView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            NavigationStack {
+            NavigationStackStore(
+                self.store.scope(state: \.path, action: AccountReducer.Action.path)
+            ) {
                 Form {
                     Section(header: Text(Localization.Account.sectionPersonal)) {
                         TextField(Localization.Account.sectionPersonalFirstName,
@@ -105,8 +107,7 @@ extension AccountView: View {
                     
                     Section(header: Text("Contacts Information"),
                             footer: Text("Sync contacts description.")) {
-                        LabeledContent("Contacts") {
-                            Text("Count")
+                        LabeledContent("Contacts") {                            
                             Image(systemName: "chevron.right")
                         }
                         .contentShape(Rectangle())
@@ -155,6 +156,7 @@ extension AccountView: View {
                 .scrollContentBackground(.hidden)
                 .tint(.black)
                 .navigationTitle(Localization.Account.title)
+                .modifier(NavigationBarModifier())
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(Localization.Base.save) {
@@ -162,7 +164,26 @@ extension AccountView: View {
                         }
                     }
                 }
-            }            
+            } destination: {
+                switch $0 {
+                case .contacts:
+                    CaseLet(/AccountReducer.Path.State.contacts,
+                        action: AccountReducer.Path.Action.contacts,
+                        then: ContactsView.init(store:)
+                    )
+                }
+            }
+            .sheet(
+                store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
+                content:
+                    AccountCitiesView.init(store:)
+            )
+            .sheet(
+                store: self.store.scope(state: \.$permissions, action: AccountReducer.Action.permissions),
+                content:
+                    PermissionsView.init(store:)
+            )
+            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountReducer.Action.dialog))
             .popup(item: viewStore.$toastMessage) { message in
                 Text(message)
                     .frame(width: 340, height: 60)
@@ -179,22 +200,6 @@ extension AccountView: View {
                  .closeOnTap(true)
                  .autohideIn(3)
             }
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountReducer.Action.dialog))
-            .sheet(
-                store: self.store.scope(state: \.$address, action: AccountReducer.Action.address),
-                content:
-                    AccountCitiesView.init(store:)                        
-            )
-            .sheet(
-                store: self.store.scope(state: \.$permissions, action: AccountReducer.Action.permissions),
-                content:
-                    PermissionsView.init(store:)
-            )
-            .sheet(
-                store: self.store.scope(state: \.$contacts, action: AccountReducer.Action.contacts),
-                content:
-                    ContactsView.init(store:)
-            )
         }
     }
 }

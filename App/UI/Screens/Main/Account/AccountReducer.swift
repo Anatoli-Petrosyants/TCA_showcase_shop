@@ -9,14 +9,15 @@ import SwiftUI
 import ComposableArchitecture
 import CoreData
 
-struct AccountReducer: Reducer {
-    
+extension AccountReducer {
     enum Gender: String, CaseIterable, Equatable {
         case male
         case female
         case other
     }
-    
+}
+
+extension AccountReducer {
     struct State: Equatable {
         var accountId: UUID? = nil
         let appVersion = "\(Configuration.current.appVersion)"
@@ -39,9 +40,12 @@ struct AccountReducer: Reducer {
         
         @PresentationState var address: AccountCitiesReducer.State?
         @PresentationState var permissions: PermissionsReducer.State?
-        @PresentationState var contacts: ContactsReducer.State?
+        
+        var path = StackState<Path.State>()
     }
-    
+}
+
+extension AccountReducer {
     enum Action: Equatable {
         enum ViewAction:  BindableAction, Equatable {
             case onViewLoad
@@ -73,9 +77,30 @@ struct AccountReducer: Reducer {
         case dialog(PresentationAction<Action.DialogAction>)
         case address(PresentationAction<AccountCitiesReducer.Action>)
         case permissions(PresentationAction<PermissionsReducer.Action>)
-        case contacts(PresentationAction<ContactsReducer.Action>)
+        case path(StackAction<Path.State, Path.Action>)
     }
-    
+}
+
+extension AccountReducer {
+    struct Path: Reducer {
+        enum State: Equatable {
+            case contacts(ContactsReducer.State)
+        }
+
+        enum Action: Equatable {
+            case contacts(ContactsReducer.Action)
+        }
+
+        var body: some Reducer<State, Action> {
+            Scope(state: /State.contacts, action: /Action.contacts) {
+                ContactsReducer()
+            }
+        }
+    }
+}
+
+struct AccountReducer: Reducer {
+
     @Dependency(\.userDefaults) var userDefaults
     @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.databaseClient) var databaseClient
@@ -160,7 +185,7 @@ struct AccountReducer: Reducer {
                     return .none
                     
                 case .onContactsTap:
-                    state.contacts = ContactsReducer.State()
+                    state.path.append(.contacts(.init()))
                     return .none
                     
                 case .binding:
@@ -208,33 +233,35 @@ struct AccountReducer: Reducer {
                 state.city = city
                 return .none
                 
-            case .delegate, .dialog, .address, .permissions, .contacts:
+            // path actions
+            case let .path(pathAction):
+                switch pathAction {
+                default:
+                    return .none
+                }
+//                switch pathAction {
+//                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
+//                    state.path.removeAll()
+//                    return .send(.delegate(.didItemAddedToBasket(product)))
+//
+//                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):
+//                    state.path.removeAll()
+//                    state.account.countryCode = code
+//                    return .none
+//
+//                default:
+//                    return .none
+//                }
+                
+            case .delegate, .dialog, .address, .permissions:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
         .ifLet(\.$address, action: /Action.address) { AccountCitiesReducer() }
         .ifLet(\.$permissions, action: /Action.permissions) { PermissionsReducer() }
-        .ifLet(\.$contacts, action: /Action.contacts) { ContactsReducer() }        
-    }    
-}
-
-
-import UserNotifications
-
-extension UNAuthorizationStatus {
-    var description: String {
-        switch self {
-        case .notDetermined:
-            return "Not Determined"
-        case .denied:
-            return "Denied"
-        case .authorized:
-            return "Authorized"
-        case .provisional:
-            return "Provisional"
-        default:
-            return "Unknown"
+        .forEach(\.path, action: /Action.path) {
+            Path()
         }
-    }
+    }    
 }

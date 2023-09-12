@@ -15,3 +15,14 @@ extension CNContact {
                        organization: self.organizationName)
     }
 }
+
+extension Contact {
+    
+    func toCNContact() -> CNContact {
+        let contact = CNMutableContact()
+        contact.givenName = self.firstName
+        contact.familyName = self.lastName
+        contact.organizationName = self.organization
+        return contact
+    }
+}

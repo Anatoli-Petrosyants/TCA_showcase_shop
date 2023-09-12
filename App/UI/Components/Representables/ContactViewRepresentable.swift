@@ -10,10 +10,10 @@ import ContactsUI
 
 struct ContactViewRepresentable: UIViewControllerRepresentable {
 
-    let contact: CNContact
+    let contact: CNContact?
         
     func makeUIViewController(context: Context) -> CNContactViewController {
-        let viewController = CNContactViewController(for: contact)
+        let viewController = CNContactViewController(forNewContact: contact)
         viewController.allowsEditing = true
         viewController.allowsActions = true
         return viewController

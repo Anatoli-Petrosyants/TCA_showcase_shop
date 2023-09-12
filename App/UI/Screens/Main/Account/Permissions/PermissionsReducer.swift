@@ -19,7 +19,7 @@ struct PermissionsReducer: Reducer {
     }
     
     enum Action: Equatable {
-        enum ViewAction:  BindableAction, Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onViewAppear
             case onRequestNotificationsPermissionTap
             case binding(BindingAction<State>)

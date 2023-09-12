@@ -203,3 +203,21 @@ extension UserNotificationClient {
         }
     }
 }
+
+extension UNAuthorizationStatus {
+
+    var description: String {
+        switch self {
+        case .notDetermined:
+            return "Not Determined"
+        case .denied:
+            return "Denied"
+        case .authorized:
+            return "Authorized"
+        case .provisional:
+            return "Provisional"
+        default:
+            return "Unknown"
+        }
+    }
+}
