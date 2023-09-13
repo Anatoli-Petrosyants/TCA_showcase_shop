@@ -34,11 +34,13 @@ struct LoginOptionsReducer: Reducer {
     enum Action: Equatable {
         enum ViewAction: Equatable {
             case onEmailLoginButtonTap
+            case onAppleLoginButtonTap
             case onPhoneLoginButtonTap
         }
         
         enum Delegate {
             case didEmailLoginButtonSelected
+            case didAppleLoginButtonSelected
             case didPhoneLoginButtonSelected
         }
 
@@ -56,6 +58,12 @@ struct LoginOptionsReducer: Reducer {
                 case .onEmailLoginButtonTap:
                     return .concatenate(
                         .send(.delegate(.didEmailLoginButtonSelected)),
+                        .run { _ in await self.dismiss() }
+                    )
+                    
+                case .onAppleLoginButtonTap:
+                    return .concatenate(
+                        .send(.delegate(.didAppleLoginButtonSelected)),
                         .run { _ in await self.dismiss() }
                     )
                     

@@ -113,6 +113,10 @@ struct JoinReducer: Reducer {
                     state.path.append(.emailLogin(.init()))
                     return .none
                     
+                case .didAppleLoginButtonSelected:
+                    Log.debug("didAppleLoginButtonSelected")
+                    return .none
+                    
                 case .didPhoneLoginButtonSelected:
                     state.path.append(.phoneLogin(.init()))
                     return .none

@@ -25,44 +25,49 @@ extension LoginOptionsView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                Button(Localization.LoginOptions.loginEmail, action: {
+            VStack(spacing: 12) {
+                Button("Continue with Email", action: {
                     viewStore.send(.view(.onEmailLoginButtonTap))
                 })
                 .buttonStyle(.cta)
-                .padding(.top, 16)
                 
-                SignInWithAppleButton(.signIn) { request in
-                    // request.reqestedScopes = [.fullName, .email]
-                } onCompletion: { result in
+                // #dev please note that this will be declined by apple review. A.P.
+                Button("Continue with Apple", action: {
+                    viewStore.send(.view(.onAppleLoginButtonTap))
+                })
+                .buttonStyle(.cta)
+                
+                /*
+                SignInWithAppleButton(.signIn,
+                             onRequest: { request in
+                                 request.requestedScopes = [.fullName, .email]
+                },
+                onCompletion: { result in
                     switch result {
-                        case .success(let authResults):
-                            print("Authorisation successful")
-                        case .failure(let error):
-                            print("Authorisation failed: \(error.localizedDescription)")
+                       case .success(let authResults):
+                          print("Authorization successful authResults \(authResults)")
+                       case .failure(let error):
+                          print("Authorization failed: " + error.localizedDescription)
                     }
-                }
+                })
                 .signInWithAppleButtonStyle(.black)
+                */
                 
-                Button {
+                Button("Continue with Phone", action: {
                     viewStore.send(.view(.onPhoneLoginButtonTap))
-                } label: {
-                    Text(Localization.LoginOptions.loginPhone)
-                        .font(.subheadlineBold)
-                        .foregroundColor(.black)
-                        .underline()
-                }
-                .padding(.top, 16)
+                })
+                .buttonStyle(.cta)
                 
                 Text(viewStore.agreementsAttributedString)
                     .multilineTextAlignment(.center)
                     .font(.footnote)
-                    .padding([.top, .bottom], 24)
+                    .padding(.top, 16)
                 
                 Spacer()
             }
-            .padding(24)
-            .presentationDetents([.height(262)])
+            .padding(.top, 32)
+            .padding([.leading, .trailing, .bottom], 24)
+            .presentationDetents([.height(320)])
             .presentationDragIndicator(.visible)
         }
     }
