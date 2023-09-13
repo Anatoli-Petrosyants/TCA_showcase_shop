@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import AuthenticationServices
 
 // MARK: - LoginOptionsView
 
@@ -30,6 +31,18 @@ extension LoginOptionsView: View {
                 })
                 .buttonStyle(.cta)
                 .padding(.top, 16)
+                
+                SignInWithAppleButton(.signIn) { request in
+                    // request.reqestedScopes = [.fullName, .email]
+                } onCompletion: { result in
+                    switch result {
+                        case .success(let authResults):
+                            print("Authorisation successful")
+                        case .failure(let error):
+                            print("Authorisation failed: \(error.localizedDescription)")
+                    }
+                }
+                .signInWithAppleButtonStyle(.black)
                 
                 Button {
                     viewStore.send(.view(.onPhoneLoginButtonTap))

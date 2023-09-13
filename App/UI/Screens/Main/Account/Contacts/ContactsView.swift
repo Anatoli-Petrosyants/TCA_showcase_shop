@@ -79,7 +79,7 @@ extension ContactsView: View {
                     }
                 }
                 .sheet(isPresented: viewStore.$isContactPresented) {
-//                    ContactViewRepresentable(contact: viewStore.contactToShow)                        
+                    ContactViewRepresentable(contact: viewStore.contactToShow)
                 }
             }
         }
