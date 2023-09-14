@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import AuthenticationServices
 
 struct JoinReducer: Reducer {
     
@@ -25,8 +26,13 @@ struct JoinReducer: Reducer {
         enum Delegate {
             case didAuthenticated
         }
+        
+        enum InternalAction: Equatable {            
+            case authorizationResponse(TaskResult<ASAuthorization>)
+        }
 
         case view(ViewAction)
+        case `internal`(InternalAction)
         case delegate(Delegate)
         case developedBy(PresentationAction<DevelopedByReducer.Action>)
         case loginOptions(PresentationAction<LoginOptionsReducer.Action>)
@@ -67,6 +73,8 @@ struct JoinReducer: Reducer {
         }
     }
     
+    @Dependency(\.authorizationControllerClient) var authorizationControllerClient
+    
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -79,6 +87,18 @@ struct JoinReducer: Reducer {
                     
                 case .onDevelopedByTap:
                     state.developedBy = DevelopedByReducer.State()
+                    return .none
+                }
+                
+            // internal actions
+            case let .internal(internalAction):
+                switch internalAction {
+                case let .authorizationResponse(.success(data)):
+                    Log.info("authorizationResponse: \(data)")
+                    return .none
+                    
+                case let .authorizationResponse(.failure(error)):
+                    Log.error("authorizationResponse: \(error)")
                     return .none
                 }
     
@@ -115,7 +135,18 @@ struct JoinReducer: Reducer {
                     
                 case .didAppleLoginButtonSelected:
                     Log.debug("didAppleLoginButtonSelected")
-                    return .none
+                    
+//                    let provider = ASAuthorizationAppleIDProvider()
+//                    let request = provider.createRequest()
+//                    request.requestedScopes = [.fullName, .email]
+//
+//                    let controller = ASAuthorizationController(authorizationRequests: [request])
+//                    controller.delegate = appleIDLoginClient.authorizationDelegate as? ASAuthorizationControllerDelegate
+//                    controller.performRequests()
+                    
+                    return .run { send in
+                        try await self.authorizationControllerClient.signIn()
+                    }
                     
                 case .didPhoneLoginButtonSelected:
                     state.path.append(.phoneLogin(.init()))
@@ -129,7 +160,6 @@ struct JoinReducer: Reducer {
             case let .developedBy(.presented(.delegate(developedByAction))):
                 switch developedByAction {
                 case .didDevelopedByViewed:
-                    Log.info("delegate didDevelopedByViewed")
                     return .none
                 }
                             
