@@ -176,6 +176,8 @@
 		A9B4D7AF2A4C52B700B102FB /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7AE2A4C52B700B102FB /* UserDTO.swift */; };
 		A9B4D7B22A4C59C300B102FB /* ProductUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7B12A4C59C300B102FB /* ProductUsers.swift */; };
 		A9B4D7B42A4C59C800B102FB /* ProductUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7B32A4C59C800B102FB /* ProductUsersView.swift */; };
+		A9BE14B82AB3205200410856 /* BasketEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE14B72AB3205200410856 /* BasketEmptyView.swift */; };
+		A9BE14BA2AB3205A00410856 /* BasketEmptyReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE14B92AB3205A00410856 /* BasketEmptyReducer.swift */; };
 		A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */; };
 		A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A9BEED3729D1B4EF007ADC33 /* SDWebImageSwiftUI */; };
 		A9BEED4129D2DAA2007ADC33 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEED4029D2DAA2007ADC33 /* Color+Extensions.swift */; };
@@ -399,6 +401,8 @@
 		A9BE14A92AB3025D00410856 /* AccountAuthenticationModificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAuthenticationModificationViewController.swift; sourceTree = "<group>"; };
 		A9BE14AC2AB3025D00410856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A9BE14AE2AB3025D00410856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9BE14B72AB3205200410856 /* BasketEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketEmptyView.swift; sourceTree = "<group>"; };
+		A9BE14B92AB3205A00410856 /* BasketEmptyReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketEmptyReducer.swift; sourceTree = "<group>"; };
 		A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProgressStyle.swift; sourceTree = "<group>"; };
 		A9BEED4029D2DAA2007ADC33 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderModifier.swift; sourceTree = "<group>"; };
@@ -680,6 +684,7 @@
 			children = (
 				A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */,
 				A960AA252A49BAF9005CE9F9 /* BasketView.swift */,
+				A9BE14BB2AB3206200410856 /* BasketEmpty */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -1147,6 +1152,15 @@
 			path = AppleSignIn;
 			sourceTree = "<group>";
 		};
+		A9BE14BB2AB3206200410856 /* BasketEmpty */ = {
+			isa = PBXGroup;
+			children = (
+				A9BE14B92AB3205A00410856 /* BasketEmptyReducer.swift */,
+				A9BE14B72AB3205200410856 /* BasketEmptyView.swift */,
+			);
+			path = BasketEmpty;
+			sourceTree = "<group>";
+		};
 		A9CEE74F2A695A380062128B /* Countries */ = {
 			isa = PBXGroup;
 			children = (
@@ -1530,6 +1544,7 @@
 				A96FBD8229AF6BA300DB1D61 /* ActivityIndicator.swift in Sources */,
 				A990E5272A41BABF0004F4F9 /* Binding+Extensions.swift in Sources */,
 				A9E9864829E7DA9A0028D5DB /* DevelopedByReducer.swift in Sources */,
+				A9BE14B82AB3205200410856 /* BasketEmptyView.swift in Sources */,
 				A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */,
 				A90072D02A73D4A5000551E1 /* CameraClient.swift in Sources */,
 				A971F15A2AA8707F00CCCC95 /* DictionaryDecoder.swift in Sources */,
@@ -1585,6 +1600,7 @@
 				A9FAD6C32A5419B7003A46F5 /* CoreData+Predicate.swift in Sources */,
 				A9AFC15E2A5C08C3003A95C3 /* SearchReducer.swift in Sources */,
 				A9A0CB7329D45BD60048A649 /* MapAnnotationData+MockedData.swift in Sources */,
+				A9BE14BA2AB3205A00410856 /* BasketEmptyReducer.swift in Sources */,
 				A916BBF92A17586C00AD114F /* ProductDTO+MockedData.swift in Sources */,
 				A9FAD6C82A541BEC003A46F5 /* Showcase_Database.xcdatamodeld in Sources */,
 				A9B4D7B42A4C59C800B102FB /* ProductUsersView.swift in Sources */,

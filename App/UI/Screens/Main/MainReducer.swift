@@ -15,7 +15,7 @@ enum Tab {
 struct MainReducer: Reducer {
     
     struct State: Equatable {
-        var currentTab = Tab.account
+        var currentTab = Tab.basket
         
         var products = ProductsReducer.State()
         var search = SearchReducer.State()

@@ -13,6 +13,7 @@ struct BasketReducer: Reducer {
     struct State: Equatable {
         var products: [Product] = []
         var totalPrice: String = "$0.00"
+        var emptyBasket = BasketEmptyReducer.State()
         
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
@@ -41,10 +42,15 @@ struct BasketReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
+        case emptyBasket(BasketEmptyReducer.Action)
         case dialog(PresentationAction<DialogAction>)
     }
     
     var body: some ReducerOf<Self> {
+        Scope(state: \.emptyBasket, action: /Action.emptyBasket) {
+            BasketEmptyReducer()
+        }
+        
         Reduce { state, action in
             switch action {
             // view actions
@@ -98,6 +104,17 @@ struct BasketReducer: Reducer {
                     }
                     return .none
                 }
+                
+            // Empty basket actions
+            case let .emptyBasket(emptyBasketAction):
+                return .none
+//                switch emptyBasketAction {
+//                case .delegate(.didTap):
+//                    return .send(.delegate(.didSidebarTapped))
+//
+//                default:
+//                    return .none
+//                }
                 
             // dialog actions
             case let .dialog(.presented(dialogAction)):

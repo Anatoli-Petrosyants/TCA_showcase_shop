@@ -73,12 +73,22 @@ extension BasketView: View {
 
                     Spacer()
                 } else {
-                    Spacer()
                     
-                    Button("Add products") {
-                        viewStore.send(.view(.onAddProductsButtonTap))
-                    }
-                    .buttonStyle(.cta)
+                    BasketEmptyView(
+                        store: self.store.scope(
+                            state: \.emptyBasket,
+                            action: BasketReducer.Action.emptyBasket
+                        )
+                    )
+                    
+//                    Spacer()
+//                    
+//                    Button("Add products") {
+//                        viewStore.send(.view(.onAddProductsButtonTap))
+//                    }
+//                    .buttonStyle(.cta)
+                    
+                    
                 }
             }
             .padding(24)

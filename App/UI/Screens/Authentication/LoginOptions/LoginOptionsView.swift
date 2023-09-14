@@ -36,6 +36,8 @@ extension LoginOptionsView: View {
                     viewStore.send(.view(.onAppleLoginButtonTap))
                 })
                 .buttonStyle(.cta)
+                .opacity(0.4)
+                //.disabled(true)
                 
                 /*
                 SignInWithAppleButton(.signIn,
