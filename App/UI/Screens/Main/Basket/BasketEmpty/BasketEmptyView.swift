@@ -24,7 +24,22 @@ extension BasketEmptyView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Basket Empty")
+            HStack {
+                LottieViewRepresentable(name: "onboarding_1",
+                                        loopMode: .autoReverse,
+                                        play:.constant(true))
+                .frame(width: 100, height: 100)
+                .background(Color.black01)
+                .cornerRadius(50)
+                
+                VStack {
+                    Text("Your Showcase basket is empty")
+                    Button("Add products") {
+//                        viewStore.send(.view(.onAddProductsButtonTap))
+                    }
+                    .buttonStyle(.cta)
+                }
+            }            
         }
     }
 }
