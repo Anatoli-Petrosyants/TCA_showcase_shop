@@ -10,8 +10,8 @@ import ComposableArchitecture
 
 struct BasketEmptyReducer: Reducer {
     
-    struct State: Equatable, Hashable {
-        
+    struct State: Equatable {
+        var topPicks: [Product] = []
     }
     
     enum Action: Equatable {

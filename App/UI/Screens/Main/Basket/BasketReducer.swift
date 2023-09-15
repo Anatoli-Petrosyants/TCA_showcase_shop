@@ -59,6 +59,7 @@ struct BasketReducer: Reducer {
                 switch viewAction {
                 case .onViewAppear:
                     state.totalPrice = totalPrice(state.products)
+                    state.emptyBasket.topPicks = state.topPicks
                     return .none
                     
                 case .onProceedToCheckoutButtonTap:
