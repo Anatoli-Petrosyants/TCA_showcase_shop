@@ -34,6 +34,7 @@ struct ProductsReducer: Reducer {
 
         enum Delegate: Equatable {
             case didItemAddedToBasket(Product)
+            case didTopPicksLoaded([Product])
             case didSidebarTapped
         }
 
@@ -145,9 +146,12 @@ struct ProductsReducer: Reducer {
                 case let .productsResponse(.success(data)):
                     state.isActivityIndicatorVisible = false
                     state.isLoading = false
+
                     let items = data.map { ProductItemReducer.State(id: UUID(), product: $0) }
                     state.items.append(contentsOf: items)
-                    return .none
+                    
+                    let topPicks = Array(data.prefix(3))
+                    return .send(.delegate(.didTopPicksLoaded(topPicks)))
 
                 case let .productsResponse(.failure(error)):                    
                     state.productsError = .underlying(error)

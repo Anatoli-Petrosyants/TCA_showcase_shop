@@ -49,9 +49,6 @@ struct SearchProductItemReducer: Reducer {
             case let .favorite(favoriteAction):
                 switch favoriteAction {
                 case .onTap:
-//                    let isFavorite = state.favorite.isFavorite
-//                    return .send(.delegate(.didFavoriteTapped(isFavorite)))
-                    
                     return .run { [isFavorite = state.favorite.isFavorite] send in
                         await self.feedbackGenerator.selectionChanged()
                         return await send(.delegate(.didFavoriteTapped(isFavorite)))

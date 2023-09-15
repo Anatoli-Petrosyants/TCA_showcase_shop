@@ -12,6 +12,7 @@ struct BasketReducer: Reducer {
     
     struct State: Equatable {
         var products: [Product] = []
+        var topPicks: [Product] = []
         var totalPrice: String = "$0.00"
         var emptyBasket = BasketEmptyReducer.State()
         

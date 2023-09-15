@@ -70,6 +70,11 @@ struct MainReducer: Reducer {
                 state.basket.products.append(product)
                 return .none
                 
+            case let .products(.delegate(.didTopPicksLoaded(products))):
+                state.basket.topPicks.removeAll()
+                state.basket.topPicks.append(contentsOf: products)
+                return .none
+                
             case .products(.delegate(.didSidebarTapped)):
                 state.sidebar.isVisible.toggle()
                 return .none

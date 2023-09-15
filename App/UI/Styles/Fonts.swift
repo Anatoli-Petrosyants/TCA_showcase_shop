@@ -39,6 +39,10 @@ extension Font {
     public static var title3: Font {
         return Font.system(size: UIFont.preferredFont(forTextStyle: .title3).pointSize)
     }
+    
+    public static var title3Bold: Font {
+        return Font.system(size: UIFont.preferredFont(forTextStyle: .title3).pointSize, weight: .bold)
+    }
 
     public static var headline: Font {
         return Font.system(size: UIFont.preferredFont(forTextStyle: .headline).pointSize)

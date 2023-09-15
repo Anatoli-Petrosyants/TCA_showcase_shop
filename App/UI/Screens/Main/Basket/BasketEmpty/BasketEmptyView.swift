@@ -28,17 +28,25 @@ extension BasketEmptyView: View {
                 LottieViewRepresentable(name: "onboarding_1",
                                         loopMode: .autoReverse,
                                         play:.constant(true))
-                .frame(width: 100, height: 100)
-                .background(Color.black01)
-                .cornerRadius(50)
+                .frame(width: 60, height: 60)
+//                .background(Color.black01)
+//                .cornerRadius(30)
                 
-                VStack {
+                VStack(alignment: .leading, spacing: 4) {
                     Text("Your Showcase basket is empty")
-                    Button("Add products") {
-//                        viewStore.send(.view(.onAddProductsButtonTap))
+                        .font(.headline)
+
+                    Button {
+//                        viewStore.send(.view(.onDevelopedByTap))
+                    } label: {
+                        Text("Add products")
+                            .font(.headlineBold)
+                            .foregroundColor(.black)
+                            .underline()
                     }
-                    .buttonStyle(.cta)
                 }
+                
+                Spacer()
             }            
         }
     }
