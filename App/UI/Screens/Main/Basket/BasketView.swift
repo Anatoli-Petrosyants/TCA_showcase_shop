@@ -30,48 +30,53 @@ extension BasketView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if viewStore.products.count > 0 {
-                            HStack(alignment: .firstTextBaseline) {
-                                Text("Subtotal")
-                                    .font(.title1)
-
-                                Text(viewStore.totalPrice)
-                                    .font(.title1Bold)
-
-                                Spacer()
-                            }
-
-                            Button("Proceed to checkout \(viewStore.products.count)") {
-                                viewStore.send(.view(.onProceedToCheckoutButtonTap))
-                            }
-                            .buttonStyle(.cta)
                             
-                            LazyVStack(spacing: 8) {
-                                ForEach(viewStore.products) { product in
-                                    HStack() {
-                                        WebImage(url: product.imageURL)
-                                            .resizable()
-                                            .indicator(.activity)
-                                            .transition(.fade(duration: 0.5))
-                                            .scaledToFit()
-                                            .frame(width: 32, height: 32)
+                            VStack {
+                                HStack(alignment: .firstTextBaseline) {
+                                    Text("Subtotal")
+                                        .font(.title1)
 
-                                        Text(product.title)
-                                            .font(.footnoteBold)
+                                    Text(viewStore.totalPrice)
+                                        .font(.title1Bold)
 
-                                        Spacer()
-
-                                        Button {
-                                            viewStore.send(.view(.onDeleteItemButtonTap(product)))
-                                        } label: {
-                                            Image(systemName: "trash")
-                                                .tint(.red)
-                                        }
-                                    }
-                                    .frame(height: 54)
-                                    
-                                    Divider()
+                                    Spacer()
                                 }
+
+                                Button("Proceed to checkout \(viewStore.products.count)") {
+                                    viewStore.send(.view(.onProceedToCheckoutButtonTap))
+                                }
+                                .buttonStyle(.cta)
+                                
+                                LazyVStack(spacing: 8) {
+                                    ForEach(viewStore.products) { product in
+                                        HStack() {
+                                            WebImage(url: product.imageURL)
+                                                .resizable()
+                                                .indicator(.activity)
+                                                .transition(.fade(duration: 0.5))
+                                                .scaledToFit()
+                                                .frame(width: 32, height: 32)
+
+                                            Text(product.title)
+                                                .font(.footnoteBold)
+
+                                            Spacer()
+
+                                            Button {
+                                                viewStore.send(.view(.onDeleteItemButtonTap(product)))
+                                            } label: {
+                                                Image(systemName: "trash")
+                                                    .tint(.red)
+                                            }
+                                        }
+                                        .frame(height: 54)
+                                        
+                                        Divider()
+                                    }
+                                }
+                                .padding(.top, 12) 
                             }
+                            .padding(24)
                         } else {
                             BasketEmptyView(
                                 store: self.store.scope(
@@ -79,12 +84,21 @@ extension BasketView: View {
                                     action: BasketReducer.Action.emptyBasket
                                 )
                             )
+                            
+                            Divider()
+                                .padding([.leading, .trailing], 24)
                         }
+                        
+                        BasketTopPicksView(
+                            store: self.store.scope(
+                                state: \.topPicksBasket,
+                                action: BasketReducer.Action.topPicksBasket
+                            )
+                        )
 
                         Spacer()
                     }
                 }
-                .padding(24)
                 .navigationTitle("Basket")
                 .modifier(NavigationBarModifier())
             }

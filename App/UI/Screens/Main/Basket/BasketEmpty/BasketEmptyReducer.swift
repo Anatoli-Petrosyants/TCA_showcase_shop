@@ -11,17 +11,29 @@ import ComposableArchitecture
 struct BasketEmptyReducer: Reducer {
     
     struct State: Equatable {
-        var topPicks: [Product] = []
+        
     }
     
     enum Action: Equatable {
-        case onViewAppear
+        enum ViewAction: Equatable {            
+            case onAddProductsButtonTap
+        }
+        
+        enum Delegate: Equatable {
+            case didAddProductsTapped
+        }
+
+        case view(ViewAction)
+        case delegate(Delegate)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .onViewAppear:
+            case .view(.onAddProductsButtonTap):
+                return .send(.delegate(.didAddProductsTapped))
+
+            case .delegate:
                 return .none
             }
         }

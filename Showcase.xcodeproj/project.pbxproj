@@ -33,6 +33,8 @@
 		A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A4B2A4EB35C00ED4CB3 /* DatabaseClient.swift */; };
 		A92A229E29F8EAAD0034469C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A229D29F8EAAD0034469C /* MainView.swift */; };
 		A92A22A029F8EEC50034469C /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A229F29F8EEC50034469C /* MainReducer.swift */; };
+		A92AEB5F2AB45B350058B2C3 /* BasketTopPicksReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */; };
+		A92AEB612AB45B3B0058B2C3 /* BasketTopPicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
@@ -258,6 +260,8 @@
 		A9286A4B2A4EB35C00ED4CB3 /* DatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClient.swift; sourceTree = "<group>"; };
 		A92A229D29F8EAAD0034469C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A92A229F29F8EEC50034469C /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
+		A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTopPicksReducer.swift; sourceTree = "<group>"; };
+		A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTopPicksView.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
@@ -566,6 +570,15 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		A92AEB622AB45B3E0058B2C3 /* BasketTopPicks */ = {
+			isa = PBXGroup;
+			children = (
+				A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */,
+				A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */,
+			);
+			path = BasketTopPicks;
+			sourceTree = "<group>";
+		};
 		A930CDA729E41EF900AF73E3 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +697,7 @@
 			children = (
 				A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */,
 				A960AA252A49BAF9005CE9F9 /* BasketView.swift */,
+				A92AEB622AB45B3E0058B2C3 /* BasketTopPicks */,
 				A9BE14BB2AB3206200410856 /* BasketEmpty */,
 			);
 			path = Basket;
@@ -1497,6 +1511,7 @@
 				A93B20152AAB082F00E05DD1 /* APIEndpoint.swift in Sources */,
 				A9CEE74C2A695A2E0062128B /* CountriesReducer.swift in Sources */,
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
+				A92AEB5F2AB45B350058B2C3 /* BasketTopPicksReducer.swift in Sources */,
 				A9B4D7AD2A4C52AF00B102FB /* User.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
 				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
@@ -1584,6 +1599,7 @@
 				A9EEE2F52A6E8C54007A6442 /* InAppMessagesView.swift in Sources */,
 				A9ABFB3B2AA5FADC0093EBF3 /* UserNotificationClient.swift in Sources */,
 				A9286A362A4DB0EE00ED4CB3 /* ProductLink.swift in Sources */,
+				A92AEB612AB45B3B0058B2C3 /* BasketTopPicksView.swift in Sources */,
 				A97572172A5FE21000C812D3 /* SearchFavoriteButtonReducer.swift in Sources */,
 				A9AF25FE2A73E54900631158 /* ProductAnnouncementReducer.swift in Sources */,
 				A960AA202A49A867005CE9F9 /* OnLoadModifier.swift in Sources */,

@@ -15,6 +15,7 @@ struct BasketReducer: Reducer {
         var topPicks: [Product] = []
         var totalPrice: String = "$0.00"
         var emptyBasket = BasketEmptyReducer.State()
+        var topPicksBasket = BasketTopPicksReducer.State()
         
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
@@ -44,6 +45,7 @@ struct BasketReducer: Reducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case emptyBasket(BasketEmptyReducer.Action)
+        case topPicksBasket(BasketTopPicksReducer.Action)
         case dialog(PresentationAction<DialogAction>)
     }
     
@@ -52,14 +54,18 @@ struct BasketReducer: Reducer {
             BasketEmptyReducer()
         }
         
+        Scope(state: \.topPicksBasket, action: /Action.topPicksBasket) {
+            BasketTopPicksReducer()
+        }
+        
         Reduce { state, action in
             switch action {
             // view actions
             case let .view(viewAction):
                 switch viewAction {
                 case .onViewAppear:
-                    state.totalPrice = totalPrice(state.products)
-                    state.emptyBasket.topPicks = state.topPicks
+                    state.totalPrice = totalPrice(state.products)                    
+                    state.topPicksBasket.topPicks = state.topPicks
                     return .none
                     
                 case .onProceedToCheckoutButtonTap:
@@ -108,15 +114,8 @@ struct BasketReducer: Reducer {
                 }
                 
             // Empty basket actions
-            case let .emptyBasket(emptyBasketAction):
-                return .none
-//                switch emptyBasketAction {
-//                case .delegate(.didTap):
-//                    return .send(.delegate(.didSidebarTapped))
-//
-//                default:
-//                    return .none
-//                }
+            case .emptyBasket(.delegate(.didAddProductsTapped)):
+                return .send(.delegate(.didAddProductsTapped))
                 
             // dialog actions
             case let .dialog(.presented(dialogAction)):
@@ -130,7 +129,7 @@ struct BasketReducer: Reducer {
                     return .send(.internal(.deleteProduct(product)), animation: .default)
                 }
                                 
-            case .delegate, .dialog:
+            case .delegate, .dialog, .emptyBasket, .topPicksBasket:
                 return .none
             }
         }
