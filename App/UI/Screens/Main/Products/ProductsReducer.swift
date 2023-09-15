@@ -150,7 +150,7 @@ struct ProductsReducer: Reducer {
                     let items = data.map { ProductItemReducer.State(id: UUID(), product: $0) }
                     state.items.append(contentsOf: items)
                     
-                    let topPicks = Array(data.prefix(3))
+                    let topPicks = Array(data.prefix(6))
                     return .send(.delegate(.didTopPicksLoaded(topPicks)))
 
                 case let .productsResponse(.failure(error)):                    
