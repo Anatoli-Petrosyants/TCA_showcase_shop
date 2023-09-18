@@ -8,10 +8,6 @@
 import SwiftUI
 import ComposableArchitecture
 
-enum Tab {
-    case products, search, basket, account
-}
-
 struct MainReducer: Reducer {
     
     struct State: Equatable {

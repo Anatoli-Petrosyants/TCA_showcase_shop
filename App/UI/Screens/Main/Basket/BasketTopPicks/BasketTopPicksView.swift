@@ -20,7 +20,7 @@ struct BasketTopPicksView {
 extension BasketTopPicksView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {

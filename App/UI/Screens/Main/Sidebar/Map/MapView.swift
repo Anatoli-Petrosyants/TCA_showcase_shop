@@ -51,7 +51,7 @@ extension MapView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Map")
-            .toolbar(.hidden, for: .tabBar)            
+            .toolbar(.hidden, for: .tabBar)           
         }
     }
 }

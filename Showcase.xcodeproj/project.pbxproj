@@ -35,6 +35,8 @@
 		A92A22A029F8EEC50034469C /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A229F29F8EEC50034469C /* MainReducer.swift */; };
 		A92AEB5F2AB45B350058B2C3 /* BasketTopPicksReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */; };
 		A92AEB612AB45B3B0058B2C3 /* BasketTopPicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */; };
+		A92AEB662AB476430058B2C3 /* basket.json in Resources */ = {isa = PBXBuildFile; fileRef = A92AEB652AB476430058B2C3 /* basket.json */; };
+		A92AEB682AB47B420058B2C3 /* ShowcaseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB672AB47B420058B2C3 /* ShowcaseTabBar.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
@@ -262,6 +264,8 @@
 		A92A229F29F8EEC50034469C /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
 		A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTopPicksReducer.swift; sourceTree = "<group>"; };
 		A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTopPicksView.swift; sourceTree = "<group>"; };
+		A92AEB652AB476430058B2C3 /* basket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basket.json; sourceTree = "<group>"; };
+		A92AEB672AB47B420058B2C3 /* ShowcaseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowcaseTabBar.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
@@ -1012,6 +1016,7 @@
 				A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */,
 				A960AA212A49AB61005CE9F9 /* RatingView.swift */,
 				A9F53F6A2A8A49D7005D6182 /* ErrorView.swift */,
+				A92AEB672AB47B420058B2C3 /* ShowcaseTabBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1036,6 +1041,7 @@
 		A9A0CBAD29D6F2CB0048A649 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				A92AEB652AB476430058B2C3 /* basket.json */,
 				A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */,
 				A9A0CBA829D6F2BB0048A649 /* onboarding_2.json */,
 				A9A0CBA729D6F2BB0048A649 /* onboarding_3.json */,
@@ -1419,6 +1425,7 @@
 				A9A0CBAA29D6F2BB0048A649 /* onboarding_3.json in Resources */,
 				A9DED5C929AC9F64003EFA02 /* config.plist in Resources */,
 				A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */,
+				A92AEB662AB476430058B2C3 /* basket.json in Resources */,
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
 				A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */,
@@ -1458,6 +1465,7 @@
 				A9AFC16D2A5D962A003A95C3 /* SearchInputReducer.swift in Sources */,
 				A9AF260C2A77B5DC00631158 /* HealthKitClient.swift in Sources */,
 				A907C1A82A4460DA007E7FE7 /* ProductsClient.swift in Sources */,
+				A92AEB682AB47B420058B2C3 /* ShowcaseTabBar.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,

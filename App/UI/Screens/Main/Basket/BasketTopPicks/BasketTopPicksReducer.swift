@@ -15,15 +15,11 @@ struct BasketTopPicksReducer: Reducer {
     }
     
     enum Action: Equatable {
-        case onViewAppear
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            switch action {
-            case .onViewAppear:
-                return .none
-            }
+            return .none
         }
     }
 }

@@ -26,29 +26,35 @@ extension BasketEmptyView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(spacing: 24) {
                 HStack {
-                    LottieViewRepresentable(name: "onboarding_1",
+                    LottieViewRepresentable(name: "basket",
                                             loopMode: .autoReverse,
                                             play:.constant(true))
-                    .frame(width: 60, height: 60)
+                    .frame(width: 80, height: 60)
+                    
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Your Showcase basket is empty")
                             .font(.headline)
-
-                        Button {
-                            viewStore.send(.view(.onAddProductsButtonTap))
-                        } label: {
-                            Text("Add products")
-                                .font(.headlineBold)
-                                .foregroundColor(.black)
-                                .underline()
-                        }
+                            .foregroundColor(.black)
+                        
+                        Text("Please add product or choose from top picks")
+                            .font(.subheadline)
+                            .foregroundColor(.black05)
                     }
                     
                     Spacer()
                 }
+                
+                Button {
+                    viewStore.send(.view(.onAddProductsButtonTap))
+                } label: {
+                    Text("Add products")
+                        .font(.headlineBold)
+                        .foregroundColor(.black)
+                        .underline()
+                }
             }
-            .padding([.leading, .trailing], 24)            
+            .padding([.leading, .trailing, .top], 24)            
         }
     }
 }
