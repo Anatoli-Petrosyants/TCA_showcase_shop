@@ -8,6 +8,31 @@
 import SwiftUI
 import ComposableArchitecture
 
+enum Tab: Int, CaseIterable {
+    case products = 0
+    case search
+    case basket
+    case account
+    
+    var icon: String {
+        switch self {
+            case .products: return "house.circle"
+            case .search: return "magnifyingglass.circle"
+            case .basket: return "basket"
+            case .account: return "person.crop.circle"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .products: return "home"
+        case .search: return "search"
+        case .basket: return "basket"
+        case .account: return "account"
+        }
+    }
+}
+
 struct MainReducer: Reducer {
     
     struct State: Equatable {

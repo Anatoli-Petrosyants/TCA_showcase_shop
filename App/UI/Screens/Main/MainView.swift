@@ -26,47 +26,6 @@ extension MainView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.currentTab) { viewStore in
             ZStack {
-//                VStack {
-//                    TabView(selection: viewStore.binding(send: MainReducer.Action.onTabChanged)) {
-//                        ProductsView(
-//                            store: self.store.scope(
-//                                state: \.products,
-//                                action: MainReducer.Action.products
-//                            )
-//                        )
-//                        .tag(Tab.products)
-//
-//                        SearchView(
-//                            store: self.store.scope(
-//                                state: \.search,
-//                                action: MainReducer.Action.search
-//                            )
-//                        )
-//                        .tag(Tab.search)
-//
-//                        BasketView(
-//                            store: self.store.scope(
-//                                state: \.basket,
-//                                action: MainReducer.Action.basket
-//                            )
-//                        )
-//                        .tag(Tab.basket)
-//
-//                        AccountView(
-//                            store: self.store.scope(
-//                                state: \.account,
-//                                action: MainReducer.Action.account
-//                            )
-//                        )
-//                        .tag(Tab.account)
-//                    }
-//                }
-                
-//                VStack {
-//                    Spacer()
-//                    ShowcaseTabBar(selectedTab: viewStore.binding(send: MainReducer.Action.onTabChanged))
-//                }
-                
                 TabView(selection: viewStore.binding(send: MainReducer.Action.onTabChanged)) {
                     ProductsView(
                         store: self.store.scope(
@@ -75,8 +34,8 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: "house.circle.fill")
-                        Text("Products")
+                        Image(systemName: Tab.products.icon)
+                        Text(Tab.products.title)
                     }
                     .tag(Tab.products)
 
@@ -87,8 +46,8 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: "magnifyingglass.circle")
-                        Text("Search")
+                        Image(systemName: Tab.search.icon)
+                        Text(Tab.search.title)
                     }
                     .tag(Tab.search)
 
@@ -99,8 +58,8 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: "basket.fill")
-                        Text("Basket")
+                        Image(systemName: Tab.basket.icon)
+                        Text(Tab.basket.title)
                     }
                     .tag(Tab.basket)
 
@@ -111,12 +70,22 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: "person.crop.circle.fill")
-                        Text("Account")
+                        Image(systemName: Tab.account.icon)
+                        Text(Tab.account.title)
                     }
                     .tag(Tab.account)
                 }
                 .accentColor(.black)
+                .onAppear {
+                    let appearance = UITabBarAppearance()
+                    appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+                    appearance.backgroundColor = UIColor(Color.gray.opacity(0.2))
+                    
+                    // Use this appearance when scrolling behind the TabView:
+                    UITabBar.appearance().standardAppearance = appearance
+                    // Use this appearance when scrolled all the way up:
+                    UITabBar.appearance().scrollEdgeAppearance = appearance
+                }
                 
                 SidebarView(
                     store: self.store.scope(
@@ -144,56 +113,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 #endif
-
-// #dev This is old tab bar impl. A.P.
-
-//TabView(selection: viewStore.binding(send: MainReducer.Action.onTabChanged)) {
-//    ProductsView(
-//        store: self.store.scope(
-//            state: \.products,
-//            action: MainReducer.Action.products
-//        )
-//    )
-//    .tabItem {
-//        Image(systemName: "house.circle.fill")
-//        Text("Products")
-//    }
-//    .tag(Tab.products)
-//
-//    SearchView(
-//        store: self.store.scope(
-//            state: \.search,
-//            action: MainReducer.Action.search
-//        )
-//    )
-//    .tabItem {
-//        Image(systemName: "magnifyingglass.circle")
-//        Text("Search")
-//    }
-//    .tag(Tab.search)
-//
-//    BasketView(
-//        store: self.store.scope(
-//            state: \.basket,
-//            action: MainReducer.Action.basket
-//        )
-//    )
-//    .tabItem {
-//        Image(systemName: "basket.fill")
-//        Text("Basket")
-//    }
-//    .tag(Tab.basket)
-//
-//    AccountView(
-//        store: self.store.scope(
-//            state: \.account,
-//            action: MainReducer.Action.account
-//        )
-//    )
-//    .tabItem {
-//        Image(systemName: "person.crop.circle.fill")
-//        Text("Account")
-//    }
-//    .tag(Tab.account)
-//}
-//.accentColor(.black)
