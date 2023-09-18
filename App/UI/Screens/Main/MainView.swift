@@ -34,8 +34,7 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: Tab.products.icon)
-                        Text(Tab.products.title)
+                        Label(Tab.products.title, systemImage: Tab.products.icon)
                     }
                     .tag(Tab.products)
 
@@ -46,8 +45,7 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: Tab.search.icon)
-                        Text(Tab.search.title)
+                        Label(Tab.search.title, systemImage: Tab.search.icon)
                     }
                     .tag(Tab.search)
 
@@ -58,8 +56,7 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: Tab.basket.icon)
-                        Text(Tab.basket.title)
+                        Label(Tab.basket.title, systemImage: Tab.basket.icon)
                     }
                     .tag(Tab.basket)
 
@@ -70,8 +67,7 @@ extension MainView: View {
                         )
                     )
                     .tabItem {
-                        Image(systemName: Tab.account.icon)
-                        Text(Tab.account.title)
+                        Label(Tab.account.title, systemImage: Tab.account.icon)
                     }
                     .tag(Tab.account)
                 }
@@ -80,7 +76,7 @@ extension MainView: View {
                     let appearance = UITabBarAppearance()
                     appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
                     appearance.backgroundColor = UIColor(Color.gray.opacity(0.2))
-                    
+
                     // Use this appearance when scrolling behind the TabView:
                     UITabBar.appearance().standardAppearance = appearance
                     // Use this appearance when scrolled all the way up:

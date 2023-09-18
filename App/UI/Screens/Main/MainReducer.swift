@@ -25,10 +25,10 @@ enum Tab: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .products: return "home"
-        case .search: return "search"
-        case .basket: return "basket"
-        case .account: return "account"
+        case .products: return "Home"
+        case .search: return "Search"
+        case .basket: return "Basket"
+        case .account: return "Account"
         }
     }
 }
