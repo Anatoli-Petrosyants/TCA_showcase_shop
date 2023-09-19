@@ -36,6 +36,8 @@
 		A92AEB5F2AB45B350058B2C3 /* BasketTopPicksReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */; };
 		A92AEB612AB45B3B0058B2C3 /* BasketTopPicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */; };
 		A92AEB662AB476430058B2C3 /* basket.json in Resources */ = {isa = PBXBuildFile; fileRef = A92AEB652AB476430058B2C3 /* basket.json */; };
+		A92E6ABD2AB873FB00186F8D /* BasketCheckoutReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABC2AB873FB00186F8D /* BasketCheckoutReducer.swift */; };
+		A92E6ABF2AB8740300186F8D /* BasketCheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABE2AB8740300186F8D /* BasketCheckoutView.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
@@ -264,6 +266,8 @@
 		A92AEB5E2AB45B350058B2C3 /* BasketTopPicksReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTopPicksReducer.swift; sourceTree = "<group>"; };
 		A92AEB602AB45B3B0058B2C3 /* BasketTopPicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTopPicksView.swift; sourceTree = "<group>"; };
 		A92AEB652AB476430058B2C3 /* basket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basket.json; sourceTree = "<group>"; };
+		A92E6ABC2AB873FB00186F8D /* BasketCheckoutReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCheckoutReducer.swift; sourceTree = "<group>"; };
+		A92E6ABE2AB8740300186F8D /* BasketCheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCheckoutView.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
@@ -581,6 +585,15 @@
 			path = BasketTopPicks;
 			sourceTree = "<group>";
 		};
+		A92E6AC02AB8740900186F8D /* BasketCheckout */ = {
+			isa = PBXGroup;
+			children = (
+				A92E6ABC2AB873FB00186F8D /* BasketCheckoutReducer.swift */,
+				A92E6ABE2AB8740300186F8D /* BasketCheckoutView.swift */,
+			);
+			path = BasketCheckout;
+			sourceTree = "<group>";
+		};
 		A930CDA729E41EF900AF73E3 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +712,7 @@
 			children = (
 				A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */,
 				A960AA252A49BAF9005CE9F9 /* BasketView.swift */,
+				A92E6AC02AB8740900186F8D /* BasketCheckout */,
 				A92AEB622AB45B3E0058B2C3 /* BasketTopPicks */,
 				A9BE14BB2AB3206200410856 /* BasketEmpty */,
 			);
@@ -1454,6 +1468,7 @@
 				A90072CC2A73D48E000551E1 /* Camera.swift in Sources */,
 				A9947EE52A179CEB00FC7FB8 /* ActivityIndicatorViewRepresentable.swift in Sources */,
 				A9518D7B2AAB09380080B665 /* DictionaryEncoder.swift in Sources */,
+				A92E6ABD2AB873FB00186F8D /* BasketCheckoutReducer.swift in Sources */,
 				A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */,
 				A9AA22BC2A8E1DD90073E070 /* Localization+Product.swift in Sources */,
 				A9A0CB8F29D6CABE0048A649 /* CTAButtonStyle.swift in Sources */,
@@ -1539,6 +1554,7 @@
 				A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */,
 				A9AFC1722A5EA410003A95C3 /* SearchProductItemView.swift in Sources */,
 				A9ABFB3F2AA71A120093EBF3 /* NotificationHelper.swift in Sources */,
+				A92E6ABF2AB8740300186F8D /* BasketCheckoutView.swift in Sources */,
 				A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */,
 				A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */,
 				A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */,
