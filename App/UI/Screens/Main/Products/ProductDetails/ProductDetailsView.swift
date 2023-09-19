@@ -25,7 +25,7 @@ extension ProductDetailsView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack() {
+            VStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
                         Text(viewStore.product.title)

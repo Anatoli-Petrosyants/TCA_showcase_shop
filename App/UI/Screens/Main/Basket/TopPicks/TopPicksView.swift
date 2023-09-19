@@ -1,5 +1,5 @@
 //
-//  BasketTopPicksView.swift
+//  TopPicksView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 15.09.23.
@@ -9,15 +9,15 @@ import SwiftUI
 import ComposableArchitecture
 import SDWebImageSwiftUI
 
-// MARK: - BasketTopPicksView
+// MARK: - TopPicksView
 
-struct BasketTopPicksView {
-    let store: StoreOf<BasketTopPicksReducer>
+struct TopPicksView {
+    let store: StoreOf<TopPicksReducer>
 }
 
 // MARK: - Views
 
-extension BasketTopPicksView: View {
+extension TopPicksView: View {
     
     var body: some View {
         content
@@ -25,12 +25,12 @@ extension BasketTopPicksView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            BasketTopPicksCountView(count: viewStore.topPicks.count)
+            BasketTopPicksCountView(count: viewStore.products.count)
                 .padding([.leading, .trailing], 24)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
-                    ForEach(viewStore.topPicks) { product in
+                    ForEach(viewStore.products) { product in
                         BasketTopPickView(product: product)
                     }
                 }

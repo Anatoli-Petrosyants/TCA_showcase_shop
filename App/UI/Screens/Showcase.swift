@@ -15,13 +15,18 @@ struct Showcase: App {
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
-        WindowGroup {    
+        WindowGroup {
+            let store = Store(initialState: CheckoutReducer.State()) {
+                CheckoutReducer()
+            }
+            CheckoutView(store: store)
+            
 //            let store = Store(initialState: PhoneOTPReducer.State()) {
 //                PhoneOTPReducer()
 //            }
 //            PhoneOTPView(store: store)
             
-            AppView(store: self.appDelegate.store)
+//            AppView(store: self.appDelegate.store)
         }
         .onChange(of: scenePhase) { phase in
             self.appDelegate.store.send(.didChangeScenePhase(phase))

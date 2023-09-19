@@ -12,10 +12,10 @@ struct BasketReducer: Reducer {
     
     struct State: Equatable {
         var products: [Product] = []
-        var topPicks: [Product] = []
+        var topPicksProducts: [Product] = []
         var totalPrice: String = "$0.00"
-        var emptyBasket = BasketEmptyReducer.State()
-        var topPicksBasket = BasketTopPicksReducer.State()
+        var addProduct = AddProductReducer.State()
+        var topPicks = TopPicksReducer.State()
         
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
         var path = StackState<Path.State>()
@@ -44,35 +44,35 @@ struct BasketReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case emptyBasket(BasketEmptyReducer.Action)
-        case topPicksBasket(BasketTopPicksReducer.Action)
+        case addProduct(AddProductReducer.Action)
+        case topPicks(TopPicksReducer.Action)
         case dialog(PresentationAction<DialogAction>)
         case path(StackAction<Path.State, Path.Action>)
     }
     
     struct Path: Reducer {
         enum State: Equatable {
-            case checkout(BasketCheckoutReducer.State)
+            case checkout(CheckoutReducer.State)
         }
 
         enum Action: Equatable {
-            case checkout(BasketCheckoutReducer.Action)
+            case checkout(CheckoutReducer.Action)
         }
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.checkout, action: /Action.checkout) {
-                BasketCheckoutReducer()
+                CheckoutReducer()
             }
         }
     }
     
     var body: some ReducerOf<Self> {
-        Scope(state: \.emptyBasket, action: /Action.emptyBasket) {
-            BasketEmptyReducer()
+        Scope(state: \.addProduct, action: /Action.addProduct) {
+            AddProductReducer()
         }
         
-        Scope(state: \.topPicksBasket, action: /Action.topPicksBasket) {
-            BasketTopPicksReducer()
+        Scope(state: \.topPicks, action: /Action.topPicks) {
+            TopPicksReducer()
         }
         
         Reduce { state, action in
@@ -82,7 +82,7 @@ struct BasketReducer: Reducer {
                 switch viewAction {
                 case .onViewAppear:
                     state.totalPrice = totalPrice(state.products)                    
-                    state.topPicksBasket.topPicks = state.topPicks
+                    state.topPicks.products = state.topPicksProducts
                     return .none
                     
                 case .onProceedToCheckoutButtonTap:
@@ -120,7 +120,7 @@ struct BasketReducer: Reducer {
                 }
                 
             // Empty basket actions
-            case .emptyBasket(.delegate(.didAddProductsTapped)):
+            case .addProduct(.delegate(.didAddProductsTapped)):
                 return .send(.delegate(.didAddProductsTapped))
                 
             // dialog actions
@@ -133,7 +133,7 @@ struct BasketReducer: Reducer {
             case .path:
                 return .none
                                 
-            case .delegate, .dialog, .emptyBasket, .topPicksBasket:
+            case .delegate, .dialog, .addProduct, .topPicks:
                 return .none
             }
         }

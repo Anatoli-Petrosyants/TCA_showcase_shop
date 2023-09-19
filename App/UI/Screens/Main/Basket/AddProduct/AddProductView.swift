@@ -10,13 +10,13 @@ import ComposableArchitecture
 
 // MARK: - ReducerView
 
-struct BasketEmptyView {
-    let store: StoreOf<BasketEmptyReducer>
+struct AddProductView {
+    let store: StoreOf<AddProductReducer>
 }
 
 // MARK: - Views
 
-extension BasketEmptyView: View {
+extension AddProductView: View {
     
     var body: some View {
         content

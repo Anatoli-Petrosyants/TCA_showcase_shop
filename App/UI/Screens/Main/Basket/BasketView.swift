@@ -79,10 +79,10 @@ extension BasketView: View {
                             }
                             .padding(24)
                         } else {
-                            BasketEmptyView(
+                            AddProductView(
                                 store: self.store.scope(
-                                    state: \.emptyBasket,
-                                    action: BasketReducer.Action.emptyBasket
+                                    state: \.addProduct,
+                                    action: { .addProduct($0) }
                                 )
                             )
 
@@ -90,10 +90,10 @@ extension BasketView: View {
                                 .padding([.leading, .trailing], 24)
                         }
 
-                        BasketTopPicksView(
+                        TopPicksView(
                             store: self.store.scope(
-                                state: \.topPicksBasket,
-                                action: BasketReducer.Action.topPicksBasket
+                                state: \.topPicks,
+                                action: BasketReducer.Action.topPicks
                             )
                         )
 
@@ -107,7 +107,7 @@ extension BasketView: View {
                 case .checkout:
                     CaseLet(/BasketReducer.Path.State.checkout,
                         action: BasketReducer.Path.Action.checkout,
-                        then: BasketCheckoutView.init(store:)
+                        then: CheckoutView.init(store:)
                     )
                 }
             }

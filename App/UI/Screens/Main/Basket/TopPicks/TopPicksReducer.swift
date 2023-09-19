@@ -1,5 +1,5 @@
 //
-//  BasketTopPicksReducer.swift
+//  TopPicksReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 15.09.23.
@@ -8,13 +8,14 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct BasketTopPicksReducer: Reducer {
+struct TopPicksReducer: Reducer {
     
     struct State: Equatable {
-        var topPicks: [Product] = []
+        var products: [Product] = []
     }
     
     enum Action: Equatable {
+        
     }
     
     var body: some ReducerOf<Self> {

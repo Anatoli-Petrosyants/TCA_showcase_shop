@@ -92,8 +92,8 @@ struct MainReducer: Reducer {
                 return .none
                 
             case let .products(.delegate(.didTopPicksLoaded(products))):
-                state.basket.topPicks.removeAll()
-                state.basket.topPicks.append(contentsOf: products)
+                state.basket.topPicksProducts.removeAll()
+                state.basket.topPicksProducts.append(contentsOf: products)
                 return .none
                 
             case .products(.delegate(.didSidebarTapped)):

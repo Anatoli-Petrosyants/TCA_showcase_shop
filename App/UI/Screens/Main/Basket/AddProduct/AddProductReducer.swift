@@ -1,5 +1,5 @@
 //
-//  BasketEmptyReducer.swift
+//  AddProductReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 14.09.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct BasketEmptyReducer: Reducer {
+struct AddProductReducer: Reducer {
     
     struct State: Equatable {
         
