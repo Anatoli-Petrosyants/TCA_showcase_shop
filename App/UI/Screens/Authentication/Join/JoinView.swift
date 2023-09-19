@@ -87,11 +87,11 @@ extension JoinView: View {
                 }
             }
             .sheet(
-                store: self.store.scope(state: \.$developedBy, action: JoinReducer.Action.developedBy),
+                store: self.store.scope(state: \.$developedBy, action: { .developedBy($0) }),
                 content: DevelopedByView.init(store:)
             )
             .sheet(
-                store: self.store.scope(state: \.$loginOptions, action: JoinReducer.Action.loginOptions),
+                store: self.store.scope(state: \.$loginOptions, action: { .loginOptions($0) }),
                 content: LoginOptionsView.init(store:)
             )
         }

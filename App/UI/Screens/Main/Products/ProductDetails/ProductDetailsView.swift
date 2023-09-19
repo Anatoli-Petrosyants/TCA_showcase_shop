@@ -95,7 +95,7 @@ extension ProductDetailsView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .sheet(
-                store: store.scope(state: \.$productPhotos, action: ProductDetails.Action.productPhotos),
+                store: store.scope(state: \.$productPhotos, action: { .productPhotos($0) }),
                 content: ProductPhotosView.init(store:)
             )
         }

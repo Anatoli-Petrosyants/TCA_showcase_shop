@@ -73,7 +73,7 @@ extension SidebarView: View {
             }
             .sheet(
                 store: self.store.scope(state: \.$videoPlayer,
-                                        action: SidebarReducer.Action.videoPlayer),
+                                        action: { .videoPlayer($0) }),
                 content:
                     VideoPlayerView.init(store:)
             )

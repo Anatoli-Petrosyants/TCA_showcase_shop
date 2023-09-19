@@ -179,7 +179,7 @@ extension AccountView: View {
                 }
             }
             .sheet(
-                store: self.store.scope(state: \.$permissions, action: AccountReducer.Action.permissions),
+                store: self.store.scope(state: \.$permissions, action: { .permissions($0) }),
                 content:
                     PermissionsView.init(store:)
             )
