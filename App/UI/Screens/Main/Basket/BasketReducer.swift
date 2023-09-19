@@ -18,6 +18,7 @@ struct BasketReducer: Reducer {
         var topPicksBasket = BasketTopPicksReducer.State()
         
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
+        var path = StackState<Path.State>()
     }
     
     enum Action: Equatable {
@@ -37,7 +38,6 @@ struct BasketReducer: Reducer {
         }
         
         enum DialogAction: Equatable {
-            case confirmProductsCheckout
             case confirmProductDeletion(Product)
         }
 
@@ -47,6 +47,23 @@ struct BasketReducer: Reducer {
         case emptyBasket(BasketEmptyReducer.Action)
         case topPicksBasket(BasketTopPicksReducer.Action)
         case dialog(PresentationAction<DialogAction>)
+        case path(StackAction<Path.State, Path.Action>)
+    }
+    
+    struct Path: Reducer {
+        enum State: Equatable {
+            case checkout(BasketCheckoutReducer.State)
+        }
+
+        enum Action: Equatable {
+            case checkout(BasketCheckoutReducer.Action)
+        }
+
+        var body: some Reducer<State, Action> {
+            Scope(state: /State.checkout, action: /Action.checkout) {
+                BasketCheckoutReducer()
+            }
+        }
     }
     
     var body: some ReducerOf<Self> {
@@ -69,18 +86,7 @@ struct BasketReducer: Reducer {
                     return .none
                     
                 case .onProceedToCheckoutButtonTap:
-                    state.dialog = ConfirmationDialogState {
-                        TextState("Confirmation dialog")
-                    } actions: {
-                        ButtonState(role: .cancel) {
-                            TextState("Cancel")
-                        }
-                        ButtonState(action: .confirmProductsCheckout) {
-                            TextState("Checkout")
-                        }
-                    } message: {
-                        TextState("This is a confirmation dialog.")
-                    }
+                    state.path.append(.checkout(.init()))
                     return .none
                     
                 case let .onDeleteItemButtonTap(product):
@@ -119,21 +125,22 @@ struct BasketReducer: Reducer {
                 
             // dialog actions
             case let .dialog(.presented(dialogAction)):
-                switch dialogAction {
-                case .confirmProductsCheckout:
-                    state.products.removeAll()
-                    state.totalPrice = "$0.00"
-                    return .none
-                    
+                switch dialogAction {                    
                 case let .confirmProductDeletion(product):
                     return .send(.internal(.deleteProduct(product)), animation: .default)
                 }
+                
+            case .path:
+                return .none
                                 
             case .delegate, .dialog, .emptyBasket, .topPicksBasket:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
+        .forEach(\.path, action: /Action.path) {
+            Path()
+        }
     }
 }
 

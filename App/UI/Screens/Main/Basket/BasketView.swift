@@ -26,11 +26,12 @@ extension BasketView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            NavigationStack {
+            NavigationStackStore(
+                self.store.scope(state: \.path, action: { .path($0) })
+            ) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 24) {
                         if viewStore.products.count > 0 {
-                            
                             VStack {
                                 HStack(alignment: .firstTextBaseline) {
                                     Text("Subtotal")
@@ -46,7 +47,7 @@ extension BasketView: View {
                                     viewStore.send(.view(.onProceedToCheckoutButtonTap))
                                 }
                                 .buttonStyle(.cta)
-                                
+
                                 LazyVStack(spacing: 8) {
                                     ForEach(viewStore.products) { product in
                                         HStack() {
@@ -70,11 +71,11 @@ extension BasketView: View {
                                             }
                                         }
                                         .frame(height: 54)
-                                        
+
                                         Divider()
                                     }
                                 }
-                                .padding(.top, 12) 
+                                .padding(.top, 12)
                             }
                             .padding(24)
                         } else {
@@ -84,11 +85,11 @@ extension BasketView: View {
                                     action: BasketReducer.Action.emptyBasket
                                 )
                             )
-                            
+
                             Divider()
                                 .padding([.leading, .trailing], 24)
                         }
-                        
+
                         BasketTopPicksView(
                             store: self.store.scope(
                                 state: \.topPicksBasket,
@@ -101,6 +102,14 @@ extension BasketView: View {
                 }
                 .navigationTitle("Basket")
                 .modifier(NavigationBarModifier())
+            } destination: {
+                switch $0 {
+                case .checkout:
+                    CaseLet(/BasketReducer.Path.State.checkout,
+                        action: BasketReducer.Path.Action.checkout,
+                        then: BasketCheckoutView.init(store:)
+                    )
+                }
             }
             .badge(viewStore.products.count)
         }
