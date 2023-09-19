@@ -41,10 +41,10 @@ struct JoinReducer: Reducer {
     
     struct Path: Reducer {
         enum State: Equatable {
-            case emailLogin(EmailLoginReducer.State = .init())
-            case forgotPassword(ForgotPassword.State = .init())
-            case phoneLogin(PhoneLoginReducer.State = .init())
-            case phoneOTP(PhoneOTPReducer.State = .init())
+            case emailLogin(EmailLoginReducer.State)
+            case forgotPassword(ForgotPassword.State)
+            case phoneLogin(PhoneLoginReducer.State)
+            case phoneOTP(PhoneOTPReducer.State)
         }
         
         enum Action: Equatable {

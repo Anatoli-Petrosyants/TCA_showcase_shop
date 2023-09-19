@@ -50,6 +50,7 @@ struct ProductDetails: Reducer {
     @Dependency(\.feedbackGenerator) var feedbackGenerator
     @Dependency(\.productsClient) var productsClient
     @Dependency(\.usersClient) var usersClient
+    @Dependency(\.dismiss) var dismiss
     
     var body: some Reducer<State, Action> {
         Scope(state: \.users, action: /Action.users) {
@@ -82,8 +83,9 @@ struct ProductDetails: Reducer {
                     
                 case .onAddProductsTap:
                     return .run { [product = state.product] send in
-                        await self.feedbackGenerator.selectionChanged()
-                        return await send(.delegate(.didItemAdded(product)))
+                        await send(.delegate(.didItemAdded(product)))
+                        await self.feedbackGenerator.selectionChanged()                        
+                        await self.dismiss()
                     }
                 }
                 

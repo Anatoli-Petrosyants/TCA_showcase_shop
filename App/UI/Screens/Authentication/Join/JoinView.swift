@@ -25,7 +25,7 @@ extension JoinView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in            
             NavigationStackStore(
-                self.store.scope(state: \.path, action: JoinReducer.Action.path)
+                self.store.scope(state: \.path, action: { .path($0) })
             ) {
                 VStack {
                     Spacer()

@@ -43,7 +43,7 @@ extension AccountView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             NavigationStackStore(
-                self.store.scope(state: \.path, action: AccountReducer.Action.path)
+                self.store.scope(state: \.path, action: { .path($0) })
             ) {
                 Form {
                     Section(header: Text(Localization.Account.sectionPersonal)) {

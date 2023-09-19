@@ -25,7 +25,6 @@ extension AppView: View {
     @ViewBuilder private var content: some View {
         SwitchStore(self.store) { state in
             switch state {
-                
             case .loading:
                 CaseLet(/AppReducer.State.loading, action: AppReducer.Action.loading) { store in
                     LoadingView(store: store)

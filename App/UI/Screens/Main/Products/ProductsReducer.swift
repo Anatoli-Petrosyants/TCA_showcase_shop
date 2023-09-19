@@ -182,12 +182,10 @@ struct ProductsReducer: Reducer {
             // path actions
             case let .path(pathAction):
                 switch pathAction {
-                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
-                    state.path.removeAll()
+                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):                    
                     return .send(.delegate(.didItemAddedToBasket(product)))
 
-                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):
-                    state.path.removeAll()
+                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):                    
                     state.account.countryCode = code
                     return .none
 
