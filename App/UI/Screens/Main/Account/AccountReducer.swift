@@ -236,7 +236,6 @@ struct AccountReducer: Reducer {
             case let .path(pathAction):
                 switch pathAction {
                 case let .element(id: _, action: .cities(.delegate(.didCitySelected(city)))):
-                    // _ = state.path.popLast()
                     state.city = city
                     return .none
                     

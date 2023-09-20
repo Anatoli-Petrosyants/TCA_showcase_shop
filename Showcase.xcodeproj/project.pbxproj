@@ -40,6 +40,9 @@
 		A92E6ABF2AB8740300186F8D /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABE2AB8740300186F8D /* CheckoutView.swift */; };
 		A92E6AC22AB9C51400186F8D /* CheckoutAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */; };
 		A92E6AC42AB9C51D00186F8D /* CheckoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC32AB9C51D00186F8D /* CheckoutCardView.swift */; };
+		A92E6AC72ABACF2F00186F8D /* String+CardBrands.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC62ABACF2F00186F8D /* String+CardBrands.swift */; };
+		A92E6AC92ABADE2500186F8D /* PaymentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC82ABADE2500186F8D /* PaymentCard.swift */; };
+		A92E6ACB2ABADE8F00186F8D /* ShipmentAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACA2ABADE8F00186F8D /* ShipmentAddress.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
@@ -272,6 +275,9 @@
 		A92E6ABE2AB8740300186F8D /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressView.swift; sourceTree = "<group>"; };
 		A92E6AC32AB9C51D00186F8D /* CheckoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCardView.swift; sourceTree = "<group>"; };
+		A92E6AC62ABACF2F00186F8D /* String+CardBrands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CardBrands.swift"; sourceTree = "<group>"; };
+		A92E6AC82ABADE2500186F8D /* PaymentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCard.swift; sourceTree = "<group>"; };
+		A92E6ACA2ABADE8F00186F8D /* ShipmentAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentAddress.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
@@ -608,6 +614,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A92E6ACC2ABADEAC00186F8D /* Checkout */ = {
+			isa = PBXGroup;
+			children = (
+				A92E6AC82ABADE2500186F8D /* PaymentCard.swift */,
+				A92E6ACA2ABADE8F00186F8D /* ShipmentAddress.swift */,
+			);
+			path = Checkout;
+			sourceTree = "<group>";
+		};
 		A930CDA729E41EF900AF73E3 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +907,7 @@
 		A990E5172A41A01C0004F4F9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A92E6AC62ABACF2F00186F8D /* String+CardBrands.swift */,
 				A95E758C29ACA1F50081A170 /* String+Extensions.swift */,
 				A9BEED4029D2DAA2007ADC33 /* Color+Extensions.swift */,
 				A988F0B829B5CC610059F9BB /* Optional+Extensions.swift */,
@@ -977,6 +993,7 @@
 			isa = PBXGroup;
 			children = (
 				A9F665972A54302700D4FB8A /* Account.swift */,
+				A92E6ACC2ABADEAC00186F8D /* Checkout */,
 				A965938E2AAF368700E7EACA /* Contact */,
 				A9A0CB6C29D41CB00048A649 /* Map */,
 				A9B4D7AB2A4C527100B102FB /* Users */,
@@ -1546,6 +1563,7 @@
 				A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */,
 				A92AEB5F2AB45B350058B2C3 /* TopPicksReducer.swift in Sources */,
 				A9B4D7AD2A4C52AF00B102FB /* User.swift in Sources */,
+				A92E6AC72ABACF2F00186F8D /* String+CardBrands.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
 				A92E6AC42AB9C51D00186F8D /* CheckoutCardView.swift in Sources */,
 				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
@@ -1566,10 +1584,12 @@
 				A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */,
 				A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */,
 				A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */,
+				A92E6AC92ABADE2500186F8D /* PaymentCard.swift in Sources */,
 				A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */,
 				A9AFC1722A5EA410003A95C3 /* SearchProductItemView.swift in Sources */,
 				A9ABFB3F2AA71A120093EBF3 /* NotificationHelper.swift in Sources */,
 				A92E6ABF2AB8740300186F8D /* CheckoutView.swift in Sources */,
+				A92E6ACB2ABADE8F00186F8D /* ShipmentAddress.swift in Sources */,
 				A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */,
 				A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */,
 				A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */,

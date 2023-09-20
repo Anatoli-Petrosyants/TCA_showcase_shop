@@ -29,14 +29,13 @@ struct CheckoutCardOption: View {
         Button(action: action) {
             HStack(alignment: .center, spacing: 10) {
                 Image(systemName: item.isDefaultPaymentMethod ? "largecircle.fill.circle" : "circle")
-                    .foregroundColor(item.isDefaultPaymentMethod ? .blue : .gray)
+                    .foregroundColor(item.isDefaultPaymentMethod ? .blue : .black03)
                     .imageScale(.large)
                 
-                Image(systemName: "creditcard")
+                Image(item.number.cardBrand.image)
                     .resizable()
-                    .renderingMode(.template)
-                    .foregroundColor(Color.gray)
-                    .frame(width: 36, height: 24)
+                    .scaledToFit()
+                    .frame(width: 54)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(item.number.cardBrand.rawValue)" + " " + "••••" + item.last4)

@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct CheckoutAddressOptionGroups: View {
-    typealias Address = CheckoutReducer.Address
-    
-    var items: [Address]
-    let callback: (Address) -> ()
+    var items: [ShipmentAddress]
+    let callback: (ShipmentAddress) -> ()
     
     var body: some View {
         ForEach(items, id: \.self) { item in
@@ -23,14 +21,14 @@ struct CheckoutAddressOptionGroups: View {
 }
 
 struct CheckoutAddressOption: View {
-    var item: CheckoutReducer.Address
+    var item: ShipmentAddress
     var action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack(alignment: .center, spacing: 10) {
                 Image(systemName: item.isSelected ? "largecircle.fill.circle" : "circle")
-                    .foregroundColor(item.isSelected ? .blue : .gray)
+                    .foregroundColor(item.isSelected ? .blue : .black03)
                     .imageScale(.large)
 
                 VStack(alignment: .leading, spacing: 4) {

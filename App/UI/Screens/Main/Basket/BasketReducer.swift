@@ -17,6 +17,7 @@ struct BasketReducer: Reducer {
         var addProduct = AddProductReducer.State()
         var topPicks = TopPicksReducer.State()
         
+        @BindingState var toastMessage: LocalizedStringKey? = nil
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
         var path = StackState<Path.State>()
     }
@@ -130,8 +131,18 @@ struct BasketReducer: Reducer {
                     return .send(.internal(.deleteProduct(product)), animation: .default)
                 }
                 
-            case .path:
-                return .none
+            // path actions
+            case let .path(pathAction):
+                switch pathAction {
+                case .element(id: _, action: .checkout(.delegate(.didCheckoutCompleted))):
+                    state.products.removeAll()
+                    state.totalPrice = ""
+                    state.toastMessage = Localization.Base.successfullySaved
+                    return .none
+                    
+                default:
+                    return .none
+                }
                                 
             case .delegate, .dialog, .addProduct, .topPicks:
                 return .none
