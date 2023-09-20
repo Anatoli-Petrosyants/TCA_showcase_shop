@@ -38,6 +38,8 @@
 		A92AEB662AB476430058B2C3 /* basket.json in Resources */ = {isa = PBXBuildFile; fileRef = A92AEB652AB476430058B2C3 /* basket.json */; };
 		A92E6ABD2AB873FB00186F8D /* CheckoutReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABC2AB873FB00186F8D /* CheckoutReducer.swift */; };
 		A92E6ABF2AB8740300186F8D /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABE2AB8740300186F8D /* CheckoutView.swift */; };
+		A92E6AC22AB9C51400186F8D /* CheckoutAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */; };
+		A92E6AC42AB9C51D00186F8D /* CheckoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC32AB9C51D00186F8D /* CheckoutCardView.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
@@ -268,6 +270,8 @@
 		A92AEB652AB476430058B2C3 /* basket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basket.json; sourceTree = "<group>"; };
 		A92E6ABC2AB873FB00186F8D /* CheckoutReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutReducer.swift; sourceTree = "<group>"; };
 		A92E6ABE2AB8740300186F8D /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressView.swift; sourceTree = "<group>"; };
+		A92E6AC32AB9C51D00186F8D /* CheckoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCardView.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
@@ -590,8 +594,18 @@
 			children = (
 				A92E6ABC2AB873FB00186F8D /* CheckoutReducer.swift */,
 				A92E6ABE2AB8740300186F8D /* CheckoutView.swift */,
+				A92E6AC52AB9C52100186F8D /* Views */,
 			);
 			path = Checkout;
+			sourceTree = "<group>";
+		};
+		A92E6AC52AB9C52100186F8D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */,
+				A92E6AC32AB9C51D00186F8D /* CheckoutCardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A930CDA729E41EF900AF73E3 /* Help */ = {
@@ -1533,6 +1547,7 @@
 				A92AEB5F2AB45B350058B2C3 /* TopPicksReducer.swift in Sources */,
 				A9B4D7AD2A4C52AF00B102FB /* User.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
+				A92E6AC42AB9C51D00186F8D /* CheckoutCardView.swift in Sources */,
 				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A90072D52A73DC05000551E1 /* CameraView.swift in Sources */,
@@ -1583,6 +1598,7 @@
 				A990E5442A42CB6F0004F4F9 /* ForgotPasswordView.swift in Sources */,
 				A90072D02A73D4A5000551E1 /* CameraClient.swift in Sources */,
 				A971F15A2AA8707F00CCCC95 /* DictionaryDecoder.swift in Sources */,
+				A92E6AC22AB9C51400186F8D /* CheckoutAddressView.swift in Sources */,
 				A988F0D629B60B470059F9BB /* ErrorModifier.swift in Sources */,
 				A9518D7D2AAB0D4A0080B665 /* ProductRequest.swift in Sources */,
 				A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */,

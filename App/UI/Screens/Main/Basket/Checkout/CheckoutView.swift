@@ -26,15 +26,16 @@ extension CheckoutView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
                 Section(header: Text("Select a Payment Method")) {
-                    CheckoutAddressOptionGroups(items: viewStore.addresses) { address in
-                        viewStore.send(.onAddresschange(address))
+                    CheckoutCardOptionGroups(items: viewStore.cards) { card in
+                        viewStore.send(.onCardChange(card))
                     }
                 }
                 .listRowBackground(Color.gray)
                 
+                
                 Section(header: Text("Shipping address")) {
                     CheckoutAddressOptionGroups(items: viewStore.addresses) { address in
-                        viewStore.send(.onAddresschange(address))
+                        viewStore.send(.onAddressChange(address))
                     }
                 }
                 .listRowBackground(Color.gray)
@@ -44,47 +45,6 @@ extension CheckoutView: View {
             .tint(.black)
             .toolbar(.hidden, for: .tabBar)
             .navigationTitle("Checkout")
-        }
-    }
-}
-
-struct CheckoutAddressOptionGroups: View {
-    typealias Address = CheckoutReducer.CheckoutAddress
-    
-    var items: [Address]
-    let callback: (Address) -> ()
-    
-    var body: some View {
-        ForEach(items, id: \.self) { item in
-            CheckoutAddressOption(item: item) {
-                callback(item)
-            }
-        }
-    }
-}
-
-struct CheckoutAddressOption: View {
-    var item: CheckoutReducer.CheckoutAddress
-    var action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            HStack(alignment: .center, spacing: 10) {
-                Image(systemName: item.isSelected ? "largecircle.fill.circle" : "circle")
-                    .foregroundColor(item.isSelected ? .blue : .gray)
-                    .imageScale(.large)
-
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(item.name)
-                        .foregroundColor(.black)
-                        .font(.subheadlineBold)
-                    
-                    Text(item.address)
-                        .foregroundColor(.black05)
-                        .font(.subheadline)
-                }
-            }
-            .foregroundColor(.primary)
         }
     }
 }
