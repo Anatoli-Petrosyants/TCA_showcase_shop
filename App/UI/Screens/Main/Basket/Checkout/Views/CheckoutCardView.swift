@@ -32,28 +32,21 @@ struct CheckoutCardOption: View {
                     .foregroundColor(item.isDefaultPaymentMethod ? .blue : .gray)
                     .imageScale(.large)
                 
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: "creditcard")
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(Color.gray)
-                        .frame(width: 36, height: 24)
+                Image(systemName: "creditcard")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(Color.gray)
+                    .frame(width: 36, height: 24)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(item.number.cardBrand.rawValue)" + " " + "••••" + item.last4)
+                        .foregroundColor(.black)
+                        .font(.subheadlineBold)
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Brand Name" + " " + "••••" + item.last4)
-                            .foregroundColor(.black)
-                            .font(.subheadlineBold)
-                        
-                        Text(item.name + " " + "\(item.expMonth)/\(item.expYear)")
-                            .foregroundColor(.black05)
-                            .font(.subheadline)
-                        
-                        Spacer()
-                    }
-
-                    Spacer()
+                    Text(item.name + " " + "\(item.expMonth)/\(item.expYear)")
+                        .foregroundColor(.black05)
+                        .font(.subheadline)
                 }
-                .padding(.top, 12)
             }
             .foregroundColor(.primary)
         }

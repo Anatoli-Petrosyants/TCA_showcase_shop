@@ -85,7 +85,7 @@ extension PaymentCard {
 extension PaymentCard {
     static let visa = PaymentCard(id: UUID(),
                                   name: "Mari Kalkun",
-                                  number: "4242424242424242",
+                                  number: "5425233430109903",
                                   expMonth: Int.random(in: 1...12),
                                   expYear: Int.random(in: 2020...2023),
                                   cvc: Int.random(in: 1...3),
@@ -93,7 +93,7 @@ extension PaymentCard {
     
     static let master = PaymentCard(id: UUID(),
                                     name: "Anatoli Petrosyants",
-                                    number: "5555555555554444",
+                                    number: "4263982640269299",
                                     expMonth: Int.random(in: 1...12),
                                     expYear: Int.random(in: 2020...2023),
                                     cvc: Int.random(in: 1...3),
@@ -101,11 +101,46 @@ extension PaymentCard {
     
     static let discover = PaymentCard(id: UUID(),
                                       name: "Anatoli Petrosyants",
-                                      number: "6011111111111117",
+                                      number: "374245455400126",
                                       expMonth: Int.random(in: 1...12),
                                       expYear: Int.random(in: 2020...2023),
                                       cvc: Int.random(in: 1...3),
                                       isDefaultPaymentMethod: false)
     
     static let mockedData: [PaymentCard] = [visa, master, discover]
+}
+
+extension String {
+    
+    enum CardBrand: String {
+        case unknown = "Unknown"
+        case visa = "Visa"
+        case mastercard = "MasterCard"
+        case amex = "American Express"
+        case discover = "Discover"
+        case dinersClub = "Diners Club"
+        case jcb = "JCB"
+    }
+
+    var cardBrand: CardBrand {
+        let cardNumber = self.replacingOccurrences(of: " ", with: "")
+        let cardPrefix = String(cardNumber.prefix(6))
+
+        let cardPatterns: [CardBrand: String] = [
+            .visa: "^4[0-9]{0,15}$",
+            .mastercard: "^5[1-5][0-9]{0,14}$",
+            .amex: "^3[47][0-9]{0,13}$",
+            .discover: "^(6011|6221[2-9]|64[4-9]|65)",
+            .dinersClub: "^(30[0-5]|36|38)",
+            .jcb: "^(35[2-8][0-9])"
+        ]
+
+        for (brand, pattern) in cardPatterns {
+            if cardPrefix.range(of: pattern, options: .regularExpression) != nil {
+                return brand
+            }
+        }
+
+        return .unknown
+    }
 }
