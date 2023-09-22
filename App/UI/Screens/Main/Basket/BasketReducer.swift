@@ -35,6 +35,7 @@ struct BasketReducer: Reducer {
         
         enum Delegate: Equatable {
             case didAddProductsTapped
+            case didTopPickAddedToBasket(Product)
         }
         
         enum DialogAction: Equatable {
@@ -89,7 +90,7 @@ struct BasketReducer: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onViewAppear:
-                    state.totalPrice = totalPrice(state.products)                    
+                    state.totalPrice = totalPrice(state.products)
                     state.topPicks.products = state.topPicksProducts
                     return .none
                     
@@ -139,15 +140,15 @@ struct BasketReducer: Reducer {
             case let .path(pathAction):
                 switch pathAction {
                 case .element(id: _, action: .checkout(.delegate(.didCheckoutCompleted))):
-                    state.products.removeAll()
                     state.totalPrice = ""
                     state.toastMessage = Localization.Base.successfullySaved
                     return .none
                     
                 case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
-                    Log.debug("pathAction product \(product)")
-                    // return .send(.delegate(.didItemAddedToBasket(product)))
-                    return .none
+                    return .concatenate(
+                        .send(.delegate(.didTopPickAddedToBasket(product))),
+                        .send(.view(.onViewAppear))
+                    )
                     
                 default:
                     return .none

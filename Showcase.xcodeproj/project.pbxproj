@@ -614,13 +614,13 @@
 			path = Checkout;
 			sourceTree = "<group>";
 		};
-		A92E6AD12ABD817300186F8D /* PopularProducts */ = {
+		A92E6AD12ABD817300186F8D /* TopPicks */ = {
 			isa = PBXGroup;
 			children = (
 				A92E6ACF2ABD816A00186F8D /* TopPicksReducer.swift */,
 				A92E6ACD2ABD816200186F8D /* TopPicksView.swift */,
 			);
-			path = PopularProducts;
+			path = TopPicks;
 			sourceTree = "<group>";
 		};
 		A930CDA729E41EF900AF73E3 /* Help */ = {
@@ -741,7 +741,7 @@
 			children = (
 				A960AA232A49BAF3005CE9F9 /* BasketReducer.swift */,
 				A960AA252A49BAF9005CE9F9 /* BasketView.swift */,
-				A92E6AD12ABD817300186F8D /* PopularProducts */,
+				A92E6AD12ABD817300186F8D /* TopPicks */,
 				A92E6AC02AB8740900186F8D /* Checkout */,
 				A9BE14BB2AB3206200410856 /* AddProduct */,
 			);

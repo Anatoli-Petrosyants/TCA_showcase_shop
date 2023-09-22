@@ -87,7 +87,7 @@ struct MainReducer: Reducer {
                 state.currentTab = tab
                 return .none
             
-            case let .products(.delegate(.didItemAddedToBasket(product))):                
+            case let .products(.delegate(.didProductAddedToBasket(product))):
                 state.basket.products.append(product)
                 return .none
                 
@@ -106,6 +106,10 @@ struct MainReducer: Reducer {
                 
             case .basket(.delegate(.didAddProductsTapped)):
                 state.currentTab = .products
+                return .none
+
+            case let .basket(.delegate(.didTopPickAddedToBasket(product))):
+                state.basket.products.append(product)
                 return .none
                 
             case .account(.delegate(.didLogout)):                

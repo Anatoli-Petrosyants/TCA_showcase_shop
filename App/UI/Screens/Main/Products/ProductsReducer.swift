@@ -33,7 +33,7 @@ struct ProductsReducer: Reducer {
         }
 
         enum Delegate: Equatable {
-            case didItemAddedToBasket(Product)
+            case didProductAddedToBasket(Product)
             case didTopPicksLoaded([Product])
             case didSidebarTapped
         }
@@ -183,7 +183,7 @@ struct ProductsReducer: Reducer {
             case let .path(pathAction):
                 switch pathAction {
                 case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):                    
-                    return .send(.delegate(.didItemAddedToBasket(product)))
+                    return .send(.delegate(.didProductAddedToBasket(product)))
 
                 case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):                    
                     state.account.countryCode = code

@@ -26,7 +26,7 @@ extension AddProductView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack(spacing: 24) {
                 HStack {
-                    LottieViewRepresentable(name: "basket",
+                    LottieViewRepresentable(name: "onboarding_1",
                                             loopMode: .autoReverse,
                                             play:.constant(true))
                     .frame(width: 80, height: 60)
