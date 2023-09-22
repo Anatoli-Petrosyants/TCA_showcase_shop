@@ -26,8 +26,7 @@ struct BasketReducer: Reducer {
         enum ViewAction: Equatable {
             case onViewAppear
             case onDeleteItemButtonTap(Product)
-            case onProceedToCheckoutButtonTap
-            case onAddProductsButtonTap
+            case onProceedToCheckoutButtonTap            
         }
         
         enum InternalAction: Equatable {
@@ -104,9 +103,6 @@ struct BasketReducer: Reducer {
                         TextState("Are you sure you want to remove '\(product.title)' from list.")
                     }
                     return .none
-                    
-                case .onAddProductsButtonTap:                    
-                    return .send(.delegate(.didAddProductsTapped))
                 }
                 
             // internal actions
@@ -144,9 +140,9 @@ struct BasketReducer: Reducer {
                     return .none
                 }
                 
-//            case let .topPicks(.delegate(.didItemSelected(product))):
-//                Log.debug("topPicks \(product)")
-//                return .none
+            case let .topPicks(.delegate(.didItemSelected(product))):
+                Log.debug("topPicks \(product)")
+                return .none
                 
             case .delegate, .dialog, .addProduct, .topPicks:
                 return .none

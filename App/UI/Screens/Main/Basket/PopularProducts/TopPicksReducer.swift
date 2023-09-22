@@ -20,7 +20,7 @@ struct TopPicksReducer: Reducer {
         }
         
         enum Delegate: Equatable {
-            case didItemTapped(Product)
+            case didItemSelected(Product)
         }
 
         case view(ViewAction)
@@ -30,8 +30,10 @@ struct TopPicksReducer: Reducer {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .onViewAppear:
-                Log.debug("PopularProductsReducer onViewAppear")
+            case let .view(.onItemTap(product)):
+                return .send(.delegate(.didItemSelected(product)))
+                
+            case .delegate:
                 return .none
             }
         }

@@ -33,7 +33,7 @@ extension TopPicksView: View {
                     ForEach(viewStore.products) { product in
                         TopPickView(product: product)
                             .onTapGesture {
-                                viewStore.send(.onViewAppear)
+                                viewStore.send(.view(.onItemTap(product)))
                             }
                     }
                 }
