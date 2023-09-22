@@ -2,7 +2,7 @@
 //  TopPicksView.swift
 //  Showcase
 //
-//  Created by Anatoli Petrosyants on 15.09.23.
+//  Created by Anatoli Petrosyants on 22.09.23.
 //
 
 import SwiftUI
@@ -20,18 +20,21 @@ struct TopPicksView {
 extension TopPicksView: View {
     
     var body: some View {
-        content
+        content// .onAppear { self.store.send(.onViewAppear) }
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            BasketTopPicksCountView(count: viewStore.products.count)
+            TopPicksCountView(count: viewStore.products.count)
                 .padding([.leading, .trailing], 24)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
                     ForEach(viewStore.products) { product in
-                        BasketTopPickView(product: product)
+                        TopPickView(product: product)
+                            .onTapGesture {
+                                viewStore.send(.onViewAppear)
+                            }
                     }
                 }
             }
@@ -39,8 +42,7 @@ extension TopPicksView: View {
     }
 }
 
-struct BasketTopPicksCountView: View {
-    
+struct TopPicksCountView: View {
     var count: Int
     
     var body: some View {
@@ -56,10 +58,9 @@ struct BasketTopPicksCountView: View {
     }
 }
 
-struct BasketTopPickView: View {
-
+struct TopPickView: View {
     var product: Product
-
+    
     var body: some View {
         VStack(spacing: 6) {
             WebImage(url: product.imageURL)

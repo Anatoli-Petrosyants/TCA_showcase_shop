@@ -89,7 +89,7 @@ extension BasketView: View {
                             Divider()
                                 .padding([.leading, .trailing], 24)
                         }
-
+                        
                         TopPicksView(
                             store: self.store.scope(
                                 state: \.topPicks,

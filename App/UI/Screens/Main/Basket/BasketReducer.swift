@@ -143,7 +143,11 @@ struct BasketReducer: Reducer {
                 default:
                     return .none
                 }
-                                
+                
+//            case let .topPicks(.delegate(.didItemSelected(product))):
+//                Log.debug("topPicks \(product)")
+//                return .none
+                
             case .delegate, .dialog, .addProduct, .topPicks:
                 return .none
             }
