@@ -53,18 +53,26 @@ struct BasketReducer: Reducer {
     struct Path: Reducer {
         enum State: Equatable {
             case checkout(CheckoutReducer.State)
+            case details(ProductDetails.State)
         }
 
         enum Action: Equatable {
             case checkout(CheckoutReducer.Action)
+            case details(ProductDetails.Action)
         }
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.checkout, action: /Action.checkout) {
                 CheckoutReducer()
             }
+            
+            Scope(state: /State.details, action: /Action.details) {
+                ProductDetails()
+            }
         }
     }
+    
+    @Dependency(\.uuid) var uuid
     
     var body: some ReducerOf<Self> {
         Scope(state: \.addProduct, action: /Action.addProduct) {
@@ -136,12 +144,17 @@ struct BasketReducer: Reducer {
                     state.toastMessage = Localization.Base.successfullySaved
                     return .none
                     
+                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
+                    Log.debug("pathAction product \(product)")
+                    // return .send(.delegate(.didItemAddedToBasket(product)))
+                    return .none
+                    
                 default:
                     return .none
                 }
                 
             case let .topPicks(.delegate(.didItemSelected(product))):
-                Log.debug("topPicks \(product)")
+                state.path.append(.details(.init(id: self.uuid(), product: product)))
                 return .none
                 
             case .delegate, .dialog, .addProduct, .topPicks:

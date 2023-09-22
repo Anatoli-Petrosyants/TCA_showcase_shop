@@ -109,6 +109,12 @@ extension BasketView: View {
                         action: BasketReducer.Path.Action.checkout,
                         then: CheckoutView.init(store:)
                     )
+                    
+                case .details:
+                    CaseLet(/BasketReducer.Path.State.details,
+                        action: BasketReducer.Path.Action.details,
+                        then: ProductDetailsView.init(store:)
+                    )
                 }
             }
             .badge(viewStore.products.count)
