@@ -49,7 +49,7 @@ extension CheckoutView: View {
             .scrollContentBackground(.hidden)
             .tint(.black)
             .toolbar(.hidden, for: .tabBar)
-            .navigationTitle(Localization.Basket.title)
+            .navigationTitle(Localization.Basket.checkoutTitle)
             .alert(store: self.store.scope(state: \.$alert, action: CheckoutReducer.Action.alert))
         }
     }

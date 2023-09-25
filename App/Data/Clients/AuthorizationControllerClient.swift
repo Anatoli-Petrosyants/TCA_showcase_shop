@@ -29,6 +29,7 @@ extension AuthorizationControllerClient: DependencyKey {
             signIn: {
                 Log.debug("AuthorizationControllerClient signIn")
                 
+                /*
                 // Create an authorization request
                 let appleIDProvider = ASAuthorizationAppleIDProvider()
                 let request = appleIDProvider.createRequest()
@@ -42,6 +43,7 @@ extension AuthorizationControllerClient: DependencyKey {
 
                 // Present the authorization controller
                 authorizationController.performRequests()
+                */
             }
         )
     }()

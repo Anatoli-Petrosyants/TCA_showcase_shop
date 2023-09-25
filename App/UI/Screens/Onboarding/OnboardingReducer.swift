@@ -1,5 +1,5 @@
 //
-//  HelpReducer.swift
+//  OnboardingReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 10.04.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct HelpReducer: Reducer {
+struct OnboardingReducer: Reducer {
     
     struct State: Equatable, Hashable {
         var items: [Onboarding] = Onboarding.pages

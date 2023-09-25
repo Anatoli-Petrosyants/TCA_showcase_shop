@@ -10,8 +10,8 @@ import ComposableArchitecture
 
 // MARK: - HelpView
 
-struct HelpView {
-    let store: StoreOf<HelpReducer>
+struct OnboardingView {
+    let store: StoreOf<OnboardingReducer>
     
     struct ViewState: Equatable {
         var showGetStarted: Bool
@@ -22,7 +22,7 @@ struct HelpView {
 
 // MARK: - Views
 
-extension HelpView: View {
+extension OnboardingView: View {
     
     var body: some View {
         content
@@ -60,9 +60,9 @@ extension HelpView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<HelpReducer.State> {
-    var view: HelpView.ViewState {
-        HelpView.ViewState(showGetStarted: self.showGetStarted,
+extension BindingViewStore<OnboardingReducer.State> {
+    var view: OnboardingView.ViewState {
+        OnboardingView.ViewState(showGetStarted: self.showGetStarted,
                            items: self.items,
                            currentTab: self.$currentTab)
     }

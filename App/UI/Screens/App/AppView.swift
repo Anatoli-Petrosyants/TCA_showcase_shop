@@ -31,9 +31,9 @@ extension AppView: View {
                         .transition(.delayAndFade)
                 }
                 
-            case .help:
-                CaseLet(/AppReducer.State.help, action: AppReducer.Action.help) { store in
-                    HelpView(store: store)
+            case .onboarding:
+                CaseLet(/AppReducer.State.onboarding, action: AppReducer.Action.help) { store in
+                    OnboardingView(store: store)
                         .transition(.delayAndFade)
                 }
                 

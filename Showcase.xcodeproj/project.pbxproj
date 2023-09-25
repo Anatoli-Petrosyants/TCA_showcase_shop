@@ -44,8 +44,8 @@
 		A92E6AD02ABD816A00186F8D /* TopPicksReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACF2ABD816A00186F8D /* TopPicksReducer.swift */; };
 		A92E6AD32AC1688000186F8D /* Localization+Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AD22AC1688000186F8D /* Localization+Basket.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
-		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
-		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
+		A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */; };
+		A930CDA629E41EF600AF73E3 /* OnboardingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* OnboardingReducer.swift */; };
 		A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */; };
 		A930CDB029E5414800AF73E3 /* LoadingReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */; };
 		A930CDB229E5414E00AF73E3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDB129E5414E00AF73E3 /* LoadingView.swift */; };
@@ -279,8 +279,8 @@
 		A92E6ACF2ABD816A00186F8D /* TopPicksReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksReducer.swift; sourceTree = "<group>"; };
 		A92E6AD22AC1688000186F8D /* Localization+Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Basket.swift"; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
+		A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A930CDA529E41EF600AF73E3 /* OnboardingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingReducer.swift; sourceTree = "<group>"; };
 		A930CDAB29E41FEB00AF73E3 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		A930CDAF29E5414800AF73E3 /* LoadingReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingReducer.swift; sourceTree = "<group>"; };
 		A930CDB129E5414E00AF73E3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -417,10 +417,6 @@
 		A9B4D7AE2A4C52B700B102FB /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		A9B4D7B12A4C59C300B102FB /* ProductUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUsers.swift; sourceTree = "<group>"; };
 		A9B4D7B32A4C59C800B102FB /* ProductUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUsersView.swift; sourceTree = "<group>"; };
-		A9BE14A62AB3025C00410856 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
-		A9BE14A92AB3025D00410856 /* AccountAuthenticationModificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAuthenticationModificationViewController.swift; sourceTree = "<group>"; };
-		A9BE14AC2AB3025D00410856 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		A9BE14AE2AB3025D00410856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9BE14B72AB3205200410856 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		A9BE14B92AB3205A00410856 /* AddProductReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductReducer.swift; sourceTree = "<group>"; };
 		A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProgressStyle.swift; sourceTree = "<group>"; };
@@ -623,13 +619,13 @@
 			path = TopPicks;
 			sourceTree = "<group>";
 		};
-		A930CDA729E41EF900AF73E3 /* Help */ = {
+		A930CDA729E41EF900AF73E3 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				A930CDA529E41EF600AF73E3 /* HelpReducer.swift */,
-				A930CDA129E41DAD00AF73E3 /* HelpView.swift */,
+				A930CDA529E41EF600AF73E3 /* OnboardingReducer.swift */,
+				A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */,
 			);
-			path = Help;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		A930CDAD29E41FEE00AF73E3 /* App */ = {
@@ -860,7 +856,7 @@
 				A990E5032A4194820004F4F9 /* Showcase.swift */,
 				A930CDAD29E41FEE00AF73E3 /* App */,
 				A930CDAE29E5414000AF73E3 /* Loading */,
-				A930CDA729E41EF900AF73E3 /* Help */,
+				A930CDA729E41EF900AF73E3 /* Onboarding */,
 				A990E53C2A41D1850004F4F9 /* Authentication */,
 				A92A22A129F8EEDB0034469C /* Main */,
 				A990E52F2A41BCB60004F4F9 /* NoNetwork */,
@@ -1196,24 +1192,6 @@
 			path = ProductUsers;
 			sourceTree = "<group>";
 		};
-		A9BE14A52AB3025C00410856 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A9BE14A62AB3025C00410856 /* AuthenticationServices.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A9BE14A82AB3025D00410856 /* AppleSignIn */ = {
-			isa = PBXGroup;
-			children = (
-				A9BE14A92AB3025D00410856 /* AccountAuthenticationModificationViewController.swift */,
-				A9BE14AB2AB3025D00410856 /* MainInterface.storyboard */,
-				A9BE14AE2AB3025D00410856 /* Info.plist */,
-			);
-			path = AppleSignIn;
-			sourceTree = "<group>";
-		};
 		A9BE14BB2AB3206200410856 /* AddProduct */ = {
 			isa = PBXGroup;
 			children = (
@@ -1236,8 +1214,6 @@
 			isa = PBXGroup;
 			children = (
 				A9DED5A029AC7FA6003EFA02 /* App */,
-				A9BE14A82AB3025D00410856 /* AppleSignIn */,
-				A9BE14A52AB3025C00410856 /* Frameworks */,
 				A9DED59F29AC7FA6003EFA02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1485,7 +1461,7 @@
 				A90A604B2A67D9500011B2BD /* ProductsPhotosReducer.swift in Sources */,
 				A94BF89D2A56B53D006FCE43 /* ProductAccountReducer.swift in Sources */,
 				A960AA262A49BAF9005CE9F9 /* BasketView.swift in Sources */,
-				A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */,
+				A930CDA629E41EF600AF73E3 /* OnboardingReducer.swift in Sources */,
 				A9947EE72A179CF300FC7FB8 /* BlurViewRepresentable.swift in Sources */,
 				A9E9864A29E7DAA10028D5DB /* DevelopedByView.swift in Sources */,
 				A90A604D2A67D95A0011B2BD /* ProductsPhotosView.swift in Sources */,
@@ -1542,7 +1518,7 @@
 				A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */,
 				A94A87342AA1FF7E00168BC1 /* LoginOptionsReducer.swift in Sources */,
 				A9EEE2FD2A6FDB34007A6442 /* InAppMessages+Views.swift in Sources */,
-				A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */,
+				A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */,
 				A9AFC16A2A5D878E003A95C3 /* SearchSegmentView.swift in Sources */,
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
 				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
@@ -1687,14 +1663,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A9BE14AB2AB3025D00410856 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A9BE14AC2AB3025D00410856 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		A9DED5BA29AC94D2003EFA02 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

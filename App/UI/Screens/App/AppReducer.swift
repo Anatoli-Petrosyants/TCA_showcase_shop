@@ -13,7 +13,7 @@ struct AppReducer: Reducer {
 
     enum State: Equatable {
         case loading(LoadingReducer.State)
-        case help(HelpReducer.State)
+        case onboarding(OnboardingReducer.State)
         case join(JoinReducer.State)
         case main(MainReducer.State)
 
@@ -30,7 +30,7 @@ struct AppReducer: Reducer {
         case appDelegate(AppDelegateAction)
         case didChangeScenePhase(ScenePhase)
         case loading(LoadingReducer.Action)
-        case help(HelpReducer.Action)
+        case help(OnboardingReducer.Action)
         case join(JoinReducer.Action)
         case main(MainReducer.Action)
     }
@@ -105,7 +105,7 @@ struct AppReducer: Reducer {
                             state = .join(JoinReducer.State())
                         }
                     } else {
-                        state = .help(HelpReducer.State())
+                        state = .onboarding(OnboardingReducer.State())
                     }
                     return .none
                 }
@@ -139,8 +139,8 @@ struct AppReducer: Reducer {
         .ifCaseLet(/State.loading, action: /Action.loading) {
             LoadingReducer()
         }
-        .ifCaseLet(/State.help, action: /Action.help) {
-            HelpReducer()
+        .ifCaseLet(/State.onboarding, action: /Action.help) {
+            OnboardingReducer()
         }
         .ifCaseLet(/State.join, action: /Action.join) {
             JoinReducer()
