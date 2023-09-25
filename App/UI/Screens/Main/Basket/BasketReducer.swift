@@ -23,10 +23,11 @@ struct BasketReducer: Reducer {
     }
     
     enum Action: Equatable {
-        enum ViewAction: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onViewAppear
             case onDeleteItemButtonTap(Product)
-            case onProceedToCheckoutButtonTap            
+            case onProceedToCheckoutButtonTap
+            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -76,6 +77,8 @@ struct BasketReducer: Reducer {
     @Dependency(\.uuid) var uuid
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        
         Scope(state: \.addProduct, action: /Action.addProduct) {
             AddProductReducer()
         }
@@ -112,6 +115,9 @@ struct BasketReducer: Reducer {
                         TextState("Are you sure you want to remove '\(product.title)' from list.")
                     }
                     return .none
+                    
+                case .binding:
+                    return .none
                 }
                 
             // internal actions
@@ -140,8 +146,9 @@ struct BasketReducer: Reducer {
             case let .path(pathAction):
                 switch pathAction {
                 case .element(id: _, action: .checkout(.delegate(.didCheckoutCompleted))):
-                    state.totalPrice = ""
                     state.toastMessage = Localization.Base.successfullySaved
+                    state.products.removeAll()
+                    state.totalPrice = ""
                     return .none
                     
                 case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):

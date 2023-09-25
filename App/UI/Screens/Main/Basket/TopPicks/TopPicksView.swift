@@ -20,24 +20,26 @@ struct TopPicksView {
 extension TopPicksView: View {
     
     var body: some View {
-        content// .onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            TopPicksCountView(count: viewStore.products.count)
-                .padding([.leading, .trailing], 24)
+            if viewStore.products.count > 0 {
+                TopPicksCountView(count: viewStore.products.count)
+                    .padding([.leading, .trailing], 24)
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 0) {
-                    ForEach(viewStore.products) { product in
-                        TopPickView(product: product)
-                            .onTapGesture {
-                                viewStore.send(.view(.onItemTap(product)))
-                            }
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 0) {
+                        ForEach(viewStore.products) { product in
+                            TopPickView(product: product)
+                                .onTapGesture {
+                                    viewStore.send(.view(.onItemTap(product)))
+                                }
+                        }
                     }
                 }
-            }
+            }          
         }
     }
 }

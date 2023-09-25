@@ -13,6 +13,13 @@ import SDWebImageSwiftUI
 
 struct BasketView {
     let store: StoreOf<BasketReducer>
+    
+    struct ViewState: Equatable {
+        var products: [Product]
+        var topPicksProducts: [Product]
+        var totalPrice: String
+        @BindingViewState var toastMessage: LocalizedStringKey?
+    }
 }
 
 // MARK: - Views
@@ -25,7 +32,7 @@ extension BasketView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
@@ -44,7 +51,7 @@ extension BasketView: View {
                                 }
 
                                 Button("Proceed to checkout \(viewStore.products.count)") {
-                                    viewStore.send(.view(.onProceedToCheckoutButtonTap))
+                                    viewStore.send(.onProceedToCheckoutButtonTap)
                                 }
                                 .buttonStyle(.cta)
 
@@ -64,7 +71,7 @@ extension BasketView: View {
                                             Spacer()
 
                                             Button {
-                                                viewStore.send(.view(.onDeleteItemButtonTap(product)))
+                                                viewStore.send(.onDeleteItemButtonTap(product))
                                             } label: {
                                                 Image(systemName: "trash")
                                                     .tint(.red)
@@ -118,7 +125,34 @@ extension BasketView: View {
                 }
             }
             .badge(viewStore.products.count)
-        }
-        .confirmationDialog(store: self.store.scope(state: \.$dialog, action: BasketReducer.Action.dialog))
+            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: BasketReducer.Action.dialog))
+            .popup(item: viewStore.$toastMessage) { message in
+                Text(message)
+                    .frame(width: 340, height: 60)
+                    .font(.body)
+                    .foregroundColor(Color.white)
+                    .background(Color.black)
+                    .cornerRadius(30.0)
+            } customize: {
+                $0
+                 .type(.floater())
+                 .position(.top)
+                 .animation(.spring())
+                 .closeOnTapOutside(true)
+                 .closeOnTap(true)
+                 .autohideIn(3)
+            }
+        }        
+    }
+}
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<BasketReducer.State> {
+    var view: BasketView.ViewState {
+        BasketView.ViewState(products: self.products,
+                             topPicksProducts: self.topPicksProducts,
+                             totalPrice: self.totalPrice,
+                             toastMessage: self.$toastMessage)
     }
 }

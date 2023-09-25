@@ -33,7 +33,6 @@
 		A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A4B2A4EB35C00ED4CB3 /* DatabaseClient.swift */; };
 		A92A229E29F8EAAD0034469C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A229D29F8EAAD0034469C /* MainView.swift */; };
 		A92A22A029F8EEC50034469C /* MainReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92A229F29F8EEC50034469C /* MainReducer.swift */; };
-		A92AEB662AB476430058B2C3 /* basket.json in Resources */ = {isa = PBXBuildFile; fileRef = A92AEB652AB476430058B2C3 /* basket.json */; };
 		A92E6ABD2AB873FB00186F8D /* CheckoutReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABC2AB873FB00186F8D /* CheckoutReducer.swift */; };
 		A92E6ABF2AB8740300186F8D /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ABE2AB8740300186F8D /* CheckoutView.swift */; };
 		A92E6AC22AB9C51400186F8D /* CheckoutAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */; };
@@ -268,7 +267,6 @@
 		A9286A4B2A4EB35C00ED4CB3 /* DatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClient.swift; sourceTree = "<group>"; };
 		A92A229D29F8EAAD0034469C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A92A229F29F8EEC50034469C /* MainReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainReducer.swift; sourceTree = "<group>"; };
-		A92AEB652AB476430058B2C3 /* basket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basket.json; sourceTree = "<group>"; };
 		A92E6ABC2AB873FB00186F8D /* CheckoutReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutReducer.swift; sourceTree = "<group>"; };
 		A92E6ABE2AB8740300186F8D /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		A92E6AC12AB9C51400186F8D /* CheckoutAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutAddressView.swift; sourceTree = "<group>"; };
@@ -1083,7 +1081,6 @@
 		A9A0CBAD29D6F2CB0048A649 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				A92AEB652AB476430058B2C3 /* basket.json */,
 				A9A0CBB629D6FB2D0048A649 /* onboarding_1.json */,
 				A9A0CBA829D6F2BB0048A649 /* onboarding_2.json */,
 				A9A0CBA729D6F2BB0048A649 /* onboarding_3.json */,
@@ -1467,7 +1464,6 @@
 				A9A0CBAA29D6F2BB0048A649 /* onboarding_3.json in Resources */,
 				A9DED5C929AC9F64003EFA02 /* config.plist in Resources */,
 				A9DED5A929AC7FA7003EFA02 /* Preview Assets.xcassets in Resources */,
-				A92AEB662AB476430058B2C3 /* basket.json in Resources */,
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
 				A9AA22CA2A8F9B460073E070 /* GoogleService-Info.plist in Resources */,
