@@ -14,6 +14,8 @@ struct OnboardingReducer: Reducer {
         var items: [Onboarding] = Onboarding.pages
         @BindingState var currentTab: Onboarding.Tab = .page1        
         var showGetStarted = false
+        
+        var testCount = 0
     }
     
     enum Action: Equatable {
@@ -54,6 +56,7 @@ struct OnboardingReducer: Reducer {
                     )
                     
                 case let .onTabChanged(tab):
+                    state.testCount += 1
                     state.showGetStarted = (tab == .page3)
                     return .none
                     

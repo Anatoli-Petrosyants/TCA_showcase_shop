@@ -34,7 +34,7 @@ extension OnboardingView: View {
             VStack {
                 TabView(selection: viewStore.$currentTab) {
                     ForEach(viewStore.items) { viewData in
-                        HelpPageView(data: viewData)
+                        OnboardingPageView(data: viewData)
                             .tag(viewData.tab)
                             .padding(.bottom, 50)
                     }
@@ -70,7 +70,7 @@ extension BindingViewStore<OnboardingReducer.State> {
 
 // MARK: HelpPageView
 
-struct HelpPageView: View {
+struct OnboardingPageView: View {
     
     var data: Onboarding
 
