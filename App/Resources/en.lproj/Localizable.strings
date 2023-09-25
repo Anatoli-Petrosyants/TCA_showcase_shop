@@ -97,3 +97,14 @@
 // Search
 "search.title" = "Search";
 "search.products.input.placholder" = "Search products";
+
+// Basket
+"basket.title" = "Basket";
+"basket.subtotal" = "Subtotal";
+"basket.top.picks" = "Top Picks";
+"basket.checkout.title" = "Checkout";
+"basket.checkout.shipping.address" = "Shipping address";
+"basket.checkout.select.payment.method" = "Select a Payment Method";
+"basket.add.products.title" = "Add products";
+"basket.add.products.empty" = "Your Showcase basket is empty";
+"basket.add.products.top.picks" = "Please add product or choose from top picks";

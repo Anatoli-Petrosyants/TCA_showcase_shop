@@ -41,7 +41,7 @@ extension BasketView: View {
                         if viewStore.products.count > 0 {
                             VStack {
                                 HStack(alignment: .firstTextBaseline) {
-                                    Text("Subtotal")
+                                    Text(Localization.Basket.subtotal)
                                         .font(.title1)
 
                                     Text(viewStore.totalPrice)
@@ -107,7 +107,7 @@ extension BasketView: View {
                         Spacer()
                     }
                 }
-                .navigationTitle("Basket")
+                .navigationTitle(Localization.Basket.title)
                 .modifier(NavigationBarModifier())
             } destination: {
                 switch $0 {

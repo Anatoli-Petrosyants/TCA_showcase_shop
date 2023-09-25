@@ -33,11 +33,11 @@ extension AddProductView: View {
                     
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Your Showcase basket is empty")
+                        Text(Localization.Basket.addProductsEmpty)
                             .font(.headline)
                             .foregroundColor(.black)
                         
-                        Text("Please add product or choose from top picks")
+                        Text(Localization.Basket.addProductsTopPicks)
                             .font(.subheadline)
                             .foregroundColor(.black05)
                     }
@@ -48,7 +48,7 @@ extension AddProductView: View {
                 Button {
                     viewStore.send(.view(.onAddProductsButtonTap))
                 } label: {
-                    Text("Add products")
+                    Text(Localization.Basket.addProductsTitle)
                         .font(.headlineBold)
                         .foregroundColor(.black)
                         .underline()

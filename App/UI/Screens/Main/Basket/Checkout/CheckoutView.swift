@@ -25,7 +25,7 @@ extension CheckoutView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
-                Section(header: Text("Select a Payment Method")) {
+                Section(header: Text(Localization.Basket.checkoutSelectPaymentMethod)) {
                     CheckoutCardOptionGroups(items: viewStore.cards) { card in
                         viewStore.send(.view(.onCardChange(card)))
                     }
@@ -33,14 +33,14 @@ extension CheckoutView: View {
                 .listRowBackground(Color.gray)
                 
                 
-                Section(header: Text("Shipping address")) {
+                Section(header: Text(Localization.Basket.checkoutShippingAddress)) {
                     CheckoutAddressOptionGroups(items: viewStore.addresses) { address in
                         viewStore.send(.view(.onAddressChange(address)))
                     }
                 }
                 .listRowBackground(Color.gray)
                 
-                Button("Checkout") {
+                Button(Localization.Basket.title) {
                     viewStore.send(.view(.onCheckoutButtonTap))
                 }
                 .buttonStyle(.cta)
@@ -49,7 +49,7 @@ extension CheckoutView: View {
             .scrollContentBackground(.hidden)
             .tint(.black)
             .toolbar(.hidden, for: .tabBar)
-            .navigationTitle("Checkout")
+            .navigationTitle(Localization.Basket.title)
             .alert(store: self.store.scope(state: \.$alert, action: CheckoutReducer.Action.alert))
         }
     }

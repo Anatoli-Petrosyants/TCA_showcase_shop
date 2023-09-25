@@ -42,6 +42,7 @@
 		A92E6ACB2ABADE8F00186F8D /* ShipmentAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACA2ABADE8F00186F8D /* ShipmentAddress.swift */; };
 		A92E6ACE2ABD816200186F8D /* TopPicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACD2ABD816200186F8D /* TopPicksView.swift */; };
 		A92E6AD02ABD816A00186F8D /* TopPicksReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACF2ABD816A00186F8D /* TopPicksReducer.swift */; };
+		A92E6AD32AC1688000186F8D /* Localization+Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AD22AC1688000186F8D /* Localization+Basket.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* HelpView.swift */; };
 		A930CDA629E41EF600AF73E3 /* HelpReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* HelpReducer.swift */; };
@@ -276,6 +277,7 @@
 		A92E6ACA2ABADE8F00186F8D /* ShipmentAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentAddress.swift; sourceTree = "<group>"; };
 		A92E6ACD2ABD816200186F8D /* TopPicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksView.swift; sourceTree = "<group>"; };
 		A92E6ACF2ABD816A00186F8D /* TopPicksReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksReducer.swift; sourceTree = "<group>"; };
+		A92E6AD22AC1688000186F8D /* Localization+Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Basket.swift"; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* HelpReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpReducer.swift; sourceTree = "<group>"; };
@@ -950,6 +952,7 @@
 				A979AC032A8C9E610050E028 /* Localization+Sidebar.swift */,
 				A9AA22BB2A8E1DD90073E070 /* Localization+Product.swift */,
 				A9AA22BD2A8E356F0073E070 /* Localization+Search.swift */,
+				A92E6AD22AC1688000186F8D /* Localization+Basket.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1580,6 +1583,7 @@
 				A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */,
 				A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */,
 				A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */,
+				A92E6AD32AC1688000186F8D /* Localization+Basket.swift in Sources */,
 				A94A872A2AA0B4F400168BC1 /* PhoneOTPView.swift in Sources */,
 				A92E6AC92ABADE2500186F8D /* PaymentCard.swift in Sources */,
 				A9F53F6B2A8A49D7005D6182 /* ErrorView.swift in Sources */,

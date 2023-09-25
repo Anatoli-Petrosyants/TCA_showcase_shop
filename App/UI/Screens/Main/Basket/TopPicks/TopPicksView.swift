@@ -49,7 +49,7 @@ struct TopPicksCountView: View {
     
     var body: some View {
         HStack {
-            Text("Top Picks")
+            Text(Localization.Basket.topPicks)
                 .font(.title3Bold)
             
             Text("(\(count) items)")
