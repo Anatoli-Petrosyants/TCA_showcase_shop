@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Onboarding: Hashable, Identifiable {
-    enum Tab {
+    enum Tab: CaseIterable {
         case page1, page2, page3
     }
 

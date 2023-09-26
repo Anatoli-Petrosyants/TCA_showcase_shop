@@ -44,7 +44,7 @@ struct UserDefaultsClient {
 
 extension DependencyValues {
     /// Accessor for the UserDefaultsClient in the dependency values.
-    var userDefaults: UserDefaultsClient {
+    var userDefaultsClient: UserDefaultsClient {
         get { self[UserDefaultsClient.self] }
         set { self[UserDefaultsClient.self] = newValue }
     }
@@ -80,12 +80,7 @@ extension UserDefaultsClient: DependencyKey {
             setBool: { defaults().set($0, forKey: $1) },
             stringForKey: { defaults().string(forKey: $0) },
             setString: { defaults().set($0, forKey: $1) },
-            reset: {
-                // Remove all stored values.
-                defaults().dictionaryRepresentation().keys.forEach { key in
-                    defaults().removeObject(forKey: key)
-                }
-            }
+            reset: {}
         )
     }()
 }

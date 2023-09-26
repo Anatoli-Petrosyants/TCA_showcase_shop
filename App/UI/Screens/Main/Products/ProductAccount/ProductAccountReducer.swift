@@ -35,7 +35,7 @@ struct ProductAccountReducer: Reducer {
         case delegate(Delegate)
     }
     
-    @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     @Dependency(\.databaseClient) var databaseClient
     
     var body: some Reducer<State, Action> {
@@ -47,7 +47,7 @@ struct ProductAccountReducer: Reducer {
                     return .run { send in
                         let accountsStream: AsyncStream<[Account]> = databaseClient.observe(
                             Account.all
-                                .where(\Account.token == self.userDefaults.token.valueOr("showcase_token"))
+                                .where(\Account.token == self.userDefaultsClient.token.valueOr("showcase_token"))
                                 .limit(1)
                         )
                         

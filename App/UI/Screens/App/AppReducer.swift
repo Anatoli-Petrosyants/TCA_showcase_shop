@@ -35,7 +35,7 @@ struct AppReducer: Reducer {
         case main(MainReducer.Action)
     }
     
-    @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.userNotificationClient) var userNotificationClient
     
@@ -98,7 +98,7 @@ struct AppReducer: Reducer {
             case let .loading(action: .delegate(loadingAction)):
                 switch loadingAction {
                 case .onLoaded:
-                    if self.userDefaults.hasShownFirstLaunchOnboarding {
+                    if self.userDefaultsClient.hasShownFirstLaunchOnboarding {
                         if (self.userKeychainClient.retrieveToken() != nil) {
                             state = .main(MainReducer.State())
                         } else {

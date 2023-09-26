@@ -104,7 +104,7 @@ extension AccountReducer {
 
 struct AccountReducer: Reducer {
 
-    @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.databaseClient) var databaseClient
     @Dependency(\.userNotificationClient.authorizationStatus) var authorizationStatus
@@ -201,7 +201,7 @@ struct AccountReducer: Reducer {
                 case .confirmLogout:
                     userKeychainClient.removeToken()
                     return .run { send in
-                        await self.userDefaults.reset()
+                        await self.userDefaultsClient.reset()
                         await send(.delegate(.didLogout))
                     }
                     

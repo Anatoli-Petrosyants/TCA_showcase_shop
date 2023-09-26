@@ -26,17 +26,17 @@ struct OnboardingReducer: Reducer {
         case delegate(Delegate)
     }
     
-    @Dependency(\.userDefaults) var userDefaults
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .onGetStartedTapped:
                 return .concatenate(
-                    .send(.delegate(.didOnboardingFinished)),
                     .run { _ in
-                        await self.userDefaults.setHasShownFirstLaunchOnboarding(true)
-                    }
+                        await self.userDefaultsClient.setHasShownFirstLaunchOnboarding(true)
+                    },
+                    .send(.delegate(.didOnboardingFinished))
                 )
                 
             case let .onTabChanged(tab):
