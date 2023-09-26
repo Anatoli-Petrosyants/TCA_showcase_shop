@@ -72,5 +72,21 @@ extension UserDefaultsClient: DependencyKey {
             }
         )
     }()
+    
+    static let testValue: Self = {
+        let defaults = { UserDefaults(suiteName: "group.showcase.test")! }
+        return Self(
+            boolForKey: { defaults().bool(forKey: $0) },
+            setBool: { defaults().set($0, forKey: $1) },
+            stringForKey: { defaults().string(forKey: $0) },
+            setString: { defaults().set($0, forKey: $1) },
+            reset: {
+                // Remove all stored values.
+                defaults().dictionaryRepresentation().keys.forEach { key in
+                    defaults().removeObject(forKey: key)
+                }
+            }
+        )
+    }()
 }
 

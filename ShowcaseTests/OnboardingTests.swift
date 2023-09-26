@@ -12,43 +12,18 @@ import XCTest
 @MainActor
 final class OnboardingTests: XCTestCase {
     
-    func testGetStartButtonVisibility() async {
+    func testShowGetStartButton() async {
         let store = TestStore(initialState: OnboardingReducer.State()) {
             OnboardingReducer()
+        } withDependencies: {
+            $0.userDefaults = UserDefaultsClient.testValue
+        }
+
+        await store.send(.onTabChanged(tab: .page3)) {
+            $0.selectedTab = .page3
+            $0.showGetStarted = ($0.selectedTab == .page3)
         }
         
-        await store.send(.view(.onTabChanged(tab: .page3))) {
-            $0.currentTab = .page3
-        }
-        
-        // XCTAssertEqual(store.state.currentTab, .page3)
         XCTAssertTrue(store.state.showGetStarted)
     }
-
-//    func testGetStartButtonVisibility() async {
-//        let store = TestStore(initialState: OnboardingReducer.State()) {
-//            OnboardingReducer()
-//        }
-//
-//        await store.onTabChanged(.page1) {
-//            $0
-//        }
-//    }
 }
-
-//import XCTest
-//import ComposableArchitecture
-//
-//@MainActor
-//final class OnboardingTests: XCTestCase {
-//
-//    func testExample() throws {
-//        XCTAssertTrue(true)
-//    }
-//
-//    func testGetStartButtonVisibility() async {
-//        let store = TestStore(initialState: OnboardingReducer.State()) {
-//            OnboardingReducer()
-//        }
-//    }
-//}

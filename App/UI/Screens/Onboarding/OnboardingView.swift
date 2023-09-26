@@ -14,25 +14,25 @@ struct OnboardingView {
     let store: StoreOf<OnboardingReducer>
     
     struct ViewState: Equatable {
-        var showGetStarted: Bool
         var items: [Onboarding]
-        @BindingViewState var currentTab: Onboarding.Tab
+        var selectedTab: Onboarding.Tab
+        var showGetStarted: Bool
     }
 }
 
 // MARK: - Views
 
 extension OnboardingView: View {
-    
+
     var body: some View {
         content
-            .onAppear { self.store.send(.view(.onViewAppear)) }
     }
-    
+
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in        
+        WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
-                TabView(selection: viewStore.$currentTab) {
+                TabView(selection: viewStore.binding(get: \.selectedTab,
+                                                     send: OnboardingReducer.Action.onTabChanged) ) {
                     ForEach(viewStore.items) { viewData in
                         OnboardingPageView(data: viewData)
                             .tag(viewData.tab)
@@ -41,9 +41,6 @@ extension OnboardingView: View {
                 }
                 .tabViewStyle(PageTabViewStyle())
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                .onChange(of: viewStore.currentTab) { newValue in
-                    viewStore.send(.onTabChanged(tab: newValue))
-                }
                 
                 Button(Localization.Help.getStarted) {
                     viewStore.send(.onGetStartedTapped)
@@ -54,17 +51,6 @@ extension OnboardingView: View {
             }
             .padding()
         }
-    }
-}
-
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<OnboardingReducer.State> {
-    var view: OnboardingView.ViewState {
-        OnboardingView.ViewState(showGetStarted: self.showGetStarted,
-                           items: self.items,
-                           currentTab: self.$currentTab)
     }
 }
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import XCTestDynamicOverlay
 
 @main
 struct Showcase: App {
@@ -26,7 +27,9 @@ struct Showcase: App {
 //            }
 //            PhoneOTPView(store: store)
             
-            AppView(store: self.appDelegate.store)
+            if !_XCTIsTesting {
+                AppView(store: self.appDelegate.store)
+            }
         }
         .onChange(of: scenePhase) { phase in
             self.appDelegate.store.send(.didChangeScenePhase(phase))
