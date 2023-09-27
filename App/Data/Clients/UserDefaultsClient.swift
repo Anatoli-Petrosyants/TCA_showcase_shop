@@ -74,7 +74,7 @@ extension UserDefaultsClient: DependencyKey {
     }()
     
     static let testValue: Self = {
-        let defaults = { UserDefaults(suiteName: "group.showcase.test")! }
+        let defaults = { UserDefaults(suiteName: "group.showcase")! }
         return Self(
             boolForKey: { defaults().bool(forKey: $0) },
             setBool: { defaults().set($0, forKey: $1) },

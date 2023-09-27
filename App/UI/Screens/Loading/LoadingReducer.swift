@@ -18,15 +18,17 @@ struct LoadingReducer: Reducer {
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
             case onViewAppear
+            case onDisappear
             case binding(BindingAction<State>)
         }
 
         enum InternalAction: Equatable {
+            case onProgressStart
             case onProgressUpdated
         }
 
         enum Delegate: Equatable {
-            case onLoaded
+            case didLoaded
         }
 
         case view(ViewAction)
@@ -36,6 +38,8 @@ struct LoadingReducer: Reducer {
 
     @Dependency(\.continuousClock) var clock
 
+    private enum CancelID { case timer }
+    
     var body: some ReducerOf<Self> {
         BindingReducer(action: /Action.view)
 
@@ -44,7 +48,10 @@ struct LoadingReducer: Reducer {
                 case let .view(viewAction):
                     switch viewAction {
                     case .onViewAppear:
-                        return .send(.internal(.onProgressUpdated))
+                        return .send(.internal(.onProgressStart))
+                        
+                    case .onDisappear:
+                      return .cancel(id: CancelID.timer)
 
                     case .binding:
                         return .none
@@ -52,15 +59,20 @@ struct LoadingReducer: Reducer {
 
                 case let .internal(internalAction):
                     switch internalAction {
+                    case .onProgressStart:
+                        return .run { send in
+                            for await _ in self.clock.timer(interval: .milliseconds(10)) {
+                                await send(.internal(.onProgressUpdated),
+                                           animation: .interpolatingSpring(stiffness: 3000, damping: 40))
+                            }
+                        }
+                        .cancellable(id: CancelID.timer, cancelInFlight: true)
+                        
                     case .onProgressUpdated:
                         state.progress += 0.01
-                        return state.progress < 0.99
-                        ? .run { send in
-                            try await self.clock.sleep(for: .milliseconds(5))
-                            await send(.internal(.onProgressUpdated))
-                        }
-                        :
-                        .send(.delegate(.onLoaded))
+                        return state.progress < 1
+                        ? .none
+                        : .concatenate(.cancel(id: CancelID.timer), .send(.delegate(.didLoaded)))
                     }
 
             case .delegate:

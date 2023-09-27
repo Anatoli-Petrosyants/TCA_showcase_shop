@@ -97,7 +97,7 @@ struct AppReducer: Reducer {
 
             case let .loading(action: .delegate(loadingAction)):
                 switch loadingAction {
-                case .onLoaded:
+                case .didLoaded:
                     if self.userDefaultsClient.hasShownFirstLaunchOnboarding {
                         if (self.userKeychainClient.retrieveToken() != nil) {
                             state = .main(MainReducer.State())

@@ -25,6 +25,7 @@ extension LoadingView: View {
     var body: some View {
         content
             .onAppear { self.store.send(.view(.onViewAppear)) }
+            // .onDisappear { self.store.send(.view(.onDisappear)) }
     }
 
     @ViewBuilder private var content: some View {
@@ -49,17 +50,3 @@ extension BindingViewStore<LoadingReducer.State> {
         LoadingView.ViewState(progress: self.$progress)
     }
 }
-
-#if DEBUG
-// MARK: - Previews
-
-struct LoadingView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoadingView(store:
-            Store(initialState: LoadingReducer.State(), reducer: {
-                LoadingReducer()
-            })
-        )
-    }
-}
-#endif

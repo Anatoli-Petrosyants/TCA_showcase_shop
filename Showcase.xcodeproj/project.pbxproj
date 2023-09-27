@@ -592,13 +592,13 @@
 			path = Products;
 			sourceTree = "<group>";
 		};
-		A91D5A4F2AC17E8300A76E57 /* ShowcaseTests */ = {
+		A91D5A4F2AC17E8300A76E57 /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
-				A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */,
 				A9C0DFDB2AC31455001A585B /* LoadingTests.swift */,
+				A91D5A502AC17E8300A76E57 /* OnboardingTests.swift */,
 			);
-			path = ShowcaseTests;
+			path = AppTests;
 			sourceTree = "<group>";
 		};
 		A91F587929E67C39008C0F35 /* EmailLogin */ = {
@@ -1272,7 +1272,7 @@
 			isa = PBXGroup;
 			children = (
 				A9DED5A029AC7FA6003EFA02 /* App */,
-				A91D5A4F2AC17E8300A76E57 /* ShowcaseTests */,
+				A91D5A4F2AC17E8300A76E57 /* AppTests */,
 				A9DED59F29AC7FA6003EFA02 /* Products */,
 				A9C0DFC32AC18FD5001A585B /* Frameworks */,
 			);
