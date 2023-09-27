@@ -66,3 +66,9 @@ extension AuthenticationClient: DependencyKey {
     }()
 }
 
+extension AuthenticationClient: TestDependencyKey {
+    static let testValue = Self(
+        login: unimplemented("\(Self.self).login")
+    )
+}
+

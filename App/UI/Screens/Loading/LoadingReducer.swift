@@ -25,6 +25,7 @@ struct LoadingReducer: Reducer {
         enum InternalAction: Equatable {
             case onProgressStart
             case onProgressUpdated
+            case onProgressEnd
         }
 
         enum Delegate: Equatable {
@@ -67,12 +68,16 @@ struct LoadingReducer: Reducer {
                             }
                         }
                         .cancellable(id: CancelID.timer, cancelInFlight: true)
-                        
+
                     case .onProgressUpdated:
                         state.progress += 0.01
-                        return state.progress < 1
-                        ? .none
-                        : .concatenate(.cancel(id: CancelID.timer), .send(.delegate(.didLoaded)))
+                        return state.progress < 1 ? .none : .send(.internal(.onProgressEnd))
+                        
+                    case .onProgressEnd:
+                        return .concatenate(
+                            .cancel(id: CancelID.timer),
+                            .send(.delegate(.didLoaded))
+                        )
                     }
 
             case .delegate:

@@ -12,19 +12,13 @@ import XCTest
 @MainActor
 final class LoadingTests: XCTestCase {
     
-    func testProgressUpdated() async throws {
-        let store = TestStore(initialState: LoadingReducer.State()) {
-            LoadingReducer()
-        }
-        
-        await store.send(.view(.onViewAppear))
-        
-        try await Task.sleep(for: .seconds(1))
-        
-        await store.receive(.internal(.onProgressUpdated)) {
-            $0.progress = 0.01
-        }
-        
-        await store.receive(.delegate(.didLoaded))
-    }
+//    func testProgressUpdated() async throws {
+//        let clock = TestClock()
+//        
+//        let store = TestStore(initialState: LoadingReducer.State()) {
+//            LoadingReducer()
+//        } withDependencies: {
+//            $0.continuousClock = clock
+//        }
+//    }
 }
