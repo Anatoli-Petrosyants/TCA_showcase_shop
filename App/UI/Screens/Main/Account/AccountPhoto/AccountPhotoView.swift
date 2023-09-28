@@ -19,12 +19,31 @@ struct AccountPhotoView {
 extension AccountPhotoView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Account Photo")
+            HStack {
+                Spacer()
+                
+                VStack(alignment: .center, spacing: 6) {
+                    Image(systemName: "person.fill")
+                        .font(.largeTitle)
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.black, lineWidth: 2))                        
+                    
+                    Text("Set New Photo")
+                        .foregroundColor(.black)
+                }
+                .onTapGesture {
+                    viewStore.send(.view(.onAddPhotoButtonTap))
+                }
+                
+                Spacer()
+            }
+            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountPhotoReducer.Action.dialog))
         }
     }
 }
