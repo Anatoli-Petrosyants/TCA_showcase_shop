@@ -47,6 +47,7 @@ extension ProductsView: View {
                 }
                 .modifier(NavigationBarModifier())
                 .loader(isLoading: viewStore.isActivityIndicatorVisible)
+                // .redacted(reason: viewStore.isActivityIndicatorVisible ? .placeholder : [])
                 .onError(error: viewStore.productsError, action: {
                     viewStore.send(.view(.onViewLoad))
                 })

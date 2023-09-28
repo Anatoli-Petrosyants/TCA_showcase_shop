@@ -25,6 +25,10 @@ struct ImagePicker: UIViewControllerRepresentable {
         picker.sourceType = self.sourceType
         picker.delegate = context.coordinator
         picker.allowsEditing = true
+        
+        if self.sourceType == .camera {
+            picker.cameraDevice = .front
+        }
         return picker
     }
 

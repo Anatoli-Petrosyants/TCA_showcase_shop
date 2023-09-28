@@ -11,6 +11,9 @@ import ComposableArchitecture
 struct AccountPhotoReducer: Reducer {
     
     struct State: Equatable {
+        var placholder = UIImage(named: "ic_photo_ placeholder")!
+        var photo: UIImage? = nil
+        
         @BindingState var isImagePickerPresented = false
         var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
         
@@ -46,7 +49,6 @@ struct AccountPhotoReducer: Reducer {
             switch action {
             // view actions
             case .view(.onAddPhotoButtonTap):
-                Log.debug("onAddPhotoButtonTap")
                 state.dialog = ConfirmationDialogState {
                     TextState(Localization.Base.attention)
                 } actions: {
@@ -71,7 +73,7 @@ struct AccountPhotoReducer: Reducer {
                 return .none
                 
             case let .view(.onPhotoSelected(image)):
-                Log.debug("onPhotoSelected image \(image)")
+                state.photo = image
                 return .send(.delegate(.didPhotoSelected(image)))
                 
             case .view(.binding):
@@ -89,7 +91,7 @@ struct AccountPhotoReducer: Reducer {
                 return .none
                 
             case .dialog(.presented(.onRemovePhoto)):
-                Log.debug("onRemovePhoto")
+                state.photo = nil
                 return .none
 
             case .dialog, .delegate:

@@ -96,6 +96,7 @@ struct ProductsReducer: Reducer {
 
     private enum CancelID { case products }
 
+    @Dependency(\.continuousClock) var continuousClock
     @Dependency(\.productsClient) var productsClient
     @Dependency(\.uuid) var uuid
 
@@ -130,6 +131,8 @@ struct ProductsReducer: Reducer {
                 switch internalAction {
                 case .loadProducts:                    
                     return .run { send in
+                        try await continuousClock.sleep(for: .seconds(3))
+                        
                         await send(
                             .internal(
                                 .productsResponse(

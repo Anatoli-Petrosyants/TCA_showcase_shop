@@ -24,7 +24,7 @@ extension ProductItemView: View {
             .background(Color.gray)
             .cornerRadius(8)
             .padding([.leading, .trailing, .bottom], 8)
-            .onTapGesture { self.store.send(.view(.onItemTap)) }            
+            .onTapGesture { self.store.send(.view(.onItemTap)) }
     }
     
     @ViewBuilder private var content: some View {

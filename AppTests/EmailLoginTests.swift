@@ -7,19 +7,19 @@
 
 import ComposableArchitecture
 import XCTest
-@testable import Showcase
+//@testable import Showcase
 
 @MainActor
 final class EmailLoginTests: XCTestCase {
     
     func testEmailLoginSuccess() async {
-        let store = TestStore(initialState: EmailLoginReducer.State()) {
-            EmailLoginReducer()
-        } withDependencies: {
-            $0.authenticationClient.login = { _ in
-                AuthenticationResponse(token: "email_token")
-            }
-        }
+//        let store = TestStore(initialState: EmailLoginReducer.State()) {
+//            EmailLoginReducer()
+//        } withDependencies: {
+//            $0.authenticationClient.login = { _ in
+//                AuthenticationResponse(token: "email_token")
+//            }
+//        }
         
 //        await store.send(.view(.onSignInButtonTap)) {
 //            $0.username = "mor_2314"

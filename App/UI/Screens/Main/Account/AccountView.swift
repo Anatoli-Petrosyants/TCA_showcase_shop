@@ -46,12 +46,15 @@ extension AccountView: View {
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
                 Form {                    
-                    AccountPhotoView(
-                        store: self.store.scope(
-                            state: \.accountPhoto,
-                            action: AccountReducer.Action.accountPhoto
+                    Section {
+                        AccountPhotoView(
+                            store: self.store.scope(
+                                state: \.accountPhoto,
+                                action: AccountReducer.Action.accountPhoto
+                            )
                         )
-                    )
+                    }
+                    .listRowBackground(Color.clear)
                     
                     Section(header: Text(Localization.Account.sectionPersonal)) {
                         TextField(Localization.Account.sectionPersonalFirstName,

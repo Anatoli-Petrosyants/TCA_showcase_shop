@@ -14,6 +14,8 @@ struct AccountPhotoView {
     let store: StoreOf<AccountPhotoReducer>
 
     struct ViewState: Equatable {
+        var placholder: UIImage
+        var photo: UIImage?
         @BindingViewState var isImagePickerPresented: Bool
         var pickerSourceType: UIImagePickerController.SourceType
     }
@@ -32,19 +34,30 @@ extension AccountPhotoView: View {
             HStack {
                 Spacer()
                 
-                VStack(alignment: .center, spacing: 8) {
-                    Image(systemName: "person.fill")
-                        .font(.largeTitle)
-                        .frame(width: 100, height: 100)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.black, lineWidth: 2))                        
+                VStack(alignment: .center, spacing: 8) {                    
+                    if let photo = viewStore.photo {
+                        Image(uiImage: photo)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.black05, lineWidth: 2))
+                    } else {
+                        Image(uiImage: viewStore.placholder)
+                            .renderingMode(.template)
+                            .colorMultiply(.black05)
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle())
+                            .overlay(Circle().fill().foregroundColor(Color.black01))
+                    }
                     
                     Text("Set New Photo")
-                        .foregroundColor(.black)
+                        .font(.body)
                 }
                 .onTapGesture {
                     viewStore.send(.onAddPhotoButtonTap)
                 }
+                // .redacted(reason: .placeholder)
                 
                 Spacer()
             }
@@ -53,7 +66,8 @@ extension AccountPhotoView: View {
                 ImagePicker(sourceType: viewStore.pickerSourceType) {
                     viewStore.send(.onPhotoSelected($0))
                 }
-            }
+                .ignoresSafeArea()
+            }            
         }
     }
 }
@@ -63,6 +77,8 @@ extension AccountPhotoView: View {
 extension BindingViewStore<AccountPhotoReducer.State> {
     var view: AccountPhotoView.ViewState {
         AccountPhotoView.ViewState(
+            placholder: self.placholder,
+            photo: self.photo,
             isImagePickerPresented: self.$isImagePickerPresented,
             pickerSourceType: self.pickerSourceType
         )
