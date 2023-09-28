@@ -12,6 +12,10 @@ import ComposableArchitecture
 
 struct AccountPhotoView {
     let store: StoreOf<AccountPhotoReducer>
+
+    struct ViewState: Equatable {
+        @BindingViewState var isImagePickerPresented: Bool
+    }
 }
 
 // MARK: - Views
@@ -23,11 +27,11 @@ extension AccountPhotoView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
+        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
             HStack {
                 Spacer()
                 
-                VStack(alignment: .center, spacing: 6) {
+                VStack(alignment: .center, spacing: 8) {
                     Image(systemName: "person.fill")
                         .font(.largeTitle)
                         .frame(width: 100, height: 100)
@@ -38,12 +42,23 @@ extension AccountPhotoView: View {
                         .foregroundColor(.black)
                 }
                 .onTapGesture {
-                    viewStore.send(.view(.onAddPhotoButtonTap))
+                    viewStore.send(.onAddPhotoButtonTap)
                 }
                 
                 Spacer()
             }
             .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountPhotoReducer.Action.dialog))
+            .sheet(isPresented: viewStore.$isImagePickerPresented) {
+                ImagePicker(sourceType: .photoLibrary, onImagePicked: { image in })
+            }
         }
+    }
+}
+
+// MARK: BindingViewStore
+
+extension BindingViewStore<AccountPhotoReducer.State> {
+    var view: AccountPhotoView.ViewState {
+        AccountPhotoView.ViewState(isImagePickerPresented: self.$isImagePickerPresented)
     }
 }

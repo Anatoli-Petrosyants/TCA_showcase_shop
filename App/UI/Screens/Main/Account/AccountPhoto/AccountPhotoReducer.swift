@@ -11,12 +11,14 @@ import ComposableArchitecture
 struct AccountPhotoReducer: Reducer {
     
     struct State: Equatable {
+        @BindingState var isImagePickerPresented = false
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
     
     enum Action: Equatable {
-        enum ViewAction: Equatable {
+        enum ViewAction: BindableAction, Equatable {
             case onAddPhotoButtonTap
+            case binding(BindingAction<State>)
         }
         
         enum DialogAction: Equatable {
@@ -30,8 +32,11 @@ struct AccountPhotoReducer: Reducer {
     }
     
     var body: some ReducerOf<Self> {
+        BindingReducer(action: /Action.view)
+        
         Reduce { state, action in
             switch action {
+            // view actions
             case .view(.onAddPhotoButtonTap):
                 Log.debug("onAddPhotoButtonTap")
                 state.dialog = ConfirmationDialogState {
@@ -55,7 +60,9 @@ struct AccountPhotoReducer: Reducer {
                 } message: {
                     TextState("Choose the option to change the photo")
                 }
+                return .none
                 
+            case .view(.binding):
                 return .none
                 
             // dialog actions
