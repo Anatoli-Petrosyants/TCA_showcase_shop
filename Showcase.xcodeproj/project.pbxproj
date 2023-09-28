@@ -73,6 +73,8 @@
 		A9518D7B2AAB09380080B665 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7A2AAB09380080B665 /* DictionaryEncoder.swift */; };
 		A9518D7D2AAB0D4A0080B665 /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7C2AAB0D490080B665 /* ProductRequest.swift */; };
 		A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */; };
+		A9585D5D2AC54F3400CA100F /* AccountPhotoReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5C2AC54F3400CA100F /* AccountPhotoReducer.swift */; };
+		A9585D5F2AC54F3A00CA100F /* AccountPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */; };
 		A95E758B29ACA1540081A170 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E758A29ACA1540081A170 /* Logger.swift */; };
 		A95E758D29ACA1F50081A170 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E758C29ACA1F50081A170 /* String+Extensions.swift */; };
 		A960AA1A2A496989005CE9F9 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A960AA192A496989005CE9F9 /* ProductItem.swift */; };
@@ -332,6 +334,8 @@
 		A9518D7A2AAB09380080B665 /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		A9518D7C2AAB0D490080B665 /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 		A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWithCategoryRequest.swift; sourceTree = "<group>"; };
+		A9585D5C2AC54F3400CA100F /* AccountPhotoReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoReducer.swift; sourceTree = "<group>"; };
+		A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoView.swift; sourceTree = "<group>"; };
 		A95E758A29ACA1540081A170 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A95E758C29ACA1F50081A170 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		A960AA192A496989005CE9F9 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
@@ -568,6 +572,7 @@
 			children = (
 				A90110172A4445F200DD08C4 /* AccountReducer.swift */,
 				A90110192A4445F900DD08C4 /* AccountView.swift */,
+				A9585D602AC54F3F00CA100F /* AccountPhoto */,
 				A9F705772AAB399F00895E52 /* Contacts */,
 				A9ABFB392AA5BA660093EBF3 /* Permissions */,
 				A9AA22C32A8F3E6B0073E070 /* Cities */,
@@ -775,6 +780,15 @@
 				A94BF89E2A56B543006FCE43 /* ProductAccountView.swift */,
 			);
 			path = ProductAccount;
+			sourceTree = "<group>";
+		};
+		A9585D602AC54F3F00CA100F /* AccountPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				A9585D5C2AC54F3400CA100F /* AccountPhotoReducer.swift */,
+				A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */,
+			);
+			path = AccountPhoto;
 			sourceTree = "<group>";
 		};
 		A960AA1E2A49699A005CE9F9 /* ProductItem */ = {
@@ -1603,6 +1617,7 @@
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,
 				A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */,
+				A9585D5D2AC54F3400CA100F /* AccountPhotoReducer.swift in Sources */,
 				A92E6ACE2ABD816200186F8D /* TopPicksView.swift in Sources */,
 				A96FEB632A9E13E7008DC5BC /* JoinView.swift in Sources */,
 				A930CDAC29E41FEB00AF73E3 /* AppReducer.swift in Sources */,
@@ -1691,6 +1706,7 @@
 				A9FAD6C12A541990003A46F5 /* CoreData+SortDescriptors.swift in Sources */,
 				A9DD83EB2AA9BC5700FD9927 /* UserKeychainClient.swift in Sources */,
 				A94BF89F2A56B543006FCE43 /* ProductAccountView.swift in Sources */,
+				A9585D5F2AC54F3A00CA100F /* AccountPhotoView.swift in Sources */,
 				A9AFC1602A5C08CC003A95C3 /* SearchView.swift in Sources */,
 				A9F705742AAB399500895E52 /* ContactsReducer.swift in Sources */,
 				A96593902AB047AD00E7EACA /* ContactViewRepresentable.swift in Sources */,

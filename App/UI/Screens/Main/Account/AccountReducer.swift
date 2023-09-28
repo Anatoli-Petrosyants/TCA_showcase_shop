@@ -24,6 +24,8 @@ extension AccountReducer {
         let supportedVersion = "16.0"
         var notificationsPermissionStatus = ""
         
+        var accountPhoto = AccountPhotoReducer.State()
+        
         @BindingState var firstName = ""
         @BindingState var lastName = ""
         @BindingState var birthDate = Date()
@@ -38,7 +40,7 @@ extension AccountReducer {
         @BindingState var toastMessage: LocalizedStringKey? = nil
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?        
         @PresentationState var permissions: PermissionsReducer.State?
-        
+
         var path = StackState<Path.State>()
     }
 }
@@ -73,6 +75,7 @@ extension AccountReducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case dialog(PresentationAction<Action.DialogAction>)
+        case accountPhoto(AccountPhotoReducer.Action)
         case permissions(PresentationAction<PermissionsReducer.Action>)
         case path(StackAction<Path.State, Path.Action>)
     }
@@ -111,6 +114,10 @@ struct AccountReducer: Reducer {
     
     var body: some Reducer<State, Action> {
         BindingReducer(action: /Action.view)
+        
+        Scope(state: \.accountPhoto, action: /Action.accountPhoto) {
+            AccountPhotoReducer()
+        }
         
         Reduce { state, action in
             switch action {
@@ -243,7 +250,7 @@ struct AccountReducer: Reducer {
                     return .none
                 }
                 
-            case .delegate, .dialog, .permissions:
+            case .delegate, .dialog, .permissions, .accountPhoto:
                 return .none
             }
         }

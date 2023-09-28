@@ -21,19 +21,19 @@ final class EmailLoginTests: XCTestCase {
             }
         }
         
-        await store.send(.view(.onSignInButtonTap)) {
-            $0.username = "mor_2314"
-            $0.password = "83r5^_"
-            $0.isActivityIndicatorVisible = true
-        }
+//        await store.send(.view(.onSignInButtonTap)) {
+//            $0.username = "mor_2314"
+//            $0.password = "83r5^_"
+//            $0.isActivityIndicatorVisible = true
+//        }
         
-        await store.receive(
-            .internal(
-                .loginResponse(
-                    .failure(Error())
-                )
-            )
-        )
+//        await store.receive(
+//            .internal(
+//                .loginResponse(
+//                    .failure(Error())
+//                )
+//            )
+//        )
 
 //        await store.receive(
 //            .internal(

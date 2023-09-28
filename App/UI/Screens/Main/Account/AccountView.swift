@@ -45,7 +45,14 @@ extension AccountView: View {
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
-                Form {
+                Form {                    
+                    AccountPhotoView(
+                        store: self.store.scope(
+                            state: \.accountPhoto,
+                            action: AccountReducer.Action.accountPhoto
+                        )
+                    )
+                    
                     Section(header: Text(Localization.Account.sectionPersonal)) {
                         TextField(Localization.Account.sectionPersonalFirstName,
                                   text: viewStore.$firstName)
