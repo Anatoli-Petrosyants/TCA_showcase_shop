@@ -15,6 +15,7 @@ struct AccountPhotoView {
 
     struct ViewState: Equatable {
         @BindingViewState var isImagePickerPresented: Bool
+        var pickerSourceType: UIImagePickerController.SourceType
     }
 }
 
@@ -49,7 +50,9 @@ extension AccountPhotoView: View {
             }
             .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountPhotoReducer.Action.dialog))
             .sheet(isPresented: viewStore.$isImagePickerPresented) {
-                ImagePicker(sourceType: .photoLibrary, onImagePicked: { image in })
+                ImagePicker(sourceType: viewStore.pickerSourceType) {
+                    viewStore.send(.onPhotoSelected($0))
+                }
             }
         }
     }
@@ -59,6 +62,9 @@ extension AccountPhotoView: View {
 
 extension BindingViewStore<AccountPhotoReducer.State> {
     var view: AccountPhotoView.ViewState {
-        AccountPhotoView.ViewState(isImagePickerPresented: self.$isImagePickerPresented)
+        AccountPhotoView.ViewState(
+            isImagePickerPresented: self.$isImagePickerPresented,
+            pickerSourceType: self.pickerSourceType
+        )
     }
 }

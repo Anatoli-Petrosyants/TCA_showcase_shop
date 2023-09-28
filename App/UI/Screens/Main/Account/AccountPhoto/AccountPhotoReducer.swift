@@ -12,12 +12,15 @@ struct AccountPhotoReducer: Reducer {
     
     struct State: Equatable {
         @BindingState var isImagePickerPresented = false
+        var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
+        
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
     
     enum Action: Equatable {
         enum ViewAction: BindableAction, Equatable {
             case onAddPhotoButtonTap
+            case onPhotoSelected(UIImage)
             case binding(BindingAction<State>)
         }
         
@@ -27,8 +30,13 @@ struct AccountPhotoReducer: Reducer {
             case onRemovePhoto
         }
         
+        enum Delegate: Equatable {
+            case didPhotoSelected(UIImage)
+        }
+        
         case view(ViewAction)
         case dialog(PresentationAction<Action.DialogAction>)
+        case delegate(Delegate)
     }
     
     var body: some ReducerOf<Self> {
@@ -62,23 +70,29 @@ struct AccountPhotoReducer: Reducer {
                 }
                 return .none
                 
+            case let .view(.onPhotoSelected(image)):
+                Log.debug("onPhotoSelected image \(image)")
+                return .send(.delegate(.didPhotoSelected(image)))
+                
             case .view(.binding):
                 return .none
                 
             // dialog actions
             case .dialog(.presented(.onSelectPhotoFromGallery)):
-                Log.debug("onSelectPhotoFromGallery")
+                state.pickerSourceType = .photoLibrary
+                state.isImagePickerPresented = true
                 return .none
                             
             case .dialog(.presented(.onSelectPhotoFromCamera)):
-                Log.debug("onSelectPhotoFromCamera")
+                state.pickerSourceType = .camera
+                state.isImagePickerPresented = true
                 return .none
                 
             case .dialog(.presented(.onRemovePhoto)):
                 Log.debug("onRemovePhoto")
                 return .none
 
-            case .dialog:
+            case .dialog, .delegate:
                 return .none
             }
         }

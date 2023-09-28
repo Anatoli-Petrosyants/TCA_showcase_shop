@@ -249,6 +249,11 @@ struct AccountReducer: Reducer {
                 default:
                     return .none
                 }
+                    
+            // account photo actions
+            case let .accountPhoto(.delegate(.didPhotoSelected(image))):
+                Log.debug("accountPhoto image \(image)")
+                return .none
                 
             case .delegate, .dialog, .permissions, .accountPhoto:
                 return .none
