@@ -35,7 +35,7 @@ struct ProductAccountReducer: Reducer {
         case delegate(Delegate)
     }
     
-    @Dependency(\.userDefaultsClient) var userDefaultsClient
+    @Dependency(\.userKeychainClient) var userKeychainClient
     @Dependency(\.databaseClient) var databaseClient
     
     var body: some Reducer<State, Action> {
@@ -45,9 +45,13 @@ struct ProductAccountReducer: Reducer {
                 switch viewAction {
                 case .onViewLoad:
                     return .run { send in
+                        guard let token = self.userKeychainClient.retrieveToken() else {
+                            return
+                        }
+                        
                         let accountsStream: AsyncStream<[Account]> = databaseClient.observe(
                             Account.all
-                                .where(\Account.token == self.userDefaultsClient.token.valueOr("showcase_token"))
+                                .where(\Account.token == token)
                                 .limit(1)
                         )
                         
@@ -78,7 +82,7 @@ struct ProductAccountReducer: Reducer {
                     return .none
 
                 case let .accountResponse(.failure(error)):
-                    Log.debug("productsResponse: \(error)")
+                    Log.debug("accountResponse: \(error)")
                     return .none
                 }
                 

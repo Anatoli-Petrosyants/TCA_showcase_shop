@@ -36,7 +36,7 @@ enum Tab: Int, CaseIterable {
 struct MainReducer: Reducer {
     
     struct State: Equatable {
-        var currentTab = Tab.account
+        var currentTab = Tab.products
         
         var products = ProductsReducer.State()
         var search = SearchReducer.State()

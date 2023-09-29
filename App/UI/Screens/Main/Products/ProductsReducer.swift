@@ -96,7 +96,6 @@ struct ProductsReducer: Reducer {
 
     private enum CancelID { case products }
 
-    @Dependency(\.continuousClock) var continuousClock
     @Dependency(\.productsClient) var productsClient
     @Dependency(\.uuid) var uuid
 
@@ -131,8 +130,6 @@ struct ProductsReducer: Reducer {
                 switch internalAction {
                 case .loadProducts:                    
                     return .run { send in
-                        try await continuousClock.sleep(for: .seconds(3))
-                        
                         await send(
                             .internal(
                                 .productsResponse(
@@ -188,7 +185,7 @@ struct ProductsReducer: Reducer {
                 case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):                    
                     return .send(.delegate(.didProductAddedToBasket(product)))
 
-                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):                    
+                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):     
                     state.account.countryCode = code
                     return .none
 

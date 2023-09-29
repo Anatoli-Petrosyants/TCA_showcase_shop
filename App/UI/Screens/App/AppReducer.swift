@@ -128,6 +128,7 @@ struct AppReducer: Reducer {
             case let .main(action: .delegate(mainAction)):
                 switch mainAction {
                 case .didLogout:
+                    self.userKeychainClient.removeToken()
                     state = .loading(LoadingReducer.State())
                     return .none
                 }
