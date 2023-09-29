@@ -34,6 +34,7 @@ struct SearchReducer: Reducer {
         
         enum Delegate: Equatable {
             case didItemAddedToBasket(Product)
+            case didFavoriteChanged(Bool, Product)
         }
         
         case view(ViewAction)
@@ -182,10 +183,10 @@ struct SearchReducer: Reducer {
                     state.path.append(.details(.init(id: self.uuid(), product: product)))
                     return .none
                     
-                case let .delegate(.didFavoriteTapped(isFavorite)):
+                case let .delegate(.didFavoriteChanged(isFavorite, product)):
                     let count = state.wishlist.count
                     state.wishlist.count = isFavorite ? (count + 1) : (count - 1)
-                    return .none
+                    return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
                     
                 default:                    
                     return .none

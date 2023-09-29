@@ -24,7 +24,13 @@ extension WishlistView: View {
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Wishlist")
+            NavigationStack {
+                VStack {
+                    Text("Cards")
+                }
+                .navigationTitle("Wishlist \(viewStore.products.count)")
+            }
+            .badge(viewStore.products.count)
         }
     }
 }

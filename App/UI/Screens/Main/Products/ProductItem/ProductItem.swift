@@ -23,7 +23,7 @@ struct ProductItemReducer: Reducer {
         
         enum Delegate: Equatable {
             case didItemTapped(Product)
-            case didFavoriteTapped(Bool)
+            case didFavoriteChanged(Bool, Product)
         }
         
         case view(ViewAction)
@@ -49,9 +49,9 @@ struct ProductItemReducer: Reducer {
             case let .favorite(favoriteAction):
                 switch favoriteAction {
                 case .onTap:
-                    return .run { [isFavorite = state.favorite.isFavorite] send in
+                    return .run { [isFavorite = state.favorite.isFavorite, product = state.product] send in
                         await self.feedbackGenerator.selectionChanged()
-                        return await send(.delegate(.didFavoriteTapped(isFavorite)))
+                        return await send(.delegate(.didFavoriteChanged(isFavorite, product)))
                     }
                 }
                 

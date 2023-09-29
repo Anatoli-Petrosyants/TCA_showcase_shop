@@ -35,6 +35,7 @@ struct ProductsReducer: Reducer {
         enum Delegate: Equatable {
             case didProductAddedToBasket(Product)
             case didTopPicksLoaded([Product])
+            case didFavoriteChanged(Bool, Product)
             case didSidebarTapped
         }
 
@@ -165,6 +166,9 @@ struct ProductsReducer: Reducer {
                 case let .delegate(.didItemTapped(product)):
                     state.path.append(.details(.init(id: self.uuid(), product: product)))
                     return .none
+                    
+                case let .delegate(.didFavoriteChanged(isFavorite, product)):                    
+                    return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
                 default:
                     return .none

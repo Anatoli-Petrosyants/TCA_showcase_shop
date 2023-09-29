@@ -105,12 +105,32 @@ struct MainReducer: Reducer {
                 state.basket.topPicksProducts.append(contentsOf: products)
                 return .none
                 
+            case let .products(.delegate(.didFavoriteChanged(isFavorite, product))):
+                if isFavorite {
+                    state.wishlist.products.append(product)
+                } else {
+                    if let index = state.wishlist.products.firstIndex(of: product) {
+                        state.wishlist.products.remove(at: index)
+                    }
+                }
+                return .none
+                
             case .products(.delegate(.didSidebarTapped)):
                 state.sidebar.isVisible.toggle()
                 return .none
                 
             case let .search(.delegate(.didItemAddedToBasket(product))):
                 state.basket.products.append(product)
+                return .none
+                
+            case let .search(.delegate(.didFavoriteChanged(isFavorite, product))):
+                if isFavorite {
+                    state.wishlist.products.append(product)
+                } else {
+                    if let index = state.wishlist.products.firstIndex(of: product) {
+                        state.wishlist.products.remove(at: index)
+                    }
+                }
                 return .none
                 
             case .basket(.delegate(.didAddProductsTapped)):
@@ -156,6 +176,10 @@ struct MainReducer: Reducer {
             case .products, .search, .wishlist, .basket, .account, .sidebar, .delegate:
                 return .none
             }
+            
+//            func updateFavorites(isFavorite: Bool, product: Product) {
+//
+//            }
         }
     }
 }
