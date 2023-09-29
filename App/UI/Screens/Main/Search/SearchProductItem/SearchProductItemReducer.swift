@@ -13,7 +13,7 @@ struct SearchProductItemReducer: Reducer {
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
-        var favorite = SearchFavoriteButtonReducer.State()
+        var favorite = FavoriteButtonReducer.State()
     }
     
     enum Action: Equatable {
@@ -28,14 +28,14 @@ struct SearchProductItemReducer: Reducer {
 
         case view(ViewAction)
         case delegate(Delegate)
-        case favorite(SearchFavoriteButtonReducer.Action)
+        case favorite(FavoriteButtonReducer.Action)
     }
     
     @Dependency(\.feedbackGenerator) var feedbackGenerator
     
     var body: some Reducer<State, Action> {
         Scope(state: \.favorite, action: /Action.favorite) {
-            SearchFavoriteButtonReducer()
+            FavoriteButtonReducer()
         }
     
         Reduce { state, action in

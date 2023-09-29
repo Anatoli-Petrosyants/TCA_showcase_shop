@@ -1,5 +1,5 @@
 //
-//  SearchFavoriteButton.swift
+//  FavoriteButton.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 13.07.23.
@@ -8,15 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-// MARK: - SearchFavoriteButton
+// MARK: - FavoriteButton
 
-struct SearchFavoriteButton {
-    let store: StoreOf<SearchFavoriteButtonReducer>
+struct FavoriteButton {
+    let store: StoreOf<FavoriteButtonReducer>
 }
 
 // MARK: - Views
 
-extension SearchFavoriteButton: View {
+extension FavoriteButton: View {
     
     var body: some View {
         content

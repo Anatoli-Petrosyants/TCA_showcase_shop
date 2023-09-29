@@ -13,6 +13,7 @@ struct ProductItemReducer: Reducer {
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
+        var favorite = FavoriteButtonReducer.State()
     }
     
     enum Action: Equatable {
@@ -22,19 +23,36 @@ struct ProductItemReducer: Reducer {
         
         enum Delegate: Equatable {
             case didItemTapped(Product)
+            case didFavoriteTapped(Bool)
         }
         
         case view(ViewAction)
         case delegate(Delegate)
+        case favorite(FavoriteButtonReducer.Action)
     }
     
+    @Dependency(\.feedbackGenerator) var feedbackGenerator
+    
     var body: some Reducer<State, Action> {
+        Scope(state: \.favorite, action: /Action.favorite) {
+            FavoriteButtonReducer()
+        }
+        
         Reduce { state, action in
             switch action {
             case let .view(viewAction):
                 switch viewAction {
                 case .onItemTap:                    
                     return .send(.delegate(.didItemTapped(state.product)))
+                }
+                
+            case let .favorite(favoriteAction):
+                switch favoriteAction {
+                case .onTap:
+                    return .run { [isFavorite = state.favorite.isFavorite] send in
+                        await self.feedbackGenerator.selectionChanged()
+                        return await send(.delegate(.didFavoriteTapped(isFavorite)))
+                    }
                 }
                 
             case .delegate:

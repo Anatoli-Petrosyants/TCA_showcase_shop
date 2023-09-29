@@ -41,9 +41,20 @@ extension ProductItemView: View {
                 .frame(maxWidth: 160)
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(viewStore.product.title)
-                        .font(.footnoteBold)
-                        .padding(.top, 6)
+                    HStack(alignment: .top) {
+                        Text(viewStore.product.title)
+                            .font(.footnoteBold)
+                        
+                        Spacer()
+                        
+                        FavoriteButton(
+                            store: self.store.scope(
+                                state: \.favorite,
+                                action: ProductItemReducer.Action.favorite
+                            )
+                        )
+                    }
+                    .padding(.top, 6)
 
                     Text(viewStore.product.description)
                         .lineLimit(3)
@@ -66,9 +77,9 @@ extension ProductItemView: View {
                     
                     Text("\(viewStore.product.category)")
                         .font(.footnote)
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                         .padding(2)
-                        .background { Color.random }
+                        // .background { Color.random }
                 }
                 .padding(6)
                 .frame(maxWidth: .infinity)

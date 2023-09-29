@@ -47,7 +47,7 @@ extension SearchProductItemView: View {
                     
                     Spacer()
                     
-                    SearchFavoriteButton(
+                    FavoriteButton(
                         store: self.store.scope(
                             state: \.favorite,
                             action: SearchProductItemReducer.Action.favorite

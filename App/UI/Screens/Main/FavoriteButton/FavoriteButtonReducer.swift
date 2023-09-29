@@ -1,5 +1,5 @@
 //
-//  SearchFavoriteButtonReducer.swift
+//  FavoriteButtonReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 13.07.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchFavoriteButtonReducer: Reducer {
+struct FavoriteButtonReducer: Reducer {
     
     struct State: Equatable, Identifiable {
         let id = UUID()
