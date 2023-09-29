@@ -38,7 +38,7 @@ extension AccountPhotoView: View {
                     if let photo = viewStore.photo {
                         Image(uiImage: photo)
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 100, height: 100)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.black05, lineWidth: 2))

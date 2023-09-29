@@ -11,15 +11,17 @@ import ComposableArchitecture
 enum Tab: Int, CaseIterable {
     case products = 0
     case search
+    case wishlist
     case basket
     case account
     
     var icon: String {
         switch self {
-            case .products: return "house.circle"
-            case .search: return "magnifyingglass.circle"
-            case .basket: return "basket"
-            case .account: return "person.crop.circle"
+            case .products: return "rectangle.stack.fill"
+            case .search: return "magnifyingglass"
+            case .wishlist: return "heart"
+            case .basket: return "basket.fill"
+            case .account: return "person.fill"
         }
     }
     
@@ -27,6 +29,7 @@ enum Tab: Int, CaseIterable {
         switch self {
         case .products: return "Home"
         case .search: return "Search"
+        case .wishlist: return "Wishlist"
         case .basket: return "Basket"
         case .account: return "Account"
         }
@@ -40,6 +43,7 @@ struct MainReducer: Reducer {
         
         var products = ProductsReducer.State()
         var search = SearchReducer.State()
+        var wishlist = WishlistReducer.State()
         var basket = BasketReducer.State()
         var account = AccountReducer.State()
         var sidebar = SidebarReducer.State()
@@ -49,6 +53,7 @@ struct MainReducer: Reducer {
         case onTabChanged(Tab)
         case products(ProductsReducer.Action)
         case search(SearchReducer.Action)
+        case wishlist(WishlistReducer.Action)
         case basket(BasketReducer.Action)
         case account(AccountReducer.Action)
         case sidebar(SidebarReducer.Action)
@@ -67,6 +72,10 @@ struct MainReducer: Reducer {
         
         Scope(state: \.search, action: /Action.search) {
             SearchReducer()
+        }
+        
+        Scope(state: \.wishlist, action: /Action.wishlist) {
+            WishlistReducer()
         }
         
         Scope(state: \.basket, action: /Action.basket) {
@@ -144,7 +153,7 @@ struct MainReducer: Reducer {
                     return .none
                 }
                 
-            case .products, .search, .basket, .account, .sidebar, .delegate:
+            case .products, .search, .wishlist, .basket, .account, .sidebar, .delegate:
                 return .none
             }
         }

@@ -48,6 +48,17 @@ extension MainView: View {
                         Label(Tab.search.title, systemImage: Tab.search.icon)
                     }
                     .tag(Tab.search)
+                    
+                    WishlistView(
+                        store: self.store.scope(
+                            state: \.wishlist,
+                            action: MainReducer.Action.wishlist
+                        )
+                    )
+                    .tabItem {
+                        Label(Tab.wishlist.title, systemImage: Tab.wishlist.icon)
+                    }
+                    .tag(Tab.wishlist)
 
                     BasketView(
                         store: self.store.scope(
