@@ -193,6 +193,8 @@
 		A9B4D7B42A4C59C800B102FB /* ProductUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7B32A4C59C800B102FB /* ProductUsersView.swift */; };
 		A9B773C32AC6B0FB00B8F0D9 /* WishlistReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */; };
 		A9B773C52AC6B10400B8F0D9 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */; };
+		A9B773C82AC6C38C00B8F0D9 /* WishlistCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */; };
+		A9B773CB2AC6C7E200B8F0D9 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = A9B773CA2AC6C7E200B8F0D9 /* CardStack */; };
 		A9BE14B82AB3205200410856 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE14B72AB3205200410856 /* AddProductView.swift */; };
 		A9BE14BA2AB3205A00410856 /* AddProductReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE14B92AB3205A00410856 /* AddProductReducer.swift */; };
 		A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */; };
@@ -453,6 +455,7 @@
 		A9B4D7B32A4C59C800B102FB /* ProductUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUsersView.swift; sourceTree = "<group>"; };
 		A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistReducer.swift; sourceTree = "<group>"; };
 		A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
+		A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistCardView.swift; sourceTree = "<group>"; };
 		A9BE14B72AB3205200410856 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		A9BE14B92AB3205A00410856 /* AddProductReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductReducer.swift; sourceTree = "<group>"; };
 		A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProgressStyle.swift; sourceTree = "<group>"; };
@@ -526,6 +529,7 @@
 				A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */,
 				A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */,
 				A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */,
+				A9B773CB2AC6C7E200B8F0D9 /* CardStack in Frameworks */,
 				A96BF14D2A6A996300B14247 /* PopupView in Frameworks */,
 				A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */,
 				A990E52E2A41BC7D0004F4F9 /* Reachability in Frameworks */,
@@ -1273,6 +1277,7 @@
 			children = (
 				A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */,
 				A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */,
+				A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */,
 			);
 			path = Wishlist;
 			sourceTree = "<group>";
@@ -1504,6 +1509,7 @@
 				A98DD1602A9F545100B39EDC /* iPhoneNumberField */,
 				A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */,
 				A93B1FF52AA9E92A00E05DD1 /* Moya */,
+				A9B773CA2AC6C7E200B8F0D9 /* CardStack */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Showcase.app */;
@@ -1552,6 +1558,7 @@
 				A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				A9DD83EC2AA9C21B00FD9927 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				A93B1FF42AA9E92A00E05DD1 /* XCRemoteSwiftPackageReference "Moya" */,
+				A9B773C92AC6C7E200B8F0D9 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -1645,6 +1652,7 @@
 				A9947EF02A179DBF00FC7FB8 /* LottieViewRepresentable.swift in Sources */,
 				A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */,
 				A9B4D7AF2A4C52B700B102FB /* UserDTO.swift in Sources */,
+				A9B773C82AC6C38C00B8F0D9 /* WishlistCardView.swift in Sources */,
 				A94A87282AA0B4EE00168BC1 /* PhoneOTPReducer.swift in Sources */,
 				A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */,
 				A9EEE3012A71086F007A6442 /* MapView.swift in Sources */,
@@ -2347,6 +2355,14 @@
 				kind = branch;
 			};
 		};
+		A9B773C92AC6C7E200B8F0D9 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dadalar/SwiftUI-CardStackView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 		A9BEED3629D1B4EF007ADC33 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -2410,6 +2426,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A9AA22C62A8F96900073E070 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		A9B773CA2AC6C7E200B8F0D9 /* CardStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9B773C92AC6C7E200B8F0D9 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
+			productName = CardStack;
 		};
 		A9BEED3729D1B4EF007ADC33 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

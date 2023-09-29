@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import CardStack
 
 // MARK: - WishlistView
 
@@ -26,7 +27,19 @@ extension WishlistView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
                 VStack {
-                    Text("Cards")
+                    CardStack(
+                        direction: LeftRight.direction,
+                        data: Person.mock,
+                        onSwipe: { product, direction in
+                            print("Swiped \(product.title) to \(direction)")
+                        },
+                        content: { product, direction, _ in
+                            CardViewWithThumbs(product: product, direction: direction)
+                        }
+                    )
+                    .padding()
+                    .scaledToFit()
+                    .frame(alignment: .center)
                 }
                 .navigationTitle("Wishlist \(viewStore.products.count)")
             }

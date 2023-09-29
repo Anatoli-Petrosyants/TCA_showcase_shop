@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct WishlistReducer: Reducer {
-    
+
     struct State: Equatable {
         var products: [Product] = []
     }
