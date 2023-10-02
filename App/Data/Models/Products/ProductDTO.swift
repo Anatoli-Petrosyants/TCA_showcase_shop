@@ -8,13 +8,18 @@
 import Foundation
 
 struct ProductDTO: Decodable {
-    let id: Int
+    let productId: Int
     let title: String
     let price: Double
     let description: String
     let category: String
     let image: String
     let rating: ProductRatingDTO
+    
+    enum CodingKeys: String, CodingKey {
+        case productId = "id"
+        case title, price, description, category, image, rating
+    }
 }
 
 struct ProductRatingDTO: Decodable {

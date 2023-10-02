@@ -9,59 +9,50 @@ import SwiftUI
 import CardStack
 import SDWebImageSwiftUI
 
-struct Person: Identifiable {
-    let id = UUID()
-    let title: String
-    let price: Int = { .random(in: 1..<20) }()
-
-    static let mock: [Person] = [
-        Person(title: "Niall Miller"),
-        Person(title: "Sammy Smart"),
-        Person(title: "Edie Bain"),
-        Person(title: "Gia Velez"),
-        Person(title: "Harri Devine")
-    ]
-}
-
 struct CardView: View {
-    let product: Person
+    let product: Product
 
     var body: some View {
-        GeometryReader { geo in
-            VStack {
-//                WebImage(url: product.imageURL)
-//                    .resizable()
-//                    .indicator(.activity)
-//                    .transition(.fade(duration: 0.5))
-//                    .scaledToFit()
-//                    .frame(height: geo.size.width)
-//                    .clipped()
+        VStack(spacing: 12) {
+            WebImage(url: product.imageURL)
+                .resizable()
+                .indicator(.activity)
+                .transition(.fade(duration: 0.5))
+                .scaledToFit()
+                .frame(height: 300)
+                .clipped()
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(product.title)
+                    .foregroundColor(.black)
+                    .font(.headlineBold)
                 
-                HStack {
-                    Text(self.product.title)
-                    Spacer()
-                    Text("\(product.price) km away")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                }
-                .padding()
+                Text(product.description)
+                    .lineLimit(3)
+                    .font(.footnote)
+                    .foregroundColor(.black05)
+                
+                Text("\(product.price.currency())")
+                    .foregroundColor(.black)
+                    .font(.body)
             }
-            .background(Color.white)
-            .cornerRadius(12)
-            .shadow(radius: 4)
         }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(radius: 4)
     }
 }
 
 struct CardViewWithThumbs: View {
-    let product: Person
+    let product: Product
     let direction: LeftRight?
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
             ZStack(alignment: .topLeading) {
                 CardView(product: product)
-            
+
                 Image(systemName: "hand.thumbsup.fill")
                     .resizable()
                     .foregroundColor(Color.green)
@@ -77,6 +68,6 @@ struct CardViewWithThumbs: View {
                 .frame(width: 100, height: 100)
                 .padding()
         }
-        .animation(.default)
+        .animation(.spring())
     }
 }

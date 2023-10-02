@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Product: Equatable, Hashable, Identifiable {
-    let id: Int
+struct Product: Equatable, Identifiable {
+    let id = UUID()
+    let productId: Int
     let title: String
     let description: String
     let price: Double
@@ -21,7 +22,7 @@ struct Product: Equatable, Hashable, Identifiable {
 extension ProductDTO {
     
     func toEntity() -> Product {
-        return .init(id: self.id,
+        return .init(productId: self.productId,
                      title: self.title,
                      description: self.description,
                      price: self.price,

@@ -98,7 +98,7 @@ struct ProductDetails: Reducer {
                             .internal(
                                 .productResponse(
                                     await TaskResult {
-                                        try await self.productsClient.product(product.id)
+                                        try await self.productsClient.product(product.productId)
                                     }
                                 )
                             ),
