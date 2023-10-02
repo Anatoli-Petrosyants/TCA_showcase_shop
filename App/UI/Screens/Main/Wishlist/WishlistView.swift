@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ComposableArchitecture
-import CardStack
 
 // MARK: - WishlistView
 
@@ -26,37 +25,38 @@ extension WishlistView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
-                    VStack(spacing: 0) {
-                        CardStack(
-                            direction: LeftRight.direction,
-                            data: viewStore.products,
-                            onSwipe: { product, direction in
-                                print("Swiped \(product.title) to \(direction)")
-                            },
-                            content: { product, direction, _ in
-                                CardViewWithThumbs(product: product, direction: direction)
-                            }
-                        )
-                        .environment(\.cardStackConfiguration, CardStackConfiguration(
-                            maxVisibleCards: 2,
-                            swipeThreshold: 0.4,
-                            cardOffset: 6,
-                            cardScale: 0,
-                            animation: .spring()
-                        ))
+                VStack(spacing: 0) {
+                    Spacer()
 
-                        WishlistActionsView(
-                            store: self.store.scope(
-                                state: \.actions,
-                                action: WishlistReducer.Action.actions
-                            )
+                    WishlistActionsView(
+                        store: self.store.scope(
+                            state: \.actions,
+                            action: WishlistReducer.Action.actions
                         )
-                        .padding(.top, 16)
-                    }
-                    .padding()
-                    .navigationTitle("Wishlist (\(viewStore.products.count))")
+                    )
+                    .padding(.top, 16)
+                }
+                .padding()
+                .navigationTitle("Wishlist (\(viewStore.products.count))")
             }
             .badge(viewStore.products.count)
         }
     }
 }
+
+//CardStack(
+//    model: CardStackModel<_, LeftRight>(viewStore.products),
+//    onSwipe: { product, direction in
+//        print("Swiped \(product.title) to \(direction)")
+//    },
+//    content: { product, direction in
+//        WishlistCardViewWithThumbs(product: product, direction: direction)
+//    }
+//)
+//.environment(\.cardStackConfiguration, CardStackConfiguration(
+//    maxVisibleCards: 2,
+//    swipeThreshold: 0.4,
+//    cardOffset: 6,
+//    cardScale: 0,
+//    animation: .spring()
+//))
