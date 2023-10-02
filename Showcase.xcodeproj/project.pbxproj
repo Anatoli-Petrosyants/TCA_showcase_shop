@@ -145,6 +145,8 @@
 		A9947EEE2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */; };
 		A9947EF02A179DBF00FC7FB8 /* LottieViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */; };
 		A9947EF22A179DD900FC7FB8 /* ActivityViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */; };
+		A99545722ACAEB1A00E0B527 /* WishlistActionsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99545712ACAEB1A00E0B527 /* WishlistActionsReducer.swift */; };
+		A99545742ACAEB2200E0B527 /* WishlistActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99545732ACAEB2200E0B527 /* WishlistActionsView.swift */; };
 		A9A0CB6F29D41E6F0048A649 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0CB6E29D41E6F0048A649 /* LocationManager.swift */; };
 		A9A0CB7129D41F000048A649 /* MapAnnotationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0CB7029D41F000048A649 /* MapAnnotationData.swift */; };
 		A9A0CB7329D45BD60048A649 /* MapAnnotationData+MockedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A0CB7229D45BD60048A649 /* MapAnnotationData+MockedData.swift */; };
@@ -408,6 +410,8 @@
 		A9947EED2A179D9B00FC7FB8 /* SFSafariViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewRepresentable.swift; sourceTree = "<group>"; };
 		A9947EEF2A179DBF00FC7FB8 /* LottieViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewRepresentable.swift; sourceTree = "<group>"; };
 		A9947EF12A179DD900FC7FB8 /* ActivityViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewRepresentable.swift; sourceTree = "<group>"; };
+		A99545712ACAEB1A00E0B527 /* WishlistActionsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistActionsReducer.swift; sourceTree = "<group>"; };
+		A99545732ACAEB2200E0B527 /* WishlistActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistActionsView.swift; sourceTree = "<group>"; };
 		A9A0CB6E29D41E6F0048A649 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A9A0CB7029D41F000048A649 /* MapAnnotationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationData.swift; sourceTree = "<group>"; };
 		A9A0CB7229D45BD60048A649 /* MapAnnotationData+MockedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapAnnotationData+MockedData.swift"; sourceTree = "<group>"; };
@@ -1141,6 +1145,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A99545752ACAEB2600E0B527 /* WishlistActions */ = {
+			isa = PBXGroup;
+			children = (
+				A99545712ACAEB1A00E0B527 /* WishlistActionsReducer.swift */,
+				A99545732ACAEB2200E0B527 /* WishlistActionsView.swift */,
+			);
+			path = WishlistActions;
+			sourceTree = "<group>";
+		};
 		A9A0CB6C29D41CB00048A649 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1278,6 +1291,7 @@
 				A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */,
 				A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */,
 				A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */,
+				A99545752ACAEB2600E0B527 /* WishlistActions */,
 			);
 			path = Wishlist;
 			sourceTree = "<group>";
@@ -1703,6 +1717,7 @@
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A90072D52A73DC05000551E1 /* CameraView.swift in Sources */,
 				A9A4598B2A977C6600594963 /* VideoPlayerView.swift in Sources */,
+				A99545742ACAEB2200E0B527 /* WishlistActionsView.swift in Sources */,
 				A9A0CB7129D41F000048A649 /* MapAnnotationData.swift in Sources */,
 				A9CEE74E2A695A340062128B /* CountriesView.swift in Sources */,
 				A990E54A2A42F6910004F4F9 /* AppTextFieldStyle.swift in Sources */,
@@ -1713,6 +1728,7 @@
 				A93B200E2AAB069D00E05DD1 /* LoginEmailRequest.swift in Sources */,
 				A9585D622AC55A6F00CA100F /* ImagePickerViewRepresentable.swift in Sources */,
 				A988F0B929B5CC610059F9BB /* Optional+Extensions.swift in Sources */,
+				A99545722ACAEB1A00E0B527 /* WishlistActionsReducer.swift in Sources */,
 				A965938D2AAF366900E7EACA /* Contact+Mapping.swift in Sources */,
 				A9A0CBC029DAA01D0048A649 /* CameraPreview.swift in Sources */,
 				A9C181BB2A6558D000C9EB90 /* LoaderModifier.swift in Sources */,

@@ -26,7 +26,7 @@ extension WishlistView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
-                    VStack {
+                    VStack(spacing: 0) {
                         CardStack(
                             direction: LeftRight.direction,
                             data: viewStore.products,
@@ -38,18 +38,22 @@ extension WishlistView: View {
                             }
                         )
                         .environment(\.cardStackConfiguration, CardStackConfiguration(
-                            maxVisibleCards: 3,
+                            maxVisibleCards: 2,
                             swipeThreshold: 0.4,
-                            cardOffset: 5,
-                            cardScale: 0.2,
+                            cardOffset: 6,
+                            cardScale: 0,
                             animation: .spring()
                         ))
-                        
-                        Spacer()
+
+                        WishlistActionsView(
+                            store: self.store.scope(
+                                state: \.actions,
+                                action: WishlistReducer.Action.actions
+                            )
+                        )
+                        .padding(.top, 16)
                     }
                     .padding()
-                    .scaledToFit()
-                    .frame(alignment: .center)
                     .navigationTitle("Wishlist (\(viewStore.products.count))")
             }
             .badge(viewStore.products.count)

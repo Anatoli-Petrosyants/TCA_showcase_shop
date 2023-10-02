@@ -42,7 +42,6 @@ struct AppReducer: Reducer {
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-    
             case let .appDelegate(appDelegateAction):
                 switch appDelegateAction {
                 case .didFinishLaunching:

@@ -13,7 +13,7 @@ struct CardView: View {
     let product: Product
 
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 24) {
             WebImage(url: product.imageURL)
                 .resizable()
                 .indicator(.activity)
@@ -22,13 +22,13 @@ struct CardView: View {
                 .frame(height: 300)
                 .clipped()
             
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(product.title)
                     .foregroundColor(.black)
                     .font(.headlineBold)
                 
                 Text(product.description)
-                    .lineLimit(3)
+                    .lineLimit(6)
                     .font(.footnote)
                     .foregroundColor(.black05)
                 
@@ -36,6 +36,8 @@ struct CardView: View {
                     .foregroundColor(.black)
                     .font(.body)
             }
+            
+            Spacer()
         }
         .padding()
         .background(Color.white)
@@ -53,21 +55,61 @@ struct CardViewWithThumbs: View {
             ZStack(alignment: .topLeading) {
                 CardView(product: product)
 
-                Image(systemName: "hand.thumbsup.fill")
-                    .resizable()
+                Text("Add")
+                    .font(.largeTitle)
                     .foregroundColor(Color.green)
                     .opacity(direction == .right ? 1 : 0)
-                    .frame(width: 100, height: 100)
                     .padding()
             }
 
-            Image(systemName: "hand.thumbsdown.fill")
-                .resizable()
+            Text("Remove")
+                .font(.largeTitle)
                 .foregroundColor(Color.red)
                 .opacity(direction == .left ? 1 : 0)
-                .frame(width: 100, height: 100)
                 .padding()
         }
         .animation(.spring())
+        
+//        ZStack {
+//            CardView(product: product)
+//
+//            if direction == .right {
+//                Image(systemName: "hand.thumbsup.fill")
+//                    .resizable()
+//                    .foregroundColor(Color.green)
+//                    .opacity(direction == .right ? 1 : 0)
+//                    .frame(width: 100, height: 100)
+//                    .padding()
+//            } else if direction == .left {
+//                Image(systemName: "hand.thumbsdown.fill")
+//                    .resizable()
+//                    .foregroundColor(Color.red)
+//                    .opacity(direction == .left ? 1 : 0)
+//                    .frame(width: 100, height: 100)
+//                    .padding()
+//            }
+//        }
+//        .animation(.spring())
+        
+//        ZStack(alignment: .topTrailing) {
+//            ZStack(alignment: .topLeading) {
+//                CardView(product: product)
+//
+//                Image(systemName: "hand.thumbsup.fill")
+//                    .resizable()
+//                    .foregroundColor(Color.green)
+//                    .opacity(direction == .right ? 1 : 0)
+//                    .frame(width: 100, height: 100)
+//                    .padding()
+//            }
+//
+//            Image(systemName: "hand.thumbsdown.fill")
+//                .resizable()
+//                .foregroundColor(Color.red)
+//                .opacity(direction == .left ? 1 : 0)
+//                .frame(width: 100, height: 100)
+//                .padding()
+//        }
+//        .animation(.spring())
     }
 }
