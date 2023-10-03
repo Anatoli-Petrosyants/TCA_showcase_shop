@@ -133,6 +133,10 @@ struct MainReducer: Reducer {
                 }
                 return .none
                 
+            case let .wishlist(.delegate(.didProductAddedToBasket(product))):
+                state.basket.products.append(product)
+                return .none
+                
             case .basket(.delegate(.didAddProductsTapped)):
                 state.currentTab = .products
                 return .none
