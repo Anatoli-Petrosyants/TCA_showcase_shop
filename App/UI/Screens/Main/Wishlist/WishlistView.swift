@@ -26,49 +26,67 @@ extension WishlistView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
-                VStack(spacing: 0) {
-                    ZStack {
-                        ForEach(viewStore.products) { product in
-                            CardView {
-                                VStack {
-                                    WebImage(url: product.imageURL)
-                                        .resizable()
-                                        .indicator(.activity)
-                                        .transition(.fade(duration: 0.5))
-                                        .scaledToFit()
+                ZStack(alignment: .center) {
+                    if viewStore.products.isEmpty {
+                        WishlistEmptyView()
+                    } else {
+                        VStack(spacing: 0) {
+                            ForEach(viewStore.products.reversed()) { product in
+                                CardView {
+                                    VStack {
+                                        WebImage(url: product.imageURL)
+                                            .resizable()
+                                            .indicator(.activity)
+                                            .transition(.fade(duration: 0.5))
+                                            .scaledToFit()
+                                            .padding()
+                                        
+                                        VStack(alignment: .leading, spacing: 5) {
+                                            Text(product.title)
+                                                .font(.headlineBold)
+                                            
+                                            Text(product.description)
+                                                .lineLimit(3)
+                                                .font(.footnote)
+                                                .foregroundColor(.black05)
+                                            
+                                            Text("\(product.price.currency())")
+                                                .font(.body)
+                                        }
                                         .padding()
-                                    
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(product.title)
-                                            .font(.footnoteBold)
-                                        
-                                        Text(product.description)
-                                            .lineLimit(3)
-                                            .font(.footnote)
-                                            .foregroundColor(.black05)
-                                        
-                                        Text("\(product.price.currency())")
-                                            .font(.body)
                                     }
-                                    .padding()
                                 }
                             }
+                            
+                            WishlistActionsView(
+                                store: self.store.scope(
+                                    state: \.actions,
+                                    action: WishlistReducer.Action.actions
+                                )
+                            )
+                            
+                            Spacer()
                         }
                     }
-                    
-                    Spacer()
-
-                    WishlistActionsView(
-                        store: self.store.scope(
-                            state: \.actions,
-                            action: WishlistReducer.Action.actions
-                        )
-                    )
                 }
                 .padding()
                 .navigationTitle("Wishlist (\(viewStore.products.count))")
             }
             .badge(viewStore.products.count)
+        }
+    }
+}
+
+struct WishlistEmptyView: View {
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Image(systemName: "heart.fill")
+                .font(.system(size: 60))
+            
+            Text("Add product to wishlist by tapping heart icon.")
+                .font(.title2)
+                .multilineTextAlignment(.center)
         }
     }
 }

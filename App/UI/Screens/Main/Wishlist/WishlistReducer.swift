@@ -16,6 +16,11 @@ struct WishlistReducer: Reducer {
     }
     
     enum Action: Equatable {
+        enum InternalAction: Equatable {
+            case removeItem
+        }
+        
+        case `internal`(InternalAction)
         case actions(WishlistActionsReducer.Action)
     }
     
@@ -27,11 +32,13 @@ struct WishlistReducer: Reducer {
         Reduce { state, action in
             switch action {                
             case .actions(.delegate(.didRemoveTapped)):
-                Log.debug("didRemoveTapped")
-                return .none
+                return .send(.internal(.removeItem))
                 
             case .actions(.delegate(.didAddTapped)):
-                Log.debug("didAddTapped")
+                return .send(.internal(.removeItem))
+                
+            case .internal(.removeItem):
+                state.products.removeFirst()
                 return .none
                 
             case .actions:
