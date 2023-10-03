@@ -195,7 +195,6 @@
 		A9B4D7B42A4C59C800B102FB /* ProductUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B4D7B32A4C59C800B102FB /* ProductUsersView.swift */; };
 		A9B773C32AC6B0FB00B8F0D9 /* WishlistReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */; };
 		A9B773C52AC6B10400B8F0D9 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */; };
-		A9B773C82AC6C38C00B8F0D9 /* WishlistCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */; };
 		A9BE14B82AB3205200410856 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE14B72AB3205200410856 /* AddProductView.swift */; };
 		A9BE14BA2AB3205A00410856 /* AddProductReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BE14B92AB3205A00410856 /* AddProductReducer.swift */; };
 		A9BEED3529D1A946007ADC33 /* AppProgressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */; };
@@ -458,7 +457,6 @@
 		A9B4D7B32A4C59C800B102FB /* ProductUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUsersView.swift; sourceTree = "<group>"; };
 		A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistReducer.swift; sourceTree = "<group>"; };
 		A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
-		A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistCardView.swift; sourceTree = "<group>"; };
 		A9BE14B72AB3205200410856 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		A9BE14B92AB3205A00410856 /* AddProductReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductReducer.swift; sourceTree = "<group>"; };
 		A9BEED3429D1A946007ADC33 /* AppProgressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppProgressStyle.swift; sourceTree = "<group>"; };
@@ -1288,7 +1286,6 @@
 			children = (
 				A9B773C22AC6B0FB00B8F0D9 /* WishlistReducer.swift */,
 				A9B773C42AC6B10400B8F0D9 /* WishlistView.swift */,
-				A9B773C72AC6C38C00B8F0D9 /* WishlistCardView.swift */,
 				A99545752ACAEB2600E0B527 /* WishlistActions */,
 			);
 			path = Wishlist;
@@ -1662,7 +1659,6 @@
 				A9947EF02A179DBF00FC7FB8 /* LottieViewRepresentable.swift in Sources */,
 				A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */,
 				A9B4D7AF2A4C52B700B102FB /* UserDTO.swift in Sources */,
-				A9B773C82AC6C38C00B8F0D9 /* WishlistCardView.swift in Sources */,
 				A94A87282AA0B4EE00168BC1 /* PhoneOTPReducer.swift in Sources */,
 				A9AA22BE2A8E356F0073E070 /* Localization+Search.swift in Sources */,
 				A9EEE3012A71086F007A6442 /* MapView.swift in Sources */,
