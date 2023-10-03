@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import SDWebImageSwiftUI
 
 // MARK: - WishlistView
 
@@ -27,14 +28,33 @@ extension WishlistView: View {
             NavigationStack {
                 VStack(spacing: 0) {
                     ZStack {
-                        ForEach(viewStore.products.reversed()) { product in
+                        ForEach(viewStore.products) { product in
                             CardView {
-                                Text(product.title)
-                                    .frame(width: 400, height: 500)
+                                VStack {
+                                    WebImage(url: product.imageURL)
+                                        .resizable()
+                                        .indicator(.activity)
+                                        .transition(.fade(duration: 0.5))
+                                        .scaledToFit()
+                                        .padding()
+                                    
+                                    VStack(alignment: .leading, spacing: 5) {
+                                        Text(product.title)
+                                            .font(.footnoteBold)
+                                        
+                                        Text(product.description)
+                                            .lineLimit(3)
+                                            .font(.footnote)
+                                            .foregroundColor(.black05)
+                                        
+                                        Text("\(product.price.currency())")
+                                            .font(.body)
+                                    }
+                                    .padding()
+                                }
                             }
                         }
                     }
-                    .padding(.top, 16)
                     
                     Spacer()
 
@@ -44,7 +64,6 @@ extension WishlistView: View {
                             action: WishlistReducer.Action.actions
                         )
                     )
-                    .padding(.top, 16)
                 }
                 .padding()
                 .navigationTitle("Wishlist (\(viewStore.products.count))")
