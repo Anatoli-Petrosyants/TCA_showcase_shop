@@ -94,6 +94,16 @@ extension ProductDetailsView: View {
                 .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "heart")
+                            .symbolVariant(viewStore.isFavorite ? .fill : .none)
+                    }
+                }
+            }
             .sheet(
                 store: store.scope(state: \.$productPhotos, action: { .productPhotos($0) }),
                 content: ProductPhotosView.init(store:)

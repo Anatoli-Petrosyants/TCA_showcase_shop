@@ -15,6 +15,7 @@ struct ProductDetails: Reducer {
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
+        let isFavorite: Bool = false
         
         @PresentationState var productPhotos: ProductPhotosReducer.State?
         var link = ProductLink.State(text: "view website", url: URL(string:"https://google.com")!)
