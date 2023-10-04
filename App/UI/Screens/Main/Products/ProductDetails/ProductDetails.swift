@@ -92,10 +92,7 @@ struct ProductDetails: Reducer {
                     }
                     
                 case .onFavoriteTap:
-                    state.isFavorite.toggle()
-                    
-                    Log.debug("onFavoriteTap \(state.isFavorite)")
-                    
+                    state.isFavorite.toggle()                    
                     return .send(
                         .delegate(
                             .didFavoriteChanged(state.isFavorite, state.product)

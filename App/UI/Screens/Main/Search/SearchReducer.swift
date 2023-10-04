@@ -180,7 +180,17 @@ struct SearchReducer: Reducer {
             case let .product(_, productAction):
                 switch productAction {
                 case let .delegate(.didItemTapped(product)):
-                    state.path.append(.details(.init(id: self.uuid(), product: product)))
+                    let productItem = state.items.first(where: { $0.product.id == product.id })
+                    let isFavorite = productItem?.favorite.isFavorite
+                    
+                    state.path.append(
+                        .details(
+                            .init(id: self.uuid(),
+                                  product: product,
+                                  isFavorite: isFavorite.valueOr(false)
+                            )
+                        )
+                    )
                     return .none
                     
                 case let .delegate(.didFavoriteChanged(isFavorite, product)):
@@ -220,6 +230,12 @@ struct SearchReducer: Reducer {
                 case let .element(id: _, action: .details(.delegate(.didProductAddedToBasket(product)))):
                     state.path.removeAll()
                     return .send(.delegate(.didItemAddedToBasket(product)))
+                    
+                case let .element(id: _, action: .details(.delegate(.didFavoriteChanged(isFavorite, product)))):
+                    if let index = state.items.firstIndex(where: { $0.product.id == product.id }) {
+                        state.items[index].favorite.isFavorite = isFavorite
+                    }
+                    return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
                 default:
                     return .none
