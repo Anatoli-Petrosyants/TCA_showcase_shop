@@ -22,6 +22,7 @@ struct WishlistReducer: Reducer {
         
         enum Delegate: Equatable {
             case didProductAddedToBasket(Product)
+            case didProductRemovedFromFavorites(Product)
         }
 
         case `internal`(InternalAction)
@@ -37,10 +38,14 @@ struct WishlistReducer: Reducer {
         Reduce { state, action in
             switch action {                
             case .actions(.delegate(.didRemoveTapped)):
-                return .send(.internal(.removeItem))
+                return .concatenate(
+                    .send(.delegate(.didProductRemovedFromFavorites(state.products.first!))),
+                    .send(.internal(.removeItem))
+                )
                 
             case .actions(.delegate(.didAddTapped)):
                 return .concatenate(
+                    .send(.delegate(.didProductRemovedFromFavorites(state.products.first!))),
                     .send(.delegate(.didProductAddedToBasket(state.products.first!))),
                     .send(.internal(.removeItem))
                 )

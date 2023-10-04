@@ -137,6 +137,12 @@ struct MainReducer: Reducer {
                 state.basket.products.append(product)
                 return .none
                 
+            case let .wishlist(.delegate(.didProductRemovedFromFavorites(product))):
+                if let index = state.products.items.firstIndex(where: { $0.product.id == product.id }) {
+                    state.products.items[index].favorite.isFavorite = false
+                }
+                return .none
+                
             case .basket(.delegate(.didAddProductsTapped)):
                 state.currentTab = .products
                 return .none
