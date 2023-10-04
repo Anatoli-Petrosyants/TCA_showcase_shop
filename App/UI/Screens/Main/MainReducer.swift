@@ -141,6 +141,10 @@ struct MainReducer: Reducer {
                 if let index = state.products.items.firstIndex(where: { $0.product.id == product.id }) {
                     state.products.items[index].favorite.isFavorite = false
                 }
+                
+                if let index = state.search.items.firstIndex(where: { $0.product.id == product.id }) {
+                    state.search.items[index].favorite.isFavorite = false
+                }
                 return .none
                 
             case .basket(.delegate(.didAddProductsTapped)):
