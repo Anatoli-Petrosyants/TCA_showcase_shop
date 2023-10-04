@@ -18,7 +18,7 @@ struct ProductItemReducer: Reducer {
     
     enum Action: Equatable {
         enum ViewAction: Equatable {
-            case onItemTap
+            case onItemTap            
         }
         
         enum Delegate: Equatable {
@@ -43,7 +43,7 @@ struct ProductItemReducer: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onItemTap:                    
-                    return .send(.delegate(.didItemTapped(state.product)))
+                    return .send(.delegate(.didItemTapped(state.product)))                                
                 }
                 
             case let .favorite(favoriteAction):

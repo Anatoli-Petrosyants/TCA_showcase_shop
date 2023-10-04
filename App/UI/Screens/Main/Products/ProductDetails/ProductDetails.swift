@@ -15,7 +15,7 @@ struct ProductDetails: Reducer {
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
-        let isFavorite: Bool = false
+        var isFavorite: Bool = false
         
         @PresentationState var productPhotos: ProductPhotosReducer.State?
         var link = ProductLink.State(text: "view website", url: URL(string:"https://google.com")!)
@@ -27,6 +27,7 @@ struct ProductDetails: Reducer {
             case onViewAppear
             case onViewPhotosTap
             case onAddProductsTap
+            case onFavoriteTap
         }
         
         enum InternalAction: Equatable {
@@ -37,7 +38,8 @@ struct ProductDetails: Reducer {
         }
         
         enum Delegate: Equatable {
-            case didItemAdded(Product)
+            case didProductAddedToBasket(Product)
+            case didFavoriteChanged(Bool, Product)
         }
 
         case view(ViewAction)
@@ -84,10 +86,21 @@ struct ProductDetails: Reducer {
                     
                 case .onAddProductsTap:
                     return .run { [product = state.product] send in
-                        await send(.delegate(.didItemAdded(product)))
+                        await send(.delegate(.didProductAddedToBasket(product)))
                         await self.feedbackGenerator.selectionChanged()                        
                         await self.dismiss()
                     }
+                    
+                case .onFavoriteTap:
+                    state.isFavorite.toggle()
+                    
+                    Log.debug("onFavoriteTap \(state.isFavorite)")
+                    
+                    return .send(
+                        .delegate(
+                            .didFavoriteChanged(state.isFavorite, state.product)
+                        )
+                    )
                 }
                 
             // internal actions

@@ -161,13 +161,23 @@ struct ProductsReducer: Reducer {
                     return .none
                 }
 
-            case let .product(_, productAction):
+            case let .product(id, productAction):
                 switch productAction {
                 case let .delegate(.didItemTapped(product)):
-                    state.path.append(.details(.init(id: self.uuid(), product: product)))
+                    let productItem = state.items.first(where: { $0.id == id })
+                    let isFavorite = productItem?.favorite.isFavorite
+                    
+                    state.path.append(
+                        .details(
+                            .init(id: self.uuid(),
+                                  product: product,
+                                  isFavorite: isFavorite.valueOr(false)
+                            )
+                        )
+                    )
                     return .none
                     
-                case let .delegate(.didFavoriteChanged(isFavorite, product)):                    
+                case let .delegate(.didFavoriteChanged(isFavorite, product)):
                     return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
                 default:
@@ -186,8 +196,14 @@ struct ProductsReducer: Reducer {
             // path actions
             case let .path(pathAction):
                 switch pathAction {
-                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):                    
+                case let .element(id: _, action: .details(.delegate(.didProductAddedToBasket(product)))):
                     return .send(.delegate(.didProductAddedToBasket(product)))
+                    
+                case let .element(id: _, action: .details(.delegate(.didFavoriteChanged(isFavorite, product)))):
+                    if let index = state.items.firstIndex(where: { $0.product.id == product.id }) {
+                        state.items[index].favorite.isFavorite = isFavorite
+                    }
+                    return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
                 case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):     
                     state.account.countryCode = code

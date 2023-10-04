@@ -97,7 +97,7 @@ extension ProductDetailsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        viewStore.send(.view(.onFavoriteTap))                    
                     } label: {
                         Image(systemName: "heart")
                             .symbolVariant(viewStore.isFavorite ? .fill : .none)

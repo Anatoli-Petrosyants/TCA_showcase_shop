@@ -151,7 +151,7 @@ struct BasketReducer: Reducer {
                     state.totalPrice = ""
                     return .none
                     
-                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
+                case let .element(id: _, action: .details(.delegate(.didProductAddedToBasket(product)))):
                     return .concatenate(
                         .send(.delegate(.didTopPickAddedToBasket(product))),
                         .send(.view(.onViewAppear))

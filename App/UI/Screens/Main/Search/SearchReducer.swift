@@ -217,7 +217,7 @@ struct SearchReducer: Reducer {
             // path actions
             case let .path(pathAction):
                 switch pathAction {
-                case let .element(id: _, action: .details(.delegate(.didItemAdded(product)))):
+                case let .element(id: _, action: .details(.delegate(.didProductAddedToBasket(product)))):
                     state.path.removeAll()
                     return .send(.delegate(.didItemAddedToBasket(product)))
 
