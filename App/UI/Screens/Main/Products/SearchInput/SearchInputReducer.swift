@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductsSearchInputReducer: Reducer {
+struct SearchInputReducer: Reducer {
     
     struct State: Equatable {
         var placeholder: LocalizedStringKey

@@ -47,14 +47,14 @@ extension ProductsView: View {
                             .padding(.top, 8)
                         } header: {
                             VStack {
-                                ProductsSearchInputView(
+                                SearchInputView(
                                     store: self.store.scope(
                                         state: \.input,
                                         action: ProductsReducer.Action.input
                                     )
                                 )
 
-                                ProductsSearchSegmentView(
+                                SearchSegmentView(
                                     store: self.store.scope(
                                         state: \.segment,
                                         action: ProductsReducer.Action.segment
@@ -111,7 +111,7 @@ extension ProductsView: View {
                 case .details:
                     CaseLet(/ProductsReducer.Path.State.details,
                         action: ProductsReducer.Path.Action.details,
-                        then: ProductDetailsView.init(store:)
+                        then: ProductDetailView.init(store:)
                     )
 
                 case .inAppMessages:

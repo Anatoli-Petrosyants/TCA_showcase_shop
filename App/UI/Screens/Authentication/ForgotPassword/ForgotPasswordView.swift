@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - ForgotPasswordView
 
 struct ForgotPasswordView {
-    let store: StoreOf<ForgotPassword>
+    let store: StoreOf<ForgotPasswordFeature>
 }
 
 // MARK: - Views
@@ -35,6 +35,6 @@ extension ForgotPasswordView: View {
             }
             .padding(24)
         }
-        .alert(store: self.store.scope(state: \.$alert, action: ForgotPassword.Action.alert))
+        .alert(store: self.store.scope(state: \.$alert, action: ForgotPasswordFeature.Action.alert))
     }
 }

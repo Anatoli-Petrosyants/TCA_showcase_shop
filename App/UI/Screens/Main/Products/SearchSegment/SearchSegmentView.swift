@@ -1,5 +1,5 @@
 //
-//  ProductsSearchSegmentView.swift
+//  SearchSegmentView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 11.07.23.
@@ -10,8 +10,8 @@ import ComposableArchitecture
 
 // MARK: - SearchSegmentView
 
-struct ProductsSearchSegmentView {
-    let store: StoreOf<ProductsSearchSegmentReducer>
+struct SearchSegmentView {
+    let store: StoreOf<SearchSegmentReducer>
     
     struct ViewState: Equatable {
         var segments: [Segment]
@@ -21,7 +21,7 @@ struct ProductsSearchSegmentView {
 
 // MARK: - Views
 
-extension ProductsSearchSegmentView: View {
+extension SearchSegmentView: View {
     
     var body: some View {
         content
@@ -29,8 +29,8 @@ extension ProductsSearchSegmentView: View {
 
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.view) { viewStore in
-            ProductsSearchSegmentControl(segments: viewStore.segments,
-                                         selectedSegment: viewStore.$selectedSegment)
+            SearchSegmentControl(segments: viewStore.segments,
+                                 selectedSegment: viewStore.$selectedSegment)
         }
     }
 }
@@ -38,16 +38,16 @@ extension ProductsSearchSegmentView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<ProductsSearchSegmentReducer.State> {
-    var view: ProductsSearchSegmentView.ViewState {
-        ProductsSearchSegmentView.ViewState(segments: self.segments,
-                                            selectedSegment: self.$selectedSegment)
+extension BindingViewStore<SearchSegmentReducer.State> {
+    var view: SearchSegmentView.ViewState {
+        SearchSegmentView.ViewState(segments: self.segments,
+                                    selectedSegment: self.$selectedSegment)
     }
 }
 
 // MARK: SearchSegmentControl
 
-struct ProductsSearchSegmentControl: View {
+struct SearchSegmentControl: View {
     var segments: [Segment]
     @Binding var selectedSegment: Segment
     @State private var scrollToSegment = false
@@ -57,7 +57,7 @@ struct ProductsSearchSegmentControl: View {
             ScrollViewReader { scrollViewProxy in
                 HStack(spacing: 16) {
                     ForEach(segments, id: \.self) { segment in
-                        ProductsSearchSegmentItemView(segment: segment, isSelected: segment == selectedSegment)
+                        SearchSegmentItemView(segment: segment, isSelected: segment == selectedSegment)
                             .onTapGesture {
                                 selectedSegment = segment
                                 withAnimation {
@@ -80,7 +80,7 @@ struct ProductsSearchSegmentControl: View {
     }
 }
 
-struct ProductsSearchSegmentItemView: View {
+struct SearchSegmentItemView: View {
     let segment: Segment
     let isSelected: Bool
 

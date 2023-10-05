@@ -33,7 +33,7 @@ enum Tab: Int, CaseIterable {
     }
 }
 
-struct MainReducer: Reducer {
+struct MainFeature: Reducer {
     
     struct State: Equatable {
         var currentTab = Tab.products

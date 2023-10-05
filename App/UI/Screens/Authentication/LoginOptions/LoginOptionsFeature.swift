@@ -1,5 +1,5 @@
 //
-//  LoginOptionsReducer.swift
+//  LoginOptionsFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 01.09.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct LoginOptionsReducer: Reducer {
+struct LoginOptionsFeature: Reducer {
     
     struct State: Equatable, Hashable {
         var agreementsAttributedString: AttributedString {

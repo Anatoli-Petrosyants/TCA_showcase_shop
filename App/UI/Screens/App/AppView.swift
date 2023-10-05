@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - HelpView
 
 struct AppView {
-    let store: StoreOf<AppReducer>
+    let store: StoreOf<AppFeature>
 }
 
 // MARK: - Views
@@ -26,25 +26,25 @@ extension AppView: View {
         SwitchStore(self.store) { state in
             switch state {
             case .loading:
-                CaseLet(/AppReducer.State.loading, action: AppReducer.Action.loading) { store in
+                CaseLet(/AppFeature.State.loading, action: AppFeature.Action.loading) { store in
                     LoadingView(store: store)
                         .transition(.delayAndFade)
                 }
                 
             case .onboarding:
-                CaseLet(/AppReducer.State.onboarding, action: AppReducer.Action.help) { store in
+                CaseLet(/AppFeature.State.onboarding, action: AppFeature.Action.help) { store in
                     OnboardingView(store: store)
                         .transition(.delayAndFade)
                 }
                 
             case .join:
-                CaseLet(/AppReducer.State.join, action: AppReducer.Action.join) { store in
+                CaseLet(/AppFeature.State.join, action: AppFeature.Action.join) { store in
                     JoinView(store: store)
                         .transition(.delayAndFade)
                 }
                 
             case .main:
-                CaseLet(/AppReducer.State.main, action: AppReducer.Action.main) { store in
+                CaseLet(/AppFeature.State.main, action: AppFeature.Action.main) { store in
                     MainView(store: store)
                         .transition(.delayAndFade)
                 }

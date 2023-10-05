@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - HelpView
 
 struct OnboardingView {
-    let store: StoreOf<OnboardingReducer>
+    let store: StoreOf<OnboardingFeature>
     
     struct ViewState: Equatable {
         var items: [Onboarding]
@@ -32,7 +32,7 @@ extension OnboardingView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
                 TabView(selection: viewStore.binding(get: \.selectedTab,
-                                                     send: OnboardingReducer.Action.onTabChanged) ) {
+                                                     send: OnboardingFeature.Action.onTabChanged) ) {
                     ForEach(viewStore.items) { viewData in
                         OnboardingPageView(data: viewData)
                             .tag(viewData.tab)

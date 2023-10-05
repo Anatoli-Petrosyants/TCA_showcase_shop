@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - LoginView
 
 struct EmailLoginView {
-    let store: StoreOf<EmailLoginReducer>
+    let store: StoreOf<EmailLoginFeature>
     
     struct ViewState: Equatable {
         @BindingViewState var isActivityIndicatorVisible: Bool
@@ -71,14 +71,14 @@ extension EmailLoginView: View {
                 }
                 .navigationTitle(Localization.Login.title)
             }
-            .alert(store: self.store.scope(state: \.$alert, action: EmailLoginReducer.Action.alert))
+            .alert(store: self.store.scope(state: \.$alert, action: EmailLoginFeature.Action.alert))
         }
     }
 }
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<EmailLoginReducer.State> {
+extension BindingViewStore<EmailLoginFeature.State> {
     var view: EmailLoginView.ViewState {
         EmailLoginView.ViewState(isActivityIndicatorVisible: self.$isActivityIndicatorVisible,
                                  username: self.$username,

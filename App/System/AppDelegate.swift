@@ -13,8 +13,8 @@ import FirebaseFirestore
 
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let store = Store(initialState: AppReducer.State()) {
-        AppReducer()
+    let store = Store(initialState: AppFeature.State()) {
+        AppFeature()
     }
     
     func application(

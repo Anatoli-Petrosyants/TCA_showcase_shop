@@ -1,5 +1,5 @@
 //
-//  ProductsSearchSegmentReducer.swift
+//  SearchSegmentReducer.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 11.07.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductsSearchSegmentReducer: Reducer {
+struct SearchSegmentReducer: Reducer {
     
     struct State: Equatable, Hashable {
         var segments = Segment.allCases

@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - PhoneOTPView
 
 struct PhoneOTPView {
-    let store: StoreOf<PhoneOTPReducer>
+    let store: StoreOf<PhoneOTPFeature>
     
     struct ViewState: Equatable {
         @BindingViewState var code: String
@@ -53,7 +53,7 @@ extension PhoneOTPView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<PhoneOTPReducer.State> {
+extension BindingViewStore<PhoneOTPFeature.State> {
     var view: PhoneOTPView.ViewState {
         PhoneOTPView.ViewState(code: self.$code,
                                isActivityIndicatorVisible: self.isActivityIndicatorVisible)

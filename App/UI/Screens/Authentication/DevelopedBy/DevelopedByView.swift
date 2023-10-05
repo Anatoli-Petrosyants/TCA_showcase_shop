@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - DevelopedByView
 
 struct DevelopedByView {
-    let store: StoreOf<DevelopedByReducer>
+    let store: StoreOf<DevelopedByFeature>
 }
 
 // MARK: - Views

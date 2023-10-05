@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - LoginOptionsView
 
 struct JoinView {
-    let store: StoreOf<JoinReducer>
+    let store: StoreOf<JoinFeature>
 }
 
 // MARK: - Views
@@ -62,26 +62,26 @@ extension JoinView: View {
             } destination: {
                 switch $0 {
                 case .emailLogin:
-                    CaseLet(/JoinReducer.Path.State.emailLogin,
-                        action: JoinReducer.Path.Action.emailLogin,
+                    CaseLet(/JoinFeature.Path.State.emailLogin,
+                        action: JoinFeature.Path.Action.emailLogin,
                         then: EmailLoginView.init(store:)
                     )
                     
                 case .forgotPassword:
-                    CaseLet(/JoinReducer.Path.State.forgotPassword,
-                        action: JoinReducer.Path.Action.forgotPassword,
+                    CaseLet(/JoinFeature.Path.State.forgotPassword,
+                        action: JoinFeature.Path.Action.forgotPassword,
                         then: ForgotPasswordView.init(store:)
                     )
                     
                 case .phoneLogin:
-                    CaseLet(/JoinReducer.Path.State.phoneLogin,
-                        action: JoinReducer.Path.Action.phoneLogin,
+                    CaseLet(/JoinFeature.Path.State.phoneLogin,
+                        action: JoinFeature.Path.Action.phoneLogin,
                         then: PhoneLoginView.init(store:)
                     )
                     
                 case .phoneOTP:
-                    CaseLet(/JoinReducer.Path.State.phoneOTP,
-                        action: JoinReducer.Path.Action.phoneOTP,
+                    CaseLet(/JoinFeature.Path.State.phoneOTP,
+                        action: JoinFeature.Path.Action.phoneOTP,
                         then: PhoneOTPView.init(store:)
                     )
                 }

@@ -1,5 +1,5 @@
 //
-//  PhoneLoginReducer.swift
+//  PhoneLoginFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 29.08.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct PhoneLoginReducer: Reducer {
+struct PhoneLoginFeature: Reducer {
     
     struct State: Equatable {
         @BindingState var number = ""

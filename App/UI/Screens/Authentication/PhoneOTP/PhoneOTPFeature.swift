@@ -1,5 +1,5 @@
 //
-//  PhoneOTPReducer.swift
+//  PhoneOTPFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 31.08.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct PhoneOTPReducer: Reducer {
+struct PhoneOTPFeature: Reducer {
     
     struct State: Equatable, Hashable {
         @BindingState var code = ""

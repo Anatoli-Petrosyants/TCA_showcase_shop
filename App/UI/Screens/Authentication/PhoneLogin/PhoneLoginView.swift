@@ -12,7 +12,7 @@ import iPhoneNumberField
 // MARK: - PhoneLoginView
 
 struct PhoneLoginView {
-    let store: StoreOf<PhoneLoginReducer>
+    let store: StoreOf<PhoneLoginFeature>
     
     @FocusState private var focused: Bool
     
@@ -73,7 +73,7 @@ extension PhoneLoginView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<PhoneLoginReducer.State> {
+extension BindingViewStore<PhoneLoginFeature.State> {
     var view: PhoneLoginView.ViewState {
         PhoneLoginView.ViewState(number: self.$number,
                                  isContinueButtonDisabled: self.isContinueButtonDisabled,

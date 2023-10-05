@@ -1,5 +1,5 @@
 //
-//  ForgotPassword.swift
+//  ForgotPasswordFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 21.06.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ForgotPassword: Reducer {
+struct ForgotPasswordFeature: Reducer {
     
     struct State: Equatable {
         @PresentationState var alert: AlertState<Action.AlertAction>?

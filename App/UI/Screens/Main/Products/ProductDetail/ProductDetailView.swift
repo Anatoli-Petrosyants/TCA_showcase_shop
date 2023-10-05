@@ -1,5 +1,5 @@
 //
-//  ProductDetailsView.swift
+//  ProductDetailView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 19.05.23.
@@ -8,15 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-// MARK: - ProductDetailsView
+// MARK: - ProductDetailView
 
-struct ProductDetailsView {
-    let store: StoreOf<ProductDetails>
+struct ProductDetailView {
+    let store: StoreOf<ProductDetail>
 }
 
 // MARK: - Views
 
-extension ProductDetailsView: View {
+extension ProductDetailView: View {
     
     var body: some View {
         content
@@ -56,7 +56,7 @@ extension ProductDetailsView: View {
                         ProductLinkView(
                             store: self.store.scope(
                                 state: \.link,
-                                action: ProductDetails.Action.link
+                                action: ProductDetail.Action.link
                             )
                         )
                         
@@ -78,7 +78,7 @@ extension ProductDetailsView: View {
                         ProductUsersView(
                             store: self.store.scope(
                                 state: \.users,
-                                action: ProductDetails.Action.users
+                                action: ProductDetail.Action.users
                             )
                         )
                     }

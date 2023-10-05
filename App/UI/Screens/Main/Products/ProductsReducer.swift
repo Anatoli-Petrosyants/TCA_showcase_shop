@@ -16,8 +16,8 @@ struct ProductsReducer: Reducer {
         var initalItems: IdentifiedArrayOf<ProductItemReducer.State> = []
         var items: IdentifiedArrayOf<ProductItemReducer.State> = []
         var account = ProductsAccountReducer.State()
-        var input = ProductsSearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
-        var segment = ProductsSearchSegmentReducer.State()        
+        var input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
+        var segment = SearchSegmentReducer.State()        
         var path = StackState<Path.State>()
     }
 
@@ -46,15 +46,15 @@ struct ProductsReducer: Reducer {
         case delegate(Delegate)
         case binding(BindingAction<State>)
         case account(ProductsAccountReducer.Action)
-        case input(ProductsSearchInputReducer.Action)
-        case segment(ProductsSearchSegmentReducer.Action)        
+        case input(SearchInputReducer.Action)
+        case segment(SearchSegmentReducer.Action)        
         case product(id: ProductItemReducer.State.ID, action: ProductItemReducer.Action)
         case path(StackAction<Path.State, Path.Action>)
     }
 
     struct Path: Reducer {
         enum State: Equatable {
-            case details(ProductDetails.State)
+            case details(ProductDetail.State)
             case inAppMessages(InAppMessagesReducer.State)
             case map(MapReducer.State)
             case camera(CameraReducer.State)
@@ -63,7 +63,7 @@ struct ProductsReducer: Reducer {
         }
 
         enum Action: Equatable {
-            case details(ProductDetails.Action)
+            case details(ProductDetail.Action)
             case inAppMessages(InAppMessagesReducer.Action)
             case map(MapReducer.Action)
             case camera(CameraReducer.Action)
@@ -73,7 +73,7 @@ struct ProductsReducer: Reducer {
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.details, action: /Action.details) {
-                ProductDetails()
+                ProductDetail()
             }
 
             Scope(state: /State.inAppMessages, action: /Action.inAppMessages) {
@@ -109,11 +109,11 @@ struct ProductsReducer: Reducer {
         }
         
         Scope(state: \.input, action: /Action.input) {
-            ProductsSearchInputReducer()
+            SearchInputReducer()
         }
         
         Scope(state: \.segment, action: /Action.segment) {
-            ProductsSearchSegmentReducer()
+            SearchSegmentReducer()
         }
 
         Reduce { state, action in
@@ -211,7 +211,7 @@ struct ProductsReducer: Reducer {
             case let .segment(segmentAction):
                 switch segmentAction {
                 case let .delegate(.didSegmentedChanged(segment)):
-                    state.input = ProductsSearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
+                    state.input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
                     state.input.isLoading = true
                     return .run { send in
                         if segment.isEmpty {

@@ -102,14 +102,14 @@ extension BasketView: View {
 
                             Divider()
                                 .padding([.leading, .trailing], 24)
-                        }
-                        
-                        TopPicksView(
-                            store: self.store.scope(
-                                state: \.topPicks,
-                                action: BasketReducer.Action.topPicks
+                            
+                            TopPicksView(
+                                store: self.store.scope(
+                                    state: \.topPicks,
+                                    action: BasketReducer.Action.topPicks
+                                )
                             )
-                        )
+                        }
 
                         Spacer()
                     }
@@ -127,7 +127,7 @@ extension BasketView: View {
                 case .details:
                     CaseLet(/BasketReducer.Path.State.details,
                         action: BasketReducer.Path.Action.details,
-                        then: ProductDetailsView.init(store:)
+                        then: ProductDetailView.init(store:)
                     )
                 }
             }

@@ -1,5 +1,5 @@
 //
-//  DevelopedByReducer.swift
+//  DevelopedByFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 13.04.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct DevelopedByReducer: Reducer {
+struct DevelopedByFeature: Reducer {
 
     struct State: Equatable {
         var text: String = ""

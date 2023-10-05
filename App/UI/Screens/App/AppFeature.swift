@@ -1,6 +1,6 @@
 //
-//  AppReducer.swift
-//  AppReducer
+//  AppFeature.swift
+//  AppFeature
 //
 //  Created by Anatoli Petrosyants on 10.04.23.
 //
@@ -9,15 +9,15 @@ import ComposableArchitecture
 import SwiftUI
 import Foundation
 
-struct AppReducer: Reducer {
+struct AppFeature: Reducer {
 
     enum State: Equatable {
-        case loading(LoadingReducer.State)
-        case onboarding(OnboardingReducer.State)
-        case join(JoinReducer.State)
-        case main(MainReducer.State)
+        case loading(LoadingFeature.State)
+        case onboarding(OnboardingFeature.State)
+        case join(JoinFeature.State)
+        case main(MainFeature.State)
 
-        public init() { self = .loading(LoadingReducer.State()) }
+        public init() { self = .loading(LoadingFeature.State()) }
     }
 
     enum Action: Equatable {
@@ -29,10 +29,10 @@ struct AppReducer: Reducer {
         
         case appDelegate(AppDelegateAction)
         case didChangeScenePhase(ScenePhase)
-        case loading(LoadingReducer.Action)
-        case help(OnboardingReducer.Action)
-        case join(JoinReducer.Action)
-        case main(MainReducer.Action)
+        case loading(LoadingFeature.Action)
+        case help(OnboardingFeature.Action)
+        case join(JoinFeature.Action)
+        case main(MainFeature.Action)
     }
     
     @Dependency(\.userDefaultsClient) var userDefaultsClient
@@ -99,12 +99,12 @@ struct AppReducer: Reducer {
                 case .didLoaded:
                     if self.userDefaultsClient.hasShownFirstLaunchOnboarding {
                         if (self.userKeychainClient.retrieveToken() != nil) {
-                            state = .main(MainReducer.State())
+                            state = .main(MainFeature.State())
                         } else {
-                            state = .join(JoinReducer.State())
+                            state = .join(JoinFeature.State())
                         }
                     } else {
-                        state = .onboarding(OnboardingReducer.State())
+                        state = .onboarding(OnboardingFeature.State())
                     }
                     return .none
                 }
@@ -112,7 +112,7 @@ struct AppReducer: Reducer {
             case let .help(action: .delegate(helpAction)):
                 switch helpAction {
                 case .didOnboardingFinished:
-                    state = .join(JoinReducer.State())
+                    state = .join(JoinFeature.State())
                     return .none
                 }
 
@@ -120,7 +120,7 @@ struct AppReducer: Reducer {
                 switch joinAction {
                 case .didAuthenticated:
                     Log.debug("didAuthenticated")
-                    state = .main(MainReducer.State())
+                    state = .main(MainFeature.State())
                     return .none
                 }
                 
@@ -128,7 +128,7 @@ struct AppReducer: Reducer {
                 switch mainAction {
                 case .didLogout:
                     self.userKeychainClient.removeToken()
-                    state = .loading(LoadingReducer.State())
+                    state = .loading(LoadingFeature.State())
                     return .none
                 }
                 
@@ -137,16 +137,16 @@ struct AppReducer: Reducer {
             }
         }
         .ifCaseLet(/State.loading, action: /Action.loading) {
-            LoadingReducer()
+            LoadingFeature()
         }
         .ifCaseLet(/State.onboarding, action: /Action.help) {
-            OnboardingReducer()
+            OnboardingFeature()
         }
         .ifCaseLet(/State.join, action: /Action.join) {
-            JoinReducer()
+            JoinFeature()
         }
         .ifCaseLet(/State.main, action: /Action.main) {
-            MainReducer()
+            MainFeature()
         }
     }
 }

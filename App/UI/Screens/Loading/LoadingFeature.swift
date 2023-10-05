@@ -1,5 +1,5 @@
 //
-//  LoadingReducer.swift
+//  LoadingFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 11.04.23.
@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 import Dependencies
 
-struct LoadingReducer: Reducer {
+struct LoadingFeature: Reducer {
 
     struct State: Equatable {
         @BindingState var progress: Double = 0.0

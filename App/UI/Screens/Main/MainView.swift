@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - MainView
 
 struct MainView {
-    let store: StoreOf<MainReducer>
+    let store: StoreOf<MainFeature>
 }
 
 // MARK: - Views
@@ -26,11 +26,11 @@ extension MainView: View {
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: \.currentTab) { viewStore in
             ZStack {
-                TabView(selection: viewStore.binding(send: MainReducer.Action.onTabChanged)) {
+                TabView(selection: viewStore.binding(send: MainFeature.Action.onTabChanged)) {
                     ProductsView(
                         store: self.store.scope(
                             state: \.products,
-                            action: MainReducer.Action.products
+                            action: MainFeature.Action.products
                         )
                     )
                     .tabItem {
@@ -41,7 +41,7 @@ extension MainView: View {
                     WishlistView(
                         store: self.store.scope(
                             state: \.wishlist,
-                            action: MainReducer.Action.wishlist
+                            action: MainFeature.Action.wishlist
                         )
                     )
                     .tabItem {
@@ -52,7 +52,7 @@ extension MainView: View {
                     BasketView(
                         store: self.store.scope(
                             state: \.basket,
-                            action: MainReducer.Action.basket
+                            action: MainFeature.Action.basket
                         )
                     )
                     .tabItem {
@@ -63,7 +63,7 @@ extension MainView: View {
                     AccountView(
                         store: self.store.scope(
                             state: \.account,
-                            action: MainReducer.Action.account
+                            action: MainFeature.Action.account
                         )
                     )
                     .tabItem {
@@ -86,7 +86,7 @@ extension MainView: View {
                 SidebarView(
                     store: self.store.scope(
                         state: \.sidebar,
-                        action: MainReducer.Action.sidebar
+                        action: MainFeature.Action.sidebar
                     )
                 )
                 .ignoresSafeArea()
@@ -102,8 +102,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView(
             store:
-                Store(initialState: MainReducer.State(), reducer: {
-                    MainReducer()
+                Store(initialState: MainFeature.State(), reducer: {
+                    MainFeature()
                 })
         )
     }

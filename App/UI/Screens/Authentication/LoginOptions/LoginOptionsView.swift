@@ -12,7 +12,7 @@ import AuthenticationServices
 // MARK: - LoginOptionsView
 
 struct LoginOptionsView {
-    let store: StoreOf<LoginOptionsReducer>
+    let store: StoreOf<LoginOptionsFeature>
 }
 
 // MARK: - Views

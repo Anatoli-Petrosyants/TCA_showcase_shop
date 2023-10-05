@@ -1,5 +1,5 @@
 //
-//  JoinReducer.swift
+//  JoinFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 29.08.23.
@@ -9,12 +9,12 @@ import SwiftUI
 import ComposableArchitecture
 import AuthenticationServices
 
-struct JoinReducer: Reducer {
+struct JoinFeature: Reducer {
     
     struct State: Equatable {
         var path = StackState<Path.State>()
-        @PresentationState var developedBy: DevelopedByReducer.State?
-        @PresentationState var loginOptions: LoginOptionsReducer.State?
+        @PresentationState var developedBy: DevelopedByFeature.State?
+        @PresentationState var loginOptions: LoginOptionsFeature.State?
     }
     
     enum Action: Equatable {
@@ -34,41 +34,41 @@ struct JoinReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case developedBy(PresentationAction<DevelopedByReducer.Action>)
-        case loginOptions(PresentationAction<LoginOptionsReducer.Action>)
+        case developedBy(PresentationAction<DevelopedByFeature.Action>)
+        case loginOptions(PresentationAction<LoginOptionsFeature.Action>)
         case path(StackAction<Path.State, Path.Action>)
     }
     
     struct Path: Reducer {
         enum State: Equatable {
-            case emailLogin(EmailLoginReducer.State)
-            case forgotPassword(ForgotPassword.State)
-            case phoneLogin(PhoneLoginReducer.State)
-            case phoneOTP(PhoneOTPReducer.State)
+            case emailLogin(EmailLoginFeature.State)
+            case forgotPassword(ForgotPasswordFeature.State)
+            case phoneLogin(PhoneLoginFeature.State)
+            case phoneOTP(PhoneOTPFeature.State)
         }
         
         enum Action: Equatable {
-            case emailLogin(EmailLoginReducer.Action)
-            case forgotPassword(ForgotPassword.Action)
-            case phoneLogin(PhoneLoginReducer.Action)
-            case phoneOTP(PhoneOTPReducer.Action)
+            case emailLogin(EmailLoginFeature.Action)
+            case forgotPassword(ForgotPasswordFeature.Action)
+            case phoneLogin(PhoneLoginFeature.Action)
+            case phoneOTP(PhoneOTPFeature.Action)
         }
         
         var body: some Reducer<State, Action> {
             Scope(state: /State.emailLogin, action: /Action.emailLogin) {
-                EmailLoginReducer()
+                EmailLoginFeature()
             }
             
             Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
-                ForgotPassword()
+                ForgotPasswordFeature()
             }
             
             Scope(state: /State.phoneLogin, action: /Action.phoneLogin) {
-                PhoneLoginReducer()
+                PhoneLoginFeature()
             }
             
             Scope(state: /State.phoneOTP, action: /Action.phoneOTP) {
-                PhoneOTPReducer()
+                PhoneOTPFeature()
             }
         }
     }
@@ -82,11 +82,11 @@ struct JoinReducer: Reducer {
             case let .view(viewAction):
                 switch viewAction {
                 case .onJoinButtonTap:
-                    state.loginOptions = LoginOptionsReducer.State()
+                    state.loginOptions = LoginOptionsFeature.State()
                     return .none
                     
                 case .onDevelopedByTap:
-                    state.developedBy = DevelopedByReducer.State()
+                    state.developedBy = DevelopedByFeature.State()
                     return .none
                 }
                 
@@ -167,8 +167,8 @@ struct JoinReducer: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$developedBy, action: /Action.developedBy) { DevelopedByReducer() }
-        .ifLet(\.$loginOptions, action: /Action.loginOptions) { LoginOptionsReducer() }
+        .ifLet(\.$developedBy, action: /Action.developedBy) { DevelopedByFeature() }
+        .ifLet(\.$loginOptions, action: /Action.loginOptions) { LoginOptionsFeature() }
         .forEach(\.path, action: /Action.path) {
             Path()
         }

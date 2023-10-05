@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - LoadingView
 
 struct LoadingView {
-    let store: StoreOf<LoadingReducer>
+    let store: StoreOf<LoadingFeature>
     
     struct ViewState: Equatable {
         @BindingViewState var progress: Double
@@ -45,7 +45,7 @@ extension LoadingView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<LoadingReducer.State> {
+extension BindingViewStore<LoadingFeature.State> {
     var view: LoadingView.ViewState {
         LoadingView.ViewState(progress: self.$progress)
     }

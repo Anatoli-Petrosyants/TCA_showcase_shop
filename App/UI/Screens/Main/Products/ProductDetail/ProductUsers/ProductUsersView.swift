@@ -61,15 +61,6 @@ extension ProductUsersView: View {
                                     }
                                 }
                                 .frame(maxHeight: 100)
-                                
-//                                Spacer()
-                                
-//                                Button {
-//                                    // viewStore.send(.view(.onUserDetailsTap))
-//                                } label: {
-//                                    Image(systemName: "chevron.right")
-//                                        .tint(.black05)
-//                                }
                             }
                             .padding([.top, .bottom], 8)
                             

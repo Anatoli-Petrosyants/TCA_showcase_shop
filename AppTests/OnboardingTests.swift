@@ -13,8 +13,8 @@ import XCTest
 final class OnboardingTests: XCTestCase {
     
     func testShowGetStartButton() async {
-        let store = TestStore(initialState: OnboardingReducer.State()) {
-            OnboardingReducer()
+        let store = TestStore(initialState: OnboardingFeature.State()) {
+            OnboardingFeature()
         }
         
         await store.send(.onTabChanged(tab: .page2)) {
@@ -31,8 +31,8 @@ final class OnboardingTests: XCTestCase {
     }
     
     func testHasSeenOnboardingBefore() async {
-        let store = TestStore(initialState: OnboardingReducer.State()) {
-            OnboardingReducer()
+        let store = TestStore(initialState: OnboardingFeature.State()) {
+            OnboardingFeature()
         } withDependencies: {
             $0.userDefaultsClient = UserDefaultsClient.testValue
         }

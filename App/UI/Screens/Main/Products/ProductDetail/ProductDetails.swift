@@ -1,5 +1,5 @@
 //
-//  ProductDetails.swift
+//  ProductDetail.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 19.05.23.
@@ -10,7 +10,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductDetails: Reducer {
+struct ProductDetail: Reducer {
     
     struct State: Equatable, Identifiable {
         let id: UUID
