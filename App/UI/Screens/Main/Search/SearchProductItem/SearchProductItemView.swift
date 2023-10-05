@@ -41,9 +41,25 @@ extension SearchProductItemView: View {
                 Text(viewStore.product.title)
                     .font(.footnote)
                 
+                HStack(spacing: 4) {
+                    Text(String(format: "%.1f", viewStore.product.ratingStars))
+                        .font(.footnote)
+                    
+                    RatingView(rating: viewStore.product.ratingStars)
+                    
+                    Text("(\(viewStore.product.ratingCount))")
+                        .font(.footnote)
+                        .foregroundColor(.black05)
+                }
+                
+                Text("\(viewStore.product.price.currency())")
+                    .font(.body)
+                
                 HStack {
-                    Text("\(viewStore.product.price.currency())")
-                        .font(.body)
+                    Text("\(viewStore.product.category)")
+                        .font(.footnote)
+                        .foregroundColor(.blue)
+                        .padding(2)
                     
                     Spacer()
                     

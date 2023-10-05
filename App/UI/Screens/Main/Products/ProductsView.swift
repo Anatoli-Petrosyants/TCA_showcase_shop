@@ -11,7 +11,12 @@ import ComposableArchitecture
 // MARK: - ProductsView
 
 struct ProductsView {
-    let store: StoreOf<ProductsReducer>   
+    let store: StoreOf<ProductsReducer>
+    
+    var gridItems: [GridItem] = [
+        .init(.flexible(), spacing: 8, alignment: .top),
+        .init(.flexible(), spacing: 8, alignment: .top)
+    ]
 }
 
 // MARK: - Views
@@ -28,22 +33,59 @@ extension ProductsView: View {
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
+//                ScrollView {
+//                    LazyVStack(spacing: 0) {
+//                        ProductAnnouncementView(
+//                            store: self.store.scope(
+//                                state: \.announcement,
+//                                action: ProductsReducer.Action.announcement
+//                            )
+//                        )
+//
+//                        ForEachStore(
+//                            self.store.scope(state: \.items,
+//                                             action: ProductsReducer.Action.product(id: action:))
+//                        ) { itemStore in
+//                            ProductItemView(store: itemStore)
+//                        }
+//                    }
+//                }
                 ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ProductAnnouncementView(
-                            store: self.store.scope(
-                                state: \.announcement,
-                                action: ProductsReducer.Action.announcement
-                            )
-                        )
-
-                        ForEachStore(
-                            self.store.scope(state: \.items,
-                                             action: ProductsReducer.Action.product(id: action:))
-                        ) { itemStore in
-                            ProductItemView(store: itemStore)
+                    LazyVGrid(columns: gridItems,
+                              pinnedViews: [.sectionHeaders])
+                    {
+                        Section {
+                            ForEachStore(
+                                self.store.scope(state: \.items,
+                                                 action: ProductsReducer.Action.product(id: action:))
+                            ) { itemStore in                                
+                                ProductItemView(store: itemStore)
+                            }
+                        } header: {
+//                            VStack {
+//                                SearchInputView(
+//                                    store: self.store.scope(
+//                                        state: \.input,
+//                                        action: SearchReducer.Action.input
+//                                    )
+//                                )
+//                                .padding([.leading, .trailing], 8)
+//                                .padding(.top, 1)
+//
+//                                SearchSegmentView(
+//                                    store: self.store.scope(
+//                                        state: \.segment,
+//                                        action: SearchReducer.Action.segment
+//                                    )
+//                                )
+//                                .padding([.leading, .trailing], 8)
+//                                .padding(.bottom, 16)
+//                            }
+//                            .background(Color.white)
                         }
                     }
+                    .padding([.leading, .trailing], 8)
+                    .aspectRatio(1.0, contentMode: .fit)
                 }
                 .modifier(NavigationBarModifier())
                 .loader(isLoading: viewStore.isActivityIndicatorVisible)

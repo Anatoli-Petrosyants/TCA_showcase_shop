@@ -1227,10 +1227,10 @@
 			children = (
 				A9AFC15D2A5C08C3003A95C3 /* SearchReducer.swift */,
 				A9AFC15F2A5C08CC003A95C3 /* SearchView.swift */,
-				A97572212A6015BA00C812D3 /* SearchWishlist */,
-				A9AFC1732A5EA4BC003A95C3 /* SearchProductItem */,
 				A9AFC1702A5D9659003A95C3 /* SearchInput */,
 				A9AFC16B2A5D8795003A95C3 /* SearchSegment */,
+				A9AFC1732A5EA4BC003A95C3 /* SearchProductItem */,
+				A97572212A6015BA00C812D3 /* SearchWishlist */,
 			);
 			path = Search;
 			sourceTree = "<group>";

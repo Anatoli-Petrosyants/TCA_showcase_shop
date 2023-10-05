@@ -76,16 +76,16 @@ extension SearchView: View {
                 .dismissKeyboardOnTap()
                 .navigationTitle(Localization.Search.title)
                 .modifier(NavigationBarModifier())
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        SearchWishlistView(
-                            store: self.store.scope(
-                                state: \.wishlist,
-                                action: SearchReducer.Action.wishlist
-                            )
-                        )
-                    }
-                }
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        SearchWishlistView(
+//                            store: self.store.scope(
+//                                state: \.wishlist,
+//                                action: SearchReducer.Action.wishlist
+//                            )
+//                        )
+//                    }
+//                }
             }
             destination: {
                 switch $0 {
