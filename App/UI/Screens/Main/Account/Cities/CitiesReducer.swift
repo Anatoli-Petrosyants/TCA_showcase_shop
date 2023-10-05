@@ -11,7 +11,6 @@ import ComposableArchitecture
 struct CitiesReducer: Reducer {
     
     struct State: Equatable {
-        var input = SearchInputReducer.State(placeholder: "Search address")
         var data: Loadable<[Place]> = .idle
     }
     

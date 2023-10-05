@@ -92,6 +92,13 @@ extension BasketView: View {
                                     action: { .addProduct($0) }
                                 )
                             )
+                            
+                            AnnouncementView(
+                                store: self.store.scope(
+                                    state: \.announcement,
+                                    action: BasketReducer.Action.announcement
+                                )
+                            )
 
                             Divider()
                                 .padding([.leading, .trailing], 24)

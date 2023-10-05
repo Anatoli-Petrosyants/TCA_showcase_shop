@@ -1,5 +1,5 @@
 //
-//  ProductAccountView.swift
+//  ProductsAccountView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 06.07.23.
@@ -10,13 +10,13 @@ import ComposableArchitecture
 
 // MARK: - ProductAccountView
 
-struct ProductAccountView {
-    let store: StoreOf<ProductAccountReducer>
+struct ProductsAccountView {
+    let store: StoreOf<ProductsAccountReducer>
 }
 
 // MARK: - Views
 
-extension ProductAccountView: View {
+extension ProductsAccountView: View {
     
     var body: some View {
         content

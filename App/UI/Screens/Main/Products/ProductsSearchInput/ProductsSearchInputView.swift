@@ -1,5 +1,5 @@
 //
-//  SearchInputView.swift
+//  ProductsSearchInputView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 11.07.23.
@@ -10,13 +10,13 @@ import ComposableArchitecture
 
 // MARK: - SearchInputView
 
-struct SearchInputView {
-    let store: StoreOf<SearchInputReducer>
+struct ProductsSearchInputView {
+    let store: StoreOf<ProductsSearchInputReducer>
 }
 
 // MARK: - Views
 
-extension SearchInputView: View {
+extension ProductsSearchInputView: View {
     
     var body: some View {
         content
@@ -27,7 +27,7 @@ extension SearchInputView: View {
             HStack(spacing: 16) {    
                     TextField(viewStore.placeholder, text: viewStore.binding(
                         get: \.searchQuery,
-                        send: SearchInputReducer.Action.onTextChanged)
+                        send: ProductsSearchInputReducer.Action.onTextChanged)
                     )
                     .textFieldStyle(.plain)
                     .autocapitalization(.none)

@@ -1,5 +1,5 @@
 //
-//  ProductAnnouncementView.swift
+//  AnnouncementView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 28.07.23.
@@ -9,10 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 import SDWebImageSwiftUI
 
-// MARK: - ProductAnnouncementView
+// MARK: - AnnouncementView
 
-struct ProductAnnouncementView {
-    let store: StoreOf<ProductAnnouncementReducer>
+struct AnnouncementView {
+    let store: StoreOf<AnnouncementReducer>
     
     @Namespace private var namespace
     @State private var isAnnouncementZoomed = false
@@ -23,9 +23,9 @@ struct ProductAnnouncementView {
 
 // MARK: - Views
 
-extension ProductAnnouncementView: View {
+extension AnnouncementView: View {
     
-    typealias ProductAnnouncementReducerViewStore = ViewStore<ProductAnnouncementReducer.State, ProductAnnouncementReducer.Action>
+    typealias AnnouncementReducerViewStore = ViewStore<AnnouncementReducer.State, AnnouncementReducer.Action>
     
     var body: some View {
         content
@@ -57,7 +57,7 @@ extension ProductAnnouncementView: View {
 
 // MARK: Views
 
-extension ProductAnnouncementView {
+extension AnnouncementView {
     
     private func imageView(url: URL) -> some View {
         WebImage(url: url)

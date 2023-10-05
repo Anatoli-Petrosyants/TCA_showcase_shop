@@ -33,23 +33,6 @@ extension ProductsView: View {
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
-//                ScrollView {
-//                    LazyVStack(spacing: 0) {
-//                        ProductAnnouncementView(
-//                            store: self.store.scope(
-//                                state: \.announcement,
-//                                action: ProductsReducer.Action.announcement
-//                            )
-//                        )
-//
-//                        ForEachStore(
-//                            self.store.scope(state: \.items,
-//                                             action: ProductsReducer.Action.product(id: action:))
-//                        ) { itemStore in
-//                            ProductItemView(store: itemStore)
-//                        }
-//                    }
-//                }
                 ScrollView {
                     LazyVGrid(columns: gridItems,
                               pinnedViews: [.sectionHeaders])
@@ -61,29 +44,31 @@ extension ProductsView: View {
                             ) { itemStore in                                
                                 ProductItemView(store: itemStore)
                             }
+                            .padding(.top, 8)
                         } header: {
                             VStack {
-                                SearchInputView(
+                                ProductsSearchInputView(
                                     store: self.store.scope(
                                         state: \.input,
                                         action: ProductsReducer.Action.input
                                     )
                                 )
 
-                                SearchSegmentView(
+                                ProductsSearchSegmentView(
                                     store: self.store.scope(
                                         state: \.segment,
                                         action: ProductsReducer.Action.segment
                                     )
                                 )
                             }
+                            .padding([.top, .bottom], 8)
+                            .background(.white)
                         }
                     }
                     .padding([.leading, .trailing], 8)
-                    .aspectRatio(1.0, contentMode: .fit)
                 }
                 .modifier(NavigationBarModifier())
-                .loader(isLoading: viewStore.isActivityIndicatorVisible)
+                .loader(isLoading: viewStore.isLoading)
                 // .redacted(reason: viewStore.isActivityIndicatorVisible ? .placeholder : [])
                 .onError(error: viewStore.productsError, action: {
                     viewStore.send(.view(.onViewLoad))
@@ -93,7 +78,7 @@ extension ProductsView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        ProductAccountView(
+                        ProductsAccountView(
                             store: self.store.scope(
                                 state: \.account,
                                 action: ProductsReducer.Action.account

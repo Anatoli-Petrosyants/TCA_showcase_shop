@@ -15,6 +15,7 @@ struct BasketReducer: Reducer {
         var topPicksProducts: [Product] = []
         var totalPrice: String = "$0.00"
         var addProduct = AddProductReducer.State()
+        var announcement = AnnouncementReducer.State()
         var topPicks = TopPicksReducer.State()
         
         @BindingState var toastMessage: LocalizedStringKey? = nil
@@ -47,6 +48,7 @@ struct BasketReducer: Reducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case addProduct(AddProductReducer.Action)
+        case announcement(AnnouncementReducer.Action)
         case topPicks(TopPicksReducer.Action)
         case dialog(PresentationAction<DialogAction>)
         case path(StackAction<Path.State, Path.Action>)
@@ -81,6 +83,10 @@ struct BasketReducer: Reducer {
         
         Scope(state: \.addProduct, action: /Action.addProduct) {
             AddProductReducer()
+        }
+        
+        Scope(state: \.announcement, action: /Action.announcement) {
+            AnnouncementReducer()
         }
         
         Scope(state: \.topPicks, action: /Action.topPicks) {
@@ -165,7 +171,7 @@ struct BasketReducer: Reducer {
                 state.path.append(.details(.init(id: self.uuid(), product: product)))
                 return .none
                 
-            case .delegate, .dialog, .addProduct, .topPicks:
+            case .delegate, .dialog, .addProduct, .announcement, .topPicks:
                 return .none
             }
         }
