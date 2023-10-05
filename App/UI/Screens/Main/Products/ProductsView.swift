@@ -62,26 +62,21 @@ extension ProductsView: View {
                                 ProductItemView(store: itemStore)
                             }
                         } header: {
-//                            VStack {
-//                                SearchInputView(
-//                                    store: self.store.scope(
-//                                        state: \.input,
-//                                        action: SearchReducer.Action.input
-//                                    )
-//                                )
-//                                .padding([.leading, .trailing], 8)
-//                                .padding(.top, 1)
-//
-//                                SearchSegmentView(
-//                                    store: self.store.scope(
-//                                        state: \.segment,
-//                                        action: SearchReducer.Action.segment
-//                                    )
-//                                )
-//                                .padding([.leading, .trailing], 8)
-//                                .padding(.bottom, 16)
-//                            }
-//                            .background(Color.white)
+                            VStack {
+                                SearchInputView(
+                                    store: self.store.scope(
+                                        state: \.input,
+                                        action: ProductsReducer.Action.input
+                                    )
+                                )
+
+                                SearchSegmentView(
+                                    store: self.store.scope(
+                                        state: \.segment,
+                                        action: ProductsReducer.Action.segment
+                                    )
+                                )
+                            }
                         }
                     }
                     .padding([.leading, .trailing], 8)

@@ -10,15 +10,13 @@ import ComposableArchitecture
 
 enum Tab: Int, CaseIterable {
     case products = 0
-    case search
     case wishlist
     case basket
     case account
     
     var icon: String {
         switch self {
-            case .products: return "rectangle.stack.fill"
-            case .search: return "magnifyingglass"
+            case .products: return "magnifyingglass"
             case .wishlist: return "heart"
             case .basket: return "basket.fill"
             case .account: return "person.fill"
@@ -27,8 +25,7 @@ enum Tab: Int, CaseIterable {
     
     var title: String {
         switch self {
-        case .products: return "Home"
-        case .search: return "Search"
+        case .products: return "Serach"
         case .wishlist: return "Wishlist"
         case .basket: return "Basket"
         case .account: return "Account"
@@ -42,7 +39,6 @@ struct MainReducer: Reducer {
         var currentTab = Tab.products
         
         var products = ProductsReducer.State()
-        var search = SearchReducer.State()
         var wishlist = WishlistReducer.State()
         var basket = BasketReducer.State()
         var account = AccountReducer.State()
@@ -52,7 +48,6 @@ struct MainReducer: Reducer {
     enum Action: Equatable {        
         case onTabChanged(Tab)
         case products(ProductsReducer.Action)
-        case search(SearchReducer.Action)
         case wishlist(WishlistReducer.Action)
         case basket(BasketReducer.Action)
         case account(AccountReducer.Action)
@@ -68,10 +63,6 @@ struct MainReducer: Reducer {
     var body: some Reducer<State, Action> {
         Scope(state: \.products, action: /Action.products) {
             ProductsReducer()
-        }
-        
-        Scope(state: \.search, action: /Action.search) {
-            SearchReducer()
         }
         
         Scope(state: \.wishlist, action: /Action.wishlist) {
@@ -119,20 +110,6 @@ struct MainReducer: Reducer {
                 state.sidebar.isVisible.toggle()
                 return .none
                 
-            case let .search(.delegate(.didItemAddedToBasket(product))):
-                state.basket.products.append(product)
-                return .none
-                
-            case let .search(.delegate(.didFavoriteChanged(isFavorite, product))):
-                if isFavorite {
-                    state.wishlist.products.append(product)
-                } else {
-                    if let index = state.wishlist.products.firstIndex(of: product) {
-                        state.wishlist.products.remove(at: index)
-                    }
-                }
-                return .none
-                
             case let .wishlist(.delegate(.didProductAddedToBasket(product))):
                 state.basket.products.append(product)
                 return .none
@@ -140,10 +117,6 @@ struct MainReducer: Reducer {
             case let .wishlist(.delegate(.didProductRemovedFromFavorites(product))):
                 if let index = state.products.items.firstIndex(where: { $0.product.id == product.id }) {
                     state.products.items[index].favorite.isFavorite = false
-                }
-                
-                if let index = state.search.items.firstIndex(where: { $0.product.id == product.id }) {
-                    state.search.items[index].favorite.isFavorite = false
                 }
                 return .none
                 
@@ -187,13 +160,9 @@ struct MainReducer: Reducer {
                     return .none
                 }
                 
-            case .products, .search, .wishlist, .basket, .account, .sidebar, .delegate:
+            case .products, .wishlist, .basket, .account, .sidebar, .delegate:
                 return .none
             }
-            
-//            func updateFavorites(isFavorite: Bool, product: Product) {
-//
-//            }
         }
     }
 }

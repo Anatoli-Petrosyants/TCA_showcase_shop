@@ -37,17 +37,6 @@ extension MainView: View {
                         Label(Tab.products.title, systemImage: Tab.products.icon)
                     }
                     .tag(Tab.products)
-
-                    SearchView(
-                        store: self.store.scope(
-                            state: \.search,
-                            action: MainReducer.Action.search
-                        )
-                    )
-                    .tabItem {
-                        Label(Tab.search.title, systemImage: Tab.search.icon)
-                    }
-                    .tag(Tab.search)
                     
                     WishlistView(
                         store: self.store.scope(

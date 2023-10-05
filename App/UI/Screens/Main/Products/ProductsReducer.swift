@@ -14,8 +14,11 @@ struct ProductsReducer: Reducer {
         var isLoading = false
         var isActivityIndicatorVisible = false
         var productsError: AppError? = nil
+        var initalItems: IdentifiedArrayOf<ProductItemReducer.State> = []
         var items: IdentifiedArrayOf<ProductItemReducer.State> = []
         var account = ProductAccountReducer.State()
+        var input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
+        var segment = SearchSegmentReducer.State()
         var announcement = ProductAnnouncementReducer.State()
         var path = StackState<Path.State>()
     }
@@ -44,6 +47,8 @@ struct ProductsReducer: Reducer {
         case delegate(Delegate)
         case binding(BindingAction<State>)
         case account(ProductAccountReducer.Action)
+        case input(SearchInputReducer.Action)
+        case segment(SearchSegmentReducer.Action)
         case announcement(ProductAnnouncementReducer.Action)
         case product(id: ProductItemReducer.State.ID, action: ProductItemReducer.Action)
         case path(StackAction<Path.State, Path.Action>)
@@ -104,6 +109,14 @@ struct ProductsReducer: Reducer {
         Scope(state: \.account, action: /Action.account) {
             ProductAccountReducer()
         }
+        
+        Scope(state: \.input, action: /Action.input) {
+            SearchInputReducer()
+        }
+        
+        Scope(state: \.segment, action: /Action.segment) {
+            SearchSegmentReducer()
+        }
 
         Scope(state: \.announcement, action: /Action.announcement) {
             ProductAnnouncementReducer()
@@ -147,8 +160,13 @@ struct ProductsReducer: Reducer {
                 case let .productsResponse(.success(data)):
                     state.isActivityIndicatorVisible = false
                     state.isLoading = false
+                    state.input.isLoading = false
+                    
+                    state.initalItems.removeAll()
+                    state.items.removeAll()
 
                     let items = data.map { ProductItemReducer.State(id: UUID(), product: $0) }
+                    state.initalItems.append(contentsOf: items)
                     state.items.append(contentsOf: items)
                     
                     let topPicks = Array(data.prefix(6))
@@ -157,6 +175,7 @@ struct ProductsReducer: Reducer {
                 case let .productsResponse(.failure(error)):                    
                     state.productsError = .underlying(error)
                     state.isActivityIndicatorVisible = false
+                    state.input.isLoading = false
                     state.isLoading = false
                     return .none
                 }
@@ -189,6 +208,63 @@ struct ProductsReducer: Reducer {
                 case .delegate(.didTap):
                     return .send(.delegate(.didSidebarTapped))
 
+                default:
+                    return .none
+                }
+                
+            case let .segment(segmentAction):
+                switch segmentAction {
+                case let .delegate(.didSegmentedChanged(segment)):
+                    state.input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
+                    state.input.isLoading = true
+                    return .run { send in
+                        if segment.isEmpty {
+                            await send(
+                                .internal(
+                                    .productsResponse(
+                                        await TaskResult {
+                                            try await self.productsClient.products()
+                                        }
+                                    )
+                                ),
+                                animation: .default
+                            )
+                        } else {
+                            await send(
+                                .internal(
+                                    .productsResponse(
+                                        await TaskResult {
+                                            try await self.productsClient.productsWithCategory(
+                                                .init(category: segment)
+                                            )
+                                        }
+                                    )
+                                ),
+                                animation: .default
+                            )
+                        }
+                    }
+                    .cancellable(id: CancelID.products)
+
+                default:
+                    return .none
+                }
+                
+            case let .input(inputAction):
+                switch inputAction {
+                case let .delegate(.didSearchQueryChanged(query)):
+                    let searchItems = state.initalItems.filter {
+                        $0.product.title.lowercased().contains(query.lowercased())
+                    }
+                    state.items.removeAll()
+                    state.items.append(contentsOf: searchItems)
+                    return .none
+
+                case .delegate(.didSearchQueryCleared):
+                    state.items.removeAll()
+                    state.items.append(contentsOf: state.initalItems)
+                    return .cancel(id: CancelID.products)
+                    
                 default:
                     return .none
                 }
