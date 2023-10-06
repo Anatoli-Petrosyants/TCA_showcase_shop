@@ -62,6 +62,7 @@
 		A9459B912ACEACAD00C63302 /* NotificationsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9459B902ACEACAD00C63302 /* NotificationsFeature.swift */; };
 		A9459B932ACEACB300C63302 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9459B922ACEACB300C63302 /* NotificationsView.swift */; };
 		A9459B972ACEB55800C63302 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9459B962ACEB55800C63302 /* Notification.swift */; };
+		A9459B9A2ACEB74200C63302 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9459B992ACEB74200C63302 /* CardView.swift */; };
 		A94A63BE2A938E0C0068903C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */; };
 		A94A63C12A93949C0068903C /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = A94A63C02A93949C0068903C /* CodableFirebase */; };
 		A94A87282AA0B4EE00168BC1 /* PhoneOTPFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A87272AA0B4EE00168BC1 /* PhoneOTPFeature.swift */; };
@@ -324,6 +325,7 @@
 		A9459B902ACEACAD00C63302 /* NotificationsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsFeature.swift; sourceTree = "<group>"; };
 		A9459B922ACEACB300C63302 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		A9459B962ACEB55800C63302 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		A9459B992ACEB74200C63302 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A94A63BD2A938E0C0068903C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A94A87272AA0B4EE00168BC1 /* PhoneOTPFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPFeature.swift; sourceTree = "<group>"; };
 		A94A87292AA0B4F400168BC1 /* PhoneOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOTPView.swift; sourceTree = "<group>"; };
@@ -1150,6 +1152,7 @@
 				A990E5052A41970B0004F4F9 /* ProgressViewWrapper.swift */,
 				A960AA212A49AB61005CE9F9 /* RatingView.swift */,
 				A9F53F6A2A8A49D7005D6182 /* ErrorView.swift */,
+				A9459B992ACEB74200C63302 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1812,6 +1815,7 @@
 				A9286A3E2A4EA3F500ED4CB3 /* User+Mapping.swift in Sources */,
 				A94BF89A2A56A939006FCE43 /* NotificationCenter+Async.swift in Sources */,
 				A9A5237A29C342440073177C /* CircularProgressView.swift in Sources */,
+				A9459B9A2ACEB74200C63302 /* CardView.swift in Sources */,
 				A990E53A2A41C00B0004F4F9 /* Localization+Help.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2002,6 +2006,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_KEY_UIUserInterfaceStyle[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2037,6 +2042,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2101,6 +2107,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_KEY_UIUserInterfaceStyle[sdk=*]" = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2192,6 +2199,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2230,6 +2238,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

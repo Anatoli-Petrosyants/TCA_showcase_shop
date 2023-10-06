@@ -10,8 +10,21 @@ import UIKit
 import Dependencies
 import UserNotifications
 
-// Test push on iPhone 14 Pro Max
-// xcrun simctl push CD54D208-0E7F-4C30-8DD9-69020F239CC5 ap.Showcase test_push_notification.apns
+/*
+Test push on iPhone 14 Pro Max
+xcrun simctl push CD54D208-0E7F-4C30-8DD9-69020F239CC5 ap.showcase.shop test_push_notification.apns
+
+{
+  "aps": {
+    "alert": {
+      "title": "Hi there!",
+      "body": "This is a push test at #localtime"
+    },
+    "navigateTo" : "notifications",
+    "sound": "default"
+  }
+}
+*/
 
 /// Represents a push notification received from APNs (Apple Push Notification Service).
 struct Push: Decodable {

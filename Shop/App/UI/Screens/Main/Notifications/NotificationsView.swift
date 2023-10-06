@@ -19,23 +19,47 @@ struct NotificationsView {
 extension NotificationsView: View {
     
     var body: some View {
-        content.onAppear { self.store.send(.onViewAppear) }
+        content
     }
     
     @ViewBuilder private var content: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             NavigationStack {
                 ZStack(alignment: .center) {
-                    if viewStore.notifications.isEmpty {
+                    if viewStore.items.isEmpty {
                         NotificationsEmptyView()
                     } else {
-                        
+                        List(viewStore.items, id: \.id) { item in
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("\(item.title)")
+                                    .font(.bodyBold)
+
+                                Text("\(item.description)")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.black05)
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                Log.debug("onTapGesture")
+                                
+                                 viewStore.send(.onNotificationTap(notification: item))
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                Button("Mark as read") {
+//                                    viewStore.send(.onItemTap(notification: item))
+                                }
+                                .tint(.blue)
+                            }
+                        }
+                        .environment(\.defaultMinListRowHeight, 54)
+                        .listRowBackground(Color.clear)
+                        .listStyle(.plain)
                     }
                 }
                 .padding()
-                .navigationTitle("Notifications (\(viewStore.notifications.count))")
+                .navigationTitle("Notifications (\(viewStore.items.count))")
             }
-            .badge(viewStore.notifications.count)
+            .badge(viewStore.items.count)
         }
     }
 }

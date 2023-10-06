@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct Notification: Equatable, Identifiable {
+struct Notification: Equatable, Identifiable, Hashable {    
+    enum NotificationType: CaseIterable {
+        case account, checkout
+    }
+    
     let id = UUID()
     let title: String
     let description: String
+    let type: NotificationType
 }

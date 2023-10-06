@@ -74,17 +74,23 @@ struct AppFeature: Reducer {
                         Log.debug("userNotifications willPresentNotification push: \(push)")
                     }
                     
-                    return .run { _ in
+                    return .run { send in
                         completionHandler(.banner)
+                        
+                        let notification = Notification(title: "Test", description: "Description", type: .checkout)
+                        await send(.main(.addNotifications(notification)))
                     }
                     
                 case let .userNotifications(.didReceiveResponse(response, completionHandler)):
                     Log.debug("userNotifications didReceiveResponse response: \(response.request.content.userInfo))")
-                    if let push = try? Push(decoding: response.request.content.userInfo) {
-                        Log.debug("userNotifications didReceiveResponse push: \(push.aps.navigateTo!)")
-                    }
-                    return .run { _ in
+                    
+                    return .run { send in
                         completionHandler()
+                        
+                        if let push = try? Push(decoding: response.request.content.userInfo) {
+                            Log.debug("userNotifications didReceiveResponse push: \(push.aps.navigateTo!)")
+                            await send(.main(.onTabChanged(.notifications)))
+                        }
                     }
 
                 case .userNotifications:
@@ -119,7 +125,6 @@ struct AppFeature: Reducer {
             case let .join(action: .delegate(joinAction)):
                 switch joinAction {
                 case .didAuthenticated:
-                    Log.debug("didAuthenticated")
                     state = .main(MainFeature.State())
                     return .none
                 }

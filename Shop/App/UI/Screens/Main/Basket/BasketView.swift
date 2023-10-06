@@ -36,7 +36,7 @@ extension BasketView: View {
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 24) {
                         if viewStore.products.count > 0 {
                             VStack {

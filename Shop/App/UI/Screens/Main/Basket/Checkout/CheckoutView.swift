@@ -40,7 +40,7 @@ extension CheckoutView: View {
                 }
                 .listRowBackground(Color.gray)
                 
-                Button(Localization.Basket.title) {
+                Button(Localization.Basket.checkoutTitle) {
                     viewStore.send(.view(.onCheckoutButtonTap))
                 }
                 .buttonStyle(.cta)

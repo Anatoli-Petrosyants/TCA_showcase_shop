@@ -39,7 +39,7 @@ enum Tab: Int, CaseIterable {
 struct MainFeature: Reducer {
     
     struct State: Equatable {
-        var currentTab = Tab.products
+        var currentTab = Tab.notifications
         
         var sidebar = SidebarReducer.State()
         var products = ProductsReducer.State()
@@ -51,6 +51,7 @@ struct MainFeature: Reducer {
     
     enum Action: Equatable {        
         case onTabChanged(Tab)
+        case addNotifications(Notification)
         
         case sidebar(SidebarReducer.Action)
         case products(ProductsReducer.Action)
@@ -96,7 +97,11 @@ struct MainFeature: Reducer {
             case let .onTabChanged(tab):
                 state.currentTab = tab
                 return .none
-            
+                
+            case let .addNotifications(notification):
+                state.notifications.items.append(notification)
+                return .none
+                
             case let .products(.delegate(.didProductAddedToBasket(product))):
                 state.basket.products.append(product)
                 return .none

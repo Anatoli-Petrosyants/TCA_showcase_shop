@@ -70,7 +70,7 @@ extension ProductsView: View {
                 .modifier(NavigationBarModifier())
                 .loader(isLoading: viewStore.isLoading)
                 // .redacted(reason: viewStore.isActivityIndicatorVisible ? .placeholder : [])
-                .onError(error: viewStore.productsError, action: {
+                .onError(error: viewStore.productsError, action: {                    
                     viewStore.send(.view(.onViewLoad))
                 })
                 .refreshable {
