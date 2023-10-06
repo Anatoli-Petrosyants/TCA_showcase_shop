@@ -23,7 +23,7 @@ struct NotificationsFeature: Reducer {
         }
         
         enum Delegate: Equatable {
-            case didAccountTapped
+            case didAccountNotificationTapped
         }
         
         case view(ViewAction)
@@ -39,7 +39,7 @@ struct NotificationsFeature: Reducer {
                 }
                 
                 if case .account = notification.type {
-                    return .send(.delegate(.didAccountTapped))
+                    return .send(.delegate(.didAccountNotificationTapped))
                 }
                 
                 return .none

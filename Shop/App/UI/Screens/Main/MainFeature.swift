@@ -143,6 +143,10 @@ struct MainFeature: Reducer {
                 state.basket.products.append(product)
                 return .none
                 
+            case .notifications(.delegate(.didAccountNotificationTapped)):
+                state.currentTab = .account
+                return .none
+                
             case .account(.delegate(.didLogout)):                
                 return .send(.delegate(.didLogout))
                 
