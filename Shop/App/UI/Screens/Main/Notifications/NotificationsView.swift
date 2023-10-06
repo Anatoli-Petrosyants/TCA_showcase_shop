@@ -40,11 +40,11 @@ extension NotificationsView: View {
                             }
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                 viewStore.send(.onNotificationTap(notification: item))
+                                viewStore.send(.view(.onNotificationTap(notification: item)))
                             }
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button("Mark as read") {
-                                    viewStore.send(.onNotificationTap(notification: item))
+                                    viewStore.send(.view(.onNotificationTap(notification: item)))
                                 }
                                 .tint(.blue)
                             }
