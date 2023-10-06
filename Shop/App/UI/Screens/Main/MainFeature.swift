@@ -39,7 +39,7 @@ enum Tab: Int, CaseIterable {
 struct MainFeature: Reducer {
     
     struct State: Equatable {
-        var currentTab = Tab.notifications
+        var currentTab = Tab.products
         
         var sidebar = SidebarReducer.State()
         var products = ProductsReducer.State()

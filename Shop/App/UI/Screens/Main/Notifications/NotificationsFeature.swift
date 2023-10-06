@@ -18,14 +18,33 @@ struct NotificationsFeature: Reducer {
     }
     
     enum Action: Equatable {
-        case onNotificationTap(notification: Notification)
+        enum ViewAction:  Equatable {
+            case onNotificationTap(notification: Notification)
+        }
+        
+        enum Delegate: Equatable {
+            case didAccountTapped
+        }
+        
+        case view(ViewAction)
+        case delegate(Delegate)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case let .onNotificationTap(notification):
-                print("onItemTap notification \(notification)")
+            case let .view(.onNotificationTap(notification)):
+                if let index = state.items.firstIndex(of: notification) {
+                    state.items.remove(at: index)
+                }
+                
+                if case .account = notification.type {
+                    return .send(.delegate(.didAccountTapped))
+                }
+                
+                return .none
+                
+            case .delegate:
                 return .none
             }
         }
