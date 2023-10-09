@@ -17,3 +17,11 @@ struct Notification: Equatable, Identifiable, Hashable {
     let description: String
     let type: NotificationType
 }
+
+extension Notification {
+    static var checkout = Notification(title: "Checkout",
+                                       description: "You have successfully checkout products.",
+                                       type: .checkout)
+}
+
+

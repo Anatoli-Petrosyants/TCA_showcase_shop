@@ -48,7 +48,7 @@ extension CheckoutView: View {
             .submitLabel(.done)
             .scrollContentBackground(.hidden)
             .tint(.black)
-            .toolbar(.hidden, for: .tabBar)
+            // .toolbar(.hidden, for: .tabBar)
             .navigationTitle(Localization.Basket.checkoutTitle)
             .alert(store: self.store.scope(state: \.$alert, action: CheckoutReducer.Action.alert))
         }

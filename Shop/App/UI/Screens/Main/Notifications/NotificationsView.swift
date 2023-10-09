@@ -58,6 +58,7 @@ extension NotificationsView: View {
                 .navigationTitle("Notifications (\(viewStore.items.count))")
             }
             .badge(viewStore.items.count)
+            .alert(store: self.store.scope(state: \.$alert, action: NotificationsFeature.Action.alert))
         }
     }
 }

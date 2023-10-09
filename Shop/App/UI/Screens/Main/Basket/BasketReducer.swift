@@ -38,6 +38,7 @@ struct BasketReducer: Reducer {
         enum Delegate: Equatable {
             case didAddProductsTapped
             case didTopPickAddedToBasket(Product)
+            case didSuccessfullyCheckoutProducts
         }
         
         enum DialogAction: Equatable {
@@ -155,7 +156,7 @@ struct BasketReducer: Reducer {
                     state.toastMessage = Localization.Base.successfullySaved
                     state.products.removeAll()
                     state.totalPrice = ""
-                    return .none
+                    return .send(.delegate(.didSuccessfullyCheckoutProducts))
                     
                 case let .element(id: _, action: .details(.delegate(.didProductAddedToBasket(product)))):
                     return .concatenate(
