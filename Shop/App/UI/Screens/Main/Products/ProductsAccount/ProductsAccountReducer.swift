@@ -12,7 +12,7 @@ import Dependencies
 struct ProductsAccountReducer: Reducer {
     
     struct State: Equatable {
-        var name: String = ""
+        var name: String = "guest"
         var countryCode: String = ""
     }
     
@@ -76,7 +76,7 @@ struct ProductsAccountReducer: Reducer {
             case let .internal(internalAction):
                 switch internalAction {
                 case let .accountResponse(.success(optionalData)):
-                    if let data = optionalData {
+                    if let data = optionalData, !data.firstName.isEmpty {
                         state.name = data.firstName
                     }
                     return .none

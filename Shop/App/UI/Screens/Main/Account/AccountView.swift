@@ -166,6 +166,7 @@ extension AccountView: View {
                 .tint(.black)
                 .navigationTitle(Localization.Account.title)
                 .modifier(NavigationBarModifier())
+                .scrollDismissesKeyboard(.immediately)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(Localization.Base.save) {
