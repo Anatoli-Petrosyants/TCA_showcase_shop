@@ -45,14 +45,22 @@ struct NotificationsFeature: Reducer {
         Reduce { state, action in
             switch action {
             // view actions
-            case let .view(.onNotificationTap(notification)):
-                state.alert = AlertState {
-                    TextState(Localization.Base.areYouSure)
-                } actions: {
-                    ButtonState(role: .destructive, action: .viewNotification(notification)) {
-                        TextState(Localization.ForgotPassword.changePassword)
+            case let .view(.onNotificationTap(notification)):                
+                state.alert = AlertState(title: {
+                    TextState(notification.title)
+                } ,
+                                         actions: {
+                    ButtonState(action: .viewNotification(notification)) {
+                        TextState("View")
                     }
-                }
+                    
+                    ButtonState(role: .cancel) {
+                        TextState("Cancel")
+                    }
+                } ,
+                                         message: {
+                    TextState(notification.description)
+                })
                 
                 return .none
                 
