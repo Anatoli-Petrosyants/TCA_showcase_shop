@@ -22,6 +22,8 @@ extension Notification {
     static var checkout = Notification(title: "Checkout",
                                        description: "You have successfully checkout products.",
                                        type: .checkout)
+    
+    static var account = Notification(title: "Account",
+                                      description: "Tap to add account details.",
+                                      type: .account)
 }
-
-

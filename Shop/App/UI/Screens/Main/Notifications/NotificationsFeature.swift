@@ -11,10 +11,7 @@ import ComposableArchitecture
 struct NotificationsFeature: Reducer {
     
     struct State: Equatable {
-        var items: [Notification] = [
-            Notification(title: "Account", description: "Tap to add account details.", type: .account)            
-        ]
-        
+        var items: [Notification] = []        
         @PresentationState var alert: AlertState<Action.AlertAction>?
     }
     
@@ -45,7 +42,7 @@ struct NotificationsFeature: Reducer {
         Reduce { state, action in
             switch action {
             // view actions
-            case let .view(.onNotificationTap(notification)):                
+            case let .view(.onNotificationTap(notification)):
                 state.alert = AlertState(title: {
                     TextState(notification.title)
                 } ,

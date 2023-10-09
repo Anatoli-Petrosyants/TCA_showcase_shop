@@ -62,7 +62,7 @@ extension ProductsView: View {
                                 )
                             }
                             .padding([.top, .bottom], 8)
-                            .background(.white)
+                            .background(Color.white)
                         }
                     }
                     .padding([.leading, .trailing], 8)

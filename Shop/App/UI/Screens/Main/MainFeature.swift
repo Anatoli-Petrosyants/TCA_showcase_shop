@@ -144,7 +144,7 @@ struct MainFeature: Reducer {
                 return .none
                 
             case .basket(.delegate(.didSuccessfullyCheckoutProducts)):
-                state.notifications.items.append(Notification.checkout)
+                state.notifications.items.append(contentsOf: [.checkout])
                 return .none
                 
             case .notifications(.delegate(.didAccountNotificationTapped)):

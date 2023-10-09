@@ -51,7 +51,7 @@ extension SidebarView: View {
                                 .font(.largeTitleBold)
                                 .padding(.top, 30)
                             Spacer()
-                            settingsView(viewStore: viewStore)
+                            // settingsView(viewStore: viewStore)
                             featuresView(viewStore: viewStore)
                         }
                         .tint(.black)
@@ -125,6 +125,12 @@ extension SidebarView {
             } label: {
                 Label(Localization.Sidebar.inAppMessages, systemImage: "list.dash.header.rectangle")
             }
+            
+            Button {
+                viewStore.send(.onVideoPlayerTap)
+            } label: {
+                Label(Localization.Sidebar.videoPlayer, systemImage: "video")
+            }
         }
     }
 
@@ -136,12 +142,6 @@ extension SidebarView {
                 Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
             }
             
-            Button {
-                viewStore.send(.onVideoPlayerTap)
-            } label: {
-                Label(Localization.Sidebar.videoPlayer, systemImage: "video")
-            }
-
             Button {
                 viewStore.send(.onAppSettings)
             } label: {
