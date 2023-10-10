@@ -1,5 +1,5 @@
 //
-//  WishlistReducer.swift
+//  WishlistFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 29.09.23.
@@ -8,11 +8,11 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct WishlistReducer: Reducer {
+struct WishlistFeature: Reducer {
 
     struct State: Equatable {
         var products: [Product] = []
-        var actions = WishlistActionsReducer.State()
+        var actions = WishlistActionsFeature.State()
     }
     
     enum Action: Equatable {
@@ -27,12 +27,12 @@ struct WishlistReducer: Reducer {
 
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case actions(WishlistActionsReducer.Action)
+        case actions(WishlistActionsFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
         Scope(state: \.actions, action: /Action.actions) {
-            WishlistActionsReducer()
+            WishlistActionsFeature()
         }
         
         Reduce { state, action in

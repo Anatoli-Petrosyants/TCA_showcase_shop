@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - WishlistActionsView
 
 struct WishlistActionsView {
-    let store: StoreOf<WishlistActionsReducer>
+    let store: StoreOf<WishlistActionsFeature>
 }
 
 // MARK: - Views

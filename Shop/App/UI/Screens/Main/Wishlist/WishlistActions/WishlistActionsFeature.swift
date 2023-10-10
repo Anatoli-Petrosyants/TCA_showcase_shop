@@ -1,5 +1,5 @@
 //
-//  WishlistActionsReducer.swift
+//  WishlistActionsFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 02.10.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct WishlistActionsReducer: Reducer {
+struct WishlistActionsFeature: Reducer {
     
     struct State: Equatable {
         

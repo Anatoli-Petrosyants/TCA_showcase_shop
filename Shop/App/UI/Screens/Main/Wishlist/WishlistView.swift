@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 // MARK: - WishlistView
 
 struct WishlistView {
-    let store: StoreOf<WishlistReducer>
+    let store: StoreOf<WishlistFeature>
 }
 
 // MARK: - Views
@@ -63,7 +63,7 @@ extension WishlistView: View {
                             WishlistActionsView(
                                 store: self.store.scope(
                                     state: \.actions,
-                                    action: WishlistReducer.Action.actions
+                                    action: WishlistFeature.Action.actions
                                 )
                             )
                             
