@@ -1,5 +1,5 @@
 //
-//  CitiesReducer.swift
+//  CitiesFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 18.08.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CitiesReducer: Reducer {
+struct CitiesFeature: Reducer {
     
     struct State: Equatable {
         var data: Loadable<[Place]> = .idle

@@ -12,7 +12,7 @@ import Contacts
 // MARK: - ContactsView
 
 struct ContactsView {
-    let store: StoreOf<ContactsReducer>
+    let store: StoreOf<ContactsFeature>
     
     struct ViewState: Equatable {
         var data: Loadable<[Contact]>
@@ -89,7 +89,7 @@ extension ContactsView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<ContactsReducer.State> {
+extension BindingViewStore<ContactsFeature.State> {
     var view: ContactsView.ViewState {
         ContactsView.ViewState(
             data: self.data,

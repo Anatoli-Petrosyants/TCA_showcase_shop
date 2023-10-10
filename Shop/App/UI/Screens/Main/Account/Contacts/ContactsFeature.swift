@@ -1,5 +1,5 @@
 //
-//  ContactsReducer.swift
+//  ContactsFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 08.09.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Contacts
 
-struct ContactsReducer: Reducer {
+struct ContactsFeature: Reducer {
     
     struct State: Equatable {        
         var data: Loadable<[Contact]> = .idle

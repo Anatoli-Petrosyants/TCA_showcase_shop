@@ -1,5 +1,5 @@
 //
-//  AccountPhotoReducer.swift
+//  AccountPhotoFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 28.09.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AccountPhotoReducer: Reducer {
+struct AccountPhotoFeature: Reducer {
     
     struct State: Equatable {
         var placholder = UIImage(named: "ic_photo_ placeholder")!

@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - CitiesView
 
 struct CitiesView {
-    let store: StoreOf<CitiesReducer>
+    let store: StoreOf<CitiesFeature>
 }
 
 // MARK: - Views

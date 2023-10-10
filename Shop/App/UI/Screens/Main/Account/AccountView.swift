@@ -12,13 +12,13 @@ import PopupView
 // MARK: - AccountView
 
 struct AccountView {
-    let store: StoreOf<AccountReducer>
+    let store: StoreOf<AccountFeature>
     
     struct ViewState: Equatable {
         @BindingViewState var firstName: String
         @BindingViewState var lastName: String
         @BindingViewState var birthDate: Date
-        @BindingViewState var gender: AccountReducer.Gender
+        @BindingViewState var gender: AccountFeature.Gender
         @BindingViewState var email: String
         @BindingViewState var phone: String
         @BindingViewState var enableNotifications: Bool
@@ -50,7 +50,7 @@ extension AccountView: View {
                         AccountPhotoView(
                             store: self.store.scope(
                                 state: \.accountPhoto,
-                                action: AccountReducer.Action.accountPhoto
+                                action: AccountFeature.Action.accountPhoto
                             )
                         )
                     }
@@ -73,7 +73,7 @@ extension AccountView: View {
 
                         Picker(Localization.Account.sectionPersonalGender,
                                selection: viewStore.$gender) {
-                            ForEach(AccountReducer.Gender.allCases, id: \.self) { gender in
+                            ForEach(AccountFeature.Gender.allCases, id: \.self) { gender in
                                 Text(gender.rawValue.capitalized)
                             }
                         }
@@ -177,14 +177,14 @@ extension AccountView: View {
             } destination: {
                 switch $0 {
                 case .contacts:
-                    CaseLet(/AccountReducer.Path.State.contacts,
-                        action: AccountReducer.Path.Action.contacts,
+                    CaseLet(/AccountFeature.Path.State.contacts,
+                        action: AccountFeature.Path.Action.contacts,
                         then: ContactsView.init(store:)
                     )
                     
                 case .cities:
-                    CaseLet(/AccountReducer.Path.State.cities,
-                        action: AccountReducer.Path.Action.cities,
+                    CaseLet(/AccountFeature.Path.State.cities,
+                        action: AccountFeature.Path.Action.cities,
                         then: CitiesView.init(store:)
                     )
                 }
@@ -194,7 +194,7 @@ extension AccountView: View {
                 content:
                     PermissionsView.init(store:)
             )
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountReducer.Action.dialog))
+            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountFeature.Action.dialog))
             .popup(item: viewStore.$toastMessage) { message in
                 Text(message)
                     .frame(width: 340, height: 60)
@@ -217,7 +217,7 @@ extension AccountView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<AccountReducer.State> {
+extension BindingViewStore<AccountFeature.State> {
     var view: AccountView.ViewState {
         AccountView.ViewState(firstName: self.$firstName,
                               lastName: self.$lastName,

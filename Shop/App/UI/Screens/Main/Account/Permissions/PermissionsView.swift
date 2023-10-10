@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - PermissionsView
 
 struct PermissionsView {
-    let store: StoreOf<PermissionsReducer>
+    let store: StoreOf<PermissionsFeature>
 }
 
 // MARK: - Views

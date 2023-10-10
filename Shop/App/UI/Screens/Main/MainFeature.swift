@@ -46,7 +46,7 @@ struct MainFeature: Reducer {
         var wishlist = WishlistReducer.State()
         var basket = BasketReducer.State()
         var notifications = NotificationsFeature.State()
-        var account = AccountReducer.State()
+        var account = AccountFeature.State()
     }
     
     enum Action: Equatable {        
@@ -58,7 +58,7 @@ struct MainFeature: Reducer {
         case wishlist(WishlistReducer.Action)
         case basket(BasketReducer.Action)
         case notifications(NotificationsFeature.Action)
-        case account(AccountReducer.Action)
+        case account(AccountFeature.Action)
         
         enum Delegate: Equatable {
             case didLogout
@@ -89,7 +89,7 @@ struct MainFeature: Reducer {
         }
         
         Scope(state: \.account, action: /Action.account) {
-            AccountReducer()
+            AccountFeature()
         }
         
         Reduce { state, action in

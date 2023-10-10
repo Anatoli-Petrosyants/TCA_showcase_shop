@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - AccountPhotoView
 
 struct AccountPhotoView {
-    let store: StoreOf<AccountPhotoReducer>
+    let store: StoreOf<AccountPhotoFeature>
 
     struct ViewState: Equatable {
         var placholder: UIImage
@@ -61,7 +61,7 @@ extension AccountPhotoView: View {
                 
                 Spacer()
             }
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountPhotoReducer.Action.dialog))
+            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountPhotoFeature.Action.dialog))
             .sheet(isPresented: viewStore.$isImagePickerPresented) {
                 ImagePicker(sourceType: viewStore.pickerSourceType) {
                     viewStore.send(.onPhotoSelected($0))
@@ -74,7 +74,7 @@ extension AccountPhotoView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<AccountPhotoReducer.State> {
+extension BindingViewStore<AccountPhotoFeature.State> {
     var view: AccountPhotoView.ViewState {
         AccountPhotoView.ViewState(
             placholder: self.placholder,

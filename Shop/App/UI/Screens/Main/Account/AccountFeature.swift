@@ -1,5 +1,5 @@
 //
-//  AccountReducer.swift
+//  AccountFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 22.06.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import CoreData
 
-extension AccountReducer {
+extension AccountFeature {
     enum Gender: String, CaseIterable, Equatable {
         case male
         case female
@@ -17,14 +17,14 @@ extension AccountReducer {
     }
 }
 
-extension AccountReducer {
+extension AccountFeature {
     struct State: Equatable {
         var accountId: UUID? = nil
         let appVersion = "\(Configuration.current.appVersion)"
         let supportedVersion = "16.0"
         var notificationsPermissionStatus = ""
         
-        var accountPhoto = AccountPhotoReducer.State()
+        var accountPhoto = AccountPhotoFeature.State()
         
         @BindingState var firstName = ""
         @BindingState var lastName = ""
@@ -39,13 +39,13 @@ extension AccountReducer {
         
         @BindingState var toastMessage: LocalizedStringKey? = nil
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?        
-        @PresentationState var permissions: PermissionsReducer.State?
+        @PresentationState var permissions: PermissionsFeature.State?
 
         var path = StackState<Path.State>()
     }
 }
 
-extension AccountReducer {
+extension AccountFeature {
     enum Action: Equatable {
         enum ViewAction:  BindableAction, Equatable {
             case onViewLoad
@@ -75,37 +75,37 @@ extension AccountReducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case dialog(PresentationAction<Action.DialogAction>)
-        case accountPhoto(AccountPhotoReducer.Action)
-        case permissions(PresentationAction<PermissionsReducer.Action>)
+        case accountPhoto(AccountPhotoFeature.Action)
+        case permissions(PresentationAction<PermissionsFeature.Action>)
         case path(StackAction<Path.State, Path.Action>)
     }
 }
 
-extension AccountReducer {
+extension AccountFeature {
     struct Path: Reducer {
         enum State: Equatable {
-            case contacts(ContactsReducer.State)
-            case cities(CitiesReducer.State)
+            case contacts(ContactsFeature.State)
+            case cities(CitiesFeature.State)
         }
 
         enum Action: Equatable {
-            case contacts(ContactsReducer.Action)
-            case cities(CitiesReducer.Action)
+            case contacts(ContactsFeature.Action)
+            case cities(CitiesFeature.Action)
         }
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.contacts, action: /Action.contacts) {
-                ContactsReducer()
+                ContactsFeature()
             }
             
             Scope(state: /State.cities, action: /Action.cities) {
-                CitiesReducer()
+                CitiesFeature()
             }
         }
     }
 }
 
-struct AccountReducer: Reducer {
+struct AccountFeature: Reducer {
 
     @Dependency(\.userDefaultsClient) var userDefaultsClient
     @Dependency(\.userKeychainClient) var userKeychainClient
@@ -116,7 +116,7 @@ struct AccountReducer: Reducer {
         BindingReducer(action: /Action.view)
         
         Scope(state: \.accountPhoto, action: /Action.accountPhoto) {
-            AccountPhotoReducer()
+            AccountPhotoFeature()
         }
         
         Reduce { state, action in
@@ -191,7 +191,7 @@ struct AccountReducer: Reducer {
                     return .none
                     
                 case .onPermissionsTap:
-                    state.permissions = PermissionsReducer.State()
+                    state.permissions = PermissionsFeature.State()
                     return .none
                     
                 case .onContactsTap:
@@ -260,7 +260,7 @@ struct AccountReducer: Reducer {
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
-        .ifLet(\.$permissions, action: /Action.permissions) { PermissionsReducer() }
+        .ifLet(\.$permissions, action: /Action.permissions) { PermissionsFeature() }
         .forEach(\.path, action: /Action.path) {
             Path()
         }

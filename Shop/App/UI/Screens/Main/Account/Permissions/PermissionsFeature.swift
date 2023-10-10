@@ -1,5 +1,5 @@
 //
-//  PermissionsReducer.swift
+//  PermissionsFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 04.09.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import UserNotifications
 
-struct PermissionsReducer: Reducer {
+struct PermissionsFeature: Reducer {
     
     struct State: Equatable, Hashable {
         var title = ""
