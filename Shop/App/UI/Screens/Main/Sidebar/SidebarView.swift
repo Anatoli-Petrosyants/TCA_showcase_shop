@@ -11,14 +11,14 @@ import ComposableArchitecture
 // MARK: - SidebarView
 
 struct SidebarView {
-    let store: StoreOf<SidebarReducer>
+    let store: StoreOf<SidebarFeature>
 
     struct ViewState: Equatable {
         var isVisible: Bool
         @BindingViewState var isSharePresented: Bool
     }
     
-    typealias SidebarReducerViewStore = ViewStore<SidebarView.ViewState, SidebarReducer.Action.ViewAction>
+    typealias SidebarReducerViewStore = ViewStore<SidebarView.ViewState, SidebarFeature.Action.ViewAction>
 }
 
 // MARK: - Views
@@ -83,7 +83,7 @@ extension SidebarView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<SidebarReducer.State> {
+extension BindingViewStore<SidebarFeature.State> {
     var view: SidebarView.ViewState {
         SidebarView.ViewState(isVisible: self.isVisible,
                               isSharePresented: self.$isSharePresented)

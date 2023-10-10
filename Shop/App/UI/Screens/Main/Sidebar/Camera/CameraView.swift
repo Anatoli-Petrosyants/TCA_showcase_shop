@@ -11,14 +11,14 @@ import ComposableArchitecture
 // MARK: - CameraView
 
 struct CameraView {
-    let store: StoreOf<CameraReducer>
+    let store: StoreOf<CameraFeature>
 }
 
 // MARK: - Views
 
 extension CameraView: View {
     
-    typealias CameraReducerViewStore = ViewStore<CameraReducer.State, CameraReducer.Action>
+    typealias CameraReducerViewStore = ViewStore<CameraFeature.State, CameraFeature.Action>
     
     var body: some View {
         content            

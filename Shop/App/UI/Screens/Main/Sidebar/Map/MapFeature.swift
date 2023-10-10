@@ -1,5 +1,5 @@
 //
-//  MapReducer.swift
+//  MapFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 26.07.23.
@@ -10,7 +10,7 @@ import ComposableArchitecture
 import MapKit
 import CoreLocation
 
-struct MapReducer: Reducer {
+struct MapFeature: Reducer {
     
     struct State: Equatable {
         var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(
@@ -28,7 +28,7 @@ struct MapReducer: Reducer {
                                                                   coordinate: CLLocationCoordinate2D(latitude: .random(in: 30...45),
                                                                                                                     longitude: .random(in: 43...50)))]
         
-        static func == (lhs: MapReducer.State, rhs: MapReducer.State) -> Bool {
+        static func == (lhs: MapFeature.State, rhs: MapFeature.State) -> Bool {
             return (lhs.mapRegion.center.latitude == rhs.mapRegion.center.latitude) &&
                    (lhs.mapRegion.center.longitude == rhs.mapRegion.center.longitude)
         }

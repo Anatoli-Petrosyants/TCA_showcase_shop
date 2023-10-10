@@ -12,7 +12,7 @@ import AVKit
 // MARK: - VideoPlayerView
 
 struct VideoPlayerView {
-    let store: StoreOf<VideoPlayerReducer>
+    let store: StoreOf<VideoPlayerFeature>
 }
 
 // MARK: - Views

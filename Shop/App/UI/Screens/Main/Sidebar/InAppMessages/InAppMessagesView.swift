@@ -12,7 +12,7 @@ import PopupView
 // MARK: - InAppMessagesView
 
 struct InAppMessagesView {
-    let store: StoreOf<InAppMessagesReducer>
+    let store: StoreOf<InAppMessagesFeature>
     
     struct ViewState: Equatable {
         @BindingViewState var isToastTopVersion1: Bool
@@ -160,7 +160,7 @@ extension InAppMessagesView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<InAppMessagesReducer.State> {
+extension BindingViewStore<InAppMessagesFeature.State> {
     var view: InAppMessagesView.ViewState {
         InAppMessagesView.ViewState(isToastTopVersion1: self.$isToastTopVersion1,
                                     isToastTopVersion2: self.$isToastTopVersion2,

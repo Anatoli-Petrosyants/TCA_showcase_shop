@@ -1,5 +1,5 @@
 //
-//  SidebarReducer.swift
+//  SidebarFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 21.07.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SidebarReducer: Reducer {
+struct SidebarFeature: Reducer {
     
     enum SidebarItemType {
         case logout, share, contact, rate, messages, map, camera, countries, healthKit
@@ -17,7 +17,7 @@ struct SidebarReducer: Reducer {
     struct State: Equatable, Hashable {
         var isVisible = false
         @BindingState var isSharePresented = false
-        @PresentationState var videoPlayer: VideoPlayerReducer.State?
+        @PresentationState var videoPlayer: VideoPlayerFeature.State?
     }
     
     enum Action: Equatable {
@@ -46,7 +46,7 @@ struct SidebarReducer: Reducer {
             case didSidebarTapped(SidebarItemType)
         }
 
-        case videoPlayer(PresentationAction<VideoPlayerReducer.Action>)
+        case videoPlayer(PresentationAction<VideoPlayerFeature.Action>)
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
@@ -116,7 +116,7 @@ struct SidebarReducer: Reducer {
                     )
                     
                 case .onVideoPlayerTap:
-                    state.videoPlayer = VideoPlayerReducer.State(url: Constant.videoURL)
+                    state.videoPlayer = VideoPlayerFeature.State(url: Constant.videoURL)
                     return .send(.internal(.toggleVisibility))
 
                 case .binding:
@@ -131,7 +131,7 @@ struct SidebarReducer: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$videoPlayer, action: /Action.videoPlayer) { VideoPlayerReducer() }
+        .ifLet(\.$videoPlayer, action: /Action.videoPlayer) { VideoPlayerFeature() }
     }
 }
 

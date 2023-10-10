@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - CountriesView
 
 struct CountriesView {
-    let store: StoreOf<CountriesReducer>
+    let store: StoreOf<CountriesFeature>
 }
 
 // MARK: - Views

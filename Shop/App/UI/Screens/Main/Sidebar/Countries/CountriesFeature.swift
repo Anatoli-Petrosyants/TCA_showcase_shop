@@ -1,5 +1,5 @@
 //
-//  CountriesReducer.swift
+//  CountriesFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 20.07.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct CountriesReducer: Reducer {
+struct CountriesFeature: Reducer {
     
     struct State: Equatable {
         var countryCodes = NSLocale.isoCountryCodes

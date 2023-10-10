@@ -11,14 +11,14 @@ import ComposableArchitecture
 // MARK: - HealthKitView
 
 struct HealthKitView {
-    let store: StoreOf<HealthKitReducer>
+    let store: StoreOf<HealthKitFeature>
 }
 
 // MARK: - Views
 
 extension HealthKitView: View {
     
-    typealias HealthKitReducerViewStore = ViewStore<HealthKitReducer.State, HealthKitReducer.Action>
+    typealias HealthKitReducerViewStore = ViewStore<HealthKitFeature.State, HealthKitFeature.Action>
     
     var body: some View {
         content
@@ -41,7 +41,7 @@ extension HealthKitView: View {
             .navigationTitle("HealthKit")
             .toolbar(.hidden, for: .tabBar)
             .loader(isLoading: viewStore.isActivityIndicatorVisible)
-            .alert(store: self.store.scope(state: \.$alert, action: HealthKitReducer.Action.alert))
+            .alert(store: self.store.scope(state: \.$alert, action: HealthKitFeature.Action.alert))
         }        
     }
     

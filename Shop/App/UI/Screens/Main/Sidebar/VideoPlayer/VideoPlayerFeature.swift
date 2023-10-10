@@ -1,5 +1,5 @@
 //
-//  VideoPlayerReducer.swift
+//  VideoPlayerFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 24.08.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import AVKit
 
-struct VideoPlayerReducer: Reducer {
+struct VideoPlayerFeature: Reducer {
     
     struct State: Equatable, Hashable {
         let url: URL

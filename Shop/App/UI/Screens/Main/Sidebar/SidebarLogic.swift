@@ -13,7 +13,7 @@ struct SidebarLogic<State>: Reducer {
     @Dependency(\.applicationClient.open) var openURL
     @Dependency(\.applicationClient.setUserInterfaceStyle) var setUserInterfaceStyle
 
-    func reduce(into _: inout State, action: SidebarReducer.Action) -> Effect<SidebarReducer.Action> {
+    func reduce(into _: inout State, action: SidebarFeature.Action) -> Effect<SidebarFeature.Action> {
         switch action {
         case let .view(viewAction):
             switch viewAction {

@@ -14,7 +14,7 @@ import SDWebImageSwiftUI
 // MARK: - MapView
 
 struct MapView {
-    let store: StoreOf<MapReducer>
+    let store: StoreOf<MapFeature>
 }
 
 // MARK: - Views
@@ -30,7 +30,7 @@ extension MapView: View {
             ZStack {
                 Map(coordinateRegion: viewStore.binding(
                                     get: \.mapRegion,
-                                    send: MapReducer.Action.mapRegionChanged(_:)
+                                    send: MapFeature.Action.mapRegionChanged(_:)
                                 ),
                     annotationItems: viewStore.annotations) { annotation in
                         MapAnnotation(coordinate: annotation.coordinate) {

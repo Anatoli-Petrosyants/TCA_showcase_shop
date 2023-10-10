@@ -1,5 +1,5 @@
 //
-//  CameraReducer.swift
+//  CameraFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 28.07.23.
@@ -11,7 +11,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct CameraReducer: Reducer {
+struct CameraFeature: Reducer {
     
     struct State: Equatable {
         var image: Image?

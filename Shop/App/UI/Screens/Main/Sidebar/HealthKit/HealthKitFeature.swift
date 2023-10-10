@@ -1,5 +1,5 @@
 //
-//  HealthKitReducer.swift
+//  HealthKitFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 31.07.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import HealthKit
 
-struct HealthKitReducer: Reducer {
+struct HealthKitFeature: Reducer {
     
     struct Step: Identifiable, Equatable {
         let id = UUID()
@@ -40,8 +40,8 @@ struct HealthKitReducer: Reducer {
             case stepsResponse(TaskResult<HKStatisticsCollection>)
             case distanceResponse(TaskResult<HKStatisticsCollection>)
             
-            static func == (lhs: HealthKitReducer.Action.InternalAction,
-                            rhs: HealthKitReducer.Action.InternalAction) -> Bool {
+            static func == (lhs: HealthKitFeature.Action.InternalAction,
+                            rhs: HealthKitFeature.Action.InternalAction) -> Bool {
                 return true
             }
         }
@@ -144,7 +144,7 @@ struct HealthKitReducer: Reducer {
 
 // MARK: HealthKitReducer helpers
 
-private extension HealthKitReducer {
+private extension HealthKitFeature {
     
     func query(for identifier: HKQuantityTypeIdentifier) -> HKStatisticsCollectionQuery {
         let type = HKQuantityType.quantityType(forIdentifier: identifier)!

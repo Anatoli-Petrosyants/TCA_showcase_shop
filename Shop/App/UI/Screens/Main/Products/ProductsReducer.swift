@@ -55,20 +55,20 @@ struct ProductsReducer: Reducer {
     struct Path: Reducer {
         enum State: Equatable {
             case details(ProductDetail.State)
-            case inAppMessages(InAppMessagesReducer.State)
-            case map(MapReducer.State)
-            case camera(CameraReducer.State)
-            case countries(CountriesReducer.State)
-            case healthKit(HealthKitReducer.State)
+            case inAppMessages(InAppMessagesFeature.State)
+            case map(MapFeature.State)
+            case camera(CameraFeature.State)
+            case countries(CountriesFeature.State)
+            case healthKit(HealthKitFeature.State)
         }
 
         enum Action: Equatable {
             case details(ProductDetail.Action)
-            case inAppMessages(InAppMessagesReducer.Action)
-            case map(MapReducer.Action)
-            case camera(CameraReducer.Action)
-            case countries(CountriesReducer.Action)
-            case healthKit(HealthKitReducer.Action)
+            case inAppMessages(InAppMessagesFeature.Action)
+            case map(MapFeature.Action)
+            case camera(CameraFeature.Action)
+            case countries(CountriesFeature.Action)
+            case healthKit(HealthKitFeature.Action)
         }
 
         var body: some Reducer<State, Action> {
@@ -77,23 +77,23 @@ struct ProductsReducer: Reducer {
             }
 
             Scope(state: /State.inAppMessages, action: /Action.inAppMessages) {
-                InAppMessagesReducer()
+                InAppMessagesFeature()
             }
 
             Scope(state: /State.map, action: /Action.map) {
-                MapReducer()
+                MapFeature()
             }
 
             Scope(state: /State.camera, action: /Action.camera) {
-                CameraReducer()
+                CameraFeature()
             }
 
             Scope(state: /State.countries, action: /Action.countries) {
-                CountriesReducer()
+                CountriesFeature()
             }
 
             Scope(state: /State.healthKit, action: /Action.healthKit) {
-                HealthKitReducer()
+                HealthKitFeature()
             }
         }
     }

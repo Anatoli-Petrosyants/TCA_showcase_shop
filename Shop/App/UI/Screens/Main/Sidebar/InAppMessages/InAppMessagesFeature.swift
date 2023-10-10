@@ -1,5 +1,5 @@
 //
-//  InAppMessagesReducer.swift
+//  InAppMessagesFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 24.07.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct InAppMessagesReducer: Reducer {
+struct InAppMessagesFeature: Reducer {
     
     struct State: Equatable {
         @BindingState var isToastTopVersion1 = false
