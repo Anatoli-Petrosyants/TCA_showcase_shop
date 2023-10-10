@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AnnouncementReducer: Reducer {
+struct AnnouncementFeature: Reducer {
     
     struct State: Equatable {
         var url = URL(string: "https://picsum.photos/id/\(Int.random(in: 1..<50))/600/400")!

@@ -1,5 +1,5 @@
 //
-//  CheckoutReducer.swift
+//  CheckoutFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 18.09.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CheckoutReducer: Reducer {
+struct CheckoutFeature: Reducer {
 
     struct State: Equatable {
         var addresses = ShipmentAddress.mockedData

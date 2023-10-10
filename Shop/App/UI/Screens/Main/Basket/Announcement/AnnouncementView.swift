@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 // MARK: - AnnouncementView
 
 struct AnnouncementView {
-    let store: StoreOf<AnnouncementReducer>
+    let store: StoreOf<AnnouncementFeature>
     
     @Namespace private var namespace
     @State private var isAnnouncementZoomed = false
@@ -25,7 +25,7 @@ struct AnnouncementView {
 
 extension AnnouncementView: View {
     
-    typealias AnnouncementReducerViewStore = ViewStore<AnnouncementReducer.State, AnnouncementReducer.Action>
+    typealias AnnouncementReducerViewStore = ViewStore<AnnouncementFeature.State, AnnouncementFeature.Action>
     
     var body: some View {
         content

@@ -1,5 +1,5 @@
 //
-//  TopPicksReducer.swift
+//  TopPicksFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 22.09.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TopPicksReducer: Reducer {
+struct TopPicksFeature: Reducer {
     
     struct State: Equatable {
         var products: [Product] = []

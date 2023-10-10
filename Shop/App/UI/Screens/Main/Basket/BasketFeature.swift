@@ -1,5 +1,5 @@
 //
-//  BasketReducer.swift
+//  BasketFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 26.06.23.
@@ -8,15 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct BasketReducer: Reducer {
+struct BasketFeature: Reducer {
     
     struct State: Equatable {
         var products: [Product] = []
         var topPicksProducts: [Product] = []
         var totalPrice: String = "$0.00"
-        var addProduct = AddProductReducer.State()
-        var announcement = AnnouncementReducer.State()
-        var topPicks = TopPicksReducer.State()
+        var addProduct = AddProductFeature.State()
+        var announcement = AnnouncementFeature.State()
+        var topPicks = TopPicksFeature.State()
         
         @BindingState var toastMessage: LocalizedStringKey? = nil
         @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
@@ -48,27 +48,27 @@ struct BasketReducer: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case addProduct(AddProductReducer.Action)
-        case announcement(AnnouncementReducer.Action)
-        case topPicks(TopPicksReducer.Action)
+        case addProduct(AddProductFeature.Action)
+        case announcement(AnnouncementFeature.Action)
+        case topPicks(TopPicksFeature.Action)
         case dialog(PresentationAction<DialogAction>)
         case path(StackAction<Path.State, Path.Action>)
     }
     
     struct Path: Reducer {
         enum State: Equatable {
-            case checkout(CheckoutReducer.State)
+            case checkout(CheckoutFeature.State)
             case details(ProductDetail.State)
         }
 
         enum Action: Equatable {
-            case checkout(CheckoutReducer.Action)
+            case checkout(CheckoutFeature.Action)
             case details(ProductDetail.Action)
         }
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.checkout, action: /Action.checkout) {
-                CheckoutReducer()
+                CheckoutFeature()
             }
             
             Scope(state: /State.details, action: /Action.details) {
@@ -83,15 +83,15 @@ struct BasketReducer: Reducer {
         BindingReducer(action: /Action.view)
         
         Scope(state: \.addProduct, action: /Action.addProduct) {
-            AddProductReducer()
+            AddProductFeature()
         }
         
         Scope(state: \.announcement, action: /Action.announcement) {
-            AnnouncementReducer()
+            AnnouncementFeature()
         }
         
         Scope(state: \.topPicks, action: /Action.topPicks) {
-            TopPicksReducer()
+            TopPicksFeature()
         }
         
         Reduce { state, action in
@@ -183,7 +183,7 @@ struct BasketReducer: Reducer {
     }
 }
 
-private extension BasketReducer {
+private extension BasketFeature {
     
     func totalPrice(_ products: [Product]) -> String {
         return products.map { $0.price }.reduce(0, +).currency()

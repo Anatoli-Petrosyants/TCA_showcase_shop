@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 // MARK: - TopPicksView
 
 struct TopPicksView {
-    let store: StoreOf<TopPicksReducer>
+    let store: StoreOf<TopPicksFeature>
 }
 
 // MARK: - Views

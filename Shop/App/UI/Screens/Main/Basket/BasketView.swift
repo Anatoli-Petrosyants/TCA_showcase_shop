@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 // MARK: - BasketView
 
 struct BasketView {
-    let store: StoreOf<BasketReducer>
+    let store: StoreOf<BasketFeature>
     
     struct ViewState: Equatable {
         var products: [Product]
@@ -96,7 +96,7 @@ extension BasketView: View {
                             AnnouncementView(
                                 store: self.store.scope(
                                     state: \.announcement,
-                                    action: BasketReducer.Action.announcement
+                                    action: BasketFeature.Action.announcement
                                 )
                             )
 
@@ -106,7 +106,7 @@ extension BasketView: View {
                             TopPicksView(
                                 store: self.store.scope(
                                     state: \.topPicks,
-                                    action: BasketReducer.Action.topPicks
+                                    action: BasketFeature.Action.topPicks
                                 )
                             )
                         }
@@ -119,20 +119,20 @@ extension BasketView: View {
             } destination: {
                 switch $0 {
                 case .checkout:
-                    CaseLet(/BasketReducer.Path.State.checkout,
-                        action: BasketReducer.Path.Action.checkout,
+                    CaseLet(/BasketFeature.Path.State.checkout,
+                        action: BasketFeature.Path.Action.checkout,
                         then: CheckoutView.init(store:)
                     )
                     
                 case .details:
-                    CaseLet(/BasketReducer.Path.State.details,
-                        action: BasketReducer.Path.Action.details,
+                    CaseLet(/BasketFeature.Path.State.details,
+                        action: BasketFeature.Path.Action.details,
                         then: ProductDetailView.init(store:)
                     )
                 }
             }
             .badge(viewStore.products.count)
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: BasketReducer.Action.dialog))
+            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: BasketFeature.Action.dialog))
             .popup(item: viewStore.$toastMessage) { message in
                 Text(message)
                     .frame(width: 340, height: 60)
@@ -155,7 +155,7 @@ extension BasketView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<BasketReducer.State> {
+extension BindingViewStore<BasketFeature.State> {
     var view: BasketView.ViewState {
         BasketView.ViewState(products: self.products,
                              topPicksProducts: self.topPicksProducts,

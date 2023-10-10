@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - BasketCheckoutView
 
 struct CheckoutView {
-    let store: StoreOf<CheckoutReducer>
+    let store: StoreOf<CheckoutFeature>
 }
 
 // MARK: - Views
@@ -50,7 +50,7 @@ extension CheckoutView: View {
             .tint(.black)
             // .toolbar(.hidden, for: .tabBar)
             .navigationTitle(Localization.Basket.checkoutTitle)
-            .alert(store: self.store.scope(state: \.$alert, action: CheckoutReducer.Action.alert))
+            .alert(store: self.store.scope(state: \.$alert, action: CheckoutFeature.Action.alert))
         }
     }
 }
