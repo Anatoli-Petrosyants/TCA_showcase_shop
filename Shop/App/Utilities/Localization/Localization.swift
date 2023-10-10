@@ -24,6 +24,6 @@ extension Localization {
         static var noNetworkConnection: LocalizedStringKey { return "base.no.network.connection" }
         static var areYouSure: LocalizedStringKey { return "base.are.you.sure" }
         static var successfullySaved: LocalizedStringKey { return "base.successfully.saved" }
-        static var emailPlacholder: LocalizedStringKey { return "base.email.placholder" }
+        static var emailPlacholder: LocalizedStringKey { return "base.email.placeholder" }
     }
 }

@@ -33,10 +33,8 @@ extension ProductsView: View {
             NavigationStackStore(
                 self.store.scope(state: \.path, action: { .path($0) })
             ) {
-                ScrollView {
-                    LazyVGrid(columns: gridItems,
-                              pinnedViews: [.sectionHeaders])
-                    {
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: gridItems, pinnedViews: [.sectionHeaders]) {
                         Section {
                             ForEachStore(
                                 self.store.scope(state: \.items,
