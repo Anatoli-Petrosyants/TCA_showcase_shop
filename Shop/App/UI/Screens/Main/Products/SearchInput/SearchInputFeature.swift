@@ -1,5 +1,5 @@
 //
-//  ProductsSearchInputReducer.swift
+//  SearchInputFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 11.07.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct SearchInputReducer: Reducer {
+struct SearchInputFeature: Reducer {
     
     struct State: Equatable {
         var placeholder: LocalizedStringKey

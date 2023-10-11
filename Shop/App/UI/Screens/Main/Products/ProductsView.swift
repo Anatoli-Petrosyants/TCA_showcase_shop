@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - ProductsView
 
 struct ProductsView {
-    let store: StoreOf<ProductsReducer>
+    let store: StoreOf<ProductsFeature>
     
     var gridItems: [GridItem] = [
         .init(.flexible(), spacing: 8, alignment: .top),
@@ -38,7 +38,7 @@ extension ProductsView: View {
                         Section {
                             ForEachStore(
                                 self.store.scope(state: \.items,
-                                                 action: ProductsReducer.Action.product(id: action:))
+                                                 action: ProductsFeature.Action.product(id: action:))
                             ) { itemStore in                                
                                 ProductItemView(store: itemStore)
                             }
@@ -48,14 +48,14 @@ extension ProductsView: View {
                                 SearchInputView(
                                     store: self.store.scope(
                                         state: \.input,
-                                        action: ProductsReducer.Action.input
+                                        action: ProductsFeature.Action.input
                                     )
                                 )
 
                                 SearchSegmentView(
                                     store: self.store.scope(
                                         state: \.segment,
-                                        action: ProductsReducer.Action.segment
+                                        action: ProductsFeature.Action.segment
                                     )
                                 )
                             }
@@ -79,7 +79,7 @@ extension ProductsView: View {
                         ProductsAccountView(
                             store: self.store.scope(
                                 state: \.account,
-                                action: ProductsReducer.Action.account
+                                action: ProductsFeature.Action.account
                             )
                         )
                     }
@@ -107,38 +107,38 @@ extension ProductsView: View {
             } destination: {
                 switch $0 {
                 case .details:
-                    CaseLet(/ProductsReducer.Path.State.details,
-                        action: ProductsReducer.Path.Action.details,
+                    CaseLet(/ProductsFeature.Path.State.details,
+                        action: ProductsFeature.Path.Action.details,
                         then: ProductDetailView.init(store:)
                     )
 
                 case .inAppMessages:
-                    CaseLet(/ProductsReducer.Path.State.inAppMessages,
-                        action: ProductsReducer.Path.Action.inAppMessages,
+                    CaseLet(/ProductsFeature.Path.State.inAppMessages,
+                        action: ProductsFeature.Path.Action.inAppMessages,
                         then: InAppMessagesView.init(store:)
                     )
 
                 case .map:
-                    CaseLet(/ProductsReducer.Path.State.map,
-                        action: ProductsReducer.Path.Action.map,
+                    CaseLet(/ProductsFeature.Path.State.map,
+                        action: ProductsFeature.Path.Action.map,
                         then: MapView.init(store:)
                     )
 
                 case .camera:
-                    CaseLet(/ProductsReducer.Path.State.camera,
-                        action: ProductsReducer.Path.Action.camera,
+                    CaseLet(/ProductsFeature.Path.State.camera,
+                        action: ProductsFeature.Path.Action.camera,
                         then: CameraView.init(store:)
                     )
 
                 case .countries:
-                    CaseLet(/ProductsReducer.Path.State.countries,
-                        action: ProductsReducer.Path.Action.countries,
+                    CaseLet(/ProductsFeature.Path.State.countries,
+                        action: ProductsFeature.Path.Action.countries,
                         then: CountriesView.init(store:)
                     )
 
                 case .healthKit:
-                    CaseLet(/ProductsReducer.Path.State.healthKit,
-                        action: ProductsReducer.Path.Action.healthKit,
+                    CaseLet(/ProductsFeature.Path.State.healthKit,
+                        action: ProductsFeature.Path.Action.healthKit,
                         then: HealthKitView.init(store:)
                     )
                 }

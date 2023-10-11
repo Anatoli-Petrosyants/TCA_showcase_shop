@@ -1,5 +1,5 @@
 //
-//  ProductUsers.swift
+//  ProductUsersFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 28.06.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductUsers: Reducer {
+struct ProductUsersFeature: Reducer {
     
     struct State: Equatable, Hashable {
         var items: [User] = []

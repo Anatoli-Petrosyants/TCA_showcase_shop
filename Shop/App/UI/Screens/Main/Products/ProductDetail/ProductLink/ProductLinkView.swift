@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - ProductLinkView
 
 struct ProductLinkView {
-    let store: StoreOf<ProductLink>
+    let store: StoreOf<ProductLinkFeature>
 }
 
 // MARK: - Views

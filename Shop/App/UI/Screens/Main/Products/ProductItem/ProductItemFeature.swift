@@ -8,12 +8,12 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductItemReducer: Reducer {
+struct ProductItemFeature: Reducer {
     
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
-        var favorite = FavoriteButtonReducer.State()
+        var favorite = FavoriteButtonFeature.State()
     }
     
     enum Action: Equatable {
@@ -28,14 +28,14 @@ struct ProductItemReducer: Reducer {
         
         case view(ViewAction)
         case delegate(Delegate)
-        case favorite(FavoriteButtonReducer.Action)
+        case favorite(FavoriteButtonFeature.Action)
     }
     
     @Dependency(\.feedbackGenerator) var feedbackGenerator
     
     var body: some Reducer<State, Action> {
         Scope(state: \.favorite, action: /Action.favorite) {
-            FavoriteButtonReducer()
+            FavoriteButtonFeature()
         }
         
         Reduce { state, action in

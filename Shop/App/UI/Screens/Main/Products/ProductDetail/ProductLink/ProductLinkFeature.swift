@@ -1,5 +1,5 @@
 //
-//  ProductLink.swift
+//  ProductLinkFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 29.06.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductLink: Reducer {
+struct ProductLinkFeature: Reducer {
     
     struct State: Equatable {
         var text: LocalizedStringKey

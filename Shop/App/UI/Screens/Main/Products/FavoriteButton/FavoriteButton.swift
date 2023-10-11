@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - FavoriteButton
 
 struct FavoriteButton {
-    let store: StoreOf<FavoriteButtonReducer>
+    let store: StoreOf<FavoriteButtonFeature>
 }
 
 // MARK: - Views

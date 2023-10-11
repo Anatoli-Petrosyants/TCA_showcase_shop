@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 // MARK: - ProductsPhotosView
 
 struct ProductPhotosView {
-    let store: StoreOf<ProductPhotosReducer>
+    let store: StoreOf<ProductPhotosFeature>
 }
 
 // MARK: - Views

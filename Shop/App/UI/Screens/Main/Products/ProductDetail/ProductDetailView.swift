@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - ProductDetailView
 
 struct ProductDetailView {
-    let store: StoreOf<ProductDetail>
+    let store: StoreOf<ProductDetailFeature>
 }
 
 // MARK: - Views
@@ -56,7 +56,7 @@ extension ProductDetailView: View {
                         ProductLinkView(
                             store: self.store.scope(
                                 state: \.link,
-                                action: ProductDetail.Action.link
+                                action: ProductDetailFeature.Action.link
                             )
                         )
                         
@@ -78,7 +78,7 @@ extension ProductDetailView: View {
                         ProductUsersView(
                             store: self.store.scope(
                                 state: \.users,
-                                action: ProductDetail.Action.users
+                                action: ProductDetailFeature.Action.users
                             )
                         )
                     }

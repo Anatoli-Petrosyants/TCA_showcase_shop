@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - SearchInputView
 
 struct SearchInputView {
-    let store: StoreOf<SearchInputReducer>
+    let store: StoreOf<SearchInputFeature>
 }
 
 // MARK: - Views
@@ -27,7 +27,7 @@ extension SearchInputView: View {
             HStack(spacing: 16) {    
                     TextField(viewStore.placeholder, text: viewStore.binding(
                         get: \.searchQuery,
-                        send: SearchInputReducer.Action.onTextChanged)
+                        send: SearchInputFeature.Action.onTextChanged)
                     )
                     .textFieldStyle(.plain)
                     .autocapitalization(.none)

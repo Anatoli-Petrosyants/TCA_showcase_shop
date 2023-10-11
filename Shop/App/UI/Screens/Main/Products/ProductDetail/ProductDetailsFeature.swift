@@ -10,16 +10,16 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductDetail: Reducer {
+struct ProductDetailFeature: Reducer {
     
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
         var isFavorite: Bool = false
         
-        @PresentationState var productPhotos: ProductPhotosReducer.State?
-        var link = ProductLink.State(text: "view website", url: URL(string:"https://google.com")!)
-        var users = ProductUsers.State()
+        @PresentationState var productPhotos: ProductPhotosFeature.State?
+        var link = ProductLinkFeature.State(text: "view website", url: URL(string:"https://google.com")!)
+        var users = ProductUsersFeature.State()
     }
     
     enum Action: Equatable {        
@@ -45,9 +45,9 @@ struct ProductDetail: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-        case productPhotos(PresentationAction<ProductPhotosReducer.Action>)
-        case link(ProductLink.Action)
-        case users(ProductUsers.Action)
+        case productPhotos(PresentationAction<ProductPhotosFeature.Action>)
+        case link(ProductLinkFeature.Action)
+        case users(ProductUsersFeature.Action)
     }
     
     @Dependency(\.feedbackGenerator) var feedbackGenerator
@@ -57,11 +57,11 @@ struct ProductDetail: Reducer {
     
     var body: some Reducer<State, Action> {
         Scope(state: \.users, action: /Action.users) {
-            ProductUsers()
+            ProductUsersFeature()
         }
         
         Scope(state: \.link, action: /Action.link) {
-            ProductLink()
+            ProductLinkFeature()
         }
         
         Reduce { state, action in
@@ -81,7 +81,7 @@ struct ProductDetail: Reducer {
                                 "https://picsum.photos/id/4/400/600",
                                 "https://picsum.photos/id/5/400/600",
                                 "https://picsum.photos/id/6/400/600"]
-                    state.productPhotos = ProductPhotosReducer.State(urls: urls)
+                    state.productPhotos = ProductPhotosFeature.State(urls: urls)
                     return .none
                     
                 case .onAddProductsTap:
@@ -160,6 +160,6 @@ struct ProductDetail: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$productPhotos, action: /Action.productPhotos) { ProductPhotosReducer() }
+        .ifLet(\.$productPhotos, action: /Action.productPhotos) { ProductPhotosFeature() }
     }
 }

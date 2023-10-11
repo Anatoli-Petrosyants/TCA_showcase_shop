@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - ProductUsersView
 
 struct ProductUsersView {
-    let store: StoreOf<ProductUsers>
+    let store: StoreOf<ProductUsersFeature>
 }
 
 // MARK: - Views

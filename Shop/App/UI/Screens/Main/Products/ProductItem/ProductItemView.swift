@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 // MARK: - ProductItemView
 
 struct ProductItemView {
-    let store: StoreOf<ProductItemReducer>
+    let store: StoreOf<ProductItemFeature>
 }
 
 // MARK: - Views
@@ -66,7 +66,7 @@ extension ProductItemView: View {
                     FavoriteButton(
                         store: self.store.scope(
                             state: \.favorite,
-                            action: ProductItemReducer.Action.favorite
+                            action: ProductItemFeature.Action.favorite
                         )
                     )
                 }

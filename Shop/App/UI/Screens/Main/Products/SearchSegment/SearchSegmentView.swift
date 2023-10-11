@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - SearchSegmentView
 
 struct SearchSegmentView {
-    let store: StoreOf<SearchSegmentReducer>
+    let store: StoreOf<SearchSegmentFeature>
     
     struct ViewState: Equatable {
         var segments: [Segment]
@@ -38,7 +38,7 @@ extension SearchSegmentView: View {
 
 // MARK: BindingViewStore
 
-extension BindingViewStore<SearchSegmentReducer.State> {
+extension BindingViewStore<SearchSegmentFeature.State> {
     var view: SearchSegmentView.ViewState {
         SearchSegmentView.ViewState(segments: self.segments,
                                     selectedSegment: self.$selectedSegment)

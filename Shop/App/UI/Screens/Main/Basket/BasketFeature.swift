@@ -58,12 +58,12 @@ struct BasketFeature: Reducer {
     struct Path: Reducer {
         enum State: Equatable {
             case checkout(CheckoutFeature.State)
-            case details(ProductDetail.State)
+            case details(ProductDetailFeature.State)
         }
 
         enum Action: Equatable {
             case checkout(CheckoutFeature.Action)
-            case details(ProductDetail.Action)
+            case details(ProductDetailFeature.Action)
         }
 
         var body: some Reducer<State, Action> {
@@ -72,7 +72,7 @@ struct BasketFeature: Reducer {
             }
             
             Scope(state: /State.details, action: /Action.details) {
-                ProductDetail()
+                ProductDetailFeature()
             }
         }
     }

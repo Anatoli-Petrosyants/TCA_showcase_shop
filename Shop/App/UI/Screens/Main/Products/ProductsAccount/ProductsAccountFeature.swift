@@ -1,5 +1,5 @@
 //
-//  ProductsAccountReducer.swift
+//  ProductsAccountFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 06.07.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductsAccountReducer: Reducer {
+struct ProductsAccountFeature: Reducer {
     
     struct State: Equatable {
         var name: String = "guest"

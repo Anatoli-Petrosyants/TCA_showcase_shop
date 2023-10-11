@@ -1,5 +1,5 @@
 //
-//  ProductsReducer.swift
+//  ProductsFeature.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 22.06.23.
@@ -8,16 +8,16 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductsReducer: Reducer {
+struct ProductsFeature: Reducer {
 
     struct State: Equatable {
         var isLoading = false
         var productsError: AppError? = nil
-        var initalItems: IdentifiedArrayOf<ProductItemReducer.State> = []
-        var items: IdentifiedArrayOf<ProductItemReducer.State> = []
-        var account = ProductsAccountReducer.State()
-        var input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
-        var segment = SearchSegmentReducer.State()        
+        var initalItems: IdentifiedArrayOf<ProductItemFeature.State> = []
+        var items: IdentifiedArrayOf<ProductItemFeature.State> = []
+        var account = ProductsAccountFeature.State()
+        var input = SearchInputFeature.State(placeholder: Localization.Search.inputPlacholder)
+        var segment = SearchSegmentFeature.State()        
         var path = StackState<Path.State>()
     }
 
@@ -45,16 +45,16 @@ struct ProductsReducer: Reducer {
         case `internal`(InternalAction)
         case delegate(Delegate)
         case binding(BindingAction<State>)
-        case account(ProductsAccountReducer.Action)
-        case input(SearchInputReducer.Action)
-        case segment(SearchSegmentReducer.Action)        
-        case product(id: ProductItemReducer.State.ID, action: ProductItemReducer.Action)
+        case account(ProductsAccountFeature.Action)
+        case input(SearchInputFeature.Action)
+        case segment(SearchSegmentFeature.Action)        
+        case product(id: ProductItemFeature.State.ID, action: ProductItemFeature.Action)
         case path(StackAction<Path.State, Path.Action>)
     }
 
     struct Path: Reducer {
         enum State: Equatable {
-            case details(ProductDetail.State)
+            case details(ProductDetailFeature.State)
             case inAppMessages(InAppMessagesFeature.State)
             case map(MapFeature.State)
             case camera(CameraFeature.State)
@@ -63,7 +63,7 @@ struct ProductsReducer: Reducer {
         }
 
         enum Action: Equatable {
-            case details(ProductDetail.Action)
+            case details(ProductDetailFeature.Action)
             case inAppMessages(InAppMessagesFeature.Action)
             case map(MapFeature.Action)
             case camera(CameraFeature.Action)
@@ -73,7 +73,7 @@ struct ProductsReducer: Reducer {
 
         var body: some Reducer<State, Action> {
             Scope(state: /State.details, action: /Action.details) {
-                ProductDetail()
+                ProductDetailFeature()
             }
 
             Scope(state: /State.inAppMessages, action: /Action.inAppMessages) {
@@ -105,15 +105,15 @@ struct ProductsReducer: Reducer {
 
     var body: some ReducerOf<Self> {
         Scope(state: \.account, action: /Action.account) {
-            ProductsAccountReducer()
+            ProductsAccountFeature()
         }
         
         Scope(state: \.input, action: /Action.input) {
-            SearchInputReducer()
+            SearchInputFeature()
         }
         
         Scope(state: \.segment, action: /Action.segment) {
-            SearchSegmentReducer()
+            SearchSegmentFeature()
         }
 
         Reduce { state, action in
@@ -170,7 +170,7 @@ struct ProductsReducer: Reducer {
                     state.initalItems.removeAll()
                     state.items.removeAll()
 
-                    let items = data.map { ProductItemReducer.State(id: UUID(), product: $0) }
+                    let items = data.map { ProductItemFeature.State(id: UUID(), product: $0) }
                     state.initalItems.append(contentsOf: items)
                     state.items.append(contentsOf: items)
                     return .none
@@ -211,7 +211,7 @@ struct ProductsReducer: Reducer {
             case let .segment(segmentAction):
                 switch segmentAction {
                 case let .delegate(.didSegmentedChanged(segment)):
-                    state.input = SearchInputReducer.State(placeholder: Localization.Search.inputPlacholder)
+                    state.input = SearchInputFeature.State(placeholder: Localization.Search.inputPlacholder)
                     state.input.isLoading = true
                     return .run { send in
                         if segment.isEmpty {
@@ -290,7 +290,7 @@ struct ProductsReducer: Reducer {
             }
         }
         .forEach(\.items, action: /Action.product(id:action:)) {
-            ProductItemReducer()
+            ProductItemFeature()
         }
         .forEach(\.path, action: /Action.path) {
             Path()

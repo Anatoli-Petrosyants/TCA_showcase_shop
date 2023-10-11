@@ -42,7 +42,7 @@ struct MainFeature: Reducer {
         var currentTab = Tab.products
         
         var sidebar = SidebarFeature.State()
-        var products = ProductsReducer.State()
+        var products = ProductsFeature.State()
         var wishlist = WishlistFeature.State()
         var basket = BasketFeature.State()
         var notifications = NotificationsFeature.State()
@@ -54,7 +54,7 @@ struct MainFeature: Reducer {
         case addNotifications(Notification)
         
         case sidebar(SidebarFeature.Action)
-        case products(ProductsReducer.Action)
+        case products(ProductsFeature.Action)
         case wishlist(WishlistFeature.Action)
         case basket(BasketFeature.Action)
         case notifications(NotificationsFeature.Action)
@@ -73,7 +73,7 @@ struct MainFeature: Reducer {
         }
         
         Scope(state: \.products, action: /Action.products) {
-            ProductsReducer()
+            ProductsFeature()
         }
         
         Scope(state: \.wishlist, action: /Action.wishlist) {
