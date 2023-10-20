@@ -60,7 +60,7 @@ extension CitiesView: View {
                     }
                 }
             }            
-            .navigationTitle(Localization.Account.sectionCityPlacholder)
+            .navigationTitle(Localization.Account.sectionCityPlaceholder)
             .toolbar(.hidden, for: .tabBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

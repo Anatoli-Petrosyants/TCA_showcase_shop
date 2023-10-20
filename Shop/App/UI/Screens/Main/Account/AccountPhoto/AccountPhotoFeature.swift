@@ -11,7 +11,7 @@ import ComposableArchitecture
 struct AccountPhotoFeature: Reducer {
     
     struct State: Equatable {
-        var placholder = UIImage(named: "ic_photo_ placeholder")!
+        var placeholder = UIImage(named: "ic_photo_ placeholder")!
         var photo: UIImage? = nil
         
         @BindingState var isImagePickerPresented = false

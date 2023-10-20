@@ -18,7 +18,7 @@ extension Localization {
         static var sectionPersonalGender: LocalizedStringKey { return "account.section.personal.gender" }
         
         static var sectionCity: LocalizedStringKey { return "account.section.city" }
-        static var sectionCityPlacholder: LocalizedStringKey { return "account.section.city.placholder" }
+        static var sectionCityPlaceholder: LocalizedStringKey { return "account.section.city.placeholder" }
         static var sectionCityFooter: LocalizedStringKey { return "account.section.city.footer" }                
         
         static var sectionContact: LocalizedStringKey { return "account.section.contact" }

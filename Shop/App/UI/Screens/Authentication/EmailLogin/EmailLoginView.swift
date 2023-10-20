@@ -36,7 +36,7 @@ extension EmailLoginView: View {
                 VStack {
                     VStack {
                         TextField(
-                            Localization.Base.emailPlacholder,
+                            Localization.Base.emailPlaceholder,
                             text: viewStore.$username
                         )
                         .autocapitalization(.none)

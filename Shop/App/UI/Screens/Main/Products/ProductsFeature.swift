@@ -16,7 +16,7 @@ struct ProductsFeature: Reducer {
         var initalItems: IdentifiedArrayOf<ProductItemFeature.State> = []
         var items: IdentifiedArrayOf<ProductItemFeature.State> = []
         var account = ProductsAccountFeature.State()
-        var input = SearchInputFeature.State(placeholder: Localization.Search.inputPlacholder)
+        var input = SearchInputFeature.State(placeholder: Localization.Search.inputPlaceholder)
         var segment = SearchSegmentFeature.State()        
         var path = StackState<Path.State>()
     }
@@ -211,7 +211,7 @@ struct ProductsFeature: Reducer {
             case let .segment(segmentAction):
                 switch segmentAction {
                 case let .delegate(.didSegmentedChanged(segment)):
-                    state.input = SearchInputFeature.State(placeholder: Localization.Search.inputPlacholder)
+                    state.input = SearchInputFeature.State(placeholder: Localization.Search.inputPlaceholder)
                     state.input.isLoading = true
                     return .run { send in
                         if segment.isEmpty {

@@ -14,7 +14,7 @@ struct AccountPhotoView {
     let store: StoreOf<AccountPhotoFeature>
 
     struct ViewState: Equatable {
-        var placholder: UIImage
+        var placeholder: UIImage
         var photo: UIImage?
         @BindingViewState var isImagePickerPresented: Bool
         var pickerSourceType: UIImagePickerController.SourceType
@@ -43,7 +43,7 @@ extension AccountPhotoView: View {
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.black05, lineWidth: 2))
                     } else {
-                        Image(uiImage: viewStore.placholder)
+                        Image(uiImage: viewStore.placeholder)
                             .renderingMode(.template)
                             .colorMultiply(.black05)
                             .frame(width: 100, height: 100)
@@ -77,7 +77,7 @@ extension AccountPhotoView: View {
 extension BindingViewStore<AccountPhotoFeature.State> {
     var view: AccountPhotoView.ViewState {
         AccountPhotoView.ViewState(
-            placholder: self.placholder,
+            placeholder: self.placeholder,
             photo: self.photo,
             isImagePickerPresented: self.$isImagePickerPresented,
             pickerSourceType: self.pickerSourceType

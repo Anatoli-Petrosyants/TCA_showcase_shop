@@ -10,6 +10,6 @@ import SwiftUI
 extension Localization {
     enum Search {
         static var title: LocalizedStringKey { return "search.title" }
-        static var inputPlacholder: LocalizedStringKey { return "search.products.input.placholder" }        
+        static var inputPlaceholder: LocalizedStringKey { return "search.products.input.placeholder" }        
     }
 }
