@@ -220,7 +220,6 @@
 		A9DED5B329AC93E6003EFA02 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5B229AC93E6003EFA02 /* Colors.swift */; };
 		A9DED5B529AC940A003EFA02 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5B429AC940A003EFA02 /* Colors.xcassets */; };
 		A9DED5B829AC94D2003EFA02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5BA29AC94D2003EFA02 /* Localizable.strings */; };
-		A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5C129AC9683003EFA02 /* LaunchScreen.storyboard */; };
 		A9DED5C429AC96CF003EFA02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */; };
 		A9DED5C929AC9F64003EFA02 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9DED5C829AC9F64003EFA02 /* config.plist */; };
 		A9DED5CB29AC9FC6003EFA02 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DED5CA29AC9FC6003EFA02 /* Configuration.swift */; };
@@ -472,7 +471,6 @@
 		A9DED5BB29AC94D5003EFA02 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9DED5BC29AC94D6003EFA02 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9DED5BD29AC94D7003EFA02 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A9DED5C129AC9683003EFA02 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9DED5C829AC9F64003EFA02 /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		A9DED5CA29AC9FC6003EFA02 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -1345,7 +1343,6 @@
 				A9DED5B429AC940A003EFA02 /* Colors.xcassets */,
 				A9A0CBAD29D6F2CB0048A649 /* Lottie */,
 				A9DED5BA29AC94D2003EFA02 /* Localizable.strings */,
-				A9DED5C129AC9683003EFA02 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1583,7 +1580,6 @@
 				A9A0CBB729D6FB2D0048A649 /* onboarding_1.json in Resources */,
 				A9A0CBAB29D6F2BB0048A649 /* onboarding_2.json in Resources */,
 				A91606B12AD7F2E300E581A4 /* GoogleService-Info.plist in Resources */,
-				A9DED5C229AC9683003EFA02 /* LaunchScreen.storyboard in Resources */,
 				A9DED5A629AC7FA7003EFA02 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

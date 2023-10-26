@@ -86,7 +86,6 @@ extension ContactsView: View {
     }
 }
 
-
 // MARK: BindingViewStore
 
 extension BindingViewStore<ContactsFeature.State> {
