@@ -7,9 +7,17 @@
 
 import Foundation
 
+/// An extension on Optionals that provides a convenient method to access the wrapped value or a default value if the Optional is nil.
 extension Optional {
     
-    func valueOr(_ defaultValue: Wrapped)-> Wrapped {
+    /// Returns the wrapped value if it exists, or a provided default value if the Optional is nil.
+    ///
+    /// This method is useful for safely unwrapping Optionals while providing a fallback value when the Optional is nil.
+    ///
+    /// - Parameters:
+    ///   - defaultValue: The default value to use when the Optional is nil.
+    /// - Returns: The wrapped value if it exists; otherwise, the provided default value.
+    func valueOr(_ defaultValue: Wrapped) -> Wrapped {
         return self ?? defaultValue
     }
 }
