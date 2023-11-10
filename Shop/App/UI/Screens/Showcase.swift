@@ -17,16 +17,6 @@ struct Showcase: App {
     
     var body: some Scene {
         WindowGroup {
-//            let store = Store(initialState: CheckoutReducer.State()) {
-//                CheckoutReducer()
-//            }
-//            CheckoutView(store: store)
-            
-//            let store = Store(initialState: PhoneOTPReducer.State()) {
-//                PhoneOTPReducer()
-//            }
-//            PhoneOTPView(store: store)
-            
             if !_XCTIsTesting {
                 AppView(store: self.appDelegate.store)
             }
