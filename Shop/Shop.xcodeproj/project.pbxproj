@@ -2027,6 +2027,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
@@ -2183,6 +2184,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
@@ -2221,6 +2223,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location, etc";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";

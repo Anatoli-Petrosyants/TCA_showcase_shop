@@ -23,16 +23,22 @@ struct CheckoutFeature: Reducer {
             case onCheckoutButtonTap
         }
         
+        enum InternalAction: Equatable {
+            case localAuthenticationResponse(TaskResult<Bool>)
+        }
+        
         enum Delegate: Equatable {
             case didCheckoutCompleted
         }
 
         case view(ViewAction)
+        case `internal`(InternalAction)
         case delegate(Delegate)
         case alert(PresentationAction<Never>)
     }
     
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.localAuthenticationClient) var localAuthenticationClient
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -50,9 +56,31 @@ struct CheckoutFeature: Reducer {
                 return .none
                 
             case .view(.onCheckoutButtonTap):
-                state.alert = AlertState(title: TextState("Congrats!"),
-                                         message: TextState("You have successfully checkout products."))
-                return .none
+                return .run { send in
+                    await send(
+                        .internal(
+                            .localAuthenticationResponse(
+                                await TaskResult {
+                                    try await self.localAuthenticationClient.authenticate(
+                                        "We need to authentication you for payment."
+                                    )
+                                }
+                            )
+                        )
+                    )
+                }
+                
+            case let .internal(internalAction):
+                switch internalAction {
+                case .localAuthenticationResponse(.success):
+                    state.alert = AlertState(title: TextState("Congrats!"),
+                                             message: TextState("You have successfully checkout products."))
+                    return .none
+                    
+                case let .localAuthenticationResponse(.failure(error)):
+                    Log.error("localAuthenticationResponse failure: \(error)")
+                    return .none
+                }
 
             case .alert(.dismiss):
                 return .concatenate(
