@@ -177,6 +177,7 @@
 		A9ABFB3B2AA5FADC0093EBF3 /* UserNotificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */; };
 		A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */; };
 		A9ABFB3F2AA71A120093EBF3 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ABFB3E2AA71A120093EBF3 /* NotificationHelper.swift */; };
+		A9AD20272B0217AA00BFA784 /* LocalAuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD20262B0217AA00BFA784 /* LocalAuthenticationClient.swift */; };
 		A9AF25FE2A73E54900631158 /* AnnouncementFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FD2A73E54900631158 /* AnnouncementFeature.swift */; };
 		A9AF26002A73E55100631158 /* AnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF25FF2A73E55100631158 /* AnnouncementView.swift */; };
 		A9AF26032A73E8A500631158 /* UIApplicationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AF26022A73E8A500631158 /* UIApplicationClient.swift */; };
@@ -434,6 +435,7 @@
 		A9ABFB3A2AA5FADC0093EBF3 /* UserNotificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationClient.swift; sourceTree = "<group>"; };
 		A9ABFB3C2AA607F10093EBF3 /* RemoteNotificationsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationsClient.swift; sourceTree = "<group>"; };
 		A9ABFB3E2AA71A120093EBF3 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
+		A9AD20262B0217AA00BFA784 /* LocalAuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationClient.swift; sourceTree = "<group>"; };
 		A9AF25FD2A73E54900631158 /* AnnouncementFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementFeature.swift; sourceTree = "<group>"; };
 		A9AF25FF2A73E55100631158 /* AnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementView.swift; sourceTree = "<group>"; };
 		A9AF26022A73E8A500631158 /* UIApplicationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationClient.swift; sourceTree = "<group>"; };
@@ -1063,6 +1065,7 @@
 				A9DD83EA2AA9BC5700FD9927 /* UserKeychainClient.swift */,
 				A96593882AAF067500E7EACA /* ContactsClient.swift */,
 				A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */,
+				A9AD20262B0217AA00BFA784 /* LocalAuthenticationClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1715,6 +1718,7 @@
 				A9ABFB3F2AA71A120093EBF3 /* NotificationHelper.swift in Sources */,
 				A92E6ABF2AB8740300186F8D /* CheckoutView.swift in Sources */,
 				A92E6ACB2ABADE8F00186F8D /* ShipmentAddress.swift in Sources */,
+				A9AD20272B0217AA00BFA784 /* LocalAuthenticationClient.swift in Sources */,
 				A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */,
 				A9B773C32AC6B0FB00B8F0D9 /* WishlistFeature.swift in Sources */,
 				A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */,
