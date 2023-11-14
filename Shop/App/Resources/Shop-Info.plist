@@ -16,7 +16,7 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeHeart</string>
+			<string>UIApplicationShortcutIconTypeLove</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Open Favourites</string>
 			<key>UIApplicationShortcutItemType</key>
