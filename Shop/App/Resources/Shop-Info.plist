@@ -12,6 +12,17 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeHeart</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Open Favourites</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>OpenFavourites</string>
+		</dict>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

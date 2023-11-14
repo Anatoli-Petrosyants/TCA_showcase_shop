@@ -78,6 +78,7 @@
 		A9518D7B2AAB09380080B665 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7A2AAB09380080B665 /* DictionaryEncoder.swift */; };
 		A9518D7D2AAB0D4A0080B665 /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7C2AAB0D490080B665 /* ProductRequest.swift */; };
 		A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */; };
+		A9571B802B038D8B0093BEC6 /* QuickActionsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9571B7F2B038D8B0093BEC6 /* QuickActionsHandler.swift */; };
 		A9585D5D2AC54F3400CA100F /* AccountPhotoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5C2AC54F3400CA100F /* AccountPhotoFeature.swift */; };
 		A9585D5F2AC54F3A00CA100F /* AccountPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */; };
 		A9585D622AC55A6F00CA100F /* ImagePickerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D612AC55A6F00CA100F /* ImagePickerViewRepresentable.swift */; };
@@ -342,6 +343,7 @@
 		A9518D7A2AAB09380080B665 /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		A9518D7C2AAB0D490080B665 /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 		A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWithCategoryRequest.swift; sourceTree = "<group>"; };
+		A9571B7F2B038D8B0093BEC6 /* QuickActionsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsHandler.swift; sourceTree = "<group>"; };
 		A9585D5C2AC54F3400CA100F /* AccountPhotoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoFeature.swift; sourceTree = "<group>"; };
 		A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoView.swift; sourceTree = "<group>"; };
 		A9585D612AC55A6F00CA100F /* ImagePickerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewRepresentable.swift; sourceTree = "<group>"; };
@@ -1014,6 +1016,7 @@
 				A97C84272A7D00F8008054E0 /* Loadable.swift */,
 				A9ABFB3E2AA71A120093EBF3 /* NotificationHelper.swift */,
 				A971F1592AA8707F00CCCC95 /* DictionaryDecoder.swift */,
+				A9571B7F2B038D8B0093BEC6 /* QuickActionsHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1722,6 +1725,7 @@
 				A9ABFB3D2AA607F10093EBF3 /* RemoteNotificationsClient.swift in Sources */,
 				A9B773C32AC6B0FB00B8F0D9 /* WishlistFeature.swift in Sources */,
 				A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */,
+				A9571B802B038D8B0093BEC6 /* QuickActionsHandler.swift in Sources */,
 				A9286A4C2A4EB35C00ED4CB3 /* DatabaseClient.swift in Sources */,
 				A990E5292A41BB720004F4F9 /* Localization.swift in Sources */,
 				A9AF26092A77AC8A00631158 /* HealthKitView.swift in Sources */,
