@@ -104,7 +104,15 @@ struct AppFeature: Reducer {
                     
                 case let .didLaunchedWithShortcutItem(shortcutItem):
                     Log.info("didLaunchedWithShortcutItem: \(shortcutItem.type)")
-                    state = .main(MainFeature.State(currentTab: .wishlist))
+                    
+                    let action = QuickAction(shortcutItem: shortcutItem)
+                    switch action {
+                    case .favourites:
+                        state = .main(MainFeature.State(currentTab: .wishlist))
+                    default:
+                        break
+                    }
+
                     return .none
                 }
                 

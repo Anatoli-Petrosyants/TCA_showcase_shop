@@ -46,6 +46,7 @@
 		A92E6AD02ABD816A00186F8D /* TopPicksFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACF2ABD816A00186F8D /* TopPicksFeature.swift */; };
 		A92E6AD32AC1688000186F8D /* Localization+Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AD22AC1688000186F8D /* Localization+Basket.swift */; };
 		A92E77672B04EC29002A67C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E77662B04EC29002A67C3 /* SceneDelegate.swift */; };
+		A92E776B2B04EFF1002A67C3 /* QuickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E776A2B04EFF1002A67C3 /* QuickAction.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */; };
 		A930CDA629E41EF600AF73E3 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* OnboardingFeature.swift */; };
@@ -79,7 +80,6 @@
 		A9518D7B2AAB09380080B665 /* DictionaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7A2AAB09380080B665 /* DictionaryEncoder.swift */; };
 		A9518D7D2AAB0D4A0080B665 /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7C2AAB0D490080B665 /* ProductRequest.swift */; };
 		A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */; };
-		A9571B842B0396D40093BEC6 /* QuickActionsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9571B832B0396D40093BEC6 /* QuickActionsClient.swift */; };
 		A9585D5D2AC54F3400CA100F /* AccountPhotoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5C2AC54F3400CA100F /* AccountPhotoFeature.swift */; };
 		A9585D5F2AC54F3A00CA100F /* AccountPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */; };
 		A9585D622AC55A6F00CA100F /* ImagePickerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D612AC55A6F00CA100F /* ImagePickerViewRepresentable.swift */; };
@@ -312,6 +312,7 @@
 		A92E6ACF2ABD816A00186F8D /* TopPicksFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksFeature.swift; sourceTree = "<group>"; };
 		A92E6AD22AC1688000186F8D /* Localization+Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Basket.swift"; sourceTree = "<group>"; };
 		A92E77662B04EC29002A67C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A92E776A2B04EFF1002A67C3 /* QuickAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAction.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
@@ -345,7 +346,6 @@
 		A9518D7A2AAB09380080B665 /* DictionaryEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncoder.swift; sourceTree = "<group>"; };
 		A9518D7C2AAB0D490080B665 /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 		A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWithCategoryRequest.swift; sourceTree = "<group>"; };
-		A9571B832B0396D40093BEC6 /* QuickActionsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsClient.swift; sourceTree = "<group>"; };
 		A9585D5C2AC54F3400CA100F /* AccountPhotoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoFeature.swift; sourceTree = "<group>"; };
 		A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoView.swift; sourceTree = "<group>"; };
 		A9585D612AC55A6F00CA100F /* ImagePickerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewRepresentable.swift; sourceTree = "<group>"; };
@@ -1069,7 +1069,6 @@
 				A96593882AAF067500E7EACA /* ContactsClient.swift */,
 				A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */,
 				A9AD20262B0217AA00BFA784 /* LocalAuthenticationClient.swift */,
-				A9571B832B0396D40093BEC6 /* QuickActionsClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1077,6 +1076,7 @@
 		A990E5382A41BFD50004F4F9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A92E776A2B04EFF1002A67C3 /* QuickAction.swift */,
 				A9459B982ACEB55D00C63302 /* Notification */,
 				A9459B952ACEB2CA00C63302 /* Account */,
 				A92E6ACC2ABADEAC00186F8D /* Checkout */,
@@ -1674,7 +1674,6 @@
 				A9EEE2FD2A6FDB34007A6442 /* InAppMessages+Views.swift in Sources */,
 				A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */,
 				A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */,
-				A9571B842B0396D40093BEC6 /* QuickActionsClient.swift in Sources */,
 				A9459B932ACEACB300C63302 /* NotificationsView.swift in Sources */,
 				A9AA22CC2A8F9BF90073E070 /* FirestoreClient.swift in Sources */,
 				A9F53F6D2A8B783A005D6182 /* View+DismissKeyboardOnTap.swift in Sources */,
@@ -1745,6 +1744,7 @@
 				A990E5422A42CB6A0004F4F9 /* ForgotPasswordFeature.swift in Sources */,
 				A90110182A4445F200DD08C4 /* AccountFeature.swift in Sources */,
 				A990E5462A42D6120004F4F9 /* Localization+ForgotPassword.swift in Sources */,
+				A92E776B2B04EFF1002A67C3 /* QuickAction.swift in Sources */,
 				A979AC042A8C9E610050E028 /* Localization+Sidebar.swift in Sources */,
 				A9947EEB2A179D6A00FC7FB8 /* BlurredActivityIndicatorView.swift in Sources */,
 				A92A22A029F8EEC50034469C /* MainFeature.swift in Sources */,
