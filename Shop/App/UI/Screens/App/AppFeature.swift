@@ -8,6 +8,8 @@
 import ComposableArchitecture
 import SwiftUI
 import Foundation
+import FirebaseCore
+import FirebaseFirestore
 
 struct AppFeature: Reducer {
 
@@ -30,6 +32,7 @@ struct AppFeature: Reducer {
         
         case appDelegate(AppDelegateAction)
         case didChangeScenePhase(ScenePhase)
+        
         case loading(LoadingFeature.Action)
         case help(OnboardingFeature.Action)
         case join(JoinFeature.Action)
@@ -45,8 +48,12 @@ struct AppFeature: Reducer {
             switch action {
             case let .appDelegate(appDelegateAction):
                 switch appDelegateAction {
-                case .didFinishLaunching:
+                case .didFinishLaunching:                    
+                    // Configure Logger
                     Log.initialize()
+                    
+                    // Configure Firebase
+                    FirebaseApp.configure()
                     
                     let userNotificationsEventStream = self.userNotificationClient.delegate()
                     return .run { send in
@@ -67,12 +74,11 @@ struct AppFeature: Reducer {
                     let token = tokenData.map { String(format: "%02.2hhx", $0) }.joined()
                     Log.info("didRegisterForRemoteNotifications token: \(token)")
                     return .none
-                    
-                    
+                                        
                 case let .userNotifications(.willPresentNotification(notification, completionHandler)):
-                    Log.debug("userNotifications willPresentNotification notification: \(notification.request.content.userInfo)")
+                    Log.info("userNotifications willPresentNotification notification: \(notification.request.content.userInfo)")
                     if let push = try? Push(decoding: notification.request.content.userInfo) {
-                        Log.debug("userNotifications willPresentNotification push: \(push)")
+                        Log.info("userNotifications willPresentNotification push: \(push)")
                     }
                     
                     return .run { send in
@@ -83,13 +89,12 @@ struct AppFeature: Reducer {
                     }
                     
                 case let .userNotifications(.didReceiveResponse(response, completionHandler)):
-                    Log.debug("userNotifications didReceiveResponse response: \(response.request.content.userInfo))")
-                    
+                    Log.info("userNotifications didReceiveResponse response: \(response.request.content.userInfo))")
                     return .run { send in
                         completionHandler()
                         
                         if let push = try? Push(decoding: response.request.content.userInfo) {
-                            Log.debug("userNotifications didReceiveResponse push: \(push.aps.navigateTo!)")
+                            Log.info("userNotifications didReceiveResponse push: \(push.aps.navigateTo!)")
                             await send(.main(.onTabChanged(.notifications)))
                         }
                     }
@@ -98,31 +103,13 @@ struct AppFeature: Reducer {
                     return .none
                     
                 case let .didLaunchedWithShortcutItem(shortcutItem):
-                    Log.info("didLaunchedWithShortcutItem: \(shortcutItem))")
+                    Log.info("didLaunchedWithShortcutItem: \(shortcutItem.type)")
                     state = .main(MainFeature.State(currentTab: .wishlist))
                     return .none
                 }
                 
             case let .didChangeScenePhase(phase):
                 Log.info("didChangeScenePhase \(phase)")
-                
-//                if case .active = phase {
-//                    let quickActionsHandler = QuickActionsHandler.shared
-//                    
-//                    // Check if a quick action is available
-//                    guard let action = quickActionsHandler.action else { return .none }
-//                    
-//                    switch action {
-//                    case .favourites:
-//                        Log.info("performQuickActionIfNeeded favourites")
-//                        state = .main(MainFeature.State(currentTab: .wishlist))
-//                        break
-//                    }
-//                    
-//                    // Reset the quick action to nil after processing
-//                    quickActionsHandler.action = nil
-//                }
-                
                 return .none
 
             case let .loading(action: .delegate(loadingAction)):

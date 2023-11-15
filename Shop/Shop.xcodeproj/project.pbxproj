@@ -45,6 +45,7 @@
 		A92E6ACE2ABD816200186F8D /* TopPicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACD2ABD816200186F8D /* TopPicksView.swift */; };
 		A92E6AD02ABD816A00186F8D /* TopPicksFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6ACF2ABD816A00186F8D /* TopPicksFeature.swift */; };
 		A92E6AD32AC1688000186F8D /* Localization+Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E6AD22AC1688000186F8D /* Localization+Basket.swift */; };
+		A92E77672B04EC29002A67C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E77662B04EC29002A67C3 /* SceneDelegate.swift */; };
 		A930CDA029E41C3A00AF73E3 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CD9F29E41C3A00AF73E3 /* AppView.swift */; };
 		A930CDA229E41DAD00AF73E3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */; };
 		A930CDA629E41EF600AF73E3 /* OnboardingFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930CDA529E41EF600AF73E3 /* OnboardingFeature.swift */; };
@@ -79,7 +80,6 @@
 		A9518D7D2AAB0D4A0080B665 /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7C2AAB0D490080B665 /* ProductRequest.swift */; };
 		A9518D7F2AAB0F580080B665 /* ProductsWithCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */; };
 		A9571B842B0396D40093BEC6 /* QuickActionsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9571B832B0396D40093BEC6 /* QuickActionsClient.swift */; };
-		A9571B862B03A2C00093BEC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9571B852B03A2C00093BEC6 /* SceneDelegate.swift */; };
 		A9585D5D2AC54F3400CA100F /* AccountPhotoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5C2AC54F3400CA100F /* AccountPhotoFeature.swift */; };
 		A9585D5F2AC54F3A00CA100F /* AccountPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */; };
 		A9585D622AC55A6F00CA100F /* ImagePickerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9585D612AC55A6F00CA100F /* ImagePickerViewRepresentable.swift */; };
@@ -311,6 +311,7 @@
 		A92E6ACD2ABD816200186F8D /* TopPicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksView.swift; sourceTree = "<group>"; };
 		A92E6ACF2ABD816A00186F8D /* TopPicksFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicksFeature.swift; sourceTree = "<group>"; };
 		A92E6AD22AC1688000186F8D /* Localization+Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Basket.swift"; sourceTree = "<group>"; };
+		A92E77662B04EC29002A67C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A930CD9F29E41C3A00AF73E3 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A930CDA129E41DAD00AF73E3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A930CDA529E41EF600AF73E3 /* OnboardingFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFeature.swift; sourceTree = "<group>"; };
@@ -345,7 +346,6 @@
 		A9518D7C2AAB0D490080B665 /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 		A9518D7E2AAB0F580080B665 /* ProductsWithCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsWithCategoryRequest.swift; sourceTree = "<group>"; };
 		A9571B832B0396D40093BEC6 /* QuickActionsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionsClient.swift; sourceTree = "<group>"; };
-		A9571B852B03A2C00093BEC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A9585D5C2AC54F3400CA100F /* AccountPhotoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoFeature.swift; sourceTree = "<group>"; };
 		A9585D5E2AC54F3A00CA100F /* AccountPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPhotoView.swift; sourceTree = "<group>"; };
 		A9585D612AC55A6F00CA100F /* ImagePickerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewRepresentable.swift; sourceTree = "<group>"; };
@@ -948,7 +948,6 @@
 		A990E50E2A419EA10004F4F9 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A990E5032A4194820004F4F9 /* Showcase.swift */,
 				A930CDAD29E41FEE00AF73E3 /* App */,
 				A930CDAE29E5414000AF73E3 /* Loading */,
 				A930CDA729E41EF900AF73E3 /* Onboarding */,
@@ -1330,6 +1329,7 @@
 		A9DED5A029AC7FA6003EFA02 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				A990E5032A4194820004F4F9 /* Showcase.swift */,
 				A9DED5C729AC9F39003EFA02 /* Configuration */,
 				A9DED5BE29AC957E003EFA02 /* System */,
 				A96FBD4B29AF344400DB1D61 /* UI */,
@@ -1359,7 +1359,7 @@
 			isa = PBXGroup;
 			children = (
 				A9DED5C329AC96CF003EFA02 /* AppDelegate.swift */,
-				A9571B852B03A2C00093BEC6 /* SceneDelegate.swift */,
+				A92E77662B04EC29002A67C3 /* SceneDelegate.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -1639,7 +1639,7 @@
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,
-				A9571B862B03A2C00093BEC6 /* SceneDelegate.swift in Sources */,
+				A92E77672B04EC29002A67C3 /* SceneDelegate.swift in Sources */,
 				A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */,
 				A9585D5D2AC54F3400CA100F /* AccountPhotoFeature.swift in Sources */,
 				A92E6ACE2ABD816200186F8D /* TopPicksView.swift in Sources */,
