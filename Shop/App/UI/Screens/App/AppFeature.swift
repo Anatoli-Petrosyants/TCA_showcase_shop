@@ -109,6 +109,8 @@ struct AppFeature: Reducer {
                     switch action {
                     case .favourites:
                         state = .main(MainFeature.State(currentTab: .wishlist))
+                    case .basket:
+                        state = .main(MainFeature.State(currentTab: .basket))
                     default:
                         break
                     }

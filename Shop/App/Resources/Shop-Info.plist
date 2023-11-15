@@ -17,6 +17,14 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>Favourites</string>
 		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeUpdate</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Open Basket</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Basket</string>
+		</dict>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>

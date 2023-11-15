@@ -11,11 +11,12 @@ import UIKit
 /// Enum defining the types of quick actions available.
 enum QuickActionType: String {
     case favourites = "Favourites"
-    // Add new actions here in future
+    case basket = "Basket"
 }
 /// Enum defining the possible quick actions.
 enum QuickAction: Equatable {
     case favourites
+    case basket
 
     /// Initialize a QuickAction based on the provided UIApplicationShortcutItem.
     ///
@@ -27,6 +28,8 @@ enum QuickAction: Equatable {
         switch type {
         case .favourites:
             self = .favourites
+        case .basket:
+            self = .basket
         }
     }
 }
