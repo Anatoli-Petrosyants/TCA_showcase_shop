@@ -13,10 +13,7 @@ import FirebaseFirestore
 
 /// The application delegate responsible for handling app-level events.
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    /// The shared instance of the QuickActionsHandler.
-    private let quickActionsHandler = QuickActionsHandler.shared
-    
+
     /// The main store of the Composable Architecture.
     let store = Store(initialState: AppFeature.State()) {
         AppFeature()
@@ -34,6 +31,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool { 
         // Configure Firebase
         FirebaseApp.configure()
+        
+//        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+//            print("shortcutItem")
+//            self.store.send(.appDelegate(.didLaunchedWithShortcutItem(shortcutItem)))
+//        }
         
         // Send an initial action to the store indicating that the app has finished launching
         self.store.send(.appDelegate(.didFinishLaunching))
@@ -64,29 +66,40 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         self.store.send(.appDelegate(.didRegisterForRemoteNotifications(.failure(error))))
     }
     
-    /// The method called to provide a UISceneConfiguration.
-    ///
-    /// - Parameters:
-    ///   - application: The singleton app object.
-    ///   - connectingSceneSession: The new UISceneSession being created.
-    ///   - options: A dictionary of details about the launch environment.
-    /// - Returns: The newly created scene configuration.
-    func application(
-        _ application: UIApplication,
-        configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-        // Check if the app was launched with a quick action
-        if let shortcutItem = options.shortcutItem {
-            quickActionsHandler.action = QuickAction(shortcutItem: shortcutItem)
-        }
-
-        // Create and configure the scene configuration
-        let configuration = UISceneConfiguration(
-            name: connectingSceneSession.configuration.name,
-            sessionRole: connectingSceneSession.role
-        )
-        configuration.delegateClass = SceneDelegate.self
-        return configuration
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        print("performActionFor")
+        completionHandler(true)
     }
+    
+//    func application(_ application: UIApplication,
+//                     performActionFor shortcutItem: UIApplicationShortcutItem,
+//                     completionHandler: @escaping (Bool) -> Void) {
+//        
+//    }
+    
+//    /// The method called to provide a UISceneConfiguration.
+//    ///
+//    /// - Parameters:
+//    ///   - application: The singleton app object.
+//    ///   - connectingSceneSession: The new UISceneSession being created.
+//    ///   - options: A dictionary of details about the launch environment.
+//    /// - Returns: The newly created scene configuration.
+//    func application(
+//        _ application: UIApplication,
+//        configurationForConnecting connectingSceneSession: UISceneSession,
+//        options: UIScene.ConnectionOptions
+//    ) -> UISceneConfiguration {
+//        // Create and configure the scene configuration
+//        let configuration = UISceneConfiguration(
+//            name: connectingSceneSession.configuration.name,
+//            sessionRole: connectingSceneSession.role
+//        )
+//        
+//        if connectingSceneSession.role == .windowApplication {
+//            configuration.delegateClass = SceneDelegate.self
+//        }        
+//        return configuration
+//    }
 }

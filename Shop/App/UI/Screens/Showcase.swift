@@ -23,6 +23,7 @@ struct Showcase: App {
         }
         .onChange(of: scenePhase) { phase in
             self.appDelegate.store.send(.didChangeScenePhase(phase))
+            // self.appDelegate.store.send(.didChangeScenePhase(phase))
         }
     }
 }

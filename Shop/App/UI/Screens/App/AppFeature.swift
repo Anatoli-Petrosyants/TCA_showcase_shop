@@ -25,6 +25,7 @@ struct AppFeature: Reducer {
             case didFinishLaunching
             case didRegisterForRemoteNotifications(TaskResult<Data>)
             case userNotifications(UserNotificationClient.DelegateEvent)
+            case didLaunchedWithShortcutItem(UIApplicationShortcutItem)
         }
         
         case appDelegate(AppDelegateAction)
@@ -95,9 +96,33 @@ struct AppFeature: Reducer {
 
                 case .userNotifications:
                     return .none
+                    
+                case let .didLaunchedWithShortcutItem(shortcutItem):
+                    Log.info("didLaunchedWithShortcutItem: \(shortcutItem))")
+                    state = .main(MainFeature.State(currentTab: .wishlist))
+                    return .none
                 }
                 
-            case .didChangeScenePhase(_):                
+            case let .didChangeScenePhase(phase):
+                Log.info("didChangeScenePhase \(phase)")
+                
+//                if case .active = phase {
+//                    let quickActionsHandler = QuickActionsHandler.shared
+//                    
+//                    // Check if a quick action is available
+//                    guard let action = quickActionsHandler.action else { return .none }
+//                    
+//                    switch action {
+//                    case .favourites:
+//                        Log.info("performQuickActionIfNeeded favourites")
+//                        state = .main(MainFeature.State(currentTab: .wishlist))
+//                        break
+//                    }
+//                    
+//                    // Reset the quick action to nil after processing
+//                    quickActionsHandler.action = nil
+//                }
+                
                 return .none
 
             case let .loading(action: .delegate(loadingAction)):
