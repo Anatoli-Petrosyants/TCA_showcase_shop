@@ -16,3 +16,10 @@ Welcome to the Shop Application project, a showcase of building a shopping app u
 - **Core Data:** Used for local storage and managing user data.
 - **Networking:** Fetch product data from [fakestoreapi.com](https://fakestoreapi.com).
 - **SwiftUI:** The framework for building the user interface.
+
+  
+## Demo
+
+https://www.youtube.com/watch?v=-tNJSeuV6yg
+
+
