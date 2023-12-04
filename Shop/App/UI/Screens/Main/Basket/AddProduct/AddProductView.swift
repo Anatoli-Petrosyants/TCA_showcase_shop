@@ -1,5 +1,5 @@
 //
-//  BasketEmptyView.swift
+//  AddProductView.swift
 //  Showcase
 //
 //  Created by Anatoli Petrosyants on 14.09.23.
