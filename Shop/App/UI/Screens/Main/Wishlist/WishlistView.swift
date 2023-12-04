@@ -28,7 +28,11 @@ extension WishlistView: View {
             NavigationStack {
                 ZStack(alignment: .center) {
                     if viewStore.products.isEmpty {
-                        WishlistEmptyView()
+                        ContentUnavailableView {
+                            Label("You don't have any favorites.", systemImage: "heart.fill")
+                                .font(.title2)
+                                .foregroundColor(Color.black)
+                        }                      
                     } else {
                         VStack(spacing: 0) {
                             ZStack {
@@ -75,20 +79,6 @@ extension WishlistView: View {
                 .navigationTitle("Wishlist (\(viewStore.products.count))")
             }
             .badge(viewStore.products.count)
-        }
-    }
-}
-
-struct WishlistEmptyView: View {
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "heart.fill")
-                .font(.system(size: 60))
-            
-            Text("You don't have any favorites.")
-                .font(.title2)
-                .multilineTextAlignment(.center)
         }
     }
 }

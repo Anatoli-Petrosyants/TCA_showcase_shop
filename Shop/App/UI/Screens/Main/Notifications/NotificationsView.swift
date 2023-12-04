@@ -27,7 +27,11 @@ extension NotificationsView: View {
             NavigationStack {
                 ZStack(alignment: .center) {
                     if viewStore.items.isEmpty {
-                        NotificationsEmptyView()
+                        ContentUnavailableView {
+                            Label("You don't have any notifications.", systemImage: "bell.fill")
+                                .font(.title2)
+                                .foregroundColor(Color.black)
+                        }
                     } else {
                         List(viewStore.items, id: \.id) { item in
                             VStack(alignment: .leading, spacing: 6) {
@@ -59,20 +63,6 @@ extension NotificationsView: View {
             }
             .badge(viewStore.items.count)
             .alert(store: self.store.scope(state: \.$alert, action: NotificationsFeature.Action.alert))
-        }
-    }
-}
-
-struct NotificationsEmptyView: View {
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "bell.fill")
-                .font(.system(size: 60))
-            
-            Text("You don't have any notifications.")
-                .font(.title2)
-                .multilineTextAlignment(.center)
         }
     }
 }
