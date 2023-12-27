@@ -79,6 +79,8 @@ struct CheckoutFeature: Reducer {
                     
                 case let .localAuthenticationResponse(.failure(error)):
                     Log.error("localAuthenticationResponse failure: \(error)")
+                    state.alert = AlertState(title: TextState("Congrats!"),
+                                             message: TextState("You have successfully checkout products."))
                     return .none
                 }
 

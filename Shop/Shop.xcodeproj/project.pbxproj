@@ -97,6 +97,7 @@
 		A96593902AB047AD00E7EACA /* ContactViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */; };
 		A96593942AB0870700E7EACA /* ContactPickerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */; };
 		A96593962AB1D89E00E7EACA /* AuthorizationControllerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */; };
+		A96B301D2B3C199D008B07EF /* EmptyModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B301C2B3C199D008B07EF /* EmptyModifier.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */; };
 		A96BF1492A6A700300B14247 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1482A6A700300B14247 /* SidebarView.swift */; };
 		A96BF14D2A6A996300B14247 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A96BF14C2A6A996300B14247 /* PopupView */; };
@@ -363,6 +364,7 @@
 		A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewRepresentable.swift; sourceTree = "<group>"; };
 		A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewRepresentable.swift; sourceTree = "<group>"; };
 		A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationControllerClient.swift; sourceTree = "<group>"; };
+		A96B301C2B3C199D008B07EF /* EmptyModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyModifier.swift; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFeature.swift; sourceTree = "<group>"; };
 		A96BF1482A6A700300B14247 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		A96BF14E2A6AA50C00B14247 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -941,6 +943,7 @@
 				A960AA1F2A49A867005CE9F9 /* OnLoadModifier.swift */,
 				A9C181BA2A6558D000C9EB90 /* LoaderModifier.swift */,
 				A988F0D529B60B470059F9BB /* ErrorModifier.swift */,
+				A96B301C2B3C199D008B07EF /* EmptyModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -1638,6 +1641,7 @@
 				A907C1A82A4460DA007E7FE7 /* ProductsClient.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
+				A96B301D2B3C199D008B07EF /* EmptyModifier.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,
 				A92E77672B04EC29002A67C3 /* SceneDelegate.swift in Sources */,
 				A916BC002A175E6B00AD114F /* ProductDTO.swift in Sources */,
