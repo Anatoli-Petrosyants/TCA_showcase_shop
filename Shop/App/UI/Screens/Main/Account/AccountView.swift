@@ -158,6 +158,8 @@ extension AccountView: View {
                             .onTapGesture {
                                 viewStore.send(.onLogoutTap)
                             }
+                            .confirmationDialog(store: self.store.scope(state: \.$dialog,
+                                                                        action: AccountFeature.Action.dialog))
                     }
                     .listRowBackground(Color.gray)
                 }
@@ -194,7 +196,6 @@ extension AccountView: View {
                 content:
                     PermissionsView.init(store:)
             )
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountFeature.Action.dialog))
             .popup(item: viewStore.$toastMessage) { message in
                 Text(message)
                     .frame(width: 340, height: 60)

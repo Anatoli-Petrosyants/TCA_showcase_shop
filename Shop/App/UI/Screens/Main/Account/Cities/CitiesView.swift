@@ -62,13 +62,6 @@ extension CitiesView: View {
             }            
             .navigationTitle(Localization.Account.sectionCityPlaceholder)
             .toolbar(.hidden, for: .tabBar)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(Localization.Base.cancel) {
-                        viewStore.send(.onClose)
-                    }
-                }
-            }
         }
     }
 }

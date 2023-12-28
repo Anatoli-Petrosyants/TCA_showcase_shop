@@ -12,11 +12,21 @@ import ComposableArchitecture
 
 struct ProductsView {
     let store: StoreOf<ProductsFeature>
-    
-    var gridItems: [GridItem] = [
-        .init(.flexible(), spacing: 8, alignment: .top),
-        .init(.flexible(), spacing: 8, alignment: .top)
-    ]
+
+    var gridItems: [GridItem] {
+        if UIDevice.isIPad {
+            [
+                .init(.flexible(), spacing: 8, alignment: .top),
+                .init(.flexible(), spacing: 8, alignment: .top),
+                .init(.flexible(), spacing: 8, alignment: .top)
+            ]
+        } else {
+            [
+                .init(.flexible(), spacing: 8, alignment: .top),
+                .init(.flexible(), spacing: 8, alignment: .top)
+            ]
+        }
+    }
 }
 
 // MARK: - Views
