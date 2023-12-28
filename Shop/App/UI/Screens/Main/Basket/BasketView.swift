@@ -55,9 +55,9 @@ extension BasketView: View {
                                 }
                                 .buttonStyle(.cta)
 
-                                LazyVStack(spacing: 8) {
+                                VStack(spacing: 8) {
                                     ForEach(viewStore.products) { product in
-                                        HStack() {
+                                        HStack {
                                             WebImage(url: product.imageURL)
                                                 .resizable()
                                                 .indicator(.activity)
@@ -78,6 +78,8 @@ extension BasketView: View {
                                             }
                                         }
                                         .frame(height: 54)
+                                        .confirmationDialog(store: self.store.scope(state: \.$dialog,
+                                                                                    action: BasketFeature.Action.dialog))
 
                                         Divider()
                                     }
@@ -131,8 +133,6 @@ extension BasketView: View {
                     )
                 }
             }
-            .badge(viewStore.products.count)
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: BasketFeature.Action.dialog))
             .popup(item: viewStore.$toastMessage) { message in
                 Text(message)
                     .frame(width: 340, height: 60)
@@ -149,7 +149,8 @@ extension BasketView: View {
                  .closeOnTap(true)
                  .autohideIn(3)
             }
-        }        
+            .badge(viewStore.products.count)
+        }
     }
 }
 

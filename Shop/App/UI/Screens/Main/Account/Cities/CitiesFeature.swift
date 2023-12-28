@@ -11,12 +11,12 @@ import ComposableArchitecture
 struct CitiesFeature: Reducer {
     
     struct State: Equatable {
+        var selectedCity: String
         var data: Loadable<[Place]> = .idle
     }
     
     enum Action: Equatable {
         case onViewAppear
-        case onClose
         case onItemTap(city: String)
         
         enum InternalAction: Equatable {
@@ -60,9 +60,6 @@ struct CitiesFeature: Reducer {
                     .send(.delegate(.didCitySelected(city))),
                     .run { _ in await self.dismiss() }
                 )
-                
-            case .onClose:
-                return .run { _ in await self.dismiss() }
                 
             // internal actions
             case let .internal(internalAction):
