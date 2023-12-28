@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct CitiesFeature: Reducer {
     
     struct State: Equatable {
+        var selectedCity: String
         var data: Loadable<[Place]> = .idle
     }
     

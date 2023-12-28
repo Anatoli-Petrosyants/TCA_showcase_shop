@@ -187,7 +187,7 @@ struct AccountFeature: Reducer {
                     return .none
                     
                 case .onCityTap:
-                    state.path.append(.cities(.init()))
+                    state.path.append(.cities(.init(selectedCity: state.city)))
                     return .none
                     
                 case .onPermissionsTap:

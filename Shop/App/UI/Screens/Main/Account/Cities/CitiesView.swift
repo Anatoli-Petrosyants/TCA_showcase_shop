@@ -37,10 +37,11 @@ extension CitiesView: View {
                             VStack(alignment: .leading) {
                                 Text("\(place.name)")
                                     .font(.bodyBold)
+                                    .foregroundColor((place.name == viewStore.selectedCity) ? Color.blue : Color.black)
 
                                 Text("\(place.description)")
                                     .font(.footnote)
-                                    .foregroundColor(Color.black05)
+                                    .foregroundColor((place.name == viewStore.selectedCity) ? Color.blue : Color.black05)
                                     .lineLimit(3)
                             }
                             .contentShape(Rectangle())
