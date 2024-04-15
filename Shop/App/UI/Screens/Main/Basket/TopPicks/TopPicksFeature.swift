@@ -8,8 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TopPicksFeature: Reducer {
+@Reducer
+struct TopPicksFeature {
     
+    @ObservableState
     struct State: Equatable {
         var products: [Product] = []
     }

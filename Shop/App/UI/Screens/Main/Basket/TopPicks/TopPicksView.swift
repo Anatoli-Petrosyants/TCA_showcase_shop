@@ -24,22 +24,20 @@ extension TopPicksView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            if viewStore.products.count > 0 {
-                TopPicksCountView(count: viewStore.products.count)
-                    .padding([.leading, .trailing], 24)
+        if store.products.count > 0 {
+            TopPicksCountView(count: store.products.count)
+                .padding([.leading, .trailing], 24)
 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 0) {
-                        ForEach(viewStore.products) { product in
-                            TopPickView(product: product)
-                                .onTapGesture {
-                                    viewStore.send(.view(.onItemTap(product)))
-                                }
-                        }
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
+                    ForEach(store.products) { product in
+                        TopPickView(product: product)
+                            .onTapGesture {
+                                store.send(.view(.onItemTap(product)))
+                            }
                     }
                 }
-            }          
+            }
         }
     }
 }
