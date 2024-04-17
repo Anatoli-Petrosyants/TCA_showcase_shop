@@ -8,10 +8,12 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ForgotPasswordFeature: Reducer {
+@Reducer
+struct ForgotPasswordFeature {
     
+    @ObservableState
     struct State: Equatable {
-        @PresentationState var alert: AlertState<Action.AlertAction>?
+        @Presents var alert: AlertState<Action.AlertAction>?
     }
     
     enum Action: Equatable {        
@@ -55,6 +57,7 @@ struct ForgotPasswordFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.$alert, action: \.alert)
+        // .ifLet(\.$alert, action: /Action.alert)
     }
 }
