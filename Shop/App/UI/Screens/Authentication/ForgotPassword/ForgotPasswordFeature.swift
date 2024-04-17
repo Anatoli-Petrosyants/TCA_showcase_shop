@@ -58,6 +58,5 @@ struct ForgotPasswordFeature {
             }
         }
         .ifLet(\.$alert, action: \.alert)
-        // .ifLet(\.$alert, action: /Action.alert)
     }
 }
