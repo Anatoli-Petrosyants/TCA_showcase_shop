@@ -8,12 +8,14 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CheckoutFeature: Reducer {
+@Reducer
+struct CheckoutFeature {
 
+    @ObservableState
     struct State: Equatable {
         var addresses = ShipmentAddress.mockedData
         var cards = PaymentCard.mockedData
-        @PresentationState var alert: AlertState<Never>?
+        @Presents var alert: AlertState<Never>?
     }
     
     enum Action: Equatable{
@@ -94,6 +96,6 @@ struct CheckoutFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.$alert, action: \.alert)
     }
 }

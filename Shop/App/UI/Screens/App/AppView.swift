@@ -23,31 +23,26 @@ extension AppView: View {
     }
 
     @ViewBuilder private var content: some View {
-        SwitchStore(self.store) { state in
-            switch state {
-            case .loading:
-                CaseLet(/AppFeature.State.loading, action: AppFeature.Action.loading) { store in
-                    LoadingView(store: store)
-                        .transition(.delayAndFade)
-                }
-                
-            case .onboarding:
-                CaseLet(/AppFeature.State.onboarding, action: AppFeature.Action.help) { store in
-                    OnboardingView(store: store)
-                        .transition(.delayAndFade)
-                }
-                
-            case .join:
-                CaseLet(/AppFeature.State.join, action: AppFeature.Action.join) { store in
-                    JoinView(store: store)
-                        .transition(.delayAndFade)
-                }
-                
-            case .main:
-                CaseLet(/AppFeature.State.main, action: AppFeature.Action.main) { store in
-                    MainView(store: store)
-                        .transition(.delayAndFade)
-                }
+        switch store.state {
+        case .loading:
+            if let store = store.scope(state: \.loading, action: \.loading) {
+                LoadingView(store: store)
+                    .transition(.delayAndFade)
+            }
+        case .onboarding:
+            if let store = store.scope(state: \.onboarding, action: \.onboarding) {
+                OnboardingView(store: store)
+                    .transition(.delayAndFade)
+            }
+        case .join:
+            if let store = store.scope(state: \.join, action: \.join) {
+                JoinView(store: store)
+                    .transition(.delayAndFade)
+            }
+        case .main:
+            if let store = store.scope(state: \.main, action: \.main) {
+                MainView(store: store)
+                    .transition(.delayAndFade)
             }
         }
     }

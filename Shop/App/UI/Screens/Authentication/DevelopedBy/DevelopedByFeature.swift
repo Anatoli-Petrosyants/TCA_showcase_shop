@@ -9,8 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct DevelopedByFeature: Reducer {
+@Reducer
+struct DevelopedByFeature {
 
+    @ObservableState
     struct State: Equatable {
         var text: String = ""
     }

@@ -9,12 +9,14 @@ import SwiftUI
 import ComposableArchitecture
 import AuthenticationServices
 
-struct JoinFeature: Reducer {
-    
+@Reducer
+struct JoinFeature {
+ 
+    @ObservableState
     struct State: Equatable {
         var path = StackState<Path.State>()
-        @PresentationState var developedBy: DevelopedByFeature.State?
-        @PresentationState var loginOptions: LoginOptionsFeature.State?
+        @Presents var developedBy: DevelopedByFeature.State?
+        @Presents var loginOptions: LoginOptionsFeature.State?
     }
     
     enum Action: Equatable {
@@ -167,8 +169,12 @@ struct JoinFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$developedBy, action: /Action.developedBy) { DevelopedByFeature() }
-        .ifLet(\.$loginOptions, action: /Action.loginOptions) { LoginOptionsFeature() }
+        .ifLet(\.$developedBy, action: \.developedBy) {
+            DevelopedByFeature()
+        }
+        .ifLet(\.$loginOptions, action: \.loginOptions) {
+            LoginOptionsFeature()
+        }
         .forEach(\.path, action: /Action.path) {
             Path()
         }

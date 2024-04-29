@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - LoginOptionsView
 
 struct JoinView {
-    let store: StoreOf<JoinFeature>
+    @Bindable var store: StoreOf<JoinFeature>
 }
 
 // MARK: - Views
@@ -87,13 +87,15 @@ extension JoinView: View {
                 }
             }
             .sheet(
-                store: self.store.scope(state: \.$developedBy, action: { .developedBy($0) }),
-                content: DevelopedByView.init(store:)
-            )
+                item: $store.scope(state: \.developedBy, action: \.developedBy)
+            ) { developedByStore in
+                DevelopedByView(store: developedByStore)
+            }
             .sheet(
-                store: self.store.scope(state: \.$loginOptions, action: { .loginOptions($0) }),
-                content: LoginOptionsView.init(store:)
-            )
+                item: $store.scope(state: \.loginOptions, action: \.loginOptions)
+            ) { loginOptionsStore in
+                LoginOptionsView(store: loginOptionsStore)
+            }
         }
     }
 }
