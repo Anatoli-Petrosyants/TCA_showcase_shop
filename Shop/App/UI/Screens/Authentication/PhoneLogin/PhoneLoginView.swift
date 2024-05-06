@@ -12,15 +12,8 @@ import iPhoneNumberField
 // MARK: - PhoneLoginView
 
 struct PhoneLoginView {
-    let store: StoreOf<PhoneLoginFeature>
-    
+    @Bindable var store: StoreOf<PhoneLoginFeature>
     @FocusState private var focused: Bool
-    
-    struct ViewState: Equatable {
-        @BindingViewState var number: String
-        var isContinueButtonDisabled: Bool
-        var isActivityIndicatorVisible: Bool        
-    }
 }
 
 // MARK: - Views
@@ -34,49 +27,37 @@ extension PhoneLoginView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            VStack(spacing: 24) {
-                Text("Please note that you need to type at least one number for it to pass validation.")
-                    .multilineTextAlignment(.center)
-                    .font(.headline)
-                
-                iPhoneNumberField(text: viewStore.$number)
-                    .flagHidden(false)
-                    .flagSelectable(true)
-                    .maximumDigits(10)
-                    .foregroundColor(Color.black)
-                    .clearButtonMode(.whileEditing)
-                    .accentColor(Color.black)
-                    .padding()
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black03, lineWidth: 0.5)
-                    )
-                    .focused($focused)
-                
-                Button(Localization.Base.continue, action: {
-                    focused = false
-                    viewStore.send(.onContinueButtonTap)
-                })
-                .buttonStyle(.cta)
-                .disabled(viewStore.isContinueButtonDisabled)
-                
-                Spacer()
-            }
-            .loader(isLoading: viewStore.isActivityIndicatorVisible)
-            .padding(24)
-            .navigationTitle("Login with phone")
+        VStack(spacing: 24) {
+            Text("Please note that you need to type at least one number for it to pass validation.")
+                .multilineTextAlignment(.center)
+                .font(.headline)
+            
+            iPhoneNumberField(text: $store.number)
+                .flagHidden(false)
+                .flagSelectable(true)
+                .maximumDigits(10)
+                .foregroundColor(Color.black)
+                .clearButtonMode(.whileEditing)
+                .accentColor(Color.black)
+                .padding()
+                .background(Color.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.black03, lineWidth: 0.5)
+                )
+                .focused($focused)
+            
+            Button(Localization.Base.continue, action: {
+                focused = false
+                store.send(.view(.onContinueButtonTap))
+            })
+            .buttonStyle(.cta)
+            .disabled(store.isContinueButtonDisabled)
+            
+            Spacer()
         }
-    }
-}
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<PhoneLoginFeature.State> {
-    var view: PhoneLoginView.ViewState {
-        PhoneLoginView.ViewState(number: self.$number,
-                                 isContinueButtonDisabled: self.isContinueButtonDisabled,
-                                 isActivityIndicatorVisible: self.isActivityIndicatorVisible)
+        .loader(isLoading: store.isActivityIndicatorVisible)
+        .padding(24)
+        .navigationTitle("Login with phone")
     }
 }
