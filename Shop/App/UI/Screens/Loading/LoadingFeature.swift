@@ -9,17 +9,18 @@ import ComposableArchitecture
 import SwiftUI
 import Dependencies
 
-struct LoadingFeature: Reducer {
+@Reducer
+struct LoadingFeature {
 
+    @ObservableState
     struct State: Equatable {
-        @BindingState var progress: Double = 0.0
+        var progress: Double = 0.0
     }
 
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: Equatable, BindableAction {
+        enum ViewAction: Equatable {
             case onViewAppear
             case onDisappear
-            case binding(BindingAction<State>)
         }
 
         enum InternalAction: Equatable {
@@ -34,6 +35,7 @@ struct LoadingFeature: Reducer {
 
         case view(ViewAction)
         case `internal`(InternalAction)
+        case binding(BindingAction<State>)
         case delegate(Delegate)
     }
 
@@ -42,7 +44,7 @@ struct LoadingFeature: Reducer {
     private enum CancelID { case timer }
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
 
         Reduce { state, action in
             switch action {
@@ -53,9 +55,6 @@ struct LoadingFeature: Reducer {
                         
                     case .onDisappear:
                       return .cancel(id: CancelID.timer)
-
-                    case .binding:
-                        return .none
                     }
 
                 case let .internal(internalAction):
@@ -79,6 +78,9 @@ struct LoadingFeature: Reducer {
                             .send(.delegate(.didLoaded))
                         )
                     }
+                
+            case .binding:
+                return .none
 
             case .delegate:
                 return .none
