@@ -8,27 +8,32 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct OnboardingFeature: Reducer {
+@Reducer
+struct OnboardingFeature {
     
+    @ObservableState
     struct State: Equatable, Hashable {
         var items: [Onboarding] = Onboarding.pages
         var selectedTab: Onboarding.Tab = .page1
         var showGetStarted = false
     }
     
-    enum Action: Equatable {
+    enum Action: Equatable, BindableAction {
         enum Delegate {
             case didOnboardingFinished
         }
         
         case onGetStartedTapped
-        case onTabChanged(tab: Onboarding.Tab)        
+        // case onTabChanged(tab: Onboarding.Tab)
+        case binding(BindingAction<State>)
         case delegate(Delegate)
     }
     
     @Dependency(\.userDefaultsClient) var userDefaultsClient
     
     var body: some Reducer<State, Action> {
+        BindingReducer()
+
         Reduce { state, action in
             switch action {
             case .onGetStartedTapped:
@@ -39,9 +44,16 @@ struct OnboardingFeature: Reducer {
                     .send(.delegate(.didOnboardingFinished))
                 )
                 
-            case let .onTabChanged(tab):
-                state.selectedTab = tab
-                state.showGetStarted = (tab == .page3)
+//            case let .onTabChanged(tab):
+//                state.selectedTab = tab
+//                state.showGetStarted = (tab == .page3)
+//                return .none
+                
+            case .binding(\.selectedTab):
+                state.showGetStarted = (state.selectedTab == .page3)
+                return .none
+                
+            case .binding:
                 return .none
                 
             case .delegate:

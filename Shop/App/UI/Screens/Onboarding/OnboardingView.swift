@@ -11,13 +11,7 @@ import ComposableArchitecture
 // MARK: - HelpView
 
 struct OnboardingView {
-    let store: StoreOf<OnboardingFeature>
-    
-    struct ViewState: Equatable {
-        var items: [Onboarding]
-        var selectedTab: Onboarding.Tab
-        var showGetStarted: Bool
-    }
+    @Bindable var store: StoreOf<OnboardingFeature>
 }
 
 // MARK: - Views
@@ -29,28 +23,25 @@ extension OnboardingView: View {
     }
 
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                TabView(selection: viewStore.binding(get: \.selectedTab,
-                                                     send: OnboardingFeature.Action.onTabChanged) ) {
-                    ForEach(viewStore.items) { viewData in
-                        OnboardingPageView(data: viewData)
-                            .tag(viewData.tab)
-                            .padding(.bottom, 50)
-                    }
+        VStack {
+            TabView(selection: $store.selectedTab) {
+                ForEach(store.items) { viewData in
+                    OnboardingPageView(data: viewData)
+                        .tag(viewData.tab)
+                        .padding(.bottom, 50)
                 }
-                .tabViewStyle(PageTabViewStyle())
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                
-                Button(Localization.Help.getStarted) {
-                    viewStore.send(.onGetStartedTapped)
-                }
-                .buttonStyle(.cta)
-                .padding(.bottom)
-                .isHidden(!viewStore.showGetStarted)
             }
-            .padding()
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            
+            Button(Localization.Help.getStarted) {
+                store.send(.onGetStartedTapped)
+            }
+            .buttonStyle(.cta)
+            .padding(.bottom)
+            .isHidden(!store.showGetStarted)
         }
+        .padding()
     }
 }
 
