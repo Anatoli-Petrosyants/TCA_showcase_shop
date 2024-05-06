@@ -8,17 +8,18 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct PhoneOTPFeature: Reducer {
+@Reducer
+struct PhoneOTPFeature {
     
+    @ObservableState
     struct State: Equatable, Hashable {
-        @BindingState var code = ""
+        var code = ""
         var isActivityIndicatorVisible = false
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: Equatable, BindableAction {
+        enum ViewAction: Equatable {
             case onResendButtonTap
-            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -31,6 +32,7 @@ struct PhoneOTPFeature: Reducer {
 
         case view(ViewAction)
         case `internal`(InternalAction)
+        case binding(BindingAction<State>)
         case delegate(Delegate)
     }
     
@@ -39,19 +41,13 @@ struct PhoneOTPFeature: Reducer {
     @Dependency(\.databaseClient) var databaseClient
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Reduce { state, action in
             switch action {
             case .view(.onResendButtonTap):
                 return .none
                 
-            case .view(.binding(\.$code)):
-                return .send(.internal(.codeResponse))
-                
-            case .view(.binding):
-                return .none
-                                
             case .internal(.codeResponse):
                 guard state.code == Constant.validPhoneCode else { return .none }
                 state.isActivityIndicatorVisible = true
@@ -64,6 +60,12 @@ struct PhoneOTPFeature: Reducer {
                     },
                     .send(.delegate(.didCodeAuthenticated))
                 )
+                
+            case .binding(\.code):
+                return .send(.internal(.codeResponse))
+                
+            case .binding:
+                return .none
                 
             case .delegate:
                 return .none
