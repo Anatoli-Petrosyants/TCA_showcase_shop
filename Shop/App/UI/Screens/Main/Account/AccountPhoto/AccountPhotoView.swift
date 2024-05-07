@@ -11,14 +11,7 @@ import ComposableArchitecture
 // MARK: - AccountPhotoView
 
 struct AccountPhotoView {
-    let store: StoreOf<AccountPhotoFeature>
-
-    struct ViewState: Equatable {
-        var placeholder: UIImage
-        var photo: UIImage?
-        @BindingViewState var isImagePickerPresented: Bool
-        var pickerSourceType: UIImagePickerController.SourceType
-    }
+    @Bindable var store: StoreOf<AccountPhotoFeature>
 }
 
 // MARK: - Views
@@ -30,57 +23,42 @@ extension AccountPhotoView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            HStack {
-                Spacer()
-                
-                VStack(alignment: .center, spacing: 8) {                    
-                    if let photo = viewStore.photo {
-                        Image(uiImage: photo)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color.black05, lineWidth: 2))
-                    } else {
-                        Image(uiImage: viewStore.placeholder)
-                            .renderingMode(.template)
-                            .colorMultiply(.black05)
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                            .overlay(Circle().fill().foregroundColor(Color.black01))
-                    }
-                    
-                    Text("Set New Photo")
-                        .font(.body)
+        HStack {
+            Spacer()
+            
+            VStack(alignment: .center, spacing: 8) {
+                if let photo = store.photo {
+                    Image(uiImage: photo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.black05, lineWidth: 2))
+                } else {
+                    Image(uiImage: store.placeholder)
+                        .renderingMode(.template)
+                        .colorMultiply(.black05)
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .overlay(Circle().fill().foregroundColor(Color.black01))
                 }
-                .onTapGesture {
-                    viewStore.send(.onAddPhotoButtonTap)
-                }
-                // .redacted(reason: .placeholder)
                 
-                Spacer()
+                Text("Set New Photo")
+                    .font(.body)
             }
-            .confirmationDialog(store: self.store.scope(state: \.$dialog, action: AccountPhotoFeature.Action.dialog))
-            .sheet(isPresented: viewStore.$isImagePickerPresented) {
-                ImagePicker(sourceType: viewStore.pickerSourceType) {
-                    viewStore.send(.onPhotoSelected($0))
-                }
-                .ignoresSafeArea()
-            }            
+            .onTapGesture {
+                store.send(.view(.onAddPhotoButtonTap))
+            }
+            // .redacted(reason: .placeholder)
+            
+            Spacer()
         }
-    }
-}
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<AccountPhotoFeature.State> {
-    var view: AccountPhotoView.ViewState {
-        AccountPhotoView.ViewState(
-            placeholder: self.placeholder,
-            photo: self.photo,
-            isImagePickerPresented: self.$isImagePickerPresented,
-            pickerSourceType: self.pickerSourceType
-        )
+        .confirmationDialog($store.scope(state: \.dialog, action: \.dialog))
+        .sheet(isPresented: $store.isImagePickerPresented) {
+            ImagePicker(sourceType: store.pickerSourceType) {
+                store.send(.view(.onPhotoSelected($0)))
+            }
+            .ignoresSafeArea()
+        }
     }
 }
