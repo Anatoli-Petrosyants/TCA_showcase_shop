@@ -9,8 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 import UserNotifications
 
-struct PermissionsFeature: Reducer {
+@Reducer
+struct PermissionsFeature {
     
+    @ObservableState
     struct State: Equatable, Hashable {
         var title = ""
         var message = ""
@@ -19,10 +21,9 @@ struct PermissionsFeature: Reducer {
     }
     
     enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+        enum ViewAction: Equatable {
             case onViewAppear
             case onRequestNotificationsPermissionTap
-            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -41,8 +42,6 @@ struct PermissionsFeature: Reducer {
     @Dependency(\.dismiss) var dismiss
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
-        
         Reduce { state, action in
             switch action {
                 // view actions
@@ -62,9 +61,6 @@ struct PermissionsFeature: Reducer {
                     }
                 case .onRequestNotificationsPermissionTap:
                     return .send(.internal(.requestNotificationsPermission))
-                    
-                case .binding:
-                    return .none
                 }
                 
             // internal actions
