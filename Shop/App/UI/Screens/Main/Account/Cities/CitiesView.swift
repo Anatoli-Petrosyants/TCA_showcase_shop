@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - CitiesView
 
 struct CitiesView {
-    let store: StoreOf<CitiesFeature>
+    var store: StoreOf<CitiesFeature>
 }
 
 // MARK: - Views
@@ -24,45 +24,44 @@ extension CitiesView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                Group {
-                    (/Loadable<[Place]>.loading).extract(from: viewStore.data).map {
-                        ProgressView()
-                            .progressViewStyle(.main)
-                    }
-                    
-                    (/Loadable<[Place]>.loaded).extract(from: viewStore.data).map { places in
-                        List(places, id: \.self) { place in
-                            VStack(alignment: .leading) {
-                                Text("\(place.name)")
-                                    .font(.bodyBold)
-                                    .foregroundColor((place.name == viewStore.selectedCity) ? Color.blue : Color.black)
+        VStack {
+            Group {
+                (/Loadable<[Place]>.loading).extract(from: store.data).map {
+                    ProgressView()
+                        .progressViewStyle(.main)
+                }
+                
+                (/Loadable<[Place]>.loaded).extract(from: store.data).map { places in
+                    List(places, id: \.self) { place in
+                        VStack(alignment: .leading) {
+                            Text("\(place.name)")
+                                .font(.bodyBold)
+                                .foregroundColor((place.name == store.selectedCity) ? Color.blue : Color.black)
 
-                                Text("\(place.description)")
-                                    .font(.footnote)
-                                    .foregroundColor((place.name == viewStore.selectedCity) ? Color.blue : Color.black05)
-                                    .lineLimit(3)
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                viewStore.send(.onItemTap(city: place.name))
-                            }
+                            Text("\(place.description)")
+                                .font(.footnote)
+                                .foregroundColor((place.name == store.selectedCity) ? Color.blue : Color.black05)
+                                .lineLimit(3)
                         }
-                        .environment(\.defaultMinListRowHeight, 44)
-                        .listRowBackground(Color.clear)
-                        .listStyle(.plain)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            store.send(.onItemTap(city: place.name))
+                        }
                     }
-                    
-                    (/Loadable<[Place]>.failed).extract(from: viewStore.data).map { error in
-                        ErrorView(error: error) {
-                            viewStore.send(.onViewAppear)
-                        }
+                    .environment(\.defaultMinListRowHeight, 44)
+                    .listRowBackground(Color.clear)
+                    .listStyle(.plain)
+                }
+                
+                (/Loadable<[Place]>.failed).extract(from: store.data).map { error in
+                    ErrorView(error: error) {
+                        store.send(.onViewAppear)
                     }
                 }
-            }            
-            .navigationTitle(Localization.Account.sectionCityPlaceholder)
-            .toolbar(.hidden, for: .tabBar)
+            }
         }
+        .navigationTitle(Localization.Account.sectionCityPlaceholder)
+        .toolbar(.hidden, for: .tabBar)
+
     }
 }
