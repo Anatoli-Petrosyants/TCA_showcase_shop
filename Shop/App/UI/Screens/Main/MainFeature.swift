@@ -41,7 +41,7 @@ struct MainFeature {
     
     @ObservableState
     struct State {
-        var currentTab = Tab.account
+        var currentTab = Tab.products
         
         var sidebar = SidebarFeature.State()
         var products = ProductsFeature.State()
