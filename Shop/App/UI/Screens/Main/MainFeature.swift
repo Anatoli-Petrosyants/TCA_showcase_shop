@@ -40,13 +40,13 @@ enum Tab: Int, CaseIterable {
 struct MainFeature {
     
     @ObservableState
-    struct State: Equatable {
+    struct State {
         var currentTab = Tab.account
         var notifications = NotificationsFeature.State()
         var account = AccountFeature.State()
     }
     
-    enum Action: Equatable {
+    enum Action {
         case onTabChanged(Tab)
         case addNotifications(Notification)
         case notifications(NotificationsFeature.Action)

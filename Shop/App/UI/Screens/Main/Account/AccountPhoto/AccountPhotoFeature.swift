@@ -15,8 +15,10 @@ struct AccountPhotoFeature {
     struct State: Equatable {
         var placeholder = UIImage(named: "ic_photo_ placeholder")!
         var photo: UIImage? = nil
+        
         var isImagePickerPresented = false
         var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
+        
         @Presents var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
     
@@ -43,6 +45,8 @@ struct AccountPhotoFeature {
     }
     
     var body: some ReducerOf<Self> {
+        BindingReducer()
+        
         Reduce { state, action in
             switch action {
             // view actions
@@ -89,10 +93,7 @@ struct AccountPhotoFeature {
                 state.photo = nil
                 return .none
 
-            case .dialog, .delegate:
-                return .none
-
-            case .binding:
+            case .dialog, .binding, .delegate:
                 return .none
             }
         }

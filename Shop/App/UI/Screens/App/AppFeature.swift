@@ -15,7 +15,7 @@ import FirebaseFirestore
 struct AppFeature {
 
     @ObservableState
-    enum State: Equatable {
+    enum State {
         case loading(LoadingFeature.State)
         case onboarding(OnboardingFeature.State)
         case join(JoinFeature.State)
@@ -24,7 +24,7 @@ struct AppFeature {
         public init() { self = .loading(LoadingFeature.State()) }
     }
 
-    enum Action: Equatable {
+    enum Action {
         enum AppDelegateAction: Equatable {
             case didFinishLaunching
             case didRegisterForRemoteNotifications(TaskResult<Data>)
