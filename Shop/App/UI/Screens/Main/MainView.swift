@@ -96,7 +96,7 @@ extension MainView: View {
             SidebarView(
                 store: self.store.scope(
                     state: \.sidebar,
-                    action: MainFeature.Action.sidebar
+                    action: \.sidebar
                 )
             )
             .ignoresSafeArea()

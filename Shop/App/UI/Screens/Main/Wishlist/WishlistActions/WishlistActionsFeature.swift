@@ -8,13 +8,14 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct WishlistActionsFeature: Reducer {
+@Reducer
+struct WishlistActionsFeature {
     
-    struct State: Equatable {
+    struct State {
         
     }
     
-    enum Action: Equatable {
+    enum Action {
         enum ViewAction: Equatable {
             case onRemoveTap
             case onAddTap
