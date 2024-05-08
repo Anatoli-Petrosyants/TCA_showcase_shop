@@ -23,79 +23,63 @@ extension JoinView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in            
-            NavigationStackStore(
-                self.store.scope(state: \.path, action: { .path($0) })
-            ) {
-                VStack {
-                    Spacer()
-                    
-                    Image(systemName: "pencil.slash")
-                        .font(.system(size: 100))
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
+            VStack {
+                Spacer()
+                
+                Image(systemName: "pencil.slash")
+                    .font(.system(size: 100))
 
-                    VStack(spacing: 6) {
-                        Text(Localization.LoginOptions.description)
-                            .multilineTextAlignment(.center)
-                            .font(.headline)
+                VStack(spacing: 6) {
+                    Text(Localization.LoginOptions.description)
+                        .multilineTextAlignment(.center)
+                        .font(.headline)
 
-                        Button {
-                            viewStore.send(.view(.onDevelopedByTap))
-                        } label: {
-                            Text("Anatoli Petrosyants")
-                                .font(.headlineBold)
-                                .foregroundColor(.black)
-                                .underline()
-                        }
+                    Button {
+                        store.send(.view(.onDevelopedByTap))
+                    } label: {
+                        Text("Anatoli Petrosyants")
+                            .font(.headlineBold)
+                            .foregroundColor(.black)
+                            .underline()
                     }
-                    .padding(.top, 24)
-                    
-                    Spacer()
-                    
-                    Button("Join", action: {
-                        viewStore.send(.view(.onJoinButtonTap))
-                    })
-                    .buttonStyle(.cta)
                 }
-                .padding(24)
-                .navigationTitle(Localization.LoginOptions.title)
-                .modifier(NavigationBarModifier())
-            } destination: {
-                switch $0 {
-                case .emailLogin:
-                    CaseLet(/JoinFeature.Path.State.emailLogin,
-                        action: JoinFeature.Path.Action.emailLogin,
-                        then: EmailLoginView.init(store:)
-                    )
-                    
-                case .forgotPassword:
-                    CaseLet(/JoinFeature.Path.State.forgotPassword,
-                        action: JoinFeature.Path.Action.forgotPassword,
-                        then: ForgotPasswordView.init(store:)
-                    )
-                    
-                case .phoneLogin:
-                    CaseLet(/JoinFeature.Path.State.phoneLogin,
-                        action: JoinFeature.Path.Action.phoneLogin,
-                        then: PhoneLoginView.init(store:)
-                    )
-                    
-                case .phoneOTP:
-                    CaseLet(/JoinFeature.Path.State.phoneOTP,
-                        action: JoinFeature.Path.Action.phoneOTP,
-                        then: PhoneOTPView.init(store:)
-                    )
-                }
+                .padding(.top, 24)
+                
+                Spacer()
+                
+                Button("Join", action: {
+                    store.send(.view(.onJoinButtonTap))
+                })
+                .buttonStyle(.cta)
             }
-            .sheet(
-                item: $store.scope(state: \.developedBy, action: \.developedBy)
-            ) { developedByStore in
-                DevelopedByView(store: developedByStore)
+            .padding(24)
+            .navigationTitle(Localization.LoginOptions.title)
+            .modifier(NavigationBarModifier())
+        } destination: { store in
+            switch store.case {
+            case let .emailLogin(store):
+                EmailLoginView(store: store)
+                
+            case let .forgotPassword(store):
+                ForgotPasswordView(store: store)
+                
+            case let .phoneLogin(store):
+                PhoneLoginView(store: store)
+                
+            case let .phoneOTP(store):
+                PhoneOTPView(store: store)
             }
-            .sheet(
-                item: $store.scope(state: \.loginOptions, action: \.loginOptions)
-            ) { loginOptionsStore in
-                LoginOptionsView(store: loginOptionsStore)
-            }
+        }
+        .sheet(
+            item: $store.scope(state: \.developedBy, action: \.developedBy)
+        ) { developedByStore in
+            DevelopedByView(store: developedByStore)
+        }
+        .sheet(
+            item: $store.scope(state: \.loginOptions, action: \.loginOptions)
+        ) { loginOptionsStore in
+            LoginOptionsView(store: loginOptionsStore)
         }
     }
 }

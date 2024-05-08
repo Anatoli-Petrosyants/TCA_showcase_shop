@@ -235,7 +235,9 @@ struct AccountFeature {
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
-        .ifLet(\.$permissions, action: /Action.permissions) { PermissionsFeature() }
+        .ifLet(\.$permissions, action: /Action.permissions) {
+            PermissionsFeature()
+        }
         .forEach(\.path, action: \.path)
     }
 }

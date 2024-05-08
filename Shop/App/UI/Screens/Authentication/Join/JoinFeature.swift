@@ -13,13 +13,13 @@ import AuthenticationServices
 struct JoinFeature {
  
     @ObservableState
-    struct State: Equatable {
+    struct State {
         var path = StackState<Path.State>()
         @Presents var developedBy: DevelopedByFeature.State?
         @Presents var loginOptions: LoginOptionsFeature.State?
     }
     
-    enum Action: Equatable {
+    enum Action {
         enum ViewAction: Equatable {
             case onDevelopedByTap
             case onJoinButtonTap
@@ -38,41 +38,15 @@ struct JoinFeature {
         case delegate(Delegate)
         case developedBy(PresentationAction<DevelopedByFeature.Action>)
         case loginOptions(PresentationAction<LoginOptionsFeature.Action>)
-        case path(StackAction<Path.State, Path.Action>)
+        case path(StackActionOf<Path>)
     }
     
-    struct Path: Reducer {
-        enum State: Equatable {
-            case emailLogin(EmailLoginFeature.State)
-            case forgotPassword(ForgotPasswordFeature.State)
-            case phoneLogin(PhoneLoginFeature.State)
-            case phoneOTP(PhoneOTPFeature.State)
-        }
-        
-        enum Action: Equatable {
-            case emailLogin(EmailLoginFeature.Action)
-            case forgotPassword(ForgotPasswordFeature.Action)
-            case phoneLogin(PhoneLoginFeature.Action)
-            case phoneOTP(PhoneOTPFeature.Action)
-        }
-        
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.emailLogin, action: /Action.emailLogin) {
-                EmailLoginFeature()
-            }
-            
-            Scope(state: /State.forgotPassword, action: /Action.forgotPassword) {
-                ForgotPasswordFeature()
-            }
-            
-            Scope(state: /State.phoneLogin, action: /Action.phoneLogin) {
-                PhoneLoginFeature()
-            }
-            
-            Scope(state: /State.phoneOTP, action: /Action.phoneOTP) {
-                PhoneOTPFeature()
-            }
-        }
+    @Reducer(state: .equatable)
+    enum Path {
+        case emailLogin(EmailLoginFeature)
+        case forgotPassword(ForgotPasswordFeature)
+        case phoneLogin(PhoneLoginFeature)
+        case phoneOTP(PhoneOTPFeature)
     }
     
     @Dependency(\.authorizationControllerClient) var authorizationControllerClient
@@ -175,8 +149,6 @@ struct JoinFeature {
         .ifLet(\.$loginOptions, action: \.loginOptions) {
             LoginOptionsFeature()
         }
-        .forEach(\.path, action: /Action.path) {
-            Path()
-        }
+        .forEach(\.path, action: \.path)
     }
 }
