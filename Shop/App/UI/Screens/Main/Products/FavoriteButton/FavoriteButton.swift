@@ -23,13 +23,11 @@ extension FavoriteButton: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Button {
-                viewStore.send(.onTap)
-            } label: {
-                Image(systemName: "heart")
-                    .symbolVariant(viewStore.isFavorite ? .fill : .none)
-            }
+        Button {
+            store.send(.onTap)
+        } label: {
+            Image(systemName: "heart")
+                .symbolVariant(store.isFavorite ? .fill : .none)
         }
     }
 }
