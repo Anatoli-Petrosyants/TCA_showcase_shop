@@ -9,16 +9,14 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductPhotosFeature: Reducer {
+@Reducer
+struct ProductPhotosFeature {
     
-    // MARK: State
-    
+    @ObservableState
     struct State: Equatable {
         var urls: [String] = []
     }
-    
-    // MARK: Action
-    
+
     enum Action: Equatable {
         case onCloseTap
     }
