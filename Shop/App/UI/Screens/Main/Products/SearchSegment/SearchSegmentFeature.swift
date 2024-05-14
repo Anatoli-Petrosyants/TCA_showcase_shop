@@ -12,12 +12,12 @@ import ComposableArchitecture
 struct SearchSegmentFeature {
     
     @ObservableState
-    struct State: Equatable, Hashable {
+    struct State: Hashable {
         var segments = Segment.allCases
         var selectedSegment = Segment.all
     }
     
-    enum Action: BindableAction, Equatable {
+    enum Action: BindableAction {
         enum Delegate: Equatable {
             case didSegmentedChanged(String)
         }

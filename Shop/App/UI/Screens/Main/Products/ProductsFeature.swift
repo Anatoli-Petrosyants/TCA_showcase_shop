@@ -8,9 +8,11 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductsFeature: Reducer {
+@Reducer
+struct ProductsFeature {
 
-    struct State: Equatable {
+    @ObservableState
+    struct State {
         var isLoading = false
         var productsError: AppError? = nil
         var initalItems: IdentifiedArrayOf<ProductItemFeature.State> = []
@@ -21,20 +23,20 @@ struct ProductsFeature: Reducer {
         var path = StackState<Path.State>()
     }
 
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: BindableAction {
+        enum ViewAction {
             case onViewLoad
             case onMenuTap
             case onPulledToRefresh
         }
 
-        enum InternalAction: Equatable {
+        enum InternalAction {
             case loadProducts
             case productsResponse(TaskResult<[Product]>)
             case processItems([Product])
         }
 
-        enum Delegate: Equatable {
+        enum Delegate {
             case didProductAddedToBasket(Product)
             case didTopPicksLoaded([Product])
             case didFavoriteChanged(Bool, Product)
