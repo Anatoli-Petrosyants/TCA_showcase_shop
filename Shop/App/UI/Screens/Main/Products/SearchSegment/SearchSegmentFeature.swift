@@ -8,11 +8,13 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SearchSegmentFeature: Reducer {
+@Reducer
+struct SearchSegmentFeature {
     
+    @ObservableState
     struct State: Equatable, Hashable {
         var segments = Segment.allCases
-        @BindingState var selectedSegment = Segment.all
+        var selectedSegment = Segment.all
     }
     
     enum Action: BindableAction, Equatable {
@@ -29,7 +31,7 @@ struct SearchSegmentFeature: Reducer {
         
         Reduce { state, action in
             switch action {
-            case .binding(\.$selectedSegment):
+            case .binding(\.selectedSegment):
                 return .send(.delegate(.didSegmentedChanged(state.selectedSegment.query)))
                 
             case .binding, .delegate:

@@ -8,8 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductUsersFeature: Reducer {
+@Reducer
+struct ProductUsersFeature {
     
+    @ObservableState
     struct State: Equatable, Hashable {
         var items: [User] = []
     }
