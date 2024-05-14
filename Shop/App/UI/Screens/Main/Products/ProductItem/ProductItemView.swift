@@ -27,51 +27,49 @@ extension ProductItemView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(alignment: .leading, spacing: 6) {
-                ZStack {
-                    WebImage(url: viewStore.product.imageURL)
-                        .resizable()
-                        .indicator(.activity)
-                        .transition(.fade(duration: 0.5))
-                        .scaledToFit()
-                        .padding()
-                }
-                
-                Text(viewStore.product.title)
+        VStack(alignment: .leading, spacing: 6) {
+            ZStack {
+                WebImage(url: store.product.imageURL)
+                    .resizable()
+                    .indicator(.activity)
+                    .transition(.fade(duration: 0.5))
+                    .scaledToFit()
+                    .padding()
+            }
+            
+            Text(store.product.title)
+                .font(.footnote)
+            
+            HStack(spacing: 4) {
+                Text(String(format: "%.1f", store.product.ratingStars))
                     .font(.footnote)
                 
-                HStack(spacing: 4) {
-                    Text(String(format: "%.1f", viewStore.product.ratingStars))
-                        .font(.footnote)
-                    
-                    RatingView(rating: viewStore.product.ratingStars)
-                    
-                    Text("(\(viewStore.product.ratingCount))")
-                        .font(.footnote)
-                        .foregroundColor(.black05)
-                }
+                RatingView(rating: store.product.ratingStars)
                 
-                Text("\(viewStore.product.price.currency())")
-                    .font(.body)
-                
-                HStack {
-                    Text("\(viewStore.product.category)")
-                        .font(.footnote)
-                        .foregroundColor(.blue)
-                        .padding(2)
-                    
-                    Spacer()
-                    
-                    FavoriteButton(
-                        store: self.store.scope(
-                            state: \.favorite,
-                            action: ProductItemFeature.Action.favorite
-                        )
-                    )
-                }
+                Text("(\(store.product.ratingCount))")
+                    .font(.footnote)
+                    .foregroundColor(.black05)
             }
-            .padding()
+            
+            Text("\(store.product.price.currency())")
+                .font(.body)
+            
+            HStack {
+                Text("\(store.product.category)")
+                    .font(.footnote)
+                    .foregroundColor(.blue)
+                    .padding(2)
+                
+                Spacer()
+                
+                FavoriteButton(
+                    store: self.store.scope(
+                        state: \.favorite,
+                        action: \.favorite
+                    )
+                )
+            }
         }
+        .padding()
     }
 }

@@ -8,8 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductItemFeature: Reducer {
+@Reducer
+struct ProductItemFeature {
     
+    @ObservableState
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
