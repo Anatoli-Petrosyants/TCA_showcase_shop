@@ -84,12 +84,7 @@ extension MainView: View {
             .accentColor(.black)
             .onAppear {
                 let appearance = UITabBarAppearance()
-                appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-                appearance.backgroundColor = UIColor(Color.gray.opacity(0.2))
-
-                // Use this appearance when scrolling behind the TabView:
-                UITabBar.appearance().standardAppearance = appearance
-                // Use this appearance when scrolled all the way up:
+                appearance.configureWithDefaultBackground()
                 UITabBar.appearance().scrollEdgeAppearance = appearance
             }
             
