@@ -170,23 +170,28 @@ extension AccountView: View {
         ) { store in
             PermissionsView(store: store)
         }
-        .popup(
-            item: $store.toastMessage
-        ) { message in
-            Text(message)
-                .frame(width: 340, height: 60)
-                .font(.body)
-                .foregroundColor(Color.white)
-                .background(Color.black)
-                .cornerRadius(30.0)
-        } customize: {
-            $0
-             .type(.floater())
-             .position(.top)
-             .animation(.spring())
-             .closeOnTapOutside(true)
-             .closeOnTap(true)
-             .autohideIn(3)
+        .banner(
+            isPresented: store.isPresentedBanner, autoDismiss: .after(3)
+        ) {
+            Text("asas")
         }
     }
+    
+//    private var successfullySavedBanner: some View {
+//        HStack(alignment: .center, spacing: 11) {
+//            Text(Localization.Base.successfullySaved)
+//                .font(.body)
+//                .bold()
+//                .foregroundColor(Color.white)
+//        }
+//        .frame(width: 183, height: 56)
+//        .background(Color(red: 0.15, green: 0.15, blue: 0.15))
+//        .cornerRadius(20)
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 20)
+//                .inset(by: 0.25)
+//                .stroke(.white.opacity(0.1), lineWidth: 0.5)
+//        )
+//        .padding()
+//    }
 }

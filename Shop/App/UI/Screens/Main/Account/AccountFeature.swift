@@ -44,7 +44,7 @@ struct AccountFeature {
         var email = ""
         var phone = ""
         
-        var toastMessage: LocalizedStringKey? = nil
+        var isPresentedBanner: Bool = false
         @Presents var dialog: ConfirmationDialogState<Action.DialogAction>?
         @Presents var permissions: PermissionsFeature.State?
 
@@ -125,8 +125,8 @@ struct AccountFeature {
                         }
                     )
                     
-                case .onSaveTap:
-                    state.toastMessage = Localization.Base.successfullySaved
+                case .onSaveTap:                    
+                    state.isPresentedBanner = true
                     
                     return .run { [id = state.accountId,
                                    firstName = state.firstName,
