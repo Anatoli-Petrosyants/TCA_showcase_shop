@@ -8,20 +8,22 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SidebarFeature: Reducer {
+@Reducer
+struct SidebarFeature {
     
     enum SidebarItemType {
         case logout, share, contact, rate, messages, map, camera, countries, healthKit
     }
     
+    @ObservableState
     struct State: Equatable, Hashable {
         var isVisible = false
-        @BindingState var isSharePresented = false
-        @PresentationState var videoPlayer: VideoPlayerFeature.State?
+        var isSharePresented = false
+        @Presents var videoPlayer: VideoPlayerFeature.State?
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: BindableAction, Equatable {
+        enum ViewAction: Equatable {
             case onDismiss
             case onLogoutTap
             case onContactTap
@@ -35,7 +37,6 @@ struct SidebarFeature: Reducer {
             case onCameraTap
             case onHealthKitTap
             case onVideoPlayerTap
-            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -50,10 +51,11 @@ struct SidebarFeature: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-    }        
+        case binding(BindingAction<State>)
+    }
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         SidebarLogic()
         
         Reduce { state, action in
@@ -118,16 +120,13 @@ struct SidebarFeature: Reducer {
                 case .onVideoPlayerTap:
                     state.videoPlayer = VideoPlayerFeature.State(url: Constant.videoURL)
                     return .send(.internal(.toggleVisibility))
-
-                case .binding:
-                    return .none
                 }
                 
             case .internal(.toggleVisibility):
                 state.isVisible.toggle()
                 return .none
 
-            case .delegate, .videoPlayer:
+            case .binding, .delegate, .videoPlayer:
                 return .none
             }
         }

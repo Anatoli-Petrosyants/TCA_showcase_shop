@@ -11,14 +11,7 @@ import ComposableArchitecture
 // MARK: - SidebarView
 
 struct SidebarView {
-    let store: StoreOf<SidebarFeature>
-
-    struct ViewState: Equatable {
-        var isVisible: Bool
-        @BindingViewState var isSharePresented: Bool
-    }
-    
-    typealias SidebarReducerViewStore = ViewStore<SidebarView.ViewState, SidebarFeature.Action.ViewAction>
+    @Bindable var store: StoreOf<SidebarFeature>
 }
 
 // MARK: - Views
@@ -30,63 +23,51 @@ extension SidebarView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            ZStack {
-                GeometryReader { _ in
-                    EmptyView()
-                }
-                .background(.black.opacity(0.6))
-                .opacity(viewStore.isVisible ? 1 : 0)
-                .animation(.easeInOut.delay(0.1), value: viewStore.isVisible)
-                .onTapGesture {                                        
-                    viewStore.send(.onDismiss)
-                }
-                
-                HStack(alignment: .top) {
-                    ZStack(alignment: .leading) {
-                        Color.white
-                        
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text(Localization.Sidebar.title)
-                                .font(.largeTitleBold)
-                                .padding(.top, 30)
-                            Spacer()
-                            // settingsView(viewStore: viewStore)
-                            featuresView(viewStore: viewStore)
-                        }
-                        .tint(.black)
-                        .padding(24)
-                        .padding([.top, .bottom], 24)
-                        
-                    }
-                    .frame(width: Constant.sideBarWidth)
-                    .offset(x: viewStore.isVisible ? 0 : -Constant.sideBarWidth)
-                    .animation(.default, value: viewStore.isVisible)
-
-                    Spacer()
-                }                                    
-            }            
-            .edgesIgnoringSafeArea(.all)
-            .sheet(isPresented: viewStore.$isSharePresented) {
-                ActivityViewRepresentable(activityItems: [Constant.shareURL])
-                    .presentationDetents([.medium])
+        ZStack {
+            GeometryReader { _ in
+                EmptyView()
             }
-            .sheet(
-                store: self.store.scope(state: \.$videoPlayer,
-                                        action: { .videoPlayer($0) }),
-                content:
-                    VideoPlayerView.init(store:)
-            )
+            .background(.black.opacity(0.6))
+            .opacity(store.isVisible ? 1 : 0)
+            .animation(.easeInOut.delay(0.1), value: store.isVisible)
+            .onTapGesture {
+                store.send(.view(.onDismiss))
+            }
+            
+            HStack(alignment: .top) {
+                ZStack(alignment: .leading) {
+                    Color.white
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text(Localization.Sidebar.title)
+                            .font(.largeTitleBold)
+                            .padding(.top, 30)
+                        Spacer()
+                        // settingsView(store: store)
+                        featuresView(store: store)
+                    }
+                    .tint(.black)
+                    .padding(24)
+                    .padding([.top, .bottom], 24)
+                    
+                }
+                .frame(width: Constant.sideBarWidth)
+                .offset(x: store.isVisible ? 0 : -Constant.sideBarWidth)
+                .animation(.default, value: store.isVisible)
+
+                Spacer()
+            }
         }
-    }
-}
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<SidebarFeature.State> {
-    var view: SidebarView.ViewState {
-        SidebarView.ViewState(isVisible: self.isVisible,
-                              isSharePresented: self.$isSharePresented)
+        .edgesIgnoringSafeArea(.all)
+        .sheet(isPresented: $store.isSharePresented) {
+            ActivityViewRepresentable(activityItems: [Constant.shareURL])
+                .presentationDetents([.medium])
+        }
+        .sheet(
+            item: $store.scope(state: \.videoPlayer, action: \.videoPlayer)
+        ) { store in
+            VideoPlayerView(store: store)
+        }
     }
 }
 
@@ -94,80 +75,80 @@ extension BindingViewStore<SidebarFeature.State> {
 
 extension SidebarView {
 
-    private func settingsView(viewStore: SidebarReducerViewStore) -> some View {
+    private func settingsView(store: StoreOf<SidebarFeature>) -> some View {
         Group {
             Button {
-                viewStore.send(.onHealthKitTap)
+                store.send(.view(.onHealthKitTap))
             } label: {
                 Label(Localization.Sidebar.healthKit, systemImage: "cross.case")
             }
 
             Button {
-                viewStore.send(.onCameraTap)
+                store.send(.view(.onCameraTap))
             } label: {
                 Label(Localization.Sidebar.camera, systemImage: "camera")
             }
 
             Button {
-                viewStore.send(.onCountriesTap)
+                store.send(.view(.onCountriesTap))
             } label: {
                 Label(Localization.Sidebar.chooseCountry, systemImage: "house.and.flag")
             }
 
             Button {
-                viewStore.send(.onMapTap)
+                store.send(.view(.onMapTap))
             } label: {
                 Label(Localization.Sidebar.map, systemImage: "map")
             }
 
             Button {
-                viewStore.send(.onMessagesTap)
+                store.send(.view(.onMessagesTap))
             } label: {
                 Label(Localization.Sidebar.inAppMessages, systemImage: "list.dash.header.rectangle")
             }
             
             Button {
-                viewStore.send(.onVideoPlayerTap)
+                store.send(.view(.onVideoPlayerTap))
             } label: {
                 Label(Localization.Sidebar.videoPlayer, systemImage: "video")
             }
         }
     }
 
-    private func featuresView(viewStore: SidebarReducerViewStore) -> some View {
+    private func featuresView(store: StoreOf<SidebarFeature>) -> some View {
         Group {
             Button {
-                viewStore.send(.onDarkModeTap)
+                store.send(.view(.onDarkModeTap))
             } label: {
                 Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
             }
             
             Button {
-                viewStore.send(.onAppSettings)
+                store.send(.view(.onAppSettings))
             } label: {
                 Label(Localization.Sidebar.appSettings, systemImage: "gearshape")
             }
 
             Button {
-                viewStore.send(.onShareTap)
+                store.send(.view(.onShareTap))
             } label: {
                 Label(Localization.Sidebar.shareApp, systemImage: "square.and.arrow.up")
             }
 
             Button {
-                viewStore.send(.onRateTap)
+                store.send(.view(.onRateTap))
             } label: {
                 Label(Localization.Sidebar.rateUs, systemImage: "person.2")
             }
 
             Button {
-                viewStore.send(.onContactTap)
+                store.send(.view(.onContactTap))
             } label: {
                 Label(Localization.Sidebar.contactUs, systemImage: "envelope")
             }
 
             Button {
-                viewStore.send(.onLogoutTap)
+                store.send(.view(.onLogoutTap))
             } label: {
                 Label(Localization.Base.logout, systemImage: "rectangle.portrait.and.arrow.right")
             }
