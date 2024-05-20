@@ -11,43 +11,39 @@ import ComposableArchitecture
 // MARK: - HealthKitView
 
 struct HealthKitView {
-    let store: StoreOf<HealthKitFeature>
+    @Bindable var store: StoreOf<HealthKitFeature>
 }
 
 // MARK: - Views
 
 extension HealthKitView: View {
-    
-    typealias HealthKitReducerViewStore = ViewStore<HealthKitFeature.State, HealthKitFeature.Action>
-    
+
     var body: some View {
         content
             .onAppear { self.store.send(.view(.onViewAppear)) }
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in            
-            VStack {
-                HStack(spacing: 60) {
-                    stepsView(viewStore: viewStore)
-                    distanceView(viewStore: viewStore)
-                    Spacer()
-                }
-
+        VStack {
+            HStack(spacing: 60) {
+                stepsView(store: store)
+                distanceView(store: store)
                 Spacer()
             }
-            .padding()
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("HealthKit")
-            .toolbar(.hidden, for: .tabBar)
-            .loader(isLoading: viewStore.isActivityIndicatorVisible)
-            .alert(store: self.store.scope(state: \.$alert, action: HealthKitFeature.Action.alert))
-        }        
+
+            Spacer()
+        }
+        .padding()
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("HealthKit")
+        .toolbar(.hidden, for: .tabBar)
+        .loader(isLoading: store.isActivityIndicatorVisible)
+        .alert($store.scope(state: \.alert, action: \.alert))
     }
     
-    private func stepsView(viewStore: HealthKitReducerViewStore) -> some View {
+    private func stepsView(store: StoreOf<HealthKitFeature>) -> some View {
         VStack(alignment: .leading) {
-            if let last = viewStore.steps.last {
+            if let last = store.steps.last {
                 Text("Steps")
                     .foregroundColor(.black)
                     .font(.title3)
@@ -59,9 +55,9 @@ extension HealthKitView: View {
         }
     }
     
-    private func distanceView(viewStore: HealthKitReducerViewStore) -> some View {
+    private func distanceView(store: StoreOf<HealthKitFeature>) -> some View {
         VStack(alignment: .leading) {
-            if let last = viewStore.distances.last {
+            if let last = store.distances.last {
                 Text("Distance")
                     .foregroundColor(.black)
                     .font(.title3)

@@ -9,8 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct CountriesFeature: Reducer {
+@Reducer
+struct CountriesFeature {
     
+    @ObservableState
     struct State: Equatable {
         var countryCodes = NSLocale.isoCountryCodes
     }

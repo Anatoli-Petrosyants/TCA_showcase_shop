@@ -16,14 +16,14 @@ struct SidebarFeature {
     }
     
     @ObservableState
-    struct State: Equatable, Hashable {
+    struct State: Hashable {
         var isVisible = false
         var isSharePresented = false
         @Presents var videoPlayer: VideoPlayerFeature.State?
     }
     
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: BindableAction {
+        enum ViewAction {
             case onDismiss
             case onLogoutTap
             case onContactTap
@@ -39,11 +39,11 @@ struct SidebarFeature {
             case onVideoPlayerTap
         }
         
-        enum InternalAction: Equatable {
+        enum InternalAction {
             case toggleVisibility
         }
 
-        enum Delegate: Equatable {
+        enum Delegate {
             case didSidebarTapped(SidebarItemType)
         }
 

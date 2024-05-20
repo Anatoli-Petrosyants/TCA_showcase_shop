@@ -9,9 +9,11 @@ import SwiftUI
 import ComposableArchitecture
 import AVKit
 
-struct VideoPlayerFeature: Reducer {
+@Reducer
+struct VideoPlayerFeature {
     
-    struct State: Equatable, Hashable {
+    @ObservableState
+    struct State: Hashable {
         let url: URL
 
         var player: AVPlayer = {
@@ -19,7 +21,7 @@ struct VideoPlayerFeature: Reducer {
         }()
     }
     
-    enum Action: Equatable {
+    enum Action {
         case onViewAppear
         case onCloseTap
     }
