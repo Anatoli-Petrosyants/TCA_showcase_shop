@@ -171,27 +171,27 @@ extension AccountView: View {
             PermissionsView(store: store)
         }
         .banner(
-            isPresented: store.isPresentedBanner, autoDismiss: .after(3)
+            isPresented: $store.isPresentedBanner, autoDismiss: .after(3)
         ) {
-            Text("asas")
+            successfullySavedBanner
         }
     }
     
-//    private var successfullySavedBanner: some View {
-//        HStack(alignment: .center, spacing: 11) {
-//            Text(Localization.Base.successfullySaved)
-//                .font(.body)
-//                .bold()
-//                .foregroundColor(Color.white)
-//        }
-//        .frame(width: 183, height: 56)
-//        .background(Color(red: 0.15, green: 0.15, blue: 0.15))
-//        .cornerRadius(20)
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 20)
-//                .inset(by: 0.25)
-//                .stroke(.white.opacity(0.1), lineWidth: 0.5)
-//        )
-//        .padding()
-//    }
+    private var successfullySavedBanner: some View {
+        HStack(alignment: .center, spacing: 11) {
+            Text(Localization.Base.successfullySaved)
+                .font(.body)
+                .bold()
+                .foregroundColor(Color.white)
+        }
+        .frame(width: 300, height: 56)
+        .background(Color(red: 0.15, green: 0.15, blue: 0.15))
+        .cornerRadius(28)
+        .overlay(
+            RoundedRectangle(cornerRadius: 28)
+                .inset(by: 0.25)
+                .stroke(.white.opacity(0.1), lineWidth: 0.5)
+        )
+        .padding()
+    }
 }
