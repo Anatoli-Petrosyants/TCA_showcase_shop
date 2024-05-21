@@ -32,23 +32,23 @@ struct BasketFeature {
     }
     
     enum Action: BindableAction {
-        enum ViewAction: Equatable {
+        enum ViewAction {
             case onViewAppear
             case onDeleteItemButtonTap(Product)
             case onProceedToCheckoutButtonTap
         }
         
-        enum InternalAction: Equatable {
+        enum InternalAction {
             case deleteProduct(Product)
         }
         
-        enum Delegate: Equatable {
+        enum Delegate {
             case didAddProductsTapped
             case didTopPickAddedToBasket(Product)
             case didSuccessfullyCheckoutProducts
         }
         
-        enum DialogAction: Equatable {
+        enum DialogAction {
             case confirmProductDeletion(Product)
         }
 

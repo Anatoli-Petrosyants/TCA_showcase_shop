@@ -16,11 +16,11 @@ struct AddProductFeature {
     }
     
     enum Action {
-        enum ViewAction: Equatable {            
+        enum ViewAction {
             case onAddProductsButtonTap
         }
         
-        enum Delegate: Equatable {
+        enum Delegate {
             case didAddProductsTapped
         }
 

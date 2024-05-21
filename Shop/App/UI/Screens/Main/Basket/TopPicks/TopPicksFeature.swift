@@ -12,16 +12,16 @@ import ComposableArchitecture
 struct TopPicksFeature {
     
     @ObservableState
-    struct State: Equatable {
+    struct State {
         var products: [Product] = []
     }
     
-    enum Action: Equatable {
-        enum ViewAction: Equatable {
+    enum Action {
+        enum ViewAction {
             case onItemTap(Product)
         }
         
-        enum Delegate: Equatable {
+        enum Delegate {
             case didItemSelected(Product)
         }
 
