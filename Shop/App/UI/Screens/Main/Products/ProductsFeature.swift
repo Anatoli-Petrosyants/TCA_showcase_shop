@@ -51,53 +51,17 @@ struct ProductsFeature {
         case input(SearchInputFeature.Action)
         case segment(SearchSegmentFeature.Action)        
         case product(id: ProductItemFeature.State.ID, action: ProductItemFeature.Action)
-        case path(StackAction<Path.State, Path.Action>)
+        case path(StackActionOf<Path>)
     }
-
-    struct Path: Reducer {
-        enum State: Equatable {
-            case details(ProductDetailFeature.State)
-            case inAppMessages(InAppMessagesFeature.State)
-            case map(MapFeature.State)
-            case camera(CameraFeature.State)
-            case countries(CountriesFeature.State)
-            case healthKit(HealthKitFeature.State)
-        }
-
-        enum Action: Equatable {
-            case details(ProductDetailFeature.Action)
-            case inAppMessages(InAppMessagesFeature.Action)
-            case map(MapFeature.Action)
-            case camera(CameraFeature.Action)
-            case countries(CountriesFeature.Action)
-            case healthKit(HealthKitFeature.Action)
-        }
-
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.details, action: /Action.details) {
-                ProductDetailFeature()
-            }
-
-            Scope(state: /State.inAppMessages, action: /Action.inAppMessages) {
-                InAppMessagesFeature()
-            }
-
-            Scope(state: /State.map, action: /Action.map) {
-                MapFeature()
-            }
-
-            Scope(state: /State.camera, action: /Action.camera) {
-                CameraFeature()
-            }
-
-            Scope(state: /State.countries, action: /Action.countries) {
-                CountriesFeature()
-            }
-
-            Scope(state: /State.healthKit, action: /Action.healthKit) {
-                HealthKitFeature()
-            }
-        }
+    
+    @Reducer(state: .equatable)
+    enum Path {
+        case details(ProductDetailFeature)
+//        case inAppMessages(InAppMessagesFeature)
+//        case map(MapFeature)
+//        case camera(CameraFeature)
+//        case countries(CountriesFeature)
+//        case healthKit(HealthKitFeature)
     }
 
     private enum CancelID { case products }
@@ -279,9 +243,9 @@ struct ProductsFeature {
                     }
                     return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
-                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):     
-                    state.account.countryCode = code
-                    return .none
+//                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):     
+//                    state.account.countryCode = code
+//                    return .none
 
                 default:
                     return .none
@@ -294,8 +258,6 @@ struct ProductsFeature {
         .forEach(\.items, action: /Action.product(id:action:)) {
             ProductItemFeature()
         }
-        .forEach(\.path, action: /Action.path) {
-            Path()
-        }
+        .forEach(\.path, action: \.path)
     }
 }

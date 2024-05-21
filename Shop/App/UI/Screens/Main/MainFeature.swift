@@ -162,25 +162,25 @@ struct MainFeature {
                 case .logout:
                     return .send(.delegate(.didLogout))
                     
-                case .messages:
-                    state.products.path.append(.inAppMessages(.init()))
-                    return .none
-                    
-                case .map:
-                    state.products.path.append(.map(.init()))
-                    return .none
-                    
-                case .camera:
-                    state.products.path.append(.camera(.init()))
-                    return .none
-                    
-                case .countries:
-                    state.products.path.append(.countries(.init()))
-                    return .none
-                    
-                case .healthKit:
-                    state.products.path.append(.healthKit(.init()))
-                    return .none
+//                case .messages:
+//                    state.products.path.append(.inAppMessages(.init()))
+//                    return .none
+//                    
+//                case .map:
+//                    state.products.path.append(.map(.init()))
+//                    return .none
+//                    
+//                case .camera:
+//                    state.products.path.append(.camera(.init()))
+//                    return .none
+//                    
+//                case .countries:
+//                    state.products.path.append(.countries(.init()))
+//                    return .none
+//                    
+//                case .healthKit:
+//                    state.products.path.append(.healthKit(.init()))
+//                    return .none
                     
                 default:
                     return .none
