@@ -10,14 +10,16 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductDetailFeature: Reducer {
+@Reducer
+struct ProductDetailFeature {
     
+    @ObservableState
     struct State: Equatable, Identifiable {
         let id: UUID
         let product: Product
         var isFavorite: Bool = false
         
-        @PresentationState var productPhotos: ProductPhotosFeature.State?
+        @Presents var productPhotos: ProductPhotosFeature.State?
         var link = ProductLinkFeature.State(text: "view website", url: URL(string:"https://google.com")!)
         var users = ProductUsersFeature.State()
     }
@@ -132,7 +134,7 @@ struct ProductDetailFeature: Reducer {
                     }
                                         
                 case let .productResponse(.success(data)):
-                    Log.debug("productResponse: \(data)")
+                    Log.info("productResponse: \(data)")
                     return .none
 
                 case let .productResponse(.failure(error)):
@@ -140,7 +142,7 @@ struct ProductDetailFeature: Reducer {
                     return .none
                     
                 case let .usersResponse(.success(data)):
-                    Log.debug("usersResponse: \(data)")
+                    Log.info("usersResponse: \(data)")
                     state.users.items.append(contentsOf: data)
                     return .none
 
@@ -160,6 +162,8 @@ struct ProductDetailFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$productPhotos, action: /Action.productPhotos) { ProductPhotosFeature() }
+        .ifLet(\.$productPhotos, action: /Action.productPhotos) {
+            ProductPhotosFeature()
+        }
     }
 }
