@@ -36,9 +36,11 @@ enum Tab: Int, CaseIterable {
     }
 }
 
-struct MainFeature: Reducer {
+@Reducer
+struct MainFeature {
     
-    struct State: Equatable {
+    @ObservableState
+    struct State {
         var currentTab = Tab.products
         
         var sidebar = SidebarFeature.State()
@@ -49,7 +51,7 @@ struct MainFeature: Reducer {
         var account = AccountFeature.State()
     }
     
-    enum Action: Equatable {        
+    enum Action: BindableAction {
         case onTabChanged(Tab)
         case addNotifications(Notification)
         
@@ -64,6 +66,7 @@ struct MainFeature: Reducer {
             case didLogout
         }
         
+        case binding(BindingAction<State>)
         case delegate(Delegate)
     }
     
@@ -130,8 +133,8 @@ struct MainFeature: Reducer {
                 return .none
                 
             case let .wishlist(.delegate(.didProductRemovedFromFavorites(product))):
-                if let index = state.products.items.firstIndex(where: { $0.product.id == product.id }) {
-                    state.products.items[index].favorite.isFavorite = false
+                if let index = state.products.products.firstIndex(where: { $0.product.id == product.id }) {
+                    state.products.products[index].favorite.isFavorite = false
                 }
                 return .none
                 
@@ -159,31 +162,31 @@ struct MainFeature: Reducer {
                 case .logout:
                     return .send(.delegate(.didLogout))
                     
-                case .messages:
-                    state.products.path.append(.inAppMessages(.init()))
-                    return .none
-                    
-                case .map:
-                    state.products.path.append(.map(.init()))
-                    return .none
-                    
-                case .camera:
-                    state.products.path.append(.camera(.init()))
-                    return .none
-                    
-                case .countries:
-                    state.products.path.append(.countries(.init()))
-                    return .none
-                    
-                case .healthKit:
-                    state.products.path.append(.healthKit(.init()))
-                    return .none
+//                case .messages:
+//                    state.products.path.append(.inAppMessages(.init()))
+//                    return .none
+//                    
+//                case .map:
+//                    state.products.path.append(.map(.init()))
+//                    return .none
+//                    
+//                case .camera:
+//                    state.products.path.append(.camera(.init()))
+//                    return .none
+//                    
+//                case .countries:
+//                    state.products.path.append(.countries(.init()))
+//                    return .none
+//                    
+//                case .healthKit:
+//                    state.products.path.append(.healthKit(.init()))
+//                    return .none
                     
                 default:
                     return .none
                 }
                 
-            case .products, .wishlist, .basket, .notifications, .account, .sidebar, .delegate:
+            case .products, .wishlist, .basket, .notifications, .account, .sidebar, .delegate, .binding:
                 return .none
             }
         }

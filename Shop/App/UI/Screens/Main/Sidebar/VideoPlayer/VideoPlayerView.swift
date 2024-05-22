@@ -24,19 +24,17 @@ extension VideoPlayerView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            NavigationStack {
-                VideoPlayer(player: viewStore.player)
-                    .ignoresSafeArea()
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button(Localization.Base.close) {
-                                viewStore.send(.onCloseTap)
-                            }
-                            .tint(.black)
+        NavigationStack {
+            VideoPlayer(player: store.player)
+                .ignoresSafeArea()
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(Localization.Base.close) {
+                            store.send(.onCloseTap)
                         }
+                        .tint(.black)
                     }
-            }
+                }
         }
     }
 }

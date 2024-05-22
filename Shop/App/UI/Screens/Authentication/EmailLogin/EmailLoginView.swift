@@ -11,13 +11,7 @@ import ComposableArchitecture
 // MARK: - LoginView
 
 struct EmailLoginView {
-    let store: StoreOf<EmailLoginFeature>
-    
-    struct ViewState: Equatable {
-        @BindingViewState var isActivityIndicatorVisible: Bool
-        @BindingViewState var username: String
-        @BindingViewState var password: String
-    }
+    @Bindable var store: StoreOf<EmailLoginFeature>
 }
 
 // MARK: - Views
@@ -29,59 +23,47 @@ extension EmailLoginView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            BlurredActivityIndicatorView(
-                isShowing: viewStore.$isActivityIndicatorVisible)
-            {
+        BlurredActivityIndicatorView(
+            isShowing: $store.isActivityIndicatorVisible)
+        {
+            VStack {
                 VStack {
-                    VStack {
-                        TextField(
-                            Localization.Base.emailPlaceholder,
-                            text: viewStore.$username
-                        )
-                        .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
-                        .textContentType(.emailAddress)
-                        .textFieldStyle(.main)
-
-                        SecureField(
-                            "••••••••",
-                            text: viewStore.$password
-                        )
-                        .textFieldStyle(.main)
-
-                        HStack {
-                            Spacer()
-                            Button(Localization.Login.forgotPassword, action: {
-                                viewStore.send(.onForgotPasswordButtonTap)
-                            })
-                            .buttonStyle(.linkButton)
-                        }
-                        .padding(.top, 16)
-
-                        Button(Localization.Base.continue, action: {
-                            viewStore.send(.onSignInButtonTap)
+                    TextField(
+                        Localization.Base.emailPlaceholder,
+                        text: $store.username
+                    )
+                    .autocapitalization(.none)
+                    .keyboardType(.emailAddress)
+                    .textContentType(.emailAddress)
+                    .textFieldStyle(.main)
+                    
+                    SecureField(
+                        "••••••••",
+                        text: $store.password
+                    )
+                    .textFieldStyle(.main)
+                    
+                    HStack {
+                        Spacer()
+                        Button(Localization.Login.forgotPassword, action: {
+                            store.send(.view(.onForgotPasswordButtonTap))
                         })
-                        .buttonStyle(.cta)
-                        .padding(.top, 24)
+                        .buttonStyle(.linkButton)
                     }
-                    .padding(24)
-
-                    Spacer()
+                    .padding(.top, 16)
+                    
+                    Button(Localization.Base.continue, action: {
+                        store.send(.view(.onSignInButtonTap))
+                    })
+                    .buttonStyle(.cta)
+                    .padding(.top, 24)
                 }
-                .navigationTitle(Localization.Login.title)
+                .padding(24)
+                
+                Spacer()
             }
-            .alert(store: self.store.scope(state: \.$alert, action: EmailLoginFeature.Action.alert))
+            .navigationTitle(Localization.Login.title)
         }
-    }
-}
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<EmailLoginFeature.State> {
-    var view: EmailLoginView.ViewState {
-        EmailLoginView.ViewState(isActivityIndicatorVisible: self.$isActivityIndicatorVisible,
-                                 username: self.$username,
-                                 password: self.$password)
+        .alert($store.scope(state: \.alert, action: \.alert))
     }
 }

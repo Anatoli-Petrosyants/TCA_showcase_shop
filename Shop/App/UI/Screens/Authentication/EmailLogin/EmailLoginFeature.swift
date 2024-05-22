@@ -8,20 +8,22 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct EmailLoginFeature: Reducer {
+@Reducer
+struct EmailLoginFeature {
     
+    @ObservableState
     struct State: Equatable {
-        @BindingState var isActivityIndicatorVisible = false
-        @BindingState var username = "mor_2314"
-        @BindingState var password = "83r5^_"
-        @PresentationState var alert: AlertState<Never>?
+        var isActivityIndicatorVisible = false
+        var username = "mor_2314"
+        var password = "83r5^_"
+        
+        @Presents var alert: AlertState<Never>?
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
-            case onSignInButtonTap   
+    enum Action: Equatable, BindableAction {
+        enum ViewAction: Equatable {
+            case onSignInButtonTap
             case onForgotPasswordButtonTap
-            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -36,6 +38,7 @@ struct EmailLoginFeature: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
+        case binding(BindingAction<State>)
         case alert(PresentationAction<Never>)
     }
     
@@ -46,7 +49,7 @@ struct EmailLoginFeature: Reducer {
     @Dependency(\.databaseClient) var databaseClient
 
     var body: some Reducer<State, Action> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Reduce { state, action in
             switch action {
@@ -72,9 +75,6 @@ struct EmailLoginFeature: Reducer {
                     
                 case .onForgotPasswordButtonTap:
                     return .send(.delegate(.didForgotPasswordPressed))
-                    
-                case .binding:
-                    return .none
                 }
                 
             // internal actions
@@ -100,6 +100,9 @@ struct EmailLoginFeature: Reducer {
                 }
                             
             case .delegate, .alert:
+                return .none
+                
+            case .binding:
                 return .none
             }
         }        

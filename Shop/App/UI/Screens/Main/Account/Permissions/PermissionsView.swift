@@ -24,29 +24,27 @@ extension PermissionsView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }, send: { .view($0) }) { viewStore in
-            VStack(spacing: 8) {
-                Image(systemName: "bell.badge")
-                    .font(.system(size: 60))
-                
-                Text(viewStore.title)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .font(.title1)
-                    .padding(.top, 24)
-                
-                Text(viewStore.message)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .font(.body)
-                
-                Button(viewStore.buttonTitle, action: {
-                    viewStore.send(.onRequestNotificationsPermissionTap)
-                })
-                .buttonStyle(.cta)
-                .padding(.top, 40)
-            }
-            .padding()
+        VStack(spacing: 8) {
+            Image(systemName: "bell.badge")
+                .font(.system(size: 60))
+            
+            Text(store.title)
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+                .font(.title1)
+                .padding(.top, 24)
+            
+            Text(store.message)
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+                .font(.body)
+            
+            Button(store.buttonTitle, action: {
+                store.send(.view(.onRequestNotificationsPermissionTap))
+            })
+            .buttonStyle(.cta)
+            .padding(.top, 40)
         }
+        .padding()
     }
 }

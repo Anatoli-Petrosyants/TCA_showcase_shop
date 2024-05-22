@@ -8,18 +8,19 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AddProductFeature: Reducer {
+@Reducer
+struct AddProductFeature {
     
-    struct State: Equatable {
+    struct State {
         
     }
     
-    enum Action: Equatable {
-        enum ViewAction: Equatable {            
+    enum Action {
+        enum ViewAction {
             case onAddProductsButtonTap
         }
         
-        enum Delegate: Equatable {
+        enum Delegate {
             case didAddProductsTapped
         }
 

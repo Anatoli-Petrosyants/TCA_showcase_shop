@@ -11,8 +11,10 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct CameraFeature: Reducer {
+@Reducer
+struct CameraFeature {
     
+    @ObservableState
     struct State: Equatable {
         var image: Image?
         var result: Image?

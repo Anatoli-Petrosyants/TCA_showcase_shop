@@ -8,33 +8,35 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ProductsFeature: Reducer {
+@Reducer
+struct ProductsFeature {
 
-    struct State: Equatable {
+    @ObservableState
+    struct State {
         var isLoading = false
         var productsError: AppError? = nil
         var initalItems: IdentifiedArrayOf<ProductItemFeature.State> = []
-        var items: IdentifiedArrayOf<ProductItemFeature.State> = []
+        var products: IdentifiedArrayOf<ProductItemFeature.State> = []
         var account = ProductsAccountFeature.State()
         var input = SearchInputFeature.State(placeholder: Localization.Search.inputPlaceholder)
         var segment = SearchSegmentFeature.State()        
         var path = StackState<Path.State>()
     }
 
-    enum Action: BindableAction, Equatable {
-        enum ViewAction: Equatable {
+    enum Action: BindableAction {
+        enum ViewAction {
             case onViewLoad
             case onMenuTap
             case onPulledToRefresh
         }
 
-        enum InternalAction: Equatable {
+        enum InternalAction {
             case loadProducts
             case productsResponse(TaskResult<[Product]>)
             case processItems([Product])
         }
 
-        enum Delegate: Equatable {
+        enum Delegate {
             case didProductAddedToBasket(Product)
             case didTopPicksLoaded([Product])
             case didFavoriteChanged(Bool, Product)
@@ -47,55 +49,19 @@ struct ProductsFeature: Reducer {
         case binding(BindingAction<State>)
         case account(ProductsAccountFeature.Action)
         case input(SearchInputFeature.Action)
-        case segment(SearchSegmentFeature.Action)        
-        case product(id: ProductItemFeature.State.ID, action: ProductItemFeature.Action)
-        case path(StackAction<Path.State, Path.Action>)
+        case segment(SearchSegmentFeature.Action)
+        case products(IdentifiedActionOf<ProductItemFeature>)
+        case path(StackActionOf<Path>)
     }
-
-    struct Path: Reducer {
-        enum State: Equatable {
-            case details(ProductDetailFeature.State)
-            case inAppMessages(InAppMessagesFeature.State)
-            case map(MapFeature.State)
-            case camera(CameraFeature.State)
-            case countries(CountriesFeature.State)
-            case healthKit(HealthKitFeature.State)
-        }
-
-        enum Action: Equatable {
-            case details(ProductDetailFeature.Action)
-            case inAppMessages(InAppMessagesFeature.Action)
-            case map(MapFeature.Action)
-            case camera(CameraFeature.Action)
-            case countries(CountriesFeature.Action)
-            case healthKit(HealthKitFeature.Action)
-        }
-
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.details, action: /Action.details) {
-                ProductDetailFeature()
-            }
-
-            Scope(state: /State.inAppMessages, action: /Action.inAppMessages) {
-                InAppMessagesFeature()
-            }
-
-            Scope(state: /State.map, action: /Action.map) {
-                MapFeature()
-            }
-
-            Scope(state: /State.camera, action: /Action.camera) {
-                CameraFeature()
-            }
-
-            Scope(state: /State.countries, action: /Action.countries) {
-                CountriesFeature()
-            }
-
-            Scope(state: /State.healthKit, action: /Action.healthKit) {
-                HealthKitFeature()
-            }
-        }
+    
+    @Reducer(state: .equatable)
+    enum Path {
+        case details(ProductDetailFeature)
+//        case inAppMessages(InAppMessagesFeature)
+//        case map(MapFeature)
+//        case camera(CameraFeature)
+//        case countries(CountriesFeature)
+//        case healthKit(HealthKitFeature)
     }
 
     private enum CancelID { case products }
@@ -168,18 +134,18 @@ struct ProductsFeature: Reducer {
 
                 case let .processItems(data):
                     state.initalItems.removeAll()
-                    state.items.removeAll()
+                    state.products.removeAll()
 
                     let items = data.map { ProductItemFeature.State(id: UUID(), product: $0) }
                     state.initalItems.append(contentsOf: items)
-                    state.items.append(contentsOf: items)
+                    state.products.append(contentsOf: items)
                     return .none
                 }
 
-            case let .product(id, productAction):
+            case let .products(productAction):
                 switch productAction {
-                case let .delegate(.didItemTapped(product)):
-                    let productItem = state.items.first(where: { $0.id == id })
+                case let .element(id: _, action: .delegate(.didItemTapped(product))):
+                    let productItem = state.products.first(where: { $0.id == product.id })
                     let isFavorite = productItem?.favorite.isFavorite
                     
                     state.path.append(
@@ -192,10 +158,10 @@ struct ProductsFeature: Reducer {
                     )
                     return .none
                     
-                case let .delegate(.didFavoriteChanged(isFavorite, product)):
+                case let .element(id: _, action: .delegate(.didFavoriteChanged(isFavorite, product))):
                     return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
-                default:
+                default: 
                     return .none
                 }
 
@@ -252,13 +218,13 @@ struct ProductsFeature: Reducer {
                     let searchItems = state.initalItems.filter {
                         $0.product.title.lowercased().contains(query.lowercased())
                     }
-                    state.items.removeAll()
-                    state.items.append(contentsOf: searchItems)
+                    state.products.removeAll()
+                    state.products.append(contentsOf: searchItems)
                     return .none
 
                 case .delegate(.didSearchQueryCleared):
-                    state.items.removeAll()
-                    state.items.append(contentsOf: state.initalItems)
+                    state.products.removeAll()
+                    state.products.append(contentsOf: state.initalItems)
                     return .cancel(id: CancelID.products)
                     
                 default:
@@ -272,14 +238,14 @@ struct ProductsFeature: Reducer {
                     return .send(.delegate(.didProductAddedToBasket(product)))
                     
                 case let .element(id: _, action: .details(.delegate(.didFavoriteChanged(isFavorite, product)))):
-                    if let index = state.items.firstIndex(where: { $0.product.id == product.id }) {
-                        state.items[index].favorite.isFavorite = isFavorite
+                    if let index = state.products.firstIndex(where: { $0.product.id == product.id }) {
+                        state.products[index].favorite.isFavorite = isFavorite
                     }
                     return .send(.delegate(.didFavoriteChanged(isFavorite, product)))
 
-                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):     
-                    state.account.countryCode = code
-                    return .none
+//                case let .element(id: _, action: .countries(.delegate(.didCountryCodeSelected(code)))):     
+//                    state.account.countryCode = code
+//                    return .none
 
                 default:
                     return .none
@@ -289,11 +255,12 @@ struct ProductsFeature: Reducer {
                 return .none
             }
         }
-        .forEach(\.items, action: /Action.product(id:action:)) {
+//        .forEach(\.items, action: /Action.product(id:action:)) {
+//            ProductItemFeature()
+//        }
+        .forEach(\.products, action: \.products) {
             ProductItemFeature()
         }
-        .forEach(\.path, action: /Action.path) {
-            Path()
-        }
+        .forEach(\.path, action: \.path)
     }
 }

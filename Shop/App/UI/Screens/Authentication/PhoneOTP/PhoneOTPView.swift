@@ -11,12 +11,7 @@ import ComposableArchitecture
 // MARK: - PhoneOTPView
 
 struct PhoneOTPView {
-    let store: StoreOf<PhoneOTPFeature>
-    
-    struct ViewState: Equatable {
-        @BindingViewState var code: String
-        var isActivityIndicatorVisible: Bool
-    }
+    @Bindable var store: StoreOf<PhoneOTPFeature>
 }
 
 // MARK: - Views
@@ -28,34 +23,23 @@ extension PhoneOTPView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view, send: { .view($0) }) { viewStore in
-            VStack(spacing: 24) {
-                Text("We sent you code via SMS. For test proposal please enter 999999.")
-                    .multilineTextAlignment(.center)
-                    .font(.headline)
+        VStack(spacing: 24) {
+            Text("We sent you code via SMS. For test proposal please enter 999999.")
+                .multilineTextAlignment(.center)
+                .font(.headline)
 
-                OTPView(code: viewStore.$code)
-                    .padding([.leading, .trailing, .top], 40)
-                
+            OTPView(code: $store.code)
+                .padding([.leading, .trailing, .top], 40)
+            
 //                Button("Resend", action: {
 //                    viewStore.send(.onResendButtonTap)
 //                })
 //                .buttonStyle(.linkButton)
 
-                Spacer()
-            }
-            .loader(isLoading: viewStore.isActivityIndicatorVisible)
-            .padding(24)
-            .navigationTitle("Enter Code")
+            Spacer()
         }
-    }
-}
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<PhoneOTPFeature.State> {
-    var view: PhoneOTPView.ViewState {
-        PhoneOTPView.ViewState(code: self.$code,
-                               isActivityIndicatorVisible: self.isActivityIndicatorVisible)
+        .loader(isLoading: store.isActivityIndicatorVisible)
+        .padding(24)
+        .navigationTitle("Enter Code")
     }
 }

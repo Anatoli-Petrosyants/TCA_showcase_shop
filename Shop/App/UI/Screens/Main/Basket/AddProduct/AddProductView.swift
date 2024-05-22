@@ -22,39 +22,37 @@ extension AddProductView: View {
         content
     }
     
-    @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(spacing: 24) {
-                HStack {
-                    LottieViewRepresentable(name: "onboarding_1",
-                                            loopMode: .autoReverse,
-                                            play:.constant(true))
-                    .frame(width: 80, height: 60)
+    @ViewBuilder private var content: some View {        
+        VStack(spacing: 24) {
+            HStack {
+                LottieViewRepresentable(name: "onboarding_1",
+                                        loopMode: .autoReverse,
+                                        play:.constant(true))
+                .frame(width: 80, height: 60)
+                
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(Localization.Basket.addProductsEmpty)
+                        .font(.headline)
+                        .foregroundColor(.black)
                     
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(Localization.Basket.addProductsEmpty)
-                            .font(.headline)
-                            .foregroundColor(.black)
-                        
-                        Text(Localization.Basket.addProductsTopPicks)
-                            .font(.subheadline)
-                            .foregroundColor(.black05)
-                    }
-                    
-                    Spacer()
+                    Text(Localization.Basket.addProductsTopPicks)
+                        .font(.subheadline)
+                        .foregroundColor(.black05)
                 }
                 
-                Button {
-                    viewStore.send(.view(.onAddProductsButtonTap))
-                } label: {
-                    Text(Localization.Basket.addProductsTitle)
-                        .font(.headlineBold)
-                        .foregroundColor(.black)
-                        .underline()
-                }
+                Spacer()
             }
-            .padding([.leading, .trailing, .top], 24)            
+            
+            Button {
+                store.send(.view(.onAddProductsButtonTap))
+            } label: {
+                Text(Localization.Basket.addProductsTitle)
+                    .font(.headlineBold)
+                    .foregroundColor(.black)
+                    .underline()
+            }
         }
+        .padding([.leading, .trailing, .top], 24)
     }
 }

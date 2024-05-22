@@ -75,7 +75,7 @@
          <EnvironmentVariable
             key = "info_level_enable"
             value = ""
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "memory_info_level_enable"
@@ -85,12 +85,12 @@
          <EnvironmentVariable
             key = "debug_level_enable"
             value = ""
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "error_level_enable"
             value = ""
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

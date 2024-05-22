@@ -8,14 +8,16 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct WishlistFeature: Reducer {
+@Reducer
+struct WishlistFeature {
 
-    struct State: Equatable {
+    @ObservableState
+    struct State {
         var products: [Product] = []
         var actions = WishlistActionsFeature.State()
     }
     
-    enum Action: Equatable {
+    enum Action {
         enum InternalAction: Equatable {
             case removeItem
         }

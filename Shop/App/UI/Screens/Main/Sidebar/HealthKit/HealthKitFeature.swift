@@ -9,7 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 import HealthKit
 
-struct HealthKitFeature: Reducer {
+@Reducer
+struct HealthKitFeature {
     
     struct Step: Identifiable, Equatable {
         let id = UUID()
@@ -23,11 +24,12 @@ struct HealthKitFeature: Reducer {
         let date: Date
     }
     
+    @ObservableState
     struct State: Equatable {
         var isActivityIndicatorVisible = false
         var steps: [Step] = []
         var distances: [Distance] = []
-        @PresentationState var alert: AlertState<Never>?
+        @Presents var alert: AlertState<Never>?
     }
     
     enum Action: Equatable {
@@ -138,7 +140,7 @@ struct HealthKitFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.$alert, action: \.alert)
     }
 }
 

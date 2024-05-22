@@ -8,18 +8,19 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct PhoneLoginFeature: Reducer {
+@Reducer
+struct PhoneLoginFeature {
     
+    @ObservableState
     struct State: Equatable {
-        @BindingState var number = ""
+        var number = ""
         var isContinueButtonDisabled = true
         var isActivityIndicatorVisible = false
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: Equatable, BindableAction {
+        enum ViewAction: Equatable {
             case onContinueButtonTap
-            case binding(BindingAction<State>)
         }
         
         enum Delegate {
@@ -27,13 +28,14 @@ struct PhoneLoginFeature: Reducer {
         }
         
         case view(ViewAction)
+        case binding(BindingAction<State>)
         case delegate(Delegate)
     }
     
     @Dependency(\.continuousClock) var clock
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Reduce { state, action in
             switch action {
@@ -45,14 +47,14 @@ struct PhoneLoginFeature: Reducer {
                         try await self.clock.sleep(for: .seconds(2))
                         await send(.delegate(.didPhoneAuthenticated))
                     }
-    
-                case .binding(\.$number):
-                    state.isContinueButtonDisabled = !(state.number.count > 0)
-                    return .none
-                    
-                case .binding:
-                    return .none
                 }
+
+            case .binding(\.number):
+                state.isContinueButtonDisabled = !(state.number.count > 0)
+                return .none
+                
+            case .binding:
+                return .none
                 
             case .delegate:
                 return .none

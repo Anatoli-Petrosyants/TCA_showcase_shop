@@ -8,9 +8,11 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct FavoriteButtonFeature: Reducer {
+@Reducer
+struct FavoriteButtonFeature {
     
-    struct State: Equatable, Identifiable {
+    @ObservableState
+    struct State: Equatable {
         let id = UUID()
         var isFavorite: Bool = false
     }

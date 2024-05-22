@@ -8,15 +8,17 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct InAppMessagesFeature: Reducer {
+@Reducer
+struct InAppMessagesFeature {
     
+    @ObservableState
     struct State: Equatable {
-        @BindingState var isToastTopVersion1 = false
-        @BindingState var isToastTopVersion2 = false
-        @BindingState var isToastBottomVersion1 = false
+        var isToastTopVersion1 = false
+        var isToastTopVersion2 = false
+        var isToastBottomVersion1 = false
         
-        @BindingState var isPopupMiddleVersion = false
-        @BindingState var isPopupBottomVersion = false
+        var isPopupMiddleVersion = false
+        var isPopupBottomVersion = false
     }
     
     enum Action: BindableAction, Equatable {
@@ -24,13 +26,13 @@ struct InAppMessagesFeature: Reducer {
     }
     
     var body: some Reducer<State, Action> {
+        BindingReducer()
+        
         Reduce { state, action in
             switch action {
             case .binding:
                 return .none
             }
         }
-        
-        BindingReducer()
     }
 }

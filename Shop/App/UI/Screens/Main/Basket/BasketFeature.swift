@@ -8,9 +8,17 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct BasketFeature: Reducer {
+@Reducer
+struct BasketFeature {
     
-    struct State: Equatable {
+    @Reducer(action: .equatable)
+    enum Path {
+        case checkout(CheckoutFeature)
+        case details(ProductDetailFeature)
+    }
+    
+    @ObservableState
+    struct State {
         var products: [Product] = []
         var topPicksProducts: [Product] = []
         var totalPrice: String = "$0.00"
@@ -18,30 +26,29 @@ struct BasketFeature: Reducer {
         var announcement = AnnouncementFeature.State()
         var topPicks = TopPicksFeature.State()
         
-        @BindingState var toastMessage: LocalizedStringKey? = nil
-        @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
+        var toastMessage: LocalizedStringKey? = nil
+        @Presents var dialog: ConfirmationDialogState<Action.DialogAction>?
         var path = StackState<Path.State>()
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: BindableAction {
+        enum ViewAction {
             case onViewAppear
             case onDeleteItemButtonTap(Product)
             case onProceedToCheckoutButtonTap
-            case binding(BindingAction<State>)
         }
         
-        enum InternalAction: Equatable {
+        enum InternalAction {
             case deleteProduct(Product)
         }
         
-        enum Delegate: Equatable {
+        enum Delegate {
             case didAddProductsTapped
             case didTopPickAddedToBasket(Product)
             case didSuccessfullyCheckoutProducts
         }
         
-        enum DialogAction: Equatable {
+        enum DialogAction {
             case confirmProductDeletion(Product)
         }
 
@@ -52,35 +59,14 @@ struct BasketFeature: Reducer {
         case announcement(AnnouncementFeature.Action)
         case topPicks(TopPicksFeature.Action)
         case dialog(PresentationAction<DialogAction>)
-        case path(StackAction<Path.State, Path.Action>)
-    }
-    
-    struct Path: Reducer {
-        enum State: Equatable {
-            case checkout(CheckoutFeature.State)
-            case details(ProductDetailFeature.State)
-        }
-
-        enum Action: Equatable {
-            case checkout(CheckoutFeature.Action)
-            case details(ProductDetailFeature.Action)
-        }
-
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.checkout, action: /Action.checkout) {
-                CheckoutFeature()
-            }
-            
-            Scope(state: /State.details, action: /Action.details) {
-                ProductDetailFeature()
-            }
-        }
+        case path(StackActionOf<Path>)
+        case binding(BindingAction<State>)
     }
     
     @Dependency(\.uuid) var uuid
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Scope(state: \.addProduct, action: /Action.addProduct) {
             AddProductFeature()
@@ -121,9 +107,6 @@ struct BasketFeature: Reducer {
                     } message: {
                         TextState("Are you sure you want to remove '\(product.title)' from list.")
                     }
-                    return .none
-                    
-                case .binding:
                     return .none
                 }
                 
@@ -172,14 +155,12 @@ struct BasketFeature: Reducer {
                 state.path.append(.details(.init(id: self.uuid(), product: product)))
                 return .none
                 
-            case .delegate, .dialog, .addProduct, .announcement, .topPicks:
+            case .delegate, .dialog, .addProduct, .announcement, .topPicks, .binding:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
-        .forEach(\.path, action: /Action.path) {
-            Path()
-        }
+        .forEach(\.path, action: \.path)
     }
 }
 

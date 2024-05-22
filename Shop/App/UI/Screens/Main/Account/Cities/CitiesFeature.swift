@@ -8,8 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CitiesFeature: Reducer {
+@Reducer
+struct CitiesFeature {
     
+    @ObservableState
     struct State: Equatable {
         var selectedCity: String
         var data: Loadable<[Place]> = .idle

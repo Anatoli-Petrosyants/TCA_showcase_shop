@@ -9,16 +9,23 @@ import SwiftUI
 import ComposableArchitecture
 import CoreData
 
-extension AccountFeature {
+@Reducer
+struct AccountFeature {
+    
     enum Gender: String, CaseIterable, Equatable {
         case male
         case female
         case other
     }
-}
-
-extension AccountFeature {
-    struct State: Equatable {
+    
+    @Reducer(state: .equatable)
+    enum Path {
+        case contacts(ContactsFeature)
+        case cities(CitiesFeature)
+    }
+    
+    @ObservableState
+    struct State {
         var accountId: UUID? = nil
         let appVersion = "\(Configuration.current.appVersion)"
         let supportedVersion = "16.0"
@@ -26,35 +33,32 @@ extension AccountFeature {
         
         var accountPhoto = AccountPhotoFeature.State()
         
-        @BindingState var firstName = ""
-        @BindingState var lastName = ""
-        @BindingState var birthDate = Date()
-        @BindingState var gender = Gender.male
-        @BindingState var enableNotifications = false
+        var firstName = ""
+        var lastName = ""
+        var birthDate = Date()
+        var gender = Gender.male
+        var enableNotifications = false
         
         var city = ""
         
-        @BindingState var email = ""
-        @BindingState var phone = ""
+        var email = ""
+        var phone = ""
         
-        @BindingState var toastMessage: LocalizedStringKey? = nil
-        @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?        
-        @PresentationState var permissions: PermissionsFeature.State?
+        var isPresentedBanner: Bool = false
+        @Presents var dialog: ConfirmationDialogState<Action.DialogAction>?
+        @Presents var permissions: PermissionsFeature.State?
 
         var path = StackState<Path.State>()
     }
-}
-
-extension AccountFeature {
-    enum Action: Equatable {
-        enum ViewAction:  BindableAction, Equatable {
-            case onViewLoad
+    
+    enum Action: BindableAction {
+        enum ViewAction: Equatable {
+            case onViewAppear
             case onCityTap
             case onSaveTap
             case onPermissionsTap
             case onContactsTap
             case onLogoutTap
-            case binding(BindingAction<State>)
         }
         
         enum DialogAction: Equatable {
@@ -77,35 +81,9 @@ extension AccountFeature {
         case dialog(PresentationAction<Action.DialogAction>)
         case accountPhoto(AccountPhotoFeature.Action)
         case permissions(PresentationAction<PermissionsFeature.Action>)
-        case path(StackAction<Path.State, Path.Action>)
+        case binding(BindingAction<State>)
+        case path(StackActionOf<Path>)
     }
-}
-
-extension AccountFeature {
-    struct Path: Reducer {
-        enum State: Equatable {
-            case contacts(ContactsFeature.State)
-            case cities(CitiesFeature.State)
-        }
-
-        enum Action: Equatable {
-            case contacts(ContactsFeature.Action)
-            case cities(CitiesFeature.Action)
-        }
-
-        var body: some Reducer<State, Action> {
-            Scope(state: /State.contacts, action: /Action.contacts) {
-                ContactsFeature()
-            }
-            
-            Scope(state: /State.cities, action: /Action.cities) {
-                CitiesFeature()
-            }
-        }
-    }
-}
-
-struct AccountFeature: Reducer {
 
     @Dependency(\.userDefaultsClient) var userDefaultsClient
     @Dependency(\.userKeychainClient) var userKeychainClient
@@ -113,7 +91,7 @@ struct AccountFeature: Reducer {
     @Dependency(\.userNotificationClient.authorizationStatus) var authorizationStatus
     
     var body: some Reducer<State, Action> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Scope(state: \.accountPhoto, action: /Action.accountPhoto) {
             AccountPhotoFeature()
@@ -124,7 +102,7 @@ struct AccountFeature: Reducer {
             // view actions
             case let .view(viewAction):
                 switch viewAction {
-                case .onViewLoad:
+                case .onViewAppear:
                     let request = Account.all
                         .where(\Account.token == self.userKeychainClient.retrieveToken()!)
                         .limit(1)
@@ -147,8 +125,8 @@ struct AccountFeature: Reducer {
                         }
                     )
                     
-                case .onSaveTap:
-                    state.toastMessage = Localization.Base.successfullySaved
+                case .onSaveTap:                    
+                    state.isPresentedBanner = true
                     
                     return .run { [id = state.accountId,
                                    firstName = state.firstName,
@@ -196,9 +174,6 @@ struct AccountFeature: Reducer {
                     
                 case .onContactsTap:
                     state.path.append(.contacts(.init()))
-                    return .none
-                    
-                case .binding:
                     return .none
                 }
                
@@ -249,20 +224,20 @@ struct AccountFeature: Reducer {
                 default:
                     return .none
                 }
-                    
+        
             // account photo actions
             case let .accountPhoto(.delegate(.didPhotoSelected(image))):
                 Log.debug("accountPhoto image \(image)")
                 return .none
                 
-            case .delegate, .dialog, .permissions, .accountPhoto:
+            case .binding, .delegate, .dialog, .permissions, .accountPhoto:
                 return .none
             }
         }
         .ifLet(\.$dialog, action: /Action.dialog)
-        .ifLet(\.$permissions, action: /Action.permissions) { PermissionsFeature() }
-        .forEach(\.path, action: /Action.path) {
-            Path()
+        .ifLet(\.$permissions, action: /Action.permissions) {
+            PermissionsFeature()
         }
-    }    
+        .forEach(\.path, action: \.path)
+    }
 }

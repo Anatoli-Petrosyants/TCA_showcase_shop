@@ -9,7 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct NoNetwork: Reducer {
+@Reducer
+struct NoNetwork {
 
     struct State: Equatable {
     }

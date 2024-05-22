@@ -9,21 +9,22 @@ import SwiftUI
 import ComposableArchitecture
 import Contacts
 
-struct ContactsFeature: Reducer {
+@Reducer
+struct ContactsFeature {
     
-    struct State: Equatable {        
+    @ObservableState
+    struct State: Equatable {
         var data: Loadable<[Contact]> = .idle
-        @BindingState var isContactPresented = false
+        var isContactPresented = false
         var contactToShow: CNContact? = nil
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: Equatable, BindableAction {
+        enum ViewAction: Equatable {
             case onViewAppear
             case onAddButtonTap
             case onOpenSettingsButtonTap
             case onContactTap(Contact)
-            case binding(BindingAction<State>)
         }
         
         enum InternalAction: Equatable {
@@ -34,13 +35,14 @@ struct ContactsFeature: Reducer {
 
         case view(ViewAction)
         case `internal`(InternalAction)
+        case binding(BindingAction<State>)
     }
         
     @Dependency(\.contactsClient) var contactsClient
     @Dependency(\.applicationClient.open) var openURL
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Reduce { state, action in
             switch action {
@@ -67,9 +69,6 @@ struct ContactsFeature: Reducer {
                 
             case .onAddButtonTap:
                 state.isContactPresented = true
-                return .none
-                
-            case .binding:
                 return .none
             }
                 
@@ -117,6 +116,9 @@ struct ContactsFeature: Reducer {
                     state.data = .failed(error)
                     return .none
                 }
+                
+            case .binding:
+                return .none
             }
         }
     }

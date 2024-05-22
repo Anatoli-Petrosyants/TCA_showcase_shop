@@ -8,23 +8,24 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct AccountPhotoFeature: Reducer {
+@Reducer
+struct AccountPhotoFeature {
     
+    @ObservableState
     struct State: Equatable {
         var placeholder = UIImage(named: "ic_photo_ placeholder")!
         var photo: UIImage? = nil
         
-        @BindingState var isImagePickerPresented = false
+        var isImagePickerPresented = false
         var pickerSourceType: UIImagePickerController.SourceType = .photoLibrary
         
-        @PresentationState var dialog: ConfirmationDialogState<Action.DialogAction>?
+        @Presents var dialog: ConfirmationDialogState<Action.DialogAction>?
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: Equatable, BindableAction {
+        enum ViewAction: Equatable {
             case onAddPhotoButtonTap
             case onPhotoSelected(UIImage)
-            case binding(BindingAction<State>)
         }
         
         enum DialogAction: Equatable {
@@ -39,11 +40,12 @@ struct AccountPhotoFeature: Reducer {
         
         case view(ViewAction)
         case dialog(PresentationAction<Action.DialogAction>)
+        case binding(BindingAction<State>)
         case delegate(Delegate)
     }
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         
         Reduce { state, action in
             switch action {
@@ -76,9 +78,6 @@ struct AccountPhotoFeature: Reducer {
                 state.photo = image
                 return .send(.delegate(.didPhotoSelected(image)))
                 
-            case .view(.binding):
-                return .none
-                
             // dialog actions
             case .dialog(.presented(.onSelectPhotoFromGallery)):
                 state.pickerSourceType = .photoLibrary
@@ -94,7 +93,7 @@ struct AccountPhotoFeature: Reducer {
                 state.photo = nil
                 return .none
 
-            case .dialog, .delegate:
+            case .dialog, .binding, .delegate:
                 return .none
             }
         }

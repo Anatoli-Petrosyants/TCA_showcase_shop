@@ -8,8 +8,10 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct LoginOptionsFeature: Reducer {
+@Reducer
+struct LoginOptionsFeature {
     
+    @ObservableState
     struct State: Equatable, Hashable {
         var agreementsAttributedString: AttributedString {
             var result = AttributedString("By authorizing you agree our Terms and Conditions and Privacy Policy.")

@@ -11,9 +11,11 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
-struct AppFeature: Reducer {
+@Reducer
+struct AppFeature {
 
-    enum State: Equatable {
+    @ObservableState
+    enum State {
         case loading(LoadingFeature.State)
         case onboarding(OnboardingFeature.State)
         case join(JoinFeature.State)
@@ -22,7 +24,7 @@ struct AppFeature: Reducer {
         public init() { self = .loading(LoadingFeature.State()) }
     }
 
-    enum Action: Equatable {
+    enum Action {
         enum AppDelegateAction: Equatable {
             case didFinishLaunching
             case didRegisterForRemoteNotifications(TaskResult<Data>)
@@ -34,7 +36,7 @@ struct AppFeature: Reducer {
         case didChangeScenePhase(ScenePhase)
         
         case loading(LoadingFeature.Action)
-        case help(OnboardingFeature.Action)
+        case onboarding(OnboardingFeature.Action)
         case join(JoinFeature.Action)
         case main(MainFeature.Action)
     }
@@ -137,8 +139,8 @@ struct AppFeature: Reducer {
                     return .none
                 }
                 
-            case let .help(action: .delegate(helpAction)):
-                switch helpAction {
+            case let .onboarding(action: .delegate(onboardingAction)):
+                switch onboardingAction {
                 case .didOnboardingFinished:
                     state = .join(JoinFeature.State())
                     return .none
@@ -159,14 +161,14 @@ struct AppFeature: Reducer {
                     return .none
                 }
                 
-            case .loading, .help, .join, .main:
+            case .loading, .onboarding, .join, .main:
                 return .none
             }
         }
         .ifCaseLet(/State.loading, action: /Action.loading) {
             LoadingFeature()
         }
-        .ifCaseLet(/State.onboarding, action: /Action.help) {
+        .ifCaseLet(/State.onboarding, action: /Action.onboarding) {
             OnboardingFeature()
         }
         .ifCaseLet(/State.join, action: /Action.join) {

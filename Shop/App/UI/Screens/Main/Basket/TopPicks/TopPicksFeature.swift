@@ -8,18 +8,20 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TopPicksFeature: Reducer {
+@Reducer
+struct TopPicksFeature {
     
-    struct State: Equatable {
+    @ObservableState
+    struct State {
         var products: [Product] = []
     }
     
-    enum Action: Equatable {
-        enum ViewAction: Equatable {
+    enum Action {
+        enum ViewAction {
             case onItemTap(Product)
         }
         
-        enum Delegate: Equatable {
+        enum Delegate {
             case didItemSelected(Product)
         }
 

@@ -9,8 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 import Dependencies
 
-struct ProductsAccountFeature: Reducer {
+@Reducer
+struct ProductsAccountFeature {
     
+    @ObservableState
     struct State: Equatable {
         var name: String = "guest"
         var countryCode: String = ""

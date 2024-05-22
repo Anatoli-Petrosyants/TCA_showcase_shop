@@ -24,9 +24,7 @@ struct AnnouncementView {
 // MARK: - Views
 
 extension AnnouncementView: View {
-    
-    typealias AnnouncementReducerViewStore = ViewStore<AnnouncementFeature.State, AnnouncementFeature.Action>
-    
+
     var body: some View {
         content
             .onAppear { self.store.send(.onViewAppear) }
@@ -38,20 +36,18 @@ extension AnnouncementView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.url) { viewStore in
-            ZStack {
-                imageView(url: viewStore.state)
-                
-                Text(Localization.Product.announcementTitle)
-                    .font(.largeTitleBold)
-                    .foregroundColor(.white)
-            }
-            .frame(maxWidth: UIScreen.main.bounds.width - 16, idealHeight: maxHeight)
-            .cornerRadius(8)
-            .contentShape(Rectangle())
-            .padding(6)
-            .padding([.top, .bottom], 8)
+        ZStack {
+            imageView(url: store.url)
+            
+            Text(Localization.Product.announcementTitle)
+                .font(.largeTitleBold)
+                .foregroundColor(.white)
         }
+        .frame(maxWidth: UIScreen.main.bounds.width - 16, idealHeight: maxHeight)
+        .cornerRadius(8)
+        .contentShape(Rectangle())
+        .padding(6)
+        .padding([.top, .bottom], 8)
     }
 }
 

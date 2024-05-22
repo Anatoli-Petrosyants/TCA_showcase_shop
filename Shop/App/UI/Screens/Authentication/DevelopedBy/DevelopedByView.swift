@@ -25,25 +25,23 @@ extension DevelopedByView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(alignment: .leading) {
-                Text("Developed By")
-                    .font(.largeTitleBold)
-                    .multilineTextAlignment(.leading)
-                    .padding(.top, 24)
-                
-                ScrollView {
-                    Text(viewStore.text)
-                        .font(.body)
-                }
-            }
-            .padding(24)
+        VStack(alignment: .leading) {
+            Text("Developed By")
+                .font(.largeTitleBold)
+                .multilineTextAlignment(.leading)
+                .padding(.top, 24)
             
-            Button(Localization.Base.continue, action: {
-                viewStore.send(.view(.onAcceptTap))
-            })
-            .buttonStyle(.cta)
-            .padding(24)
+            ScrollView {
+                Text(store.text)
+                    .font(.body)
+            }
         }
+        .padding(24)
+        
+        Button(Localization.Base.continue, action: {
+            store.send(.view(.onAcceptTap))
+        })
+        .buttonStyle(.cta)
+        .padding(24)
     }
 }

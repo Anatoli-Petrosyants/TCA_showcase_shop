@@ -8,11 +8,13 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct NotificationsFeature: Reducer {
+@Reducer
+struct NotificationsFeature {
     
+    @ObservableState
     struct State: Equatable {
         var items: [Notification] = []        
-        @PresentationState var alert: AlertState<Action.AlertAction>?
+        @Presents var alert: AlertState<Action.AlertAction>?
     }
     
     enum Action: Equatable {
@@ -83,7 +85,7 @@ struct NotificationsFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.$alert, action: \.alert)
     }
 }
 

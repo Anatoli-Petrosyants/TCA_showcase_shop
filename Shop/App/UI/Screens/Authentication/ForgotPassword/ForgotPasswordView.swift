@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - ForgotPasswordView
 
 struct ForgotPasswordView {
-    let store: StoreOf<ForgotPasswordFeature>
+    @Bindable var store: StoreOf<ForgotPasswordFeature>
 }
 
 // MARK: - Views
@@ -24,17 +24,15 @@ extension ForgotPasswordView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                Spacer()
+        VStack {
+            Spacer()
 
-                Button(Localization.ForgotPassword.changePassword, action: {
-                    viewStore.send(.view(.onChangePasswordButtonTap))
-                })
-                .buttonStyle(.cta)
-            }
-            .padding(24)
+            Button(Localization.ForgotPassword.changePassword, action: {
+                store.send(.view(.onChangePasswordButtonTap))
+            })
+            .buttonStyle(.cta)
         }
-        .alert(store: self.store.scope(state: \.$alert, action: ForgotPasswordFeature.Action.alert))
+        .padding(24)
+        .alert($store.scope(state: \.alert, action: \.alert))
     }
 }

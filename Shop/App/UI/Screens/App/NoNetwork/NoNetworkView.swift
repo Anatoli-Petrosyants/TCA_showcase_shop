@@ -23,32 +23,30 @@ extension NoNetworkView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(spacing: 30) {
-                Spacer()
-                
-                Text(Localization.Base.oops)
-                    .font(Font.title)
-                    .multilineTextAlignment(.center)
-                
-                Image("wifi.exclamationmark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 128, height: 128, alignment: .center)
+        VStack(spacing: 30) {
+            Spacer()
+            
+            Text(Localization.Base.oops)
+                .font(Font.title)
+                .multilineTextAlignment(.center)
+            
+            Image("wifi.exclamationmark")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 128, height: 128, alignment: .center)
 
-                Text(Localization.Base.noNetworkConnection)
-                    .font(Font.title3)
-                    .multilineTextAlignment(.center)
+            Text(Localization.Base.noNetworkConnection)
+                .font(Font.title3)
+                .multilineTextAlignment(.center)
 
-                Button(Localization.Base.ok) {
-                    viewStore.send(.onOkTapped)
-                }
-                .buttonStyle(.cta)
-                
-                Spacer()
+            Button(Localization.Base.ok) {
+                store.send(.onOkTapped)
             }
-            .padding([.leading, .trailing], 48)
-            .padding(.top, 64)
+            .buttonStyle(.cta)
+            
+            Spacer()
         }
+        .padding([.leading, .trailing], 48)
+        .padding(.top, 64)
     }
 }

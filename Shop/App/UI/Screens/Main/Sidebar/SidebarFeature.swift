@@ -8,20 +8,22 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SidebarFeature: Reducer {
+@Reducer
+struct SidebarFeature {
     
     enum SidebarItemType {
         case logout, share, contact, rate, messages, map, camera, countries, healthKit
     }
     
-    struct State: Equatable, Hashable {
+    @ObservableState
+    struct State: Hashable {
         var isVisible = false
-        @BindingState var isSharePresented = false
-        @PresentationState var videoPlayer: VideoPlayerFeature.State?
+        var isSharePresented = false
+        @Presents var videoPlayer: VideoPlayerFeature.State?
     }
     
-    enum Action: Equatable {
-        enum ViewAction: BindableAction, Equatable {
+    enum Action: BindableAction {
+        enum ViewAction {
             case onDismiss
             case onLogoutTap
             case onContactTap
@@ -35,14 +37,13 @@ struct SidebarFeature: Reducer {
             case onCameraTap
             case onHealthKitTap
             case onVideoPlayerTap
-            case binding(BindingAction<State>)
         }
         
-        enum InternalAction: Equatable {
+        enum InternalAction {
             case toggleVisibility
         }
 
-        enum Delegate: Equatable {
+        enum Delegate {
             case didSidebarTapped(SidebarItemType)
         }
 
@@ -50,10 +51,11 @@ struct SidebarFeature: Reducer {
         case view(ViewAction)
         case `internal`(InternalAction)
         case delegate(Delegate)
-    }        
+        case binding(BindingAction<State>)
+    }
     
     var body: some ReducerOf<Self> {
-        BindingReducer(action: /Action.view)
+        BindingReducer()
         SidebarLogic()
         
         Reduce { state, action in
@@ -118,16 +120,13 @@ struct SidebarFeature: Reducer {
                 case .onVideoPlayerTap:
                     state.videoPlayer = VideoPlayerFeature.State(url: Constant.videoURL)
                     return .send(.internal(.toggleVisibility))
-
-                case .binding:
-                    return .none
                 }
                 
             case .internal(.toggleVisibility):
                 state.isVisible.toggle()
                 return .none
 
-            case .delegate, .videoPlayer:
+            case .binding, .delegate, .videoPlayer:
                 return .none
             }
         }

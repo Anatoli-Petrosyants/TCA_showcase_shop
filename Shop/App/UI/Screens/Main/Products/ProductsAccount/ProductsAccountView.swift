@@ -24,36 +24,34 @@ extension ProductsAccountView: View {
     }
     
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            HStack(spacing: 8) {
-                ZStack {
-                    Circle()
-                        .background(
-                            Circle()
-                                .foregroundColor(Color.black)
-                        )
-                    
-                    Text(viewStore.name.prefix(1).capitalized)
-                        .font(.title3)
-                        .foregroundColor(.white)
-                }
-                .frame(width: 35, height: 35, alignment: .center)
+        HStack(spacing: 8) {
+            ZStack {
+                Circle()
+                    .background(
+                        Circle()
+                            .foregroundColor(Color.black)
+                    )
                 
-                HStack(spacing: 0) {
-                    Text("Hello, ")
-                        .font(.title2)
-                    
-                    Text(viewStore.name)
-                        .font(.title2Bold)
-                }
-                
-                Text(viewStore.countryCode.countryFlag())
-                
-                Spacer()
+                Text(store.name.prefix(1).capitalized)
+                    .font(.title3)
+                    .foregroundColor(.white)
             }
-            .onTapGesture {
-                viewStore.send(.view(.onTap))
+            .frame(width: 35, height: 35, alignment: .center)
+            
+            HStack(spacing: 0) {
+                Text("Hello, ")
+                    .font(.title2)
+                
+                Text(store.name)
+                    .font(.title2Bold)
             }
+            
+            Text(store.countryCode.countryFlag())
+            
+            Spacer()
+        }
+        .onTapGesture {
+            store.send(.view(.onTap))
         }
     }
 }

@@ -11,12 +11,7 @@ import ComposableArchitecture
 // MARK: - SearchSegmentView
 
 struct SearchSegmentView {
-    let store: StoreOf<SearchSegmentFeature>
-    
-    struct ViewState: Equatable {
-        var segments: [Segment]
-        @BindingViewState var selectedSegment: Segment
-    }
+    @Bindable var store: StoreOf<SearchSegmentFeature>
 }
 
 // MARK: - Views
@@ -28,20 +23,7 @@ extension SearchSegmentView: View {
     }
 
     @ViewBuilder private var content: some View {
-        WithViewStore(self.store, observe: \.view) { viewStore in
-            SearchSegmentControl(segments: viewStore.segments,
-                                 selectedSegment: viewStore.$selectedSegment)
-        }
-    }
-}
-
-
-// MARK: BindingViewStore
-
-extension BindingViewStore<SearchSegmentFeature.State> {
-    var view: SearchSegmentView.ViewState {
-        SearchSegmentView.ViewState(segments: self.segments,
-                                    selectedSegment: self.$selectedSegment)
+        SearchSegmentControl(segments: store.segments, selectedSegment: $store.selectedSegment)
     }
 }
 
