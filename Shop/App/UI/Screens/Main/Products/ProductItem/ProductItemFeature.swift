@@ -12,18 +12,18 @@ import ComposableArchitecture
 struct ProductItemFeature {
     
     @ObservableState
-    struct State: Identifiable {
+    struct State: Identifiable, Equatable {
         let id: UUID
         let product: Product
         var favorite = FavoriteButtonFeature.State()
     }
     
-    enum Action {
-        enum ViewAction {
+    enum Action: Equatable {
+        enum ViewAction: Equatable {
             case onItemTap            
         }
         
-        enum Delegate {
+        enum Delegate: Equatable {
             case didItemTapped(Product)
             case didFavoriteChanged(Bool, Product)
         }

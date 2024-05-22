@@ -133,8 +133,8 @@ struct MainFeature {
                 return .none
                 
             case let .wishlist(.delegate(.didProductRemovedFromFavorites(product))):
-                if let index = state.products.items.firstIndex(where: { $0.product.id == product.id }) {
-                    state.products.items[index].favorite.isFavorite = false
+                if let index = state.products.products.firstIndex(where: { $0.product.id == product.id }) {
+                    state.products.products[index].favorite.isFavorite = false
                 }
                 return .none
                 

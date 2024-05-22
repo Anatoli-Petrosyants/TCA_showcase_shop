@@ -43,20 +43,14 @@ extension ProductsView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: gridItems, pinnedViews: [.sectionHeaders]) {
                     Section {
-                        ForEachStore(
-                            self.store.scope(state: \.items,
-                                             action: ProductsFeature.Action.product(id: action:))
-                        ) { itemStore in
-                            ProductItemView(store: itemStore)
+                        ForEachStore(self.store.scope(state: \.products, action: \.products)) { productStore in
+                            ProductItemView(store: productStore)
                         }
                         .padding(.top, 8)
                     } header: {
                         VStack {
                             SearchInputView(
-                                store: self.store.scope(
-                                    state: \.input,
-                                    action: ProductsFeature.Action.input
-                                )
+                                store: self.store.scope(state: \.input, action: \.input)
                             )
 
                             SearchSegmentView(
@@ -127,45 +121,5 @@ extension ProductsView: View {
 //                HealthKitView(store: store)
             }
         }
-            
-//        } destination: {
-//            switch $0 {
-//            case .details:
-//                CaseLet(/ProductsFeature.Path.State.details,
-//                    action: ProductsFeature.Path.Action.details,
-//                    then: ProductDetailView.init(store:)
-//                )
-//
-//            case .inAppMessages:
-//                CaseLet(/ProductsFeature.Path.State.inAppMessages,
-//                    action: ProductsFeature.Path.Action.inAppMessages,
-//                    then: InAppMessagesView.init(store:)
-//                )
-//
-//            case .map:
-//                CaseLet(/ProductsFeature.Path.State.map,
-//                    action: ProductsFeature.Path.Action.map,
-//                    then: MapView.init(store:)
-//                )
-//
-//            case .camera:
-//                CaseLet(/ProductsFeature.Path.State.camera,
-//                    action: ProductsFeature.Path.Action.camera,
-//                    then: CameraView.init(store:)
-//                )
-//
-//            case .countries:
-//                CaseLet(/ProductsFeature.Path.State.countries,
-//                    action: ProductsFeature.Path.Action.countries,
-//                    then: CountriesView.init(store:)
-//                )
-//
-//            case .healthKit:
-//                CaseLet(/ProductsFeature.Path.State.healthKit,
-//                    action: ProductsFeature.Path.Action.healthKit,
-//                    then: HealthKitView.init(store:)
-//                )
-//            }
-//        }
     }
 }
