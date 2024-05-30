@@ -45,9 +45,7 @@ extension AnnouncementView: View {
         }
         .frame(maxWidth: UIScreen.main.bounds.width - 16, idealHeight: maxHeight)
         .cornerRadius(8)
-        .contentShape(Rectangle())
-        .padding(6)
-        .padding([.top, .bottom], 8)
+        .contentShape(Rectangle())        
     }
 }
 

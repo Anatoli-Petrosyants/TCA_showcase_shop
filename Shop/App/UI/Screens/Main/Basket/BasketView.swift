@@ -90,10 +90,28 @@ extension BasketView: View {
                                 action: \.announcement
                             )
                         )
+                        .padding(.horizontal, 8)
+                        
+                        Divider()
+                            .padding(.horizontal, 16)
+                        
+                        VStack(alignment: .leading) {
+                            Text(Localization.Basket.categories)
+                                .font(.title3Bold)
+                                .padding(.horizontal, 8)
+                            
+                            SearchChipsView(
+                                store: self.store.scope(
+                                    state: \.chips,
+                                    action: \.chips
+                                )
+                            )
+                        }
+                        .padding(.horizontal, 8)
 
                         Divider()
-                            .padding([.leading, .trailing], 24)
-                        
+                            .padding(.horizontal, 16)
+
                         TopPicksView(
                             store: self.store.scope(
                                 state: \.topPicks,

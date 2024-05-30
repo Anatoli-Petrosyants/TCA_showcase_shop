@@ -52,11 +52,15 @@ extension SearchInputView: View {
                     }
                 }
             }
-            .padding(4)
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.black, lineWidth: 1)
-            )
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 16)
+//                    .stroke(Color.black, lineWidth: 1)
+//            )
+            .padding(.vertical, 12)
+            .padding(.horizontal, 20)
+            .background(Color.white)
+            .cornerRadius(22)
+            .shadow(color: .black01, radius: 10.0)
         }
     }
 }

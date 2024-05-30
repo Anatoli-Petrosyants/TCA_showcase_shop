@@ -11,6 +11,7 @@ extension Localization {
     enum Basket {
         static var title: LocalizedStringKey { return "basket.title" }
         static var subtotal: LocalizedStringKey { return "basket.subtotal" }
+        static var categories: LocalizedStringKey { return "basket.categories" }
         static var topPicks: LocalizedStringKey { return "basket.top.picks" }
         static var checkoutTitle: LocalizedStringKey { return "basket.checkout.title" }
         static var checkoutShippingAddress: LocalizedStringKey { return "basket.checkout.shipping.address" }

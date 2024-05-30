@@ -24,6 +24,7 @@ struct BasketFeature {
         var totalPrice: String = "$0.00"
         var addProduct = AddProductFeature.State()
         var announcement = AnnouncementFeature.State()
+        var chips = SearchChipsFeature.State()
         var topPicks = TopPicksFeature.State()
         
         var toastMessage: LocalizedStringKey? = nil
@@ -57,6 +58,7 @@ struct BasketFeature {
         case delegate(Delegate)
         case addProduct(AddProductFeature.Action)
         case announcement(AnnouncementFeature.Action)
+        case chips(SearchChipsFeature.Action)
         case topPicks(TopPicksFeature.Action)
         case dialog(PresentationAction<DialogAction>)
         case path(StackActionOf<Path>)
@@ -74,6 +76,10 @@ struct BasketFeature {
         
         Scope(state: \.announcement, action: /Action.announcement) {
             AnnouncementFeature()
+        }
+        
+        Scope(state: \.chips, action: /Action.chips) {
+            SearchChipsFeature()
         }
         
         Scope(state: \.topPicks, action: /Action.topPicks) {
@@ -154,6 +160,16 @@ struct BasketFeature {
             case let .topPicks(.delegate(.didItemSelected(product))):
                 state.path.append(.details(.init(id: self.uuid(), product: product)))
                 return .none
+                
+            case let .chips(chipsAction):
+                switch chipsAction {
+                case let .delegate(.didChipSelected(chip)):
+                    print("didChipSelected", chip)
+                    return .none
+
+                default:
+                    return .none
+                }
                 
             case .delegate, .dialog, .addProduct, .announcement, .topPicks, .binding:
                 return .none

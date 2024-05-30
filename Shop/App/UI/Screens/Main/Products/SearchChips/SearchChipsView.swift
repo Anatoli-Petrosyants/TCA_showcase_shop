@@ -33,10 +33,9 @@ struct SearchChipsControl: View {
     var chips: [Chip]
     @Binding var selectedChip: Chip
 
-    var body: some View {
-        
-        WrappingHStack(models: chips) { model in
-            Text(model.description)
+    var body: some View {        
+        WrappingHStack(models: chips) { chip in
+            Text(chip.description)
                 .padding(.vertical, 12)
                 .padding(.horizontal, 20)
                 .foregroundColor(.black)
@@ -45,6 +44,9 @@ struct SearchChipsControl: View {
                 .shadow(color: .black01, radius: 10.0)
                 .padding(.vertical, 3)
                 .padding(.horizontal, 2)
+                .onTapGesture {
+                    selectedChip = chip
+                }
         }
     }
 }

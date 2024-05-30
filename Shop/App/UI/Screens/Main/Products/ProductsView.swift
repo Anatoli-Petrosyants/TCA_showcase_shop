@@ -62,13 +62,6 @@ extension ProductsView: View {
                                     action: \.segment
                                 )
                             )
-                            
-                            SearchChipsView(
-                                store: self.store.scope(
-                                    state: \.chips,
-                                    action: \.chips
-                                )
-                            )
                         }
                         .padding([.top, .bottom], 8)
                         .background(Color.white)

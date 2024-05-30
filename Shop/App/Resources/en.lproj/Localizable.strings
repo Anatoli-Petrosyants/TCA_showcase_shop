@@ -102,6 +102,7 @@
 "basket.title" = "Basket";
 "basket.subtotal" = "Subtotal";
 "basket.top.picks" = "Top Picks";
+"basket.categories" = "Categories";
 "basket.checkout.title" = "Checkout";
 "basket.checkout.shipping.address" = "Shipping Address";
 "basket.checkout.select.payment.method" = "Select a Payment Method";

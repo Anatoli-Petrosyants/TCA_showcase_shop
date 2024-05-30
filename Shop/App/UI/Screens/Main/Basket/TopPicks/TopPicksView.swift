@@ -26,7 +26,7 @@ extension TopPicksView: View {
     @ViewBuilder private var content: some View {
         if store.products.count > 0 {
             TopPicksCountView(count: store.products.count)
-                .padding([.leading, .trailing], 24)
+                .padding(.horizontal)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
@@ -78,6 +78,6 @@ struct TopPickView: View {
             Spacer()
         }
         .frame(width: 160, height: 240)
-        .padding([.leading, .trailing], 12)
+        .padding(.horizontal, 8)
     }
 }
