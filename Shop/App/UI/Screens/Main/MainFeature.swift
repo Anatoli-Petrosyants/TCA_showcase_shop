@@ -8,8 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-enum Tab: Int, CaseIterable {
-    case products = 0
+enum Tab: Hashable, CaseIterable {
+    case products
     case wishlist
     case basket
     case notifications
@@ -69,7 +69,7 @@ struct MainFeature {
         case binding(BindingAction<State>)
         case delegate(Delegate)
     }
-    
+
     var body: some Reducer<State, Action> {
         Scope(state: \.sidebar, action: /Action.sidebar) {
             SidebarFeature()

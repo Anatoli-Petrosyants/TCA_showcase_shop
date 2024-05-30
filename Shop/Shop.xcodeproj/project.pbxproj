@@ -98,6 +98,9 @@
 		A96593902AB047AD00E7EACA /* ContactViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */; };
 		A96593942AB0870700E7EACA /* ContactPickerViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */; };
 		A96593962AB1D89E00E7EACA /* AuthorizationControllerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */; };
+		A967928C2C00825300DE9699 /* SearchChipsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A967928B2C00825300DE9699 /* SearchChipsFeature.swift */; };
+		A967928E2C00825900DE9699 /* SearchChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A967928D2C00825900DE9699 /* SearchChipsView.swift */; };
+		A96792922C08641800DE9699 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96792912C08641800DE9699 /* WrappingHStack.swift */; };
 		A96B301D2B3C199D008B07EF /* EmptyModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B301C2B3C199D008B07EF /* EmptyModifier.swift */; };
 		A96B301F2B3C1B8E008B07EF /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96B301E2B3C1B8E008B07EF /* UIDevice+Extensions.swift */; };
 		A96BF1472A6A6FFB00B14247 /* SidebarFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */; };
@@ -367,6 +370,9 @@
 		A965938F2AB047AD00E7EACA /* ContactViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewRepresentable.swift; sourceTree = "<group>"; };
 		A96593932AB0870700E7EACA /* ContactPickerViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerViewRepresentable.swift; sourceTree = "<group>"; };
 		A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationControllerClient.swift; sourceTree = "<group>"; };
+		A967928B2C00825300DE9699 /* SearchChipsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChipsFeature.swift; sourceTree = "<group>"; };
+		A967928D2C00825900DE9699 /* SearchChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChipsView.swift; sourceTree = "<group>"; };
+		A96792912C08641800DE9699 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		A96B301C2B3C199D008B07EF /* EmptyModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyModifier.swift; sourceTree = "<group>"; };
 		A96B301E2B3C1B8E008B07EF /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		A96BF1462A6A6FFB00B14247 /* SidebarFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFeature.swift; sourceTree = "<group>"; };
@@ -572,6 +578,7 @@
 			children = (
 				A90110122A44459700DD08C4 /* ProductsFeature.swift */,
 				A90110142A44459D00DD08C4 /* ProductsView.swift */,
+				A967928A2C00824100DE9699 /* SearchChips */,
 				A94BF8A02A56B547006FCE43 /* ProductsAccount */,
 				A9AFC1702A5D9659003A95C3 /* SearchInput */,
 				A99545832ACEA8FF00E0B527 /* SearchSegment */,
@@ -862,6 +869,15 @@
 				A965938C2AAF366900E7EACA /* Contact+Mapping.swift */,
 			);
 			path = Contact;
+			sourceTree = "<group>";
+		};
+		A967928A2C00824100DE9699 /* SearchChips */ = {
+			isa = PBXGroup;
+			children = (
+				A967928B2C00825300DE9699 /* SearchChipsFeature.swift */,
+				A967928D2C00825900DE9699 /* SearchChipsView.swift */,
+			);
+			path = SearchChips;
 			sourceTree = "<group>";
 		};
 		A96BF14A2A6A700700B14247 /* Sidebar */ = {
@@ -1159,6 +1175,7 @@
 				A9F53F6A2A8A49D7005D6182 /* ErrorView.swift */,
 				A9459B992ACEB74200C63302 /* CardView.swift */,
 				A920A9D92BF7822600BE14ED /* Banner.swift */,
+				A96792912C08641800DE9699 /* WrappingHStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1659,6 +1676,7 @@
 				A96BF1542A6AAAA500B14247 /* SidebarLogic.swift in Sources */,
 				A9A0CB9A29D6D5140048A649 /* LinkButtonStyle.swift in Sources */,
 				A9947EF02A179DBF00FC7FB8 /* LottieViewRepresentable.swift in Sources */,
+				A96792922C08641800DE9699 /* WrappingHStack.swift in Sources */,
 				A94BF8972A5687A5006FCE43 /* DatabaseClient+Bundle.swift in Sources */,
 				A9B4D7AF2A4C52B700B102FB /* UserDTO.swift in Sources */,
 				A94A87282AA0B4EE00168BC1 /* PhoneOTPFeature.swift in Sources */,
@@ -1776,6 +1794,7 @@
 				A91F587629E67C2C008C0F35 /* EmailLoginFeature.swift in Sources */,
 				A9FAD6B92A54180A003A46F5 /* CoreData+Convertible.swift in Sources */,
 				A9FAD6CA2A541DB3003A46F5 /* Account+CoreData.swift in Sources */,
+				A967928E2C00825900DE9699 /* SearchChipsView.swift in Sources */,
 				A96FEB5C2A9E12FF008DC5BC /* PhoneLoginFeature.swift in Sources */,
 				A988F0D829B60D170059F9BB /* AppError.swift in Sources */,
 				A9DED5C429AC96CF003EFA02 /* AppDelegate.swift in Sources */,
@@ -1806,6 +1825,7 @@
 				A97572172A5FE21000C812D3 /* FavoriteButtonFeature.swift in Sources */,
 				A9AF25FE2A73E54900631158 /* AnnouncementFeature.swift in Sources */,
 				A960AA202A49A867005CE9F9 /* OnLoadModifier.swift in Sources */,
+				A967928C2C00825300DE9699 /* SearchChipsFeature.swift in Sources */,
 				A94A872D2AA0BAC100168BC1 /* OTPView.swift in Sources */,
 				A97C84282A7D00F8008054E0 /* Loadable.swift in Sources */,
 				A988F0A629B5C22B0059F9BB /* Blocks.swift in Sources */,

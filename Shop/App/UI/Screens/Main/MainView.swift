@@ -23,7 +23,8 @@ extension MainView: View {
             .toolbar(.hidden, for: .tabBar)
     }
     
-    @ViewBuilder private var content: some View {
+    @ViewBuilder 
+    private var content: some View {
         ZStack {
             TabView(selection: $store.currentTab.sending(\.onTabChanged)) {
                 ProductsView(

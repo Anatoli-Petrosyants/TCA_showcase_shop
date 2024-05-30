@@ -50,13 +50,23 @@ extension ProductsView: View {
                     } header: {
                         VStack {
                             SearchInputView(
-                                store: self.store.scope(state: \.input, action: \.input)
+                                store: self.store.scope(
+                                    state: \.input, 
+                                    action: \.input
+                                )
                             )
 
                             SearchSegmentView(
                                 store: self.store.scope(
                                     state: \.segment,
                                     action: \.segment
+                                )
+                            )
+                            
+                            SearchChipsView(
+                                store: self.store.scope(
+                                    state: \.chips,
+                                    action: \.chips
                                 )
                             )
                         }

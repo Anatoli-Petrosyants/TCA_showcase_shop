@@ -19,7 +19,8 @@ struct ProductsFeature {
         var products: IdentifiedArrayOf<ProductItemFeature.State> = []
         var account = ProductsAccountFeature.State()
         var input = SearchInputFeature.State(placeholder: Localization.Search.inputPlaceholder)
-        var segment = SearchSegmentFeature.State()        
+        var segment = SearchSegmentFeature.State()
+        var chips = SearchChipsFeature.State()
         var path = StackState<Path.State>()
     }
 
@@ -50,6 +51,7 @@ struct ProductsFeature {
         case account(ProductsAccountFeature.Action)
         case input(SearchInputFeature.Action)
         case segment(SearchSegmentFeature.Action)
+        case chips(SearchChipsFeature.Action)
         case products(IdentifiedActionOf<ProductItemFeature>)
         case path(StackActionOf<Path>)
     }
@@ -80,6 +82,10 @@ struct ProductsFeature {
         
         Scope(state: \.segment, action: /Action.segment) {
             SearchSegmentFeature()
+        }
+        
+        Scope(state: \.chips, action: /Action.chips) {
+            SearchChipsFeature()
         }
 
         Reduce { state, action in
@@ -177,6 +183,44 @@ struct ProductsFeature {
             case let .segment(segmentAction):
                 switch segmentAction {
                 case let .delegate(.didSegmentedChanged(segment)):
+                    state.input = SearchInputFeature.State(placeholder: Localization.Search.inputPlaceholder)
+                    state.input.isLoading = true
+                    return .run { send in
+                        if segment.isEmpty {
+                            await send(
+                                .internal(
+                                    .productsResponse(
+                                        await TaskResult {
+                                            try await self.productsClient.products()
+                                        }
+                                    )
+                                ),
+                                animation: .default
+                            )
+                        } else {
+                            await send(
+                                .internal(
+                                    .productsResponse(
+                                        await TaskResult {
+                                            try await self.productsClient.productsWithCategory(
+                                                .init(category: segment)
+                                            )
+                                        }
+                                    )
+                                ),
+                                animation: .default
+                            )
+                        }
+                    }
+                    .cancellable(id: CancelID.products)
+
+                default:
+                    return .none
+                }
+                
+            case let .chips(chipsAction):
+                switch chipsAction {
+                case let .delegate(.didChipSelected(segment)):
                     state.input = SearchInputFeature.State(placeholder: Localization.Search.inputPlaceholder)
                     state.input.isLoading = true
                     return .run { send in
