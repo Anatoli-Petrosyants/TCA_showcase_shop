@@ -18,18 +18,20 @@ struct ProductDetailFeature {
         let id: UUID
         let product: Product
         var isFavorite: Bool = false
+        var isSharePresented = false
         
         @Presents var productPhotos: ProductPhotosFeature.State?
         var link = ProductLinkFeature.State(text: "view website", url: URL(string:"https://google.com")!)
         var users = ProductUsersFeature.State()
     }
     
-    enum Action: Equatable {        
+    enum Action: BindableAction, Equatable {        
         enum ViewAction: Equatable {
             case onViewAppear
             case onViewPhotosTap
             case onAddProductsTap
             case onFavoriteTap
+            case onShareTap
         }
         
         enum InternalAction: Equatable {
@@ -50,6 +52,7 @@ struct ProductDetailFeature {
         case productPhotos(PresentationAction<ProductPhotosFeature.Action>)
         case link(ProductLinkFeature.Action)
         case users(ProductUsersFeature.Action)
+        case binding(BindingAction<State>)
     }
     
     @Dependency(\.feedbackGenerator) var feedbackGenerator
@@ -58,6 +61,8 @@ struct ProductDetailFeature {
     @Dependency(\.dismiss) var dismiss
     
     var body: some Reducer<State, Action> {
+        BindingReducer()
+        
         Scope(state: \.users, action: /Action.users) {
             ProductUsersFeature()
         }
@@ -100,6 +105,10 @@ struct ProductDetailFeature {
                             .didFavoriteChanged(state.isFavorite, state.product)
                         )
                     )
+                    
+                case .onShareTap:
+                    state.isSharePresented = true
+                    return .none
                 }
                 
             // internal actions
@@ -158,7 +167,7 @@ struct ProductDetailFeature {
                 state.productPhotos = nil
                 return .none
                 
-            case .productPhotos, .link, .users, .delegate:
+            case .productPhotos, .link, .users, .delegate, .binding:
                 return .none
             }
         }

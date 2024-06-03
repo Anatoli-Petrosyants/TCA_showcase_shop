@@ -94,12 +94,22 @@ extension ProductDetailView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    store.send(.view(.onFavoriteTap))
-                } label: {
-                    Image(systemName: "heart")
-                        .symbolVariant(store.isFavorite ? .fill : .none)
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        store.send(.view(.onShareTap))
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    
+                    Button {
+                        store.send(.view(.onFavoriteTap))
+                    } label: {
+                        Image(systemName: "heart")
+                            .symbolVariant(store.isFavorite ? .fill : .none)
+                    }
                 }
             }
         }
@@ -107,6 +117,16 @@ extension ProductDetailView: View {
             item: $store.scope(state: \.productPhotos, action: \.productPhotos)
         ) { store in
             ProductPhotosView(store: store)
+        }
+        .sheet(isPresented: $store.isSharePresented) {
+            ActivityViewRepresentable(
+                activityItems: [
+                    store.product.title,
+                    store.product.category,
+                    store.product.imageURL
+                ]
+            )
+            .presentationDetents([.medium])
         }
     }
 }

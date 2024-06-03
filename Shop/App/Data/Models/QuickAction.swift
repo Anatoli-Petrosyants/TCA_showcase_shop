@@ -13,6 +13,7 @@ enum QuickActionType: String {
     case favourites = "Favourites"
     case basket = "Basket"
 }
+
 /// Enum defining the possible quick actions.
 enum QuickAction: Equatable {
     case favourites

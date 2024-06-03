@@ -55,6 +55,7 @@ extension ProductsView: View {
                                     action: \.input
                                 )
                             )
+                            .padding(.top, 8)
 
                             SearchSegmentView(
                                 store: self.store.scope(
