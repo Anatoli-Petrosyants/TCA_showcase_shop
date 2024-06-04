@@ -29,7 +29,7 @@ extension WishlistView: View {
                 if store.products.isEmpty {
                     ContentUnavailableView {
                         Label("You don't have any favorites.", systemImage: "heart.fill")
-                            .font(.title2)
+                            .font(.title3)
                             .foregroundColor(Color.black)
                     }
                 } else {

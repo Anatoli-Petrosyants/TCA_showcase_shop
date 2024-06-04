@@ -28,7 +28,7 @@ extension NotificationsView: View {
                 if store.items.isEmpty {
                     ContentUnavailableView {
                         Label("You don't have any notifications.", systemImage: "bell.fill")
-                            .font(.title2)
+                            .font(.title3)
                             .foregroundColor(Color.black)
                     }
                 } else {

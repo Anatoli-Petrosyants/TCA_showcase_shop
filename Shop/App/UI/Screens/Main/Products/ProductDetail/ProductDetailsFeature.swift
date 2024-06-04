@@ -21,8 +21,27 @@ struct ProductDetailFeature {
         var isSharePresented = false
         
         @Presents var productPhotos: ProductPhotosFeature.State?
-        var link = ProductLinkFeature.State(text: "view website", url: URL(string:"https://google.com")!)
+        var link = ProductLinkFeature.State(text: "Visit the store", url: URL(string:"https://google.com")!)
         var users = ProductUsersFeature.State()
+        
+        var agreementsAttributedString: AttributedString {
+            var result = AttributedString("By tapping you agree our Terms and Conditions and Privacy Policy.")
+            
+            // We can force unwrap the link range,
+            // because we are sure in this case,
+            // that `website` string is present.
+            let termsRange = result.range(of: "Terms and Conditions")!
+            result[termsRange].link = Constant.termsURL
+            result[termsRange].underlineStyle = Text.LineStyle(pattern: .solid)
+            result[termsRange].foregroundColor = Color.blue
+            
+            let privacyRange = result.range(of: "Privacy Policy")!
+            result[privacyRange].link = Constant.privacyURL
+            result[privacyRange].underlineStyle = Text.LineStyle(pattern: .solid)
+            result[privacyRange].foregroundColor = Color.blue
+            
+            return result
+        }
     }
     
     enum Action: BindableAction, Equatable {        
@@ -152,7 +171,7 @@ struct ProductDetailFeature {
                     
                 case let .usersResponse(.success(data)):
                     Log.info("usersResponse: \(data)")
-                    state.users.items.append(contentsOf: data)
+                    state.users.items.append(contentsOf: data.prefix(3))
                     return .none
 
                 case let .usersResponse(.failure(error)):
