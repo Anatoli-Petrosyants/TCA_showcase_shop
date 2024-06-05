@@ -158,7 +158,11 @@ struct BasketFeature {
                 }
                 
             case let .topPicks(.delegate(.didItemSelected(product))):
-                state.path.append(.details(.init(id: self.uuid(), product: product)))
+                state.path.append(
+                    .details(
+                        .init(id: self.uuid(), product: product)
+                    )
+                )
                 return .none
                 
             case let .chips(chipsAction):

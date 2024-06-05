@@ -42,6 +42,13 @@ struct ProductDetailFeature {
             
             return result
         }
+        
+        let urls = ["https://picsum.photos/id/1/400/600",
+                    "https://picsum.photos/id/2/400/600",
+                    "https://picsum.photos/id/3/400/600",
+                    "https://picsum.photos/id/4/400/600",
+                    "https://picsum.photos/id/5/400/600",
+                    "https://picsum.photos/id/6/400/600"]
     }
     
     enum Action: BindableAction, Equatable {        
@@ -101,13 +108,7 @@ struct ProductDetailFeature {
                     )
                     
                 case .onViewPhotosTap:
-                    let urls = ["https://picsum.photos/id/1/400/600",
-                                "https://picsum.photos/id/2/400/600",
-                                "https://picsum.photos/id/3/400/600",
-                                "https://picsum.photos/id/4/400/600",
-                                "https://picsum.photos/id/5/400/600",
-                                "https://picsum.photos/id/6/400/600"]
-                    state.productPhotos = ProductPhotosFeature.State(urls: urls)
+                    state.productPhotos = ProductPhotosFeature.State(urls: state.urls)
                     return .none
                     
                 case .onAddProductsTap:
@@ -171,7 +172,7 @@ struct ProductDetailFeature {
                     
                 case let .usersResponse(.success(data)):
                     Log.info("usersResponse: \(data)")
-                    state.users.items.append(contentsOf: data.prefix(3))
+                    state.users.items.append(contentsOf: data.prefix(2))
                     return .none
 
                 case let .usersResponse(.failure(error)):

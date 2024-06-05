@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import SDWebImageSwiftUI
 
 // MARK: - ProductDetailView
 
@@ -27,17 +28,10 @@ extension ProductDetailView: View {
     private var content: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                ProductLinkView(
-                    store: self.store.scope(
-                        state: \.link,
-                        action: \.link
-                    )
-                )
-                .padding(.horizontal)
-                
                 photosView
                 
                 VStack(alignment: .leading, spacing: 16) {
+                    linkView
                     titleView
                     reviewsView
                     priceView
@@ -86,23 +80,42 @@ extension ProductDetailView: View {
     
     @ViewBuilder
     private var photosView: some View {
-        VStack(spacing: 0) {
-            Image(systemName: "photo.on.rectangle.angled")
-                .font(.system(size: 100))
-                .tint(.black05)
+        TabView {
+//            Image(systemName: "photo.on.rectangle.angled")
+//                .font(.system(size: 100))
+//                .tint(.black05)
+            
+            ForEach(store.urls, id: \.self) { url in
+                WebImage(url: URL(string: url)!)
+                    .resizable()
+                    .indicator(.activity)
+                    .transition(.fade(duration: 0.5))
+                    .scaledToFill()
+            }
         }
+        .tabViewStyle(PageTabViewStyle())
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .frame(maxWidth: .infinity, idealHeight: 400)
-        .background(
-            Color(
-                uiColor: UIColor(red: 118.0 / 255.0, green: 118.0 / 255.0, blue: 128.0 / 255.0, alpha: 0.12)
-            )
-        )
+//        .background(
+//            Color(
+//                uiColor: UIColor(red: 118.0 / 255.0, green: 118.0 / 255.0, blue: 128.0 / 255.0, alpha: 0.12)
+//            )
+//        )
         .onTapGesture {
             store.send(.view(.onViewPhotosTap))
         }
     }
     
-    @ViewBuilder
+    
+    private var linkView: some View {
+        ProductLinkView(
+            store: self.store.scope(
+                state: \.link,
+                action: \.link
+            )
+        )
+    }
+    
     private var titleView: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(store.product.title)
@@ -114,7 +127,6 @@ extension ProductDetailView: View {
         }
     }
     
-    @ViewBuilder
     private var priceView: some View {
         VStack(alignment: .leading, spacing: 8) {
             Rectangle()
@@ -140,7 +152,6 @@ extension ProductDetailView: View {
         }
     }
     
-    @ViewBuilder
     private var reviewsView: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(Localization.Product.detailsReviews)
@@ -155,6 +166,21 @@ extension ProductDetailView: View {
                 Text("(\(store.product.ratingCount))")
                     .font(.footnote)
                     .foregroundColor(.black05)
+                
+                Spacer()
+                
+                Button("show more") {
+                    // viewStore.send(.present)
+                }
+                .foregroundColor(.blue)
+                .font(.subheadline)
+                .overlay(
+                    Rectangle()
+                        .frame(height: 1)
+                        .padding(.vertical, 1)
+                        .foregroundColor(.blue),
+                    alignment: .bottom
+                )
             }
             
 //            ProductUsersView(
