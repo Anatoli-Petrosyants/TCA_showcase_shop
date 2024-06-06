@@ -25,47 +25,53 @@ extension ProductUsersView: View {
     
     @ViewBuilder private var content: some View {
         if store.items.count > 0 {
-            VStack(alignment: .leading) {
-                ForEach(store.items, id: \.self) { user in
-                    HStack {
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.black03)
+            ScrollView {
+                VStack(alignment: .leading) {
+                    ForEach(store.items, id: \.self) { user in
+                        HStack {
+                            ZStack {
+                                Circle()
+                                    .foregroundColor(.black03)
+                                
+                                Image(systemName: "person.fill")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 20, height: 20)
+                            }
+                            .frame(width: 60, height: 60)
                             
-                            Image(systemName: "person.fill")
-                                .frame(width: 40, height: 40)
+                            VStack(alignment: .leading) {
+                                Text(user.name)
+                                    .font(.footnoteBold)
+                                
+                                HStack {
+                                    Text("email: ")
+                                        .font(.footnote)
+                                        .foregroundColor(.black05)
+                                    
+                                    Text(user.email)
+                                        .font(.footnote)
+                                }
+                                
+                                HStack {
+                                    Text("phone: ")
+                                        .font(.footnote)
+                                        .foregroundColor(.black05)
+                                    
+                                    Text(user.phone)
+                                        .font(.footnote)
+                                }
+                            }
+                            .frame(maxHeight: 100)
                         }
-                        .frame(width: 60, height: 60)
+                        .padding([.top, .bottom], 8)
                         
-                        VStack(alignment: .leading) {
-                            Text(user.name)
-                                .font(.footnoteBold)
-                            
-                            HStack {
-                                Text("email: ")
-                                    .font(.footnote)
-                                    .foregroundColor(.black05)
-                                
-                                Text(user.email)
-                                    .font(.footnote)
-                            }
-
-                            HStack {
-                                Text("phone: ")
-                                    .font(.footnote)
-                                    .foregroundColor(.black05)
-                                
-                                Text(user.phone)
-                                    .font(.footnote)
-                            }
-                        }
-                        .frame(maxHeight: 100)
+                        Rectangle()
+                            .frame(height: 0.5)
+                            .foregroundColor(.black03)
                     }
-                    .padding([.top, .bottom], 8)
                     
-                    Rectangle()
-                        .frame(height: 0.5)
-                        .foregroundColor(.black03)
+                    // Spacer()
                 }
             }
         } else {

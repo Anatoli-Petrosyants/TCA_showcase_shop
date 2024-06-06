@@ -19,6 +19,7 @@ struct ProductDetailFeature {
         let product: Product
         var isFavorite: Bool = false
         var isSharePresented = false
+        var isReviewsPresented = false
         
         @Presents var productPhotos: ProductPhotosFeature.State?
         var link = ProductLinkFeature.State(text: "Visit the store", url: URL(string:"https://google.com")!)
@@ -58,6 +59,8 @@ struct ProductDetailFeature {
             case onAddProductsTap
             case onFavoriteTap
             case onShareTap
+            case onReviewsTap
+            case onCloseReviewsTap
         }
         
         enum InternalAction: Equatable {
@@ -129,6 +132,14 @@ struct ProductDetailFeature {
                 case .onShareTap:
                     state.isSharePresented = true
                     return .none
+                    
+                case .onReviewsTap:
+                    state.isReviewsPresented = true
+                    return .none
+                    
+                case .onCloseReviewsTap:
+                    state.isReviewsPresented = false
+                    return .none
                 }
                 
             // internal actions
@@ -172,7 +183,7 @@ struct ProductDetailFeature {
                     
                 case let .usersResponse(.success(data)):
                     Log.info("usersResponse: \(data)")
-                    state.users.items.append(contentsOf: data.prefix(2))
+                    state.users.items.append(contentsOf: data)
                     return .none
 
                 case let .usersResponse(.failure(error)):

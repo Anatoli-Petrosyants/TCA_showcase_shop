@@ -76,15 +76,17 @@ extension ProductDetailView: View {
             )
             .presentationDetents([.medium])
         }
+        .sheet(isPresented: $store.isReviewsPresented) {
+            usersReviewsView
+                .padding()
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
     }
     
     @ViewBuilder
     private var photosView: some View {
         TabView {
-//            Image(systemName: "photo.on.rectangle.angled")
-//                .font(.system(size: 100))
-//                .tint(.black05)
-            
             ForEach(store.urls, id: \.self) { url in
                 WebImage(url: URL(string: url)!)
                     .resizable()
@@ -96,11 +98,6 @@ extension ProductDetailView: View {
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .frame(maxWidth: .infinity, idealHeight: 400)
-//        .background(
-//            Color(
-//                uiColor: UIColor(red: 118.0 / 255.0, green: 118.0 / 255.0, blue: 128.0 / 255.0, alpha: 0.12)
-//            )
-//        )
         .onTapGesture {
             store.send(.view(.onViewPhotosTap))
         }
@@ -150,6 +147,7 @@ extension ProductDetailView: View {
                 Spacer()
             }
         }
+        .padding(.bottom, 32)
     }
     
     private var reviewsView: some View {
@@ -170,7 +168,7 @@ extension ProductDetailView: View {
                 Spacer()
                 
                 Button("show more") {
-                    // viewStore.send(.present)
+                    store.send(.view(.onReviewsTap))
                 }
                 .foregroundColor(.blue)
                 .font(.subheadline)
@@ -182,13 +180,46 @@ extension ProductDetailView: View {
                     alignment: .bottom
                 )
             }
+        }
+    }
+    
+    private var usersReviewsView: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 4) {
+                Text(Localization.Product.detailsReviews)
+                    .font(.title2Bold)
+                
+                Spacer()
+                
+                Button {
+                    store.send(.view(.onCloseReviewsTap))
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .scaledToFill()
+                        .foregroundColor(.black)
+                        .frame(width: 30, height: 30)
+                }
+            }
+                        
+            HStack(spacing: 4) {
+                Text(String(format: "%.1f", store.product.ratingStars))
+                    .font(.footnote)
+                
+                RatingView(rating: store.product.ratingStars)
+                
+                Text("(\(store.product.ratingCount))")
+                    .font(.footnote)
+                    .foregroundColor(.black05)
+            }
             
-//            ProductUsersView(
-//                store: self.store.scope(
-//                    state: \.users,
-//                    action: \.users
-//                )
-//            )
+            ProductUsersView(
+                store: self.store.scope(
+                    state: \.users,
+                    action: \.users
+                )
+            )
+            .padding(.top, 8)
         }
     }
 }
