@@ -22,6 +22,7 @@ struct AccountFeature {
     enum Path {
         case contacts(ContactsFeature)
         case cities(CitiesFeature)
+        case purchaseHistory(PurchaseHistoryFeature)
     }
     
     @ObservableState
@@ -56,6 +57,7 @@ struct AccountFeature {
             case onViewAppear
             case onCityTap
             case onSaveTap
+            case onPurchaseHistoryTap
             case onPermissionsTap
             case onContactsTap
             case onLogoutTap
@@ -174,6 +176,10 @@ struct AccountFeature {
                     
                 case .onContactsTap:
                     state.path.append(.contacts(.init()))
+                    return .none
+                    
+                case .onPurchaseHistoryTap:
+                    state.path.append(.purchaseHistory(.init()))
                     return .none
                 }
                

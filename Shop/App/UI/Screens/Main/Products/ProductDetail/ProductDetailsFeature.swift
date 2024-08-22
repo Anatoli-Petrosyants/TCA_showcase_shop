@@ -22,7 +22,7 @@ struct ProductDetailFeature {
         var isReviewsPresented = false
         
         @Presents var productPhotos: ProductPhotosFeature.State?
-        var link = ProductLinkFeature.State(text: "Visit the store", url: URL(string:"https://google.com")!)
+        var link = ProductLinkFeature.State(text: "Visit the store", url: URL(string:"https://amazon.com")!)
         var users = ProductUsersFeature.State()
         
         var agreementsAttributedString: AttributedString {

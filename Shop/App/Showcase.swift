@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import XCTestDynamicOverlay
+import SwiftData
 
 @main
 struct Showcase: App {
@@ -24,5 +25,6 @@ struct Showcase: App {
         .onChange(of: scenePhase) { _, newPhase in
             self.appDelegate.store.send(.didChangeScenePhase(newPhase))
         }
+        .modelContainer(for: Purchase.self)
     }
 }

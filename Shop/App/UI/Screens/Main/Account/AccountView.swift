@@ -38,6 +38,18 @@ extension AccountView: View {
                 }
                 .listRowBackground(Color.clear)
                 
+                Section(header: Text("Purchase information"),
+                        footer: Text("I have used SwiftData to show purchase history")) {
+                    LabeledContent("Purchase history") {
+                        Image(systemName: "chevron.right")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        store.send(.view(.onPurchaseHistoryTap))
+                    }
+                }
+                .listRowBackground(Color.gray)
+                
                 Section(header: Text(Localization.Account.sectionPersonal)) {
                     TextField(Localization.Account.sectionPersonalFirstName,
                               text: $store.firstName)
@@ -163,6 +175,8 @@ extension AccountView: View {
                 ContactsView(store: store)
             case let .cities(store):
                 CitiesView(store: store)
+            case let .purchaseHistory(store):
+                PurchaseHistoryView(store: store)
             }
         }
         .sheet(
