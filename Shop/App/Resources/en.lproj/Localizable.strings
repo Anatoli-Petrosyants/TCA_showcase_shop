@@ -80,6 +80,7 @@
 "sidebar.item.map" = "Map";
 "sidebar.item.inAppMessages" = "In-App Messages";
 "sidebar.item.darkMode" = "Dark Mode";
+"sidebar.item.changeIcon" = "Change Icon";
 "sidebar.item.shareApp" = "Share App";
 "sidebar.item.appSettings" = "App Settings";
 "sidebar.item.rateUs" = "Rate Us";

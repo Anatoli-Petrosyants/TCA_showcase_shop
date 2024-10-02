@@ -33,9 +33,17 @@ struct SidebarLogic<State>: Reducer {
                 
             case .onDarkModeTap:
                 let style = UIApplication.shared.firstKeyWindow?.overrideUserInterfaceStyle
+
                 return .run { _ in
                     await self.setUserInterfaceStyle((style == .dark) ? .light : .dark)
                 }
+                
+            case .onChangeIconTap:
+                if UIApplication.shared.supportsAlternateIcons {
+                    let isPrime = UIApplication.shared.alternateIconName.valueOr("AppIcon") == "AppIcon"
+                    UIApplication.shared.setAlternateIconName(isPrime ? "AppIcon_dark" : nil)
+                }
+                return .none
                 
             case .onAppSettings:
                 return .run { _ in

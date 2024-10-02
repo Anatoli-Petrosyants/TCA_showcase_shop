@@ -16,6 +16,7 @@ extension Localization {
         static var map: LocalizedStringKey { return "sidebar.item.map" }
         static var inAppMessages: LocalizedStringKey { return "sidebar.item.inAppMessages" }
         static var darkMode: LocalizedStringKey { return "sidebar.item.darkMode" }
+        static var changeIcon: LocalizedStringKey { return "sidebar.item.changeIcon" }        
         static var shareApp: LocalizedStringKey { return "sidebar.item.shareApp" }
         static var appSettings: LocalizedStringKey { return "sidebar.item.appSettings" }
         static var rateUs: LocalizedStringKey { return "sidebar.item.rateUs" }

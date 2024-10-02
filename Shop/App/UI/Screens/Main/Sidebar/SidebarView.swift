@@ -117,41 +117,51 @@ extension SidebarView {
 
     private func featuresView(store: StoreOf<SidebarFeature>) -> some View {
         Group {
-            Button {
+            SidebarRowView(title: Localization.Sidebar.darkMode, systemImage: "switch.2") {
                 store.send(.view(.onDarkModeTap))
-            } label: {
-                Label(Localization.Sidebar.darkMode, systemImage: "switch.2")
             }
             
-            Button {
+            SidebarRowView(title: Localization.Sidebar.changeIcon, systemImage: "rectangle.2.swap") {
+                store.send(.view(.onChangeIconTap))
+            }
+            
+            SidebarRowView(title: Localization.Sidebar.appSettings, systemImage: "gearshape") {
                 store.send(.view(.onAppSettings))
-            } label: {
-                Label(Localization.Sidebar.appSettings, systemImage: "gearshape")
             }
-
-            Button {
+            
+            SidebarRowView(title: Localization.Sidebar.shareApp, systemImage: "square.and.arrow.up") {
                 store.send(.view(.onShareTap))
-            } label: {
-                Label(Localization.Sidebar.shareApp, systemImage: "square.and.arrow.up")
             }
-
-            Button {
+            
+            SidebarRowView(title: Localization.Sidebar.rateUs, systemImage: "person.2") {
                 store.send(.view(.onRateTap))
-            } label: {
-                Label(Localization.Sidebar.rateUs, systemImage: "person.2")
             }
-
-            Button {
+            
+            SidebarRowView(title: Localization.Sidebar.contactUs, systemImage: "envelope") {
                 store.send(.view(.onContactTap))
-            } label: {
-                Label(Localization.Sidebar.contactUs, systemImage: "envelope")
             }
-
-            Button {
+            
+            SidebarRowView(title: Localization.Base.logout, systemImage: "rectangle.portrait.and.arrow.right") {
                 store.send(.view(.onLogoutTap))
-            } label: {
-                Label(Localization.Base.logout, systemImage: "rectangle.portrait.and.arrow.right")
             }
+        }
+    }
+}
+
+struct SidebarRowView: View {
+    let title: LocalizedStringKey
+    let systemImage: String
+    let action: () -> Void
+
+    var body: some View {
+        HStack(spacing: 2) {
+            Image(systemName: systemImage)
+                .frame(width: 30, height: 20, alignment: .leading)
+            Text(title)
+            Spacer()
+        }
+        .onTapGesture {
+            action()
         }
     }
 }
