@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import OSLog
+
+// let logegr = Logger(subsystem: <#T##String#>, category: <#T##String#>)
 
 #if !RELEASE
     // Import Bugsee or any other remote logger for debugging in non-release mode.

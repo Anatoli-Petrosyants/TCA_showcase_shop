@@ -14,8 +14,10 @@ import ComposableArchitecture
 struct PurchaseHistoryView {
     var store: StoreOf<PurchaseHistoryFeature>
     
-    @Query(sort: \Purchase.title) var purchases: [Purchase]
-    @Environment(\.modelContext) var modelContext
+//    @Query(sort: \Purchase.title) var purchases: [Purchase]
+//    @Environment(\.modelContext) var modelContext
+    
+    @Query(FetchDescriptor<Purchase>()) var purchasesQuery: [Purchase]
 }
 
 // MARK: - Views
@@ -30,7 +32,7 @@ extension PurchaseHistoryView: View {
     @ViewBuilder private var content: some View {
         VStack {
             List {
-                ForEach(purchases) { purchase in
+                ForEach(store.purchases) { purchase in
                     VStack(alignment: .leading) {
                         Text(purchase.title)
                             .font(.headline)
@@ -38,31 +40,21 @@ extension PurchaseHistoryView: View {
                         // Text(destination.date.formatted(date: .long, time: .shortened))
                     }
                 }
-                .onDelete(perform: deletePurchases)
+//                .onDelete(perform: deletePurchases)
             }
             .padding(.top, 24)
         }
         .navigationTitle("Purchase History")
         .toolbar(.hidden, for: .tabBar)
         .toolbar {
-            Button("Add Samples", action: addSamples)
+//            Button("Add Samples", action: addSamples)
+            
+            Button("Add sample", systemImage: "plus") {
+                // viewStore.send(.addMovie, animation: .snappy)
+            }
         }
-    }
-    
-    func addSamples() {
-        let sample1 = Purchase(productId: 1, title: "asample1")
-//        let sample2 = Purchase(productId: 1, title: "sample2")
-//        let sample3 = Purchase(productId: 1, title: "sample3")
-//        
-        modelContext.insert(sample1)
-//        modelContext.insert(sample2)
-//        modelContext.insert(sample3)
-    }
-    
-    func deletePurchases(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let destination = purchases[index]
-            modelContext.delete(destination)
+        .onChange(of: self.purchasesQuery, initial: true) { _, newValue in
+            store.send(.queryChangedPurchases(newValue))            
         }
     }
 }

@@ -15,6 +15,14 @@ struct Showcase: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @Environment(\.scenePhase) private var scenePhase
+    @Dependency(\.swiftDataClient) var swiftDataClient
+    
+    var modelContext: ModelContext {
+        guard let modelContext = try? self.swiftDataClient.context() else {
+            fatalError("Could not find modelcontext")
+        }
+        return modelContext
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -25,6 +33,6 @@ struct Showcase: App {
         .onChange(of: scenePhase) { _, newPhase in
             self.appDelegate.store.send(.didChangeScenePhase(newPhase))
         }
-        .modelContainer(for: Purchase.self)
+        .modelContext(self.modelContext)
     }
 }
