@@ -29,6 +29,8 @@
 		A91F587829E67C35008C0F35 /* EmailLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587729E67C35008C0F35 /* EmailLoginView.swift */; };
 		A91F587B29E68260008C0F35 /* AnyTransition+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91F587A29E68260008C0F35 /* AnyTransition+Extensions.swift */; };
 		A920A9DA2BF7822600BE14ED /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920A9D92BF7822600BE14ED /* Banner.swift */; };
+		A92869CB2CB3B57D00B144EB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A92869CA2CB3B57D00B144EB /* GoogleSignIn */; };
+		A92869CD2CB3B57D00B144EB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A92869CC2CB3B57D00B144EB /* GoogleSignInSwift */; };
 		A9286A362A4DB0EE00ED4CB3 /* ProductLinkFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A352A4DB0EE00ED4CB3 /* ProductLinkFeature.swift */; };
 		A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */; };
 		A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = A9286A3B2A4E9ED300ED4CB3 /* BackedCodable */; };
@@ -536,6 +538,8 @@
 				A9BEED3829D1B4EF007ADC33 /* SDWebImageSwiftUI in Frameworks */,
 				A98DD1612A9F545100B39EDC /* iPhoneNumberField in Frameworks */,
 				A9AA22BA2A8DE77E0073E070 /* ComposableArchitecture in Frameworks */,
+				A92869CD2CB3B57D00B144EB /* GoogleSignInSwift in Frameworks */,
+				A92869CB2CB3B57D00B144EB /* GoogleSignIn in Frameworks */,
 				A96BF14D2A6A996300B14247 /* PopupView in Frameworks */,
 				A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */,
 				A990E52E2A41BC7D0004F4F9 /* Reachability in Frameworks */,
@@ -1519,6 +1523,8 @@
 				A98DD1602A9F545100B39EDC /* iPhoneNumberField */,
 				A9DD83ED2AA9C21B00FD9927 /* SwiftKeychainWrapper */,
 				A93B1FF52AA9E92A00E05DD1 /* Moya */,
+				A92869CA2CB3B57D00B144EB /* GoogleSignIn */,
+				A92869CC2CB3B57D00B144EB /* GoogleSignInSwift */,
 			);
 			productName = Showcase;
 			productReference = A9DED59E29AC7FA6003EFA02 /* Shop.app */;
@@ -1567,6 +1573,7 @@
 				A98DD15F2A9F545100B39EDC /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				A9DD83EC2AA9C21B00FD9927 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				A93B1FF42AA9E92A00E05DD1 /* XCRemoteSwiftPackageReference "Moya" */,
+				A92869C92CB3B57000B144EB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = A9DED59F29AC7FA6003EFA02 /* Products */;
 			projectDirPath = "";
@@ -2306,6 +2313,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A92869C92CB3B57000B144EB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		A9286A3A2A4E9ED300ED4CB3 /* XCRemoteSwiftPackageReference "BackedCodable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jegnux/BackedCodable";
@@ -2397,6 +2412,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A92869CA2CB3B57D00B144EB /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A92869C92CB3B57000B144EB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		A92869CC2CB3B57D00B144EB /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A92869C92CB3B57000B144EB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		A9286A3B2A4E9ED300ED4CB3 /* BackedCodable */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A9286A3A2A4E9ED300ED4CB3 /* XCRemoteSwiftPackageReference "BackedCodable" */;
