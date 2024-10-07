@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import ComposableArchitecture
+import GoogleSignIn
 
 /// The application delegate responsible for handling app-level events.
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -81,4 +82,28 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         configuration.delegateClass = SceneDelegate.self
         return configuration
     }
+        
+    /// Handles incoming URLs to the application, such as for authentication callbacks.
+    ///
+    /// - Parameters:
+    ///   - app: The singleton app object managing the app’s life cycle.
+    ///   - url: The URL that the app was asked to open. Typically used for deep linking or authentication flows.
+    ///   - options: A dictionary of options provided when opening the URL. Includes information like the source app or annotation.
+    /// - Returns: A Boolean value indicating whether the URL was successfully handled.
+    func application(
+          _ app: UIApplication,
+          open url: URL,
+          options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+        ) -> Bool {
+          
+          // Check if Google Sign-In can handle the URL.
+          if GIDSignIn.sharedInstance.handle(url) {
+            return true
+          }
+
+          // Handle any other custom URL schemes.
+          return false
+        }
 }
+
+

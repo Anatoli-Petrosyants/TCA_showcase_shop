@@ -32,6 +32,7 @@
 		A92869CB2CB3B57D00B144EB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A92869CA2CB3B57D00B144EB /* GoogleSignIn */; };
 		A92869CD2CB3B57D00B144EB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A92869CC2CB3B57D00B144EB /* GoogleSignInSwift */; };
 		A92869CF2CB3B62900B144EB /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92869CE2CB3B62900B144EB /* GoogleSignInClient.swift */; };
+		A92869D12CB3B6F200B144EB /* GoogleSignInLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92869D02CB3B6F200B144EB /* GoogleSignInLogic.swift */; };
 		A9286A362A4DB0EE00ED4CB3 /* ProductLinkFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A352A4DB0EE00ED4CB3 /* ProductLinkFeature.swift */; };
 		A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */; };
 		A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = A9286A3B2A4E9ED300ED4CB3 /* BackedCodable */; };
@@ -303,6 +304,7 @@
 		A91F587A29E68260008C0F35 /* AnyTransition+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+Extensions.swift"; sourceTree = "<group>"; };
 		A920A9D92BF7822600BE14ED /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		A92869CE2CB3B62900B144EB /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
+		A92869D02CB3B6F200B144EB /* GoogleSignInLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInLogic.swift; sourceTree = "<group>"; };
 		A9286A352A4DB0EE00ED4CB3 /* ProductLinkFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLinkFeature.swift; sourceTree = "<group>"; };
 		A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLinkView.swift; sourceTree = "<group>"; };
 		A9286A3D2A4EA3F500ED4CB3 /* User+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Mapping.swift"; sourceTree = "<group>"; };
@@ -933,6 +935,7 @@
 			children = (
 				A96FEB602A9E13E0008DC5BC /* JoinFeature.swift */,
 				A96FEB622A9E13E7008DC5BC /* JoinView.swift */,
+				A92869D02CB3B6F200B144EB /* GoogleSignInLogic.swift */,
 			);
 			path = Join;
 			sourceTree = "<group>";
@@ -1718,6 +1721,7 @@
 				A92E6AC72ABACF2F00186F8D /* String+CardBrands.swift in Sources */,
 				A990E5332A41BCC90004F4F9 /* NoNetworkView.swift in Sources */,
 				A92E6AC42AB9C51D00186F8D /* CheckoutCardView.swift in Sources */,
+				A92869D12CB3B6F200B144EB /* GoogleSignInLogic.swift in Sources */,
 				A98DD15E2A9F31DA00B39EDC /* Localization+LoginOptions.swift in Sources */,
 				A9DED5B129AC93BE003EFA02 /* Fonts.swift in Sources */,
 				A90072D52A73DC05000551E1 /* CameraView.swift in Sources */,

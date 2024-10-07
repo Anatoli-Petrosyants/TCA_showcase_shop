@@ -85,7 +85,7 @@
          <EnvironmentVariable
             key = "debug_level_enable"
             value = ""
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "error_level_enable"

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import GoogleSignIn
 
 @Reducer
 struct LoginOptionsFeature {
@@ -38,12 +39,14 @@ struct LoginOptionsFeature {
             case onEmailLoginButtonTap
             case onAppleLoginButtonTap
             case onPhoneLoginButtonTap
+            case onGoogleLoginButtonTap
         }
         
         enum Delegate {
             case didEmailLoginButtonSelected
             case didAppleLoginButtonSelected
             case didPhoneLoginButtonSelected
+            case didGoogleLoginButtonSelected
         }
 
         case view(ViewAction)
@@ -54,7 +57,7 @@ struct LoginOptionsFeature {
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            switch action {            
+            switch action {
             case let .view(viewAction):
                 switch viewAction {
                 case .onEmailLoginButtonTap:
@@ -74,12 +77,16 @@ struct LoginOptionsFeature {
                         .send(.delegate(.didPhoneLoginButtonSelected)),
                         .run { _ in await self.dismiss() }
                     )
+                    
+                case .onGoogleLoginButtonTap:
+                    return .concatenate(
+                        .send(.delegate(.didGoogleLoginButtonSelected)),
+                        .run { _ in await self.dismiss() }
+                    )
                 }
                 
             case .delegate:
                 return .none
-                
-                
             }
         }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import GoogleSignIn
 
 @Reducer
 struct AppFeature {
@@ -43,6 +44,7 @@ struct AppFeature {
     
     @Dependency(\.userDefaultsClient) var userDefaultsClient
     @Dependency(\.userKeychainClient) var userKeychainClient
+    @Dependency(\.googleSignInClient) var googleSignInClient
     @Dependency(\.userNotificationClient) var userNotificationClient
     
     var body: some Reducer<State, Action> {
@@ -50,12 +52,17 @@ struct AppFeature {
             switch action {
             case let .appDelegate(appDelegateAction):
                 switch appDelegateAction {
-                case .didFinishLaunching:                    
+                case .didFinishLaunching:
                     // Configure Logger
                     Log.initialize()
                     
                     // Configure Firebase
                     FirebaseApp.configure()
+                    
+                    GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                        Log.debug("GIDSignIn user \(String(describing: user?.profile?.email))")
+                        Log.debug("GIDSignIn error \(String(describing: error?.localizedDescription))")
+                    }
                     
                     let userNotificationsEventStream = self.userNotificationClient.delegate()
                     return .run { send in
@@ -156,6 +163,7 @@ struct AppFeature {
             case let .main(action: .delegate(mainAction)):
                 switch mainAction {
                 case .didLogout:
+                    self.googleSignInClient.logout()
                     self.userKeychainClient.removeToken()
                     state = .loading(LoadingFeature.State())
                     return .none

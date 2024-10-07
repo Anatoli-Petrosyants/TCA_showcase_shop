@@ -29,8 +29,9 @@ struct JoinFeature {
             case didAuthenticated
         }
         
-        enum InternalAction: Equatable {            
+        enum InternalAction: Equatable {
             case authorizationResponse(TaskResult<ASAuthorization>)
+            case loginResponse(TaskResult<AuthenticationResponse>)
         }
 
         case view(ViewAction)
@@ -52,6 +53,8 @@ struct JoinFeature {
     @Dependency(\.authorizationControllerClient) var authorizationControllerClient
     
     var body: some ReducerOf<Self> {
+        GoogleSignInLogic()
+        
         Reduce { state, action in
             switch action {
             // view actions
@@ -76,6 +79,9 @@ struct JoinFeature {
                 case let .authorizationResponse(.failure(error)):
                     Log.error("authorizationResponse: \(error)")
                     return .none
+                    
+                default:
+                    return .none
                 }
     
             // path actions
@@ -96,7 +102,7 @@ struct JoinFeature {
                     state.path.append(.phoneOTP(.init()))
                     return .none
                     
-                case .element(id: _, action: .phoneOTP(.delegate(.didCodeAuthenticated))):                    
+                case .element(id: _, action: .phoneOTP(.delegate(.didCodeAuthenticated))):
                     return .send(.delegate(.didAuthenticated))
 
                 default:
@@ -127,10 +133,13 @@ struct JoinFeature {
                 case .didPhoneLoginButtonSelected:
                     state.path.append(.phoneLogin(.init()))
                     return .none
+                    
+                case .didGoogleLoginButtonSelected:
+                    return .none
                 }
                 
             case .loginOptions(.dismiss):
-                return .none                
+                return .none
                 
             // #dev Here we will try to implement analytics client. A.P.
             case let .developedBy(.presented(.delegate(developedByAction))):
@@ -152,4 +161,3 @@ struct JoinFeature {
         .forEach(\.path, action: \.path)
     }
 }
-
