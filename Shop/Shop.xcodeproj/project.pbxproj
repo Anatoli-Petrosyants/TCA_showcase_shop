@@ -31,6 +31,7 @@
 		A920A9DA2BF7822600BE14ED /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A920A9D92BF7822600BE14ED /* Banner.swift */; };
 		A92869CB2CB3B57D00B144EB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A92869CA2CB3B57D00B144EB /* GoogleSignIn */; };
 		A92869CD2CB3B57D00B144EB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A92869CC2CB3B57D00B144EB /* GoogleSignInSwift */; };
+		A92869CF2CB3B62900B144EB /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92869CE2CB3B62900B144EB /* GoogleSignInClient.swift */; };
 		A9286A362A4DB0EE00ED4CB3 /* ProductLinkFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A352A4DB0EE00ED4CB3 /* ProductLinkFeature.swift */; };
 		A9286A382A4DB0F700ED4CB3 /* ProductLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */; };
 		A9286A3C2A4E9ED300ED4CB3 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = A9286A3B2A4E9ED300ED4CB3 /* BackedCodable */; };
@@ -301,6 +302,7 @@
 		A91F587729E67C35008C0F35 /* EmailLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginView.swift; sourceTree = "<group>"; };
 		A91F587A29E68260008C0F35 /* AnyTransition+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+Extensions.swift"; sourceTree = "<group>"; };
 		A920A9D92BF7822600BE14ED /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		A92869CE2CB3B62900B144EB /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
 		A9286A352A4DB0EE00ED4CB3 /* ProductLinkFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLinkFeature.swift; sourceTree = "<group>"; };
 		A9286A372A4DB0F700ED4CB3 /* ProductLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLinkView.swift; sourceTree = "<group>"; };
 		A9286A3D2A4EA3F500ED4CB3 /* User+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Mapping.swift"; sourceTree = "<group>"; };
@@ -1081,6 +1083,7 @@
 				A96593882AAF067500E7EACA /* ContactsClient.swift */,
 				A96593952AB1D89E00E7EACA /* AuthorizationControllerClient.swift */,
 				A9AD20262B0217AA00BFA784 /* LocalAuthenticationClient.swift */,
+				A92869CE2CB3B62900B144EB /* GoogleSignInClient.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1654,6 +1657,7 @@
 				A907C1A82A4460DA007E7FE7 /* ProductsClient.swift in Sources */,
 				A9FE005A29C875EE00B5F868 /* View+Extensions.swift in Sources */,
 				A9F665982A54302700D4FB8A /* Account.swift in Sources */,
+				A92869CF2CB3B62900B144EB /* GoogleSignInClient.swift in Sources */,
 				A96B301D2B3C199D008B07EF /* EmptyModifier.swift in Sources */,
 				A960AA1C2A49698F005CE9F9 /* ProductItemView.swift in Sources */,
 				A92E77672B04EC29002A67C3 /* SceneDelegate.swift in Sources */,

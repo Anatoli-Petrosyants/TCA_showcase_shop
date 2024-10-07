@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import XCTestDynamicOverlay
+import GoogleSignIn
 
 @main
 struct Showcase: App {
@@ -19,6 +20,22 @@ struct Showcase: App {
         WindowGroup {
             if !_XCTIsTesting {
                 AppView(store: self.appDelegate.store)
+                    .onAppear {
+                        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                            Log.debug("GIDSignIn user \(user?.profile?.email)")
+                            Log.debug("GIDSignIn error \(error?.localizedDescription)")
+                            
+                            if error != nil || user == nil {
+                              // Show the app's signed-out state.
+                            } else {
+                              // Show the app's signed-in state.
+                            }
+                        }
+                    }
+                    .onOpenURL { url in
+                        Log.debug("URL: \(url.absoluteString)")
+                        GIDSignIn.sharedInstance.handle(url)
+                    }
             }
         }
         .onChange(of: scenePhase) { (phase, _) in

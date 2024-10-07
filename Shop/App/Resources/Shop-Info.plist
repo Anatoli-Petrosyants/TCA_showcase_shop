@@ -31,5 +31,16 @@
 		<key>UIColorName</key>
 		<string>LaunchScreenBackground</string>
 	</dict>
+	<key>GIDClientID</key>
+	<string>64663116188-88rjeholdjrsqlsit4j2rb89upkqhicv.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.64663116188-88rjeholdjrsqlsit4j2rb89upkqhicv</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
