@@ -32,6 +32,7 @@ struct SidebarFeature {
             case onAppSettings
             case onMessagesTap
             case onDarkModeTap
+            case onChangeIconTap
             case onMapTap
             case onCountriesTap
             case onCameraTap
@@ -90,7 +91,7 @@ struct SidebarFeature {
                         .send(.delegate(.didSidebarTapped(.messages)))
                     )
                 
-                case .onDarkModeTap:
+                case .onDarkModeTap, .onChangeIconTap:
                     return .none
                     
                 case .onMapTap:
