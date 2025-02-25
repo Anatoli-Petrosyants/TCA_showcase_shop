@@ -28,4 +28,9 @@ Welcome to the Shop Application project, a showcase of building a shopping app u
 
 https://www.youtube.com/watch?v=-tNJSeuV6yg
 
+## License
+
+https://unlicense.org/
+
+
 
